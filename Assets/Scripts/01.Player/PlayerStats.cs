@@ -1,18 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Text;
 using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private CharacterTable characterTable;
+    private Dictionary<CharacterColumn.Stat, float> stats; // 능력치 종류, 능력치 배율
 
-    // Update is called once per frame
-    void Update()
+    private void Awake()
     {
-        
+        characterTable = DataTableMgr.Get<CharacterTable>(DataTableIds.Character);
     }
 }

@@ -34,8 +34,6 @@ public static class Vars
     public static Languages editorLang = Languages.Korean;
 }
 
-
-
 public static class Tags
 {
     public static readonly string Player = "Player";
@@ -57,4 +55,37 @@ public enum Languages
     Korean,
     English,
     Japanese,
+}
+
+public static class OptionColumn
+{
+    public enum Type
+    { 
+        Scale,
+        Fixed
+    }
+
+    public enum Stat
+    {
+        Damage,
+        FireRate,
+        FireRange,
+        Penentrate,
+        SplashDamage,
+        SplashRange,
+        Critical,
+        CriticalDamage,
+        HpDrain,
+        ProjectileSpeed,
+        ProjectileAmount,
+        Hp,
+        MoveSpeedVertical,
+        MoveSpeedHorizontal,
+    }
+}
+
+
+public enum TableIdentifier
+{
+    Option = 1,
 }

@@ -14,7 +14,7 @@ public static class DataTableIds
     };
 
     public static readonly string Item = "ItemTable";
-    public static readonly string Character = "CharacterTable";
+    public static readonly string Character = "CHARACTER_TABLE";
     public static readonly string Option = "OptionTable";
     public static string CurrString
     {

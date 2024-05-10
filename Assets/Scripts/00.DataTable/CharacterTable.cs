@@ -7,7 +7,7 @@ using UnityEngine;
 public class CharacterData
 {
     public int CHARACTER_ID { get; set; }
-    public string NAME { get; set; }
+    public string NAME_ID { get; set; }
     public int BODY_TYPE { get; set; }
     public int HEAD_TYPE { get; set; }
     public int PRICE { get; set; }
@@ -18,52 +18,36 @@ public class CharacterData
     public float DAMAGE_TYPE_3 { get; set; }
     public float MOVE_SPEED_V { get; set; }
     public float MOVE_SPEED_H { get; set; }
-    public string FLAVOR_TEXT { get; set; }
-    public int STAT_1 { get; set; }
+    public string DESC_ID { get; set; }
+    public CharacterColumn.Stat STAT_1 { get; set; }
     public float VALUE_1 { get; set; }
-    public int STAT_2 { get; set; }
+    public CharacterColumn.Stat STAT_2 { get; set; }
     public float VALUE_2 { get; set; }
-    public int STAT_3 { get; set; }
+    public CharacterColumn.Stat STAT_3 { get; set; }
     public float VALUE_3 { get; set; }
-    public int STAT_4 { get; set; }
+    public CharacterColumn.Stat STAT_4 { get; set; }
     public float VALUE_4 { get; set; }
 
 
-    //public string GetName
-    //{
-    //    get
-    //    {
-    //        return DataTableMgr.GetStringTable().Get(Name);
-    //    }
-    //}
+    public string GetName
+    {
+        get
+        {
+            return DataTableMgr.GetStringTable().Get(NAME_ID);
+        }
+    }
 
-    //public new string GetType
-    //{
-    //    get
-    //    {
-    //        return DataTableMgr.GetStringTable().Get(Type);
-    //    }
-    //}
-
-    //public string GetDesc
-    //{
-    //    get
-    //    {
-    //        return DataTableMgr.GetStringTable().Get(Desc);
-    //    }
-    //}
-
-    //public Sprite GetIcon
-    //{
-    //    get
-    //    {
-    //        return Resources.Load<Sprite>(string.Format(FormatIconPath, Icon));
-    //    }
-    //}
+    public string GetDESC
+    {
+        get
+        {
+            return DataTableMgr.GetStringTable().Get(DESC_ID);
+        }
+    }
 
     public override string ToString()
     {
-        return $"CHARACTER_ID : {CHARACTER_ID}\nNAME : {NAME}\nHP : {HP}";
+        return $"CHARACTER_ID : {CHARACTER_ID}\nNAME : {GetName}\nHP : {HP}"; // String 테이블이 없으므로 현재 GetName 에러 발생 
     }
 }
 
@@ -98,7 +82,6 @@ public class CharacterTable : DataTable
             foreach (var record in records)
             {
                 table.Add(record.CHARACTER_ID, record);
-                Debug.Log(record);
             }
         }
     }

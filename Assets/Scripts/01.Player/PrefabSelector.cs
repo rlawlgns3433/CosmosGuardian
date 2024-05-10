@@ -11,7 +11,7 @@ public class PrefabSelector : MonoBehaviour
 
     private void Awake()
     {
-        //prefabNumber = CharacterPrefabNumber.Anna; // 선택으로 변경 필요
+        prefabNumber = CharacterPrefabNumber.Anna; // 선택으로 변경 필요
 
         for(int i = 0; i < bodyPrefabs.Count; ++i)
         {

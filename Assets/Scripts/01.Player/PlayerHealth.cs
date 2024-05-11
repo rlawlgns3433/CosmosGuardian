@@ -21,7 +21,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     private void Start()
     {
-        maxHealth = playerStats.maxHp;
+        maxHealth = playerStats.stats[CharacterColumn.Stat.Hp];
         currentHealth = maxHealth;
 
         onDeath += OnDie;

@@ -1,9 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Purchasing;
-using UnityEngine;
-
 public static class DataTableIds
 {
     public static readonly string[] String =
@@ -68,20 +62,14 @@ public static class OptionColumn
 
     public enum Stat
     {
-        Damage,
-        FireRate,
-        FireRange,
-        Penentrate,
-        SplashDamage,
-        SplashRange,
-        Critical,
-        CriticalDamage,
-        HpDrain,
-        ProjectileSpeed,
-        ProjectileAmount,
+        None,
         Hp,
-        MoveSpeedVertical,
-        MoveSpeedHorizontal,
+        Armor,
+        DamageType1,
+        DamageType2,
+        DamageType3,
+        SpeedVertical,
+        SpeedHorizontal,
     }
 }
 
@@ -93,19 +81,17 @@ public static class CharacterColumn
         Anna
     }
     public enum Stat
-    { 
+    {
         None,
-        FireRate,
-        FireRange,
-        SplashDamage,
-        SplashRange,
-        Critical,
-        CriticalDamage,
-        HpDrain,
-        ProjectileSpeed,
+        Hp,
+        Armor,
+        DamageType1,
+        DamageType2,
+        DamageType3,
+        SpeedVertical,
+        SpeedHorizontal,
     }
 }
-
 
 public enum TableIdentifier
 {

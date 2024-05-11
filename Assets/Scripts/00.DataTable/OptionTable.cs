@@ -10,8 +10,8 @@ public class OptionData
 {
     public int UPGRADE_ID { get; set; }
     public string NAME_DEV { get; set; }
-    public int TYPE { get; set; }
-    public int STAT { get; set; }
+    public OptionColumn.Type TYPE { get; set; }
+    public OptionColumn.Stat STAT { get; set; }
     public int GRADE { get; set; }
     public int VALUE { get; set; }
     public override string ToString()

@@ -1,4 +1,0 @@
-﻿CHARACTER_ID,NAME,BODY_TYPE,HEAD_TYPE,PRICE,HP,ARMOR,DAMAGE_TYPE_1,DAMAGE_TYPE_2,DAMAGE_TYPE_3,MOVE_SPEED_V,MOVE_SPEED_H,FLAVOR_TEXT,STAT_1,VALUE_1,STAT_2,VALUE_2,STAT_3,VALUE_3,STAT_4,VALUE_4
-int,string,int,int,int,float,float,float,float,float,float,float,string,int,float,int,float,int,float,int,float
-20101,제임스,1,1,0,100,0,1,1,1,1,1,,1,1,2,1.4,3,2,4,3.5
-20202,안나,2,2,0,100,0,1,1,1,1,1,,1,1,2,1.4,3,2,4,3.5

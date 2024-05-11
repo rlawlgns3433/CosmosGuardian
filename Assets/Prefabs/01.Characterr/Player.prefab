@@ -3961,6 +3961,8 @@ GameObject:
   - component: {fileID: 2686379450363031452}
   - component: {fileID: 8178177954245249217}
   - component: {fileID: 4508787347923785903}
+  - component: {fileID: 6157067695724090070}
+  - component: {fileID: 6596744918915436003}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -4202,6 +4204,50 @@ MonoBehaviour:
   playerStats: {fileID: 2295086922680514110}
   maxHealth: 0
   currentHealth: 0
+--- !u!136 &6157067695724090070
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5541493190259963240}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.3
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.45, z: 0}
+--- !u!135 &6596744918915436003
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5541493190259963240}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.45
+  m_Center: {x: 0, y: 1.4, z: 0.1}
 --- !u!1 &5635138574146748691
 GameObject:
   m_ObjectHideFlags: 0

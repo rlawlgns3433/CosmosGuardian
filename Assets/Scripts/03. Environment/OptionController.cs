@@ -5,9 +5,6 @@ using UnityEngine.UI;
 
 public class OptionController : MonoBehaviour
 {
-    // 현재 플랫폼과 다음 플랫폼을 관리해야 함
-    // 
-
     public List<Image> options = new List<Image>(); // OnOff로 생성/미생성
     public List<TextMeshProUGUI> optionTexts = new List<TextMeshProUGUI>();
 
@@ -16,13 +13,17 @@ public class OptionController : MonoBehaviour
     private void OnEnable()
     {
         optionTable = DataTableMgr.Get<OptionTable>(DataTableIds.Option);
-
         // 키 중 하나를 선택
-        foreach (var text in optionTexts)
+        for (int i = 0; i < options.Count; ++i)
         {
             int index = Random.Range(0, optionTable.GetKeys.Count);
 
-            text.text = optionTable.Get(optionTable.GetKeys[index]).NAME_DEV.ToString();
+            optionTexts[i].text = optionTable.Get(optionTable.GetKeys[index]).NAME_DEV.ToString();
+
+            OptionStat option = options[i].gameObject.GetComponent<OptionStat>();
+            option.stat = optionTable.Get(optionTable.GetKeys[index]).STAT;
+            option.type = optionTable.Get(optionTable.GetKeys[index]).TYPE;
+            option.value = optionTable.Get(optionTable.GetKeys[index]).VALUE;
         }
     }
 }

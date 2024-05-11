@@ -19,6 +19,11 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         }
     }
 
+    private void OnEnable()
+    {
+        transform.position = new Vector3(0f, 1f, 0f);   
+    }
+
     private void Start()
     {
         maxHealth = playerStats.stats[CharacterColumn.Stat.Hp];

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class JoystickPlayerExample : MonoBehaviour
 {
@@ -12,10 +10,6 @@ public class JoystickPlayerExample : MonoBehaviour
 
     public void FixedUpdate()
     {
-        //Vector3 direction = Vector3.forward * dynamicJoystick.Vertical + Vector3.right * dynamicJoystick.Horizontal;
-        //rb.MovePosition(transform.position + direction * speed * Time.fixedDeltaTime);
-
         rb.MovePosition(transform.position + (forward * speedVertical + Vector3.right * dynamicJoystick.Horizontal * speedHorizontal) * Time.deltaTime);
-
     }
 }

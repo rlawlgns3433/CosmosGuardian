@@ -9,11 +9,11 @@ public class PrefabSelector : MonoBehaviour
 
     public CharacterPrefabNumber prefabNumber;
 
-    private void Awake()
+    private void Start()
     {
         prefabNumber = CharacterPrefabNumber.Anna; // 선택으로 변경 필요
 
-        for(int i = 0; i < bodyPrefabs.Count; ++i)
+        for (int i = 0; i < bodyPrefabs.Count; ++i)
         {
             bodyPrefabs[i].SetActive(false);
             headPrefabs[i].SetActive(false);

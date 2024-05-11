@@ -7,17 +7,27 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    private CharacterTable characterTable;
+    private CharacterTable characterTable = null;
     private Dictionary<CharacterColumn.Stat, float> stats = new Dictionary<CharacterColumn.Stat, float>(); // 능력치 종류, 능력치 배율
-    private PrefabSelector prefabSelector;
-    private CharacterData characterData;
+    private PrefabSelector prefabSelector = null;
+    public CharacterData characterData = null;
+
+    // 이 부분을 Scriptable Assets로 변경할 수도 있음
+    public int price = default;
+    public float maxHp = default;
+    public float armor = default;
+    public float damageType1 = default;
+    public float damageType2 = default;
+    public float damageType3 = default;
+    public float speedVertical = default;
+    public float speedHorizontal = default;
 
     private void Awake()
     {
         characterTable = DataTableMgr.Get<CharacterTable>(DataTableIds.Character);
     }
 
-    private void Start()
+    private void OnEnable()
     {
         if (!TryGetComponent(out prefabSelector))
         {
@@ -37,11 +47,14 @@ public class PlayerStats : MonoBehaviour
         stats[characterData.STAT_3] = characterData.VALUE_3;
         stats[characterData.STAT_4] = characterData.VALUE_4;
 
-
-        Debug.Log(stats[characterData.STAT_1]);
-        Debug.Log(stats[characterData.STAT_2]);
-        Debug.Log(stats[characterData.STAT_3]);
-        Debug.Log(stats[characterData.STAT_4]);
+        price = characterData.PRICE;
+        maxHp = characterData.HP;
+        armor = characterData.ARMOR;
+        damageType1 = characterData.DAMAGE_TYPE_1;
+        damageType2 = characterData.DAMAGE_TYPE_2;
+        damageType3 = characterData.DAMAGE_TYPE_3;
+        speedVertical = characterData.MOVE_SPEED_V;
+        speedHorizontal = characterData.MOVE_SPEED_H;
     }
 
     // 매개변수 : 스텟 종류, 증가량

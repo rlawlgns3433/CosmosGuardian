@@ -3959,6 +3959,8 @@ GameObject:
   - component: {fileID: 2178642780895092122}
   - component: {fileID: 2295086922680514110}
   - component: {fileID: 2686379450363031452}
+  - component: {fileID: 8178177954245249217}
+  - component: {fileID: 4508787347923785903}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -4032,7 +4034,7 @@ Animator:
   m_GameObject: {fileID: 5541493190259963240}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 9f078227c6f09b54392514bfaa25c741, type: 3}
-  m_Controller: {fileID: 9100000, guid: 754223ca98f6d3249a40eb103efdc674, type: 2}
+  m_Controller: {fileID: 9100000, guid: 2d1340fa765e71c43b9b93da85e4e0a5, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -4095,6 +4097,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInput: {fileID: 876836260979100070}
+  playerStats: {fileID: 2295086922680514110}
+  dynamicJoystick: {fileID: 0}
+  rb: {fileID: 302829191086297507}
 --- !u!114 &2295086922680514110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4107,6 +4112,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05823c49c34cb65499f0d5f4d5612d6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  price: 0
+  maxHp: 0
+  armor: 0
+  damageType1: 0
+  damageType2: 0
+  damageType3: 0
+  speedVertical: 0
+  speedHorizontal: 0
 --- !u!114 &2686379450363031452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4161,6 +4174,34 @@ MonoBehaviour:
   - {fileID: 5491113689193188786}
   - {fileID: 227478218979679667}
   - {fileID: 6940917517340958252}
+  prefabNumber: 1
+--- !u!114 &8178177954245249217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5541493190259963240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c976abf85476c7142bafca5d4e73400a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4508787347923785903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5541493190259963240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45e8c7ce919ca2047aedbdd82d2cb1fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerStats: {fileID: 2295086922680514110}
+  maxHealth: 0
+  currentHealth: 0
 --- !u!1 &5635138574146748691
 GameObject:
   m_ObjectHideFlags: 0

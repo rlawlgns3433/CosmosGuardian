@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ProjectileMove : MonoBehaviour
 {
-    public PlayerShooter playerShooter;
+    private PlayerShooter playerShooter;
     public float range;
     public float speed;
     public float criticalRate;
@@ -12,11 +13,16 @@ public class ProjectileMove : MonoBehaviour
     public float splashDamageRate;
     public float splashDamageRange;
     public int penetrationCount;
-    Vector3 direction = Vector3.forward;
-    Vector3 startPosition = Vector3.zero;
+    public Vector3 startPosition = Vector3.zero;
     public Rigidbody rigidbody;
+
     private void OnEnable()
     {
+        if (playerShooter == null && !GameObject.FindWithTag(Tags.Player).TryGetComponent(out playerShooter))
+        {
+            playerShooter.enabled = false;
+            return;
+        }
         // Projectile Table 별도 필요
         range = 50.0f;
         speed = 50.0f;
@@ -26,11 +32,14 @@ public class ProjectileMove : MonoBehaviour
         splashDamageRange = 5.0f;
         penetrationCount = 1;
 
+        startPosition = playerShooter.muzzle.transform.position;
+        transform.position = startPosition;
+
         rigidbody.velocity = Vector3.zero;  // Rigidbody 속도 초기화
         rigidbody.angularVelocity = Vector3.zero; // 각속도 초기화
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         rigidbody.AddForce(transform.forward * speed * Time.deltaTime, ForceMode.Impulse);
 

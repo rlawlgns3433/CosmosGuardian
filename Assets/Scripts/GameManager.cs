@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
+    // ÇÃ·§Æû °ü¸® ÇÊ¿ä
+
+
     public PlayerStats playerStats = null;
     public bool IsGameover { get; set; }
 

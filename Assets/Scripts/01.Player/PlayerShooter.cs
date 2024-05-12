@@ -29,12 +29,12 @@ public class PlayerShooter : MonoBehaviour
     {
         if(unusingProjectiles.Count > 0)
         {
-            // recycling
-            var projectile = unusingProjectiles.First();
+            var projectile = unusingProjectiles[0];
             projectile.SetActive(true);
+            projectile.transform.position = muzzle.transform.position;
 
-            unusingProjectiles.Remove(projectile);
             usingProjectiles.Add(projectile);
+            unusingProjectiles.Remove(projectile);
         }
         else
         {
@@ -43,7 +43,7 @@ public class PlayerShooter : MonoBehaviour
         }
     }
 
-    public void ReturnProjectile(in GameObject projectile)
+    public void ReturnProjectile(GameObject projectile)
     {
         unusingProjectiles.Add(projectile);
         usingProjectiles.Remove(projectile);

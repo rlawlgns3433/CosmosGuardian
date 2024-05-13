@@ -34,13 +34,23 @@ public class PlayerStats : MonoBehaviour
         string id = sb.ToString();
         characterData = characterTable.Get(int.Parse(id));
 
-        stats[CharacterColumn.Stat.Hp] = initialStats[CharacterColumn.Stat.Hp] = characterData.HP;
-        stats[CharacterColumn.Stat.Armor] = initialStats[CharacterColumn.Stat.Armor] = characterData.ARMOR;
-        stats[CharacterColumn.Stat.DamageType1] = initialStats[CharacterColumn.Stat.DamageType1] = characterData.DAMAGE_TYPE_1;
-        stats[CharacterColumn.Stat.DamageType2] = initialStats[CharacterColumn.Stat.DamageType2] = characterData.DAMAGE_TYPE_2;
-        stats[CharacterColumn.Stat.DamageType3] = initialStats[CharacterColumn.Stat.DamageType3] = characterData.DAMAGE_TYPE_3;
-        stats[CharacterColumn.Stat.SpeedVertical] = initialStats[CharacterColumn.Stat.SpeedVertical] = characterData.MOVE_SPEED_V;
-        stats[CharacterColumn.Stat.SpeedHorizontal] = initialStats[CharacterColumn.Stat.SpeedHorizontal] = characterData.MOVE_SPEED_H;
+        stats[CharacterColumn.Stat.HP] = initialStats[CharacterColumn.Stat.HP] = characterData.HP;
+        stats[CharacterColumn.Stat.ARMOR] = initialStats[CharacterColumn.Stat.ARMOR] = characterData.ARMOR;
+        stats[CharacterColumn.Stat.DAMAGE_TYPE_1] = initialStats[CharacterColumn.Stat.DAMAGE_TYPE_1] = characterData.DAMAGE_TYPE_1;
+        stats[CharacterColumn.Stat.DAMAGE_TYPE_2] = initialStats[CharacterColumn.Stat.DAMAGE_TYPE_2] = characterData.DAMAGE_TYPE_2;
+        stats[CharacterColumn.Stat.DAMAGE_TYPE_3] = initialStats[CharacterColumn.Stat.DAMAGE_TYPE_3] = characterData.DAMAGE_TYPE_3;
+        stats[CharacterColumn.Stat.MOVE_SPEED_V] = initialStats[CharacterColumn.Stat.MOVE_SPEED_V] = characterData.MOVE_SPEED_V;
+        stats[CharacterColumn.Stat.MOVE_SPEED_H] = initialStats[CharacterColumn.Stat.MOVE_SPEED_H] = characterData.MOVE_SPEED_H;
+        stats[CharacterColumn.Stat.FIRE_RATE] = initialStats[CharacterColumn.Stat.FIRE_RATE] = characterData.FIRE_RATE;
+        stats[CharacterColumn.Stat.FIRE_RANGE] = initialStats[CharacterColumn.Stat.FIRE_RANGE] = characterData.FIRE_RANGE;
+        stats[CharacterColumn.Stat.PENENTRATE] = initialStats[CharacterColumn.Stat.PENENTRATE] = characterData.PENENTRATE;
+        stats[CharacterColumn.Stat.SPLASH_DAMAGE] = initialStats[CharacterColumn.Stat.SPLASH_DAMAGE] = characterData.SPLASH_DAMAGE;
+        stats[CharacterColumn.Stat.SPLASH_RANGE] = initialStats[CharacterColumn.Stat.SPLASH_RANGE] = characterData.SPLASH_RANGE;
+        stats[CharacterColumn.Stat.CRITICAL] = initialStats[CharacterColumn.Stat.CRITICAL] = characterData.CRITICAL;
+        stats[CharacterColumn.Stat.CRITICAL_DAMAGE] = initialStats[CharacterColumn.Stat.CRITICAL_DAMAGE] = characterData.CRITICAL_DAMAGE;
+        stats[CharacterColumn.Stat.HP_DRAIN] = initialStats[CharacterColumn.Stat.HP_DRAIN] = characterData.HP_DRAIN;
+        stats[CharacterColumn.Stat.PROJECTILE_SPEED] = initialStats[CharacterColumn.Stat.PROJECTILE_SPEED] = characterData.PROJECTILE_SPEED;
+        stats[CharacterColumn.Stat.PROJECTILE_AMOUNT] = initialStats[CharacterColumn.Stat.PROJECTILE_AMOUNT] = characterData.PROJECTILE_AMOUNT;
         
         price = characterData.PRICE;
     }
@@ -66,6 +76,7 @@ public class PlayerStats : MonoBehaviour
                 stats[(CharacterColumn.Stat)stat] += value;
                 break;
         }
+        stats[CharacterColumn.Stat.DAMAGE_TYPE_1] += 10;
 
         return true;
     }

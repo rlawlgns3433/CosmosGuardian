@@ -2,14 +2,14 @@ public static class DataTableIds
 {
     public static readonly string[] String =
     {
-        "StringTableKr",
+        "STRING_TABLE",
         "StringTableEn",
         "StringTableJp"
     };
 
-    public static readonly string Item = "ItemTable";
     public static readonly string Character = "CHARACTER_TABLE";
     public static readonly string Option = "OptionTable";
+    public static readonly string Weapon = "WEAPON_TABLE";
     public static string CurrString
     {
         get
@@ -31,6 +31,7 @@ public static class Vars
 
 public static class Tags
 {
+    public static readonly string Enemy = "Enemy";
     public static readonly string Player = "Player";
     public static readonly string GameController = "GameController";
 }
@@ -62,14 +63,24 @@ public static class OptionColumn
 
     public enum Stat
     {
-        None,
-        Hp,
-        Armor,
-        DamageType1,
-        DamageType2,
-        DamageType3,
-        SpeedVertical,
-        SpeedHorizontal,
+        NONE,
+        HP, 
+        ARMOR,  
+        DAMAGE_TYPE_1,  
+        DAMAGE_TYPE_2,   
+        DAMAGE_TYPE_3,  
+        MOVE_SPEED_V,
+        MOVE_SPEED_H,
+        FIRE_RATE,
+        FIRE_RANGE,
+        PENENTRATE,
+        SPLASH_DAMAGE,
+        SPLASH_RANGE,
+        CRITICAL,
+        CRITICAL_DAMAGE,
+        HP_DRAIN,
+        PROJECTILE_SPEED,
+        PROJECTILE_AMOUNT
     }
 }
 
@@ -82,14 +93,24 @@ public static class CharacterColumn
     }
     public enum Stat
     {
-        None,
-        Hp,
-        Armor,
-        DamageType1,
-        DamageType2,
-        DamageType3,
-        SpeedVertical,
-        SpeedHorizontal,
+        NONE,
+        HP,
+        ARMOR,
+        DAMAGE_TYPE_1,
+        DAMAGE_TYPE_2,
+        DAMAGE_TYPE_3,
+        MOVE_SPEED_V,
+        MOVE_SPEED_H,
+        FIRE_RATE,
+        FIRE_RANGE,
+        PENENTRATE,
+        SPLASH_DAMAGE,
+        SPLASH_RANGE,
+        CRITICAL,
+        CRITICAL_DAMAGE,
+        HP_DRAIN,
+        PROJECTILE_SPEED,
+        PROJECTILE_AMOUNT
     }
 }
 

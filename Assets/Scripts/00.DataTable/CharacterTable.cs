@@ -8,6 +8,7 @@ public class CharacterData
 {
     public int CHARACTER_ID { get; set; }
     public string NAME_ID { get; set; }
+    public string DESC_ID { get; set; }
     public int BODY_TYPE { get; set; }
     public int HEAD_TYPE { get; set; }
     public int PRICE { get; set; }
@@ -18,16 +19,16 @@ public class CharacterData
     public float DAMAGE_TYPE_3 { get; set; }
     public float MOVE_SPEED_V { get; set; }
     public float MOVE_SPEED_H { get; set; }
-    public string DESC_ID { get; set; }
-    public CharacterColumn.Stat STAT_1 { get; set; }
-    public float VALUE_1 { get; set; }
-    public CharacterColumn.Stat STAT_2 { get; set; }
-    public float VALUE_2 { get; set; }
-    public CharacterColumn.Stat STAT_3 { get; set; }
-    public float VALUE_3 { get; set; }
-    public CharacterColumn.Stat STAT_4 { get; set; }
-    public float VALUE_4 { get; set; }
-
+    public float FIRE_RATE { get; set; }
+    public float FIRE_RANGE { get; set; }
+    public float PENENTRATE { get; set; }
+    public float SPLASH_DAMAGE { get; set; }
+    public float SPLASH_RANGE { get; set; }
+    public float CRITICAL { get; set; }
+    public float CRITICAL_DAMAGE { get; set; }
+    public float HP_DRAIN { get; set; }
+    public float PROJECTILE_SPEED { get; set; }
+    public float PROJECTILE_AMOUNT { get; set; }
 
     public string GetName
     {

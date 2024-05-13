@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 717014098975056334}
+  - component: {fileID: 6011530658994398209}
   m_Layer: 0
   m_Name: Platform
   m_TagString: Untagged
@@ -41,6 +42,22 @@ Transform:
   - {fileID: 6131488370054458315}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6011530658994398209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1397350479991241061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca8178ea24c1b2443a3e729bad65daf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemySpawnTile:
+  - {fileID: 5067660589563095517}
+  - {fileID: 481623737042499884}
+  - {fileID: 77430350144561851}
 --- !u!1001 &662574613967742912
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -213,11 +230,24 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5163372288094269348, guid: 160b2fb2c57f10940847583241621df4, type: 3}
+      propertyPath: enemies.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5163372288094269348, guid: 160b2fb2c57f10940847583241621df4, type: 3}
+      propertyPath: enemies.Array.data[0]
+      value: 
+      objectReference: {fileID: 2705906089778004512, guid: a31a22b275c159e4fa28755b495bad91, type: 3}
+    - target: {fileID: 5163372288094269348, guid: 160b2fb2c57f10940847583241621df4, type: 3}
+      propertyPath: enemies.Array.data[1]
+      value: 
+      objectReference: {fileID: -630123401486560859, guid: acf6fe2f747250343bf9070e941ce57f, type: 3}
     - target: {fileID: 6708319747612093526, guid: 160b2fb2c57f10940847583241621df4, type: 3}
       propertyPath: m_Name
       value: EnemySpawnTile
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5163372288094269348, guid: 160b2fb2c57f10940847583241621df4, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -225,6 +255,11 @@ PrefabInstance:
 --- !u!4 &3052580765053945648 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3537504080978281147, guid: 160b2fb2c57f10940847583241621df4, type: 3}
+  m_PrefabInstance: {fileID: 1966752731180795275}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5067660589563095517 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6708319747612093526, guid: 160b2fb2c57f10940847583241621df4, type: 3}
   m_PrefabInstance: {fileID: 1966752731180795275}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5015215820293259352
@@ -461,6 +496,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5163372288094269348, guid: 160b2fb2c57f10940847583241621df4, type: 3}
+      propertyPath: enemies.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5163372288094269348, guid: 160b2fb2c57f10940847583241621df4, type: 3}
+      propertyPath: enemies.Array.data[0]
+      value: 
+      objectReference: {fileID: 2705906089778004512, guid: a31a22b275c159e4fa28755b495bad91, type: 3}
     - target: {fileID: 6708319747612093526, guid: 160b2fb2c57f10940847583241621df4, type: 3}
       propertyPath: m_Name
       value: EnemySpawnTile (1)
@@ -469,11 +512,17 @@ PrefabInstance:
       propertyPath: m_TagString
       value: EnemySpawnArea
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5163372288094269348, guid: 160b2fb2c57f10940847583241621df4, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 160b2fb2c57f10940847583241621df4, type: 3}
+--- !u!1 &481623737042499884 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6708319747612093526, guid: 160b2fb2c57f10940847583241621df4, type: 3}
+  m_PrefabInstance: {fileID: 6608943908623242618}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7683161030512138177 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3537504080978281147, guid: 160b2fb2c57f10940847583241621df4, type: 3}
@@ -527,6 +576,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5163372288094269348, guid: 160b2fb2c57f10940847583241621df4, type: 3}
+      propertyPath: enemies.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5163372288094269348, guid: 160b2fb2c57f10940847583241621df4, type: 3}
+      propertyPath: enemies.Array.data[0]
+      value: 
+      objectReference: {fileID: 2705906089778004512, guid: a31a22b275c159e4fa28755b495bad91, type: 3}
     - target: {fileID: 6708319747612093526, guid: 160b2fb2c57f10940847583241621df4, type: 3}
       propertyPath: m_Name
       value: EnemySpawnTile (2)
@@ -535,11 +592,17 @@ PrefabInstance:
       propertyPath: m_TagString
       value: EnemySpawnArea
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5163372288094269348, guid: 160b2fb2c57f10940847583241621df4, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 160b2fb2c57f10940847583241621df4, type: 3}
+--- !u!1 &77430350144561851 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6708319747612093526, guid: 160b2fb2c57f10940847583241621df4, type: 3}
+  m_PrefabInstance: {fileID: 6632583145841184493}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7862183251441339478 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3537504080978281147, guid: 160b2fb2c57f10940847583241621df4, type: 3}
@@ -655,9 +718,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4148429173555472336, guid: 534822b313d3c4145b13cb5b8feab21f, type: 3}
+      propertyPath: playerStats
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6132908620140323025, guid: 534822b313d3c4145b13cb5b8feab21f, type: 3}
+      propertyPath: playerStats
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6708319747612093526, guid: 534822b313d3c4145b13cb5b8feab21f, type: 3}
       propertyPath: m_Name
       value: OptionTile
+      objectReference: {fileID: 0}
+    - target: {fileID: 7254338191707637561, guid: 534822b313d3c4145b13cb5b8feab21f, type: 3}
+      propertyPath: playerStats
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

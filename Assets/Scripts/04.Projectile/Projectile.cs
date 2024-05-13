@@ -3,10 +3,19 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class ProjectileMove : MonoBehaviour
+public class Projectile : MonoBehaviour
 {
     private PlayerShooter playerShooter;
-    public float range;
+    private PlayerStats playerStats;
+    private float range;
+    public float Range
+    {
+        get
+        {
+            return range * rangeCoefficient;
+        }
+    }
+    public float rangeCoefficient = 20;
     public float speed;
     public float criticalRate;
     public float damage;
@@ -23,11 +32,18 @@ public class ProjectileMove : MonoBehaviour
             playerShooter.enabled = false;
             return;
         }
+
+        if (playerStats == null && !GameObject.FindWithTag(Tags.Player).TryGetComponent(out playerStats))
+        {
+            playerStats.enabled = false;
+            return;
+        }
         // Projectile Table 별도 필요
-        range = 50.0f;
-        speed = 50.0f;
+        range = playerStats.stats[CharacterColumn.Stat.FIRE_RANGE];
+        speed = 30.0f;
         criticalRate = 0.3f;
-        damage = 10f;
+        damage = playerStats.stats[CharacterColumn.Stat.DAMAGE_TYPE_1];
+
         splashDamageRate = 2.0f;
         splashDamageRange = 5.0f;
         penetrationCount = 1;
@@ -45,11 +61,20 @@ public class ProjectileMove : MonoBehaviour
 
         float distance = Vector3.Distance(startPosition, transform.position);
 
-        if (distance >= range)
+        if (distance >= Range)
         {
             gameObject.SetActive(false);
 
             playerShooter.ReturnProjectile(gameObject);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag(Tags.Enemy))
+        {
+            var enemy = other.gameObject.GetComponent<Enemy>();
+            enemy.OnDamage(damage);
         }
     }
 }

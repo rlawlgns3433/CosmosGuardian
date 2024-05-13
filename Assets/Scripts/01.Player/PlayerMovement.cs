@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
         // 현재 임시 속력 사용
 #if UNITY_ANDROID
         rb.MovePosition(transform.position 
-            + (forward * playerStats.stats[CharacterColumn.Stat.SpeedVertical] * verticalCoefficient + Vector3.right * dynamicJoystick.Horizontal * playerStats.stats[CharacterColumn.Stat.SpeedHorizontal] * horizontalCoefficient) * Time.deltaTime);
+            + (forward * playerStats.stats[CharacterColumn.Stat.MOVE_SPEED_V] * verticalCoefficient + Vector3.right * dynamicJoystick.Horizontal * playerStats.stats[CharacterColumn.Stat.MOVE_SPEED_H] * horizontalCoefficient) * Time.deltaTime);
 #elif UNITY_EDITOR_WIN
         rb.MovePosition(transform.position 
         + (forward * playerStats.speedVertical * verticalCoefficient + Vector3.right * dynamicJoystick.Horizontal * playerStats.speedHorizontal * horizontalCoefficient) * Time.deltaTime);

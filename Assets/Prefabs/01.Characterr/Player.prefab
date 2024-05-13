@@ -3818,6 +3818,37 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.010785818, y: -0.09531519, z: 0.48286515}
     m_Extent: {x: 0.6487969, y: 0.59313667, z: 0.56032485}
   m_DirtyAABB: 0
+--- !u!1 &5448946995338291177
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 667400187864070346}
+  m_Layer: 0
+  m_Name: muzzle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &667400187864070346
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5448946995338291177}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 0.1, z: 1.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2928994788717282611}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5491113689193188786
 GameObject:
   m_ObjectHideFlags: 0
@@ -4072,7 +4103,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 4
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &876836260979100070
 MonoBehaviour:
@@ -4100,7 +4131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInput: {fileID: 876836260979100070}
   playerStats: {fileID: 2295086922680514110}
-  dynamicJoystick: {fileID: 8135886326569738823, guid: 56fae09712773584fb63896d473a98ee, type: 3}
+  dynamicJoystick: {fileID: 0}
   rb: {fileID: 302829191086297507}
 --- !u!114 &2295086922680514110
 MonoBehaviour:
@@ -4183,25 +4214,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usingProjectiles: []
-  unusingProjectiles:
-  - {fileID: 0}
+  unusingProjectiles: []
   projectilePrefabs:
-  - {fileID: 1213529451062198, guid: 406aa9ab9adfd4a44a7de3da8707db2b, type: 3}
-  - {fileID: 1049895169098164, guid: 95bc01c991e17084abda1517d3434073, type: 3}
-  - {fileID: 1433909751113846, guid: 9c24b497957cf1c4eaa58fbd3a2d7776, type: 3}
-  - {fileID: 1759596753954018, guid: 49f10d3d1fb0ae844807cda616c76f67, type: 3}
-  - {fileID: 1096327089596252, guid: 79c22c635e60dd545a0bfcb16db2b6b5, type: 3}
-  - {fileID: 1224549118569052, guid: 801c2c749428f704bba3a068bf8a2be8, type: 3}
-  - {fileID: 1254724754748870, guid: 2a50dae6f068c2949a67dce9e5c8e99b, type: 3}
-  - {fileID: 1828155836940170, guid: 6be8b403c6eb7c349b716d9b05be0847, type: 3}
-  - {fileID: 1103476841190090, guid: d4cb954002264e44796f79937f089973, type: 3}
-  - {fileID: 1401322386234506, guid: 37d907b04830aad4ba3c8964222e27e4, type: 3}
-  - {fileID: 1795072395756124, guid: 8956c265bc8dcaa4baede082046addd4, type: 3}
-  - {fileID: 1332939437983934, guid: 37607406e69492149b6fa9a0f4429eab, type: 3}
-  - {fileID: 1533846767962012, guid: 5db36817b9a1d7640be62216788b987b, type: 3}
-  - {fileID: 1428542714614976, guid: f0e08c51e9e23364e9dc2af351b245ff, type: 3}
-  - {fileID: 1835938022181820, guid: d47355f33a3b50c44a7f1119379b20e3, type: 3}
-  muzzle: {fileID: 7494660457242303308}
+  - {fileID: 1213529451062198, guid: 5576c3bd9494c2a4cafd8dfb35fe9a77, type: 3}
+  - {fileID: 1049895169098164, guid: e94f89c13cc3cca44b258de7ce7833c0, type: 3}
+  - {fileID: 1433909751113846, guid: 0fdfc0da348ca384f92f409216976d9b, type: 3}
+  - {fileID: 1759596753954018, guid: 5f6645e0f00a5b843a5dbdef08e17599, type: 3}
+  - {fileID: 1096327089596252, guid: bacbd2a6ff083ec409b1595b03556643, type: 3}
+  - {fileID: 1224549118569052, guid: c42d805dcab7887429eb955e3116517d, type: 3}
+  - {fileID: 1254724754748870, guid: 9004eb83c08d52d489e06c0e2efc3308, type: 3}
+  - {fileID: 1828155836940170, guid: 708ec374d26a038449da07df997061c5, type: 3}
+  - {fileID: 1103476841190090, guid: e8f96b9f19b772748a90313057384912, type: 3}
+  - {fileID: 1401322386234506, guid: fea335c9b8e0dc645937a34ec1e3d442, type: 3}
+  - {fileID: 1795072395756124, guid: 42015b42f9baaf14f9e13d14acb42e25, type: 3}
+  - {fileID: 1332939437983934, guid: 1eff6405040626c4fa3e6b85b1e22b5a, type: 3}
+  - {fileID: 1533846767962012, guid: 27c15c2c257f4d943bb9ea5b49a97e5f, type: 3}
+  - {fileID: 1428542714614976, guid: 2403d6f62dae40649b4211afb959e2d9, type: 3}
+  - {fileID: 1835938022181820, guid: 91ae1f68b51949f4ea96f43eb0fe8a74, type: 3}
+  muzzle: {fileID: 5448946995338291177}
   currentProjectileIndex: 0
   fireRate: 1
   speed: 20
@@ -5435,37 +5465,6 @@ Transform:
   - {fileID: 3933927565040582346}
   - {fileID: 142340721491606830}
   m_Father: {fileID: 6517943303265513861}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &7494660457242303308
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4772191817931189762}
-  m_Layer: 0
-  m_Name: muzzle
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4772191817931189762
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7494660457242303308}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0.1, z: 1.163}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2928994788717282611}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7686963404510604221
 GameObject:
@@ -7606,7 +7605,7 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 7775909171457901625, guid: 26c304c542935a646a21dd134e1c2cea, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4772191817931189762}
+      addedObject: {fileID: 667400187864070346}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26c304c542935a646a21dd134e1c2cea, type: 3}
 --- !u!4 &2928994788717282611 stripped

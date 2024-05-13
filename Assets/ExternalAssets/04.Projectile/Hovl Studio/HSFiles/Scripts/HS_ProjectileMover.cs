@@ -18,16 +18,14 @@ public class HS_ProjectileMover : MonoBehaviour
     [SerializeField] protected ParticleSystem projectilePS;
     private bool startChecker = false;
     [SerializeField]protected bool notDestroy = false;
+    private PlayerShooter playerShooter;
+
+
 
     protected virtual void Start()
     {
         if (!startChecker)
         {
-            /*lightSourse = GetComponent<Light>();
-            rb = GetComponent<Rigidbody>();
-            col = GetComponent<Collider>();
-            if (hit != null)
-                hitPS = hit.GetComponent<ParticleSystem>();*/
             if (flash != null)
             {
                 flash.transform.parent = null;
@@ -36,7 +34,7 @@ public class HS_ProjectileMover : MonoBehaviour
         if (notDestroy)
             StartCoroutine(DisableTimer(5));
         else
-            Destroy(gameObject, 5);
+            StartCoroutine(DisableTimer(5));
         startChecker = true;
     }
 
@@ -44,12 +42,21 @@ public class HS_ProjectileMover : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         if(gameObject.activeSelf)
+        {
             gameObject.SetActive(false);
+            playerShooter.ReturnProjectile(gameObject);
+        }
         yield break;
     }
 
     protected virtual void OnEnable()
     {
+        if (playerShooter == null && !GameObject.FindWithTag(Tags.Player).TryGetComponent(out playerShooter))
+        {
+            playerShooter.enabled = false;
+            return;
+        }
+
         if (startChecker)
         {
             if (flash != null)
@@ -113,10 +120,14 @@ public class HS_ProjectileMover : MonoBehaviour
         {
             if (hitPS != null)
             {
-                Destroy(gameObject, hitPS.main.duration);
+                gameObject.SetActive(false);
+                playerShooter.ReturnProjectile(gameObject);
             }
             else
-                Destroy(gameObject, 1);
+            {
+                gameObject.SetActive(false);
+                playerShooter.ReturnProjectile(gameObject);
+            }
         }
     }
 }

@@ -14,7 +14,7 @@ public class HS_CallBackParent : MonoBehaviour
             transform.localPosition = Vector3.zero;
             transform.localEulerAngles = Vector3.zero;
         }
-        else
-            Destroy(gameObject);
+        //else
+        //    Destroy(gameObject);
     }
 }

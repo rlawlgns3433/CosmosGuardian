@@ -1,10 +1,14 @@
 using System.Collections.Generic;
-using System.ComponentModel.Design;
 using System.Text;
+using UnityEditor.UI;
 using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
+    public int level = 1;
+    private float exp;
+    private float expForNextLevel = 100;
+
     private CharacterTable characterTable = null;
     private Dictionary<CharacterColumn.Stat, float> initialStats = new Dictionary<CharacterColumn.Stat, float>(); // 능력치 종류, 능력치 배율
     public Dictionary<CharacterColumn.Stat, float> stats = new Dictionary<CharacterColumn.Stat, float>(); // 능력치 종류, 능력치 배율
@@ -33,12 +37,26 @@ public class PlayerStats : MonoBehaviour
         sb.Append(((int)prefabSelector.prefabNumber).ToString("D2")); // id + body(D2) + head(D2)
         string id = sb.ToString();
         characterData = characterTable.Get(int.Parse(id));
-
+        /*
+                 NONE,
+        DAMAGE,
+        FIRE_RATE,
+        PENENTRATE,
+        SPLASH_DAMAGE,
+        SPLASH_RANGE,
+        CRITICAL,
+        CRITICAL_DAMAGE,
+        HP_DRAIN,
+        PROJECTILE_SPEED,
+        PROJECTILE_AMOUNT,
+        HP,
+        MOVE_SPEED_V,
+        MOVE_SPEED_H,
+        ARMOR,
+         */
         stats[CharacterColumn.Stat.HP] = initialStats[CharacterColumn.Stat.HP] = characterData.HP;
         stats[CharacterColumn.Stat.ARMOR] = initialStats[CharacterColumn.Stat.ARMOR] = characterData.ARMOR;
-        stats[CharacterColumn.Stat.DAMAGE_TYPE_1] = initialStats[CharacterColumn.Stat.DAMAGE_TYPE_1] = characterData.DAMAGE_TYPE_1;
-        stats[CharacterColumn.Stat.DAMAGE_TYPE_2] = initialStats[CharacterColumn.Stat.DAMAGE_TYPE_2] = characterData.DAMAGE_TYPE_2;
-        stats[CharacterColumn.Stat.DAMAGE_TYPE_3] = initialStats[CharacterColumn.Stat.DAMAGE_TYPE_3] = characterData.DAMAGE_TYPE_3;
+        stats[CharacterColumn.Stat.DAMAGE] = initialStats[CharacterColumn.Stat.DAMAGE] = characterData.DAMAGE_TYPE_1;
         stats[CharacterColumn.Stat.MOVE_SPEED_V] = initialStats[CharacterColumn.Stat.MOVE_SPEED_V] = characterData.MOVE_SPEED_V;
         stats[CharacterColumn.Stat.MOVE_SPEED_H] = initialStats[CharacterColumn.Stat.MOVE_SPEED_H] = characterData.MOVE_SPEED_H;
         stats[CharacterColumn.Stat.FIRE_RATE] = initialStats[CharacterColumn.Stat.FIRE_RATE] = characterData.FIRE_RATE;
@@ -76,8 +94,25 @@ public class PlayerStats : MonoBehaviour
                 stats[(CharacterColumn.Stat)stat] += value;
                 break;
         }
-        stats[CharacterColumn.Stat.DAMAGE_TYPE_1] += 10;
+        stats[CharacterColumn.Stat.DAMAGE] += 10;
 
         return true;
+    }
+
+    public void GetExp(int score) // 스코어를 exp로 사용
+    {
+        exp += score;
+
+        if(exp > expForNextLevel)
+        {
+            LevelUp();
+        }
+    }
+
+    public void LevelUp()
+    {
+        // level up 효과 생성
+        exp = 0;
+
     }
 }

@@ -19,11 +19,6 @@ public class GameManager : Singleton<GameManager>
 
     public float platformSpacing = 27f;
 
-    private void Start()
-    {
-        enemySpawnCoroutine = StartCoroutine(enemySpawnController.SpawnEnemy());
-    }
-
     private void Update()
     {
         GameObject currentPlatform = platforms[currentPlatformIndex];

@@ -694,6 +694,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 302829191086297507, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2178642780895092122, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2178642780895092122, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
       propertyPath: dynamicJoystick
       value: 
@@ -701,6 +709,14 @@ PrefabInstance:
     - target: {fileID: 5541493190259963240, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6157067695724090070, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6596744918915436003, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7818869945511880141, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -747,13 +763,17 @@ PrefabInstance:
       value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 8178177954245249217, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
+      propertyPath: playerStats
+      value: 
+      objectReference: {fileID: 1387199563}
+    - target: {fileID: 8178177954245249217, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
       propertyPath: projectilePrefabs.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8178177954245249217, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
       propertyPath: projectilePrefabs.Array.data[0]
       value: 
-      objectReference: {fileID: 2245107836117157507, guid: 5f4ea3ac08006fc4e8cb68cb886f6821, type: 3}
+      objectReference: {fileID: 1213529451062198, guid: f39b97bbc3a6a9f4ab9ee7e13e43112f, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

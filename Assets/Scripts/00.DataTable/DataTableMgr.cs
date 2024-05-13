@@ -23,6 +23,10 @@ public static class DataTableMgr
         CharacterTable characterTable = new CharacterTable();
         characterTable.Load(DataTableIds.Character);
         tables.Add(DataTableIds.Character, characterTable);
+
+        EnemyTable enemyTable = new EnemyTable();
+        enemyTable.Load(DataTableIds.Enemy);
+        tables.Add(DataTableIds.Enemy, enemyTable);
     }
 
     public static StringTable GetStringTable()

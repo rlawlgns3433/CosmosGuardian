@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.ParticleSystemJobs;
+using static UnityEngine.ParticleSystem;
 
 public class Projectile : MonoBehaviour
 {
@@ -38,11 +40,12 @@ public class Projectile : MonoBehaviour
             playerStats.enabled = false;
             return;
         }
+
         // Projectile Table 별도 필요
         range = playerStats.stats[CharacterColumn.Stat.FIRE_RANGE];
         speed = 30.0f;
         criticalRate = 0.3f;
-        damage = playerStats.stats[CharacterColumn.Stat.DAMAGE_TYPE_1];
+        damage = playerStats.stats[CharacterColumn.Stat.DAMAGE];
 
         splashDamageRate = 2.0f;
         splashDamageRange = 5.0f;
@@ -53,6 +56,8 @@ public class Projectile : MonoBehaviour
 
         rigidbody.velocity = Vector3.zero;  // Rigidbody 속도 초기화
         rigidbody.angularVelocity = Vector3.zero; // 각속도 초기화
+
+
     }
 
     private void Update()

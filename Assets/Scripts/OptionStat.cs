@@ -5,7 +5,7 @@ public class OptionStat : MonoBehaviour
     public PlayerStats playerStats;
     public OptionColumn.Type type;
     public OptionColumn.Stat stat;
-    public int value;
+    public float value;
 
     private void OnTriggerEnter(Collider other)
     {

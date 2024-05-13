@@ -5,8 +5,18 @@ using UnityEngine;
 
 // 스테이지가 진행될수록 강력해진다.
 
+/// <summary>
+/// 스코어
+/// 재화
+/// 경험치
+/// HP
+/// 이동속도
+/// </summary>
+
 public class Enemy : MonoBehaviour, IDamageable
 {
+    public int score;
+    public EnemyTable enemyTable;
     public event Action onDeath;
     public float maxHealth;
     public float currentHealth;
@@ -33,6 +43,8 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         onDeath += OnDie;
         direction = (target.transform.position - transform.position).normalized;
+
+        enemyTable = DataTableMgr.Get<EnemyTable>(DataTableIds.Enemy);
     }
 
     private void OnEnable()
@@ -64,7 +76,6 @@ public class Enemy : MonoBehaviour, IDamageable
         Vector3 directionToTarget = target.transform.position - transform.position;
         Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
-
     }
 
     public void OnDamage(float damage, Vector3 hitPoint = default, Vector3 hitNormal = default)

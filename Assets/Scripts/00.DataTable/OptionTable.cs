@@ -13,7 +13,7 @@ public class OptionData
     public OptionColumn.Type TYPE { get; set; }
     public OptionColumn.Stat STAT { get; set; }
     public int GRADE { get; set; }
-    public int VALUE { get; set; }
+    public float VALUE { get; set; }
     public override string ToString()
     {
         return $"UPGRADE_ID : {UPGRADE_ID}\nNAME_DEV : {NAME_DEV}\nTYPE : {TYPE}\nSTAT : {STAT}\nGRADE : {GRADE}\nVALUE : {VALUE}";

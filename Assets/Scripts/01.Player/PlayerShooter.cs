@@ -10,15 +10,34 @@ public class PlayerShooter : MonoBehaviour
     public List<GameObject> unusingProjectiles = new List<GameObject>();
     public List<GameObject> projectilePrefabs = new List<GameObject>();
     public GameObject muzzle;
+    public PlayerStats playerStats;
     public int currentProjectileIndex = 0;
-    public float fireRate = 0.3f; // 임시 발사 간격
+    private float maxFireRateLevel = 40;
+    private float minFireRate = 0.5f;
+    private float currentFireRateLevel;
+    private float FireRate
+    {
+        get
+        {
+            return minFireRate - (0.4f * currentFireRateLevel) / 40;
+        }
+    }
     public float speed = 20f;
     private float lastFireTime = 0f;
     private Vector3 direction = Vector3.forward;
 
-    void Update()
+    private void Start()
     {
-        if(lastFireTime < Time.time - fireRate)
+        Debug.Log(playerStats.stats[CharacterColumn.Stat.FIRE_RATE]);
+
+        currentFireRateLevel = playerStats.stats[CharacterColumn.Stat.FIRE_RATE];
+
+        Debug.Log(FireRate);
+    }
+
+    void FixedUpdate()
+    {
+        if(lastFireTime < Time.time - FireRate)
         {
             Fire();
             lastFireTime = Time.time;
@@ -30,8 +49,8 @@ public class PlayerShooter : MonoBehaviour
         if(unusingProjectiles.Count > 0)
         {
             var projectile = unusingProjectiles[0];
-            projectile.SetActive(true);
             projectile.transform.position = muzzle.transform.position;
+            projectile.SetActive(true);
 
             usingProjectiles.Add(projectile);
             unusingProjectiles.Remove(projectile);

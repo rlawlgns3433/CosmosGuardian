@@ -8,6 +8,7 @@ public static class DataTableIds
     };
 
     public static readonly string Character = "CHARACTER_TABLE";
+    public static readonly string Enemy = "MONSTER_TABLE";
     public static readonly string Option = "OptionTable";
     public static readonly string Weapon = "WEAPON_TABLE";
     public static string CurrString
@@ -60,17 +61,10 @@ public static class OptionColumn
         Scale,
         Fixed
     }
-
+     
     public enum Stat
     {
-        NONE,
-        HP, 
-        ARMOR,  
-        DAMAGE_TYPE_1,  
-        DAMAGE_TYPE_2,   
-        DAMAGE_TYPE_3,  
-        MOVE_SPEED_V,
-        MOVE_SPEED_H,
+        DAMAGE,
         FIRE_RATE,
         FIRE_RANGE,
         PENENTRATE,
@@ -80,7 +74,11 @@ public static class OptionColumn
         CRITICAL_DAMAGE,
         HP_DRAIN,
         PROJECTILE_SPEED,
-        PROJECTILE_AMOUNT
+        PROJECTILE_AMOUNT,
+        HP,
+        MOVE_SPEED_V,
+        MOVE_SPEED_H,
+        ARMOR,
     }
 }
 
@@ -93,14 +91,7 @@ public static class CharacterColumn
     }
     public enum Stat
     {
-        NONE,
-        HP,
-        ARMOR,
-        DAMAGE_TYPE_1,
-        DAMAGE_TYPE_2,
-        DAMAGE_TYPE_3,
-        MOVE_SPEED_V,
-        MOVE_SPEED_H,
+        DAMAGE,
         FIRE_RATE,
         FIRE_RANGE,
         PENENTRATE,
@@ -110,7 +101,11 @@ public static class CharacterColumn
         CRITICAL_DAMAGE,
         HP_DRAIN,
         PROJECTILE_SPEED,
-        PROJECTILE_AMOUNT
+        PROJECTILE_AMOUNT,
+        HP,
+        MOVE_SPEED_V,
+        MOVE_SPEED_H,
+        ARMOR,
     }
 }
 

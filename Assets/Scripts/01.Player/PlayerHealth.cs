@@ -1,9 +1,10 @@
-using Mono.Cecil.Cil;
 using System;
+using TMPro;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour, IDamageable
 {
+    public TextMeshProUGUI textHealth;
     public event Action onDeath;
     public PlayerStats playerStats = null;
     private Animator animator;
@@ -25,6 +26,8 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     private void Start()
     {
+        textHealth.text = playerStats.stats[CharacterColumn.Stat.HP].ToString();
+
         onDeath += OnDie;
         onDeath += GameManager.Instance.Gameover;
     }
@@ -34,8 +37,12 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         if (!isAlive) return;
 
         playerStats.stats[CharacterColumn.Stat.HP] -= damage;
+        playerStats.SyncDevStat();
+        textHealth.text = playerStats.stats[CharacterColumn.Stat.HP].ToString();
+
         if (playerStats.stats[CharacterColumn.Stat.HP] <= 0)
         {
+            playerStats.stats[CharacterColumn.Stat.HP] = 0;
             onDeath();
         }
     }
@@ -51,9 +58,9 @@ public class PlayerHealth : MonoBehaviour, IDamageable
             collider.enabled = false;
         }
     }
-    public void RestoreHealth(float amount)
+    public void UpdateHealthUI()
     {
-        playerStats.stats[CharacterColumn.Stat.HP] += amount;
+        textHealth.text = playerStats.stats[CharacterColumn.Stat.HP].ToString();
     }
 
     private void OnTriggerEnter(Collider other)

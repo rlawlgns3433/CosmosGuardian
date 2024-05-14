@@ -8,6 +8,7 @@ using UnityEngine.TextCore.Text;
 
 public class PlayerStats : MonoBehaviour
 {
+    public PlayerHealth playerHealth;
     public TextMeshProUGUI textExp;
 
     private readonly string scoreFormat = "Score : {0}";
@@ -41,8 +42,6 @@ public class PlayerStats : MonoBehaviour
     public float MOVE_SPEED_H;
     public float ARMOR;
 
-
-
     // 이 부분을 Scriptable Assets로 변경할 수도 있음
     public int price = default;
 
@@ -65,23 +64,7 @@ public class PlayerStats : MonoBehaviour
         sb.Append(((int)prefabSelector.prefabNumber).ToString("D2")); // id + body(D2) + head(D2)
         string id = sb.ToString();
         characterData = characterTable.Get(int.Parse(id));
-        /*
-                 NONE,
-        DAMAGE,
-        FIRE_RATE,
-        PENENTRATE,
-        SPLASH_DAMAGE,
-        SPLASH_RANGE,
-        CRITICAL,
-        CRITICAL_DAMAGE,
-        HP_DRAIN,
-        PROJECTILE_SPEED,
-        PROJECTILE_AMOUNT,
-        HP,
-        MOVE_SPEED_V,
-        MOVE_SPEED_H,
-        ARMOR,
-         */
+
         HP = stats[CharacterColumn.Stat.HP] = initialStats[CharacterColumn.Stat.HP] = characterData.HP;
         ARMOR = stats[CharacterColumn.Stat.ARMOR] = initialStats[CharacterColumn.Stat.ARMOR] = characterData.ARMOR;
         DAMAGE = stats[CharacterColumn.Stat.DAMAGE] = initialStats[CharacterColumn.Stat.DAMAGE] = characterData.DAMAGE_TYPE_1;
@@ -120,6 +103,7 @@ public class PlayerStats : MonoBehaviour
 
     public bool UpdateStats(OptionColumn.Stat stat, OptionColumn.Type type, float value)
     {
+        // 옵저버 패턴으로 stat을 observe하고 동작하는 클래스를 생성하여 변경 필요
         // Maximum이 있을 경우를 고려해 bool을 반환
         switch (type)
         {
@@ -130,7 +114,13 @@ public class PlayerStats : MonoBehaviour
                 stats[(CharacterColumn.Stat)stat] += value;
                 break;
         }
-        SyncDevStat();
+
+        if(stat == OptionColumn.Stat.HP)
+        {
+            playerHealth.UpdateHealthUI();
+        }
+
+        SyncDevStat(); // 테스트
         return true;
     }
 
@@ -152,7 +142,7 @@ public class PlayerStats : MonoBehaviour
         GameManager.Instance.platforms[platformIndex].GetComponent<OptionController>().ResetOptions(level);
     }
 
-    private void SyncDevStat()
+    public void SyncDevStat()
     {
         HP = stats[CharacterColumn.Stat.HP];
         ARMOR = stats[CharacterColumn.Stat.ARMOR];

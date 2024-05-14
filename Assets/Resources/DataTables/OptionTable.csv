@@ -1,6 +1,6 @@
 ﻿UPGRADE_ID,NAME_DEV,TYPE,STAT,GRADE,VALUE
 int,string,int,int,int,float
-110000,데미지 +2,1,0,0,1
+110000,데미지 +2,1,0,0,2
 110100,공격 속도 +2,1,1,0,2
 111100,HP +10,1,11,0,10
 110200,사거리 +0.5,1,2,0,0.5

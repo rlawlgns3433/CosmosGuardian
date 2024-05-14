@@ -29,7 +29,7 @@ public class Projectile : MonoBehaviour
     }
     private float speedCoefficient = 20;
     public float criticalRate;
-    private float damage;
+    public float damage;
     public float Damage
     {
         get
@@ -58,8 +58,8 @@ public class Projectile : MonoBehaviour
             return;
         }
 
-        //range = playerStats.stats[CharacterColumn.Stat.FIRE_RANGE];
-        //speed = playerStats.stats[CharacterColumn.Stat.FIRE_RATE];
+        range = playerStats.stats[CharacterColumn.Stat.FIRE_RANGE];
+        speed = playerStats.stats[CharacterColumn.Stat.PROJECTILE_SPEED];
         criticalRate = playerStats.stats[CharacterColumn.Stat.CRITICAL];
         damage = playerStats.stats[CharacterColumn.Stat.DAMAGE];
 

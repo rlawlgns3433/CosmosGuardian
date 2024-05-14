@@ -14,12 +14,11 @@ public class PlayerShooter : MonoBehaviour
     public int currentProjectileIndex = 0;
     private float maxFireRateLevel = 40;
     private float minFireRate = 0.5f;
-    public float currentFireRateLevel;
     private float FireRate
     {
         get
         {
-            return minFireRate - (0.4f * currentFireRateLevel) / maxFireRateLevel;
+            return minFireRate - (0.4f * playerStats.stats[CharacterColumn.Stat.FIRE_RATE]) / maxFireRateLevel;
         }
     }
     public float speed = 20f;
@@ -29,9 +28,6 @@ public class PlayerShooter : MonoBehaviour
     private void Start()
     {
         Debug.Log(playerStats.stats[CharacterColumn.Stat.FIRE_RATE]);
-
-        currentFireRateLevel = playerStats.stats[CharacterColumn.Stat.FIRE_RATE];
-
         Debug.Log(FireRate);
     }
 
@@ -65,11 +61,6 @@ public class PlayerShooter : MonoBehaviour
         else
         {
             var go = Instantiate(projectilePrefabs[currentProjectileIndex], muzzle.transform.position, Quaternion.identity);
-
-            var projectile = go.GetComponent<Projectile>();
-            projectile.range = playerStats.stats[CharacterColumn.Stat.FIRE_RANGE];
-            projectile.speed = playerStats.stats[CharacterColumn.Stat.PROJECTILE_SPEED];
-
             usingProjectiles.Add(go);
         }
     }

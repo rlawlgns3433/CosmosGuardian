@@ -6,8 +6,6 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 {
     public event Action onDeath;
     public PlayerStats playerStats = null;
-    public float maxHealth;
-    public float currentHealth;
     private Animator animator;
     public bool isAlive = true;
 
@@ -27,9 +25,6 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     private void Start()
     {
-        maxHealth = playerStats.stats[CharacterColumn.Stat.HP];
-        currentHealth = maxHealth;
-
         onDeath += OnDie;
         onDeath += GameManager.Instance.Gameover;
     }
@@ -38,8 +33,8 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     {
         if (!isAlive) return;
 
-        currentHealth -= damage;
-        if (currentHealth <= 0)
+        playerStats.stats[CharacterColumn.Stat.HP] -= damage;
+        if (playerStats.stats[CharacterColumn.Stat.HP] <= 0)
         {
             onDeath();
         }
@@ -49,21 +44,16 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     {
         isAlive = false;
         animator.SetTrigger("Die");
-    }
 
-    public void UpgradeHealth(float amount)
-    {
-        maxHealth += amount;
+        Collider[] colliders = GetComponents<Collider>();
+        foreach(var collider in colliders)
+        {
+            collider.enabled = false;
+        }
     }
-
     public void RestoreHealth(float amount)
     {
-        currentHealth += amount;
-
-        if (maxHealth < currentHealth)
-        {
-            currentHealth = maxHealth;
-        }
+        playerStats.stats[CharacterColumn.Stat.HP] += amount;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -73,7 +63,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
             var enemy = other.GetComponent<Enemy>();
             OnDamage(enemy.currentHealth);
             enemy.OnDie();
-            Debug.Log($"Damaged : {currentHealth}");
+            Debug.Log($"Damaged : {playerStats.stats[CharacterColumn.Stat.HP]}");
         }
     }
 }

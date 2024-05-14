@@ -8,6 +8,8 @@ public class GameManager : Singleton<GameManager>
 {
     // 플랫폼 관리 필요
     public List<GameObject> platforms = new List<GameObject>();
+    public List<Enemy> enemies = new List<Enemy>(); // GameManager에서 갖는 것이 좋겠음.
+
 
     public int currentPlatformIndex = 0;
     public int nextPlatformIndex = 1;
@@ -64,11 +66,6 @@ public class GameManager : Singleton<GameManager>
         foreach(var collider in colliders)
         {
             collider.enabled = false;
-        }
-
-        foreach(var enemy in EnemySpawnController.Instance.spawnedEnemies)
-        {
-            enemy.direction = Vector3.zero;
         }
     }
 }

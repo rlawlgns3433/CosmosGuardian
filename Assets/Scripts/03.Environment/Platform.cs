@@ -47,8 +47,8 @@ public class Platform : MonoBehaviour
                 for (int i = 0; i < spawnCount; ++i)
                 {
                     Vector3 spawnPos = GetRandomPositionOnObject(collider, collider.gameObject);
-                    int rand = Random.Range(0, EnemySpawnController.Instance.enemies.Count);
-                    var enemy = Instantiate(EnemySpawnController.Instance.enemies[rand], spawnPos, Quaternion.identity);
+                    int rand = Random.Range(0, GameManager.Instance.enemies.Count);
+                    var enemy = Instantiate(GameManager.Instance.enemies[rand], spawnPos, Quaternion.identity);
 
                     spawnedEnemies.Add(enemy);
                 }

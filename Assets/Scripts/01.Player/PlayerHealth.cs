@@ -72,7 +72,6 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         {
             var enemy = other.GetComponent<Enemy>();
             OnDamage(enemy.currentHealth);
-            EnemySpawnController.Instance.spawnedEnemies.Remove(enemy);
             enemy.OnDie();
             Debug.Log($"Damaged : {currentHealth}");
         }

@@ -96,11 +96,13 @@ public class Enemy : MonoBehaviour, IDamageable
         if (!isAlive) return;
 
         currentHealth -= damage;
-        textHealth.text = currentHealth.ToString();
         if (currentHealth <= 0)
         {
+            currentHealth = 0;
             onDeath();
         }
+
+        textHealth.text = currentHealth.ToString();
     }
 
     public void OnDie()

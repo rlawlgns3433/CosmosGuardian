@@ -14,12 +14,13 @@ public class Platform : MonoBehaviour
     private void Start()
     {
         playerStats = GameObject.FindWithTag(Tags.Player).GetComponent<PlayerStats>();
-    }
-
-    private void OnEnable()
-    {
         Spawn();
     }
+
+    //private void OnEnable()
+    //{
+    //    Spawn();
+    //}
 
     public void ResetPlatform()
     {

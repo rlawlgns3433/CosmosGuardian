@@ -38,13 +38,14 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
         playerStats.stats[CharacterColumn.Stat.HP] -= damage;
         playerStats.SyncDevStat();
-        textHealth.text = playerStats.stats[CharacterColumn.Stat.HP].ToString();
 
         if (playerStats.stats[CharacterColumn.Stat.HP] <= 0)
         {
             playerStats.stats[CharacterColumn.Stat.HP] = 0;
             onDeath();
         }
+
+        textHealth.text = playerStats.stats[CharacterColumn.Stat.HP].ToString();
     }
 
     public void OnDie()

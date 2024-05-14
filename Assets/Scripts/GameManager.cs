@@ -1,15 +1,12 @@
-using JetBrains.Annotations;
 using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
     // 플랫폼 관리 필요
+
     public List<GameObject> platforms = new List<GameObject>();
     public List<Enemy> enemies = new List<Enemy>(); // GameManager에서 갖는 것이 좋겠음.
-
 
     public int currentPlatformIndex = 0;
     public int nextPlatformIndex = 1;
@@ -39,7 +36,7 @@ public class GameManager : Singleton<GameManager>
             Vector3 newPlatformPosition = lastPlatformPosition + new Vector3(0, 0, platformSpacing);
             currentPlatform.transform.position = newPlatformPosition;
 
-            platforms.RemoveAt(currentPlatformIndex);
+            platforms.Remove(currentPlatform);
             platforms.Add(currentPlatform);
 
             var platform = currentPlatform.GetComponent<Platform>();

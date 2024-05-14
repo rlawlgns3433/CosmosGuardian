@@ -326,6 +326,10 @@ PrefabInstance:
       propertyPath: playerStats
       value: 
       objectReference: {fileID: 1387199563}
+    - target: {fileID: 6011530658994398209, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
+      propertyPath: playerStats
+      value: 
+      objectReference: {fileID: 1387199563}
     - target: {fileID: 6730982171852493837, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
       propertyPath: playerStats
       value: 

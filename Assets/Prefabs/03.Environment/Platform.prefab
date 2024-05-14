@@ -54,10 +54,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca8178ea24c1b2443a3e729bad65daf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerStats: {fileID: 0}
+  optionController: {fileID: 6792018370236454779}
   enemySpawnTile:
   - {fileID: 5067660589563095517}
   - {fileID: 481623737042499884}
   - {fileID: 77430350144561851}
+  spawnedEnemies: []
 --- !u!1001 &662574613967742912
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -744,3 +747,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3537504080978281147, guid: 534822b313d3c4145b13cb5b8feab21f, type: 3}
   m_PrefabInstance: {fileID: 7276531419082748893}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6792018370236454779 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4231543604247159974, guid: 534822b313d3c4145b13cb5b8feab21f, type: 3}
+  m_PrefabInstance: {fileID: 7276531419082748893}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 226853e4c8986e84ca5e09504b1f3cff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

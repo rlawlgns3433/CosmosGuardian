@@ -6,8 +6,15 @@ public class Platform : MonoBehaviour
 {
     private readonly int minTest = 1;
     private readonly int maxTest = 4;
+    private PlayerStats playerStats;
+    public OptionController optionController;
     public List<GameObject> enemySpawnTile = new List<GameObject>();
     public List<Enemy> spawnedEnemies = new List<Enemy>();
+
+    private void Start()
+    {
+        playerStats = GameObject.FindWithTag(Tags.Player).GetComponent<PlayerStats>();
+    }
 
     private void OnEnable()
     {
@@ -24,7 +31,8 @@ public class Platform : MonoBehaviour
             }
         }
         spawnedEnemies.Clear();
-        Spawn();
+        Spawn(); // 몬스터 스폰
+        optionController.ResetOptions(playerStats.level); // 옵션 초기화
     }
 
     public void Spawn()

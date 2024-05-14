@@ -40,6 +40,14 @@ public class OptionTable : DataTable
         }
     }
 
+    public List<OptionData> GetAllData
+    {
+        get
+        {
+            return table.Values.ToList();
+        }
+    }
+
     public override void Load(string path)
     {
         path = string.Format(FormatPath, path);

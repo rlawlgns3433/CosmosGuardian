@@ -2,9 +2,15 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEditor.UI;
 using UnityEngine;
+using TMPro;
+using System;
+using UnityEngine.TextCore.Text;
 
 public class PlayerStats : MonoBehaviour
 {
+    public TextMeshProUGUI textExp;
+
+    private readonly string scoreFormat = "Score : {0}";
     public int level = 1;
     private float exp;
     private float expForNextLevel = 100;
@@ -14,6 +20,28 @@ public class PlayerStats : MonoBehaviour
     public Dictionary<CharacterColumn.Stat, float> stats = new Dictionary<CharacterColumn.Stat, float>(); // 능력치 종류, 능력치 배율
     private PrefabSelector prefabSelector = null;
     public CharacterData characterData = null;
+
+    /// <summary>
+    /// 시각적으로 스텟을 확인하기 위한 변수들
+    /// </summary>
+
+    public float DAMAGE;
+    public float FIRE_RATE;
+    public float FIRE_RANGE;
+    public float PENENTRATE;
+    public float SPLASH_DAMAGE;
+    public float SPLASH_RANGE;
+    public float CRITICAL;
+    public float CRITICAL_DAMAGE;
+    public float HP_DRAIN;
+    public float PROJECTILE_SPEED;
+    public float PROJECTILE_AMOUNT;
+    public float HP;
+    public float MOVE_SPEED_V;
+    public float MOVE_SPEED_H;
+    public float ARMOR;
+
+
 
     // 이 부분을 Scriptable Assets로 변경할 수도 있음
     public int price = default;
@@ -54,23 +82,31 @@ public class PlayerStats : MonoBehaviour
         MOVE_SPEED_H,
         ARMOR,
          */
-        stats[CharacterColumn.Stat.HP] = initialStats[CharacterColumn.Stat.HP] = characterData.HP;
-        stats[CharacterColumn.Stat.ARMOR] = initialStats[CharacterColumn.Stat.ARMOR] = characterData.ARMOR;
-        stats[CharacterColumn.Stat.DAMAGE] = initialStats[CharacterColumn.Stat.DAMAGE] = characterData.DAMAGE_TYPE_1;
-        stats[CharacterColumn.Stat.MOVE_SPEED_V] = initialStats[CharacterColumn.Stat.MOVE_SPEED_V] = characterData.MOVE_SPEED_V;
-        stats[CharacterColumn.Stat.MOVE_SPEED_H] = initialStats[CharacterColumn.Stat.MOVE_SPEED_H] = characterData.MOVE_SPEED_H;
-        stats[CharacterColumn.Stat.FIRE_RATE] = initialStats[CharacterColumn.Stat.FIRE_RATE] = characterData.FIRE_RATE;
-        stats[CharacterColumn.Stat.FIRE_RANGE] = initialStats[CharacterColumn.Stat.FIRE_RANGE] = characterData.FIRE_RANGE;
-        stats[CharacterColumn.Stat.PENENTRATE] = initialStats[CharacterColumn.Stat.PENENTRATE] = characterData.PENENTRATE;
-        stats[CharacterColumn.Stat.SPLASH_DAMAGE] = initialStats[CharacterColumn.Stat.SPLASH_DAMAGE] = characterData.SPLASH_DAMAGE;
-        stats[CharacterColumn.Stat.SPLASH_RANGE] = initialStats[CharacterColumn.Stat.SPLASH_RANGE] = characterData.SPLASH_RANGE;
-        stats[CharacterColumn.Stat.CRITICAL] = initialStats[CharacterColumn.Stat.CRITICAL] = characterData.CRITICAL;
-        stats[CharacterColumn.Stat.CRITICAL_DAMAGE] = initialStats[CharacterColumn.Stat.CRITICAL_DAMAGE] = characterData.CRITICAL_DAMAGE;
-        stats[CharacterColumn.Stat.HP_DRAIN] = initialStats[CharacterColumn.Stat.HP_DRAIN] = characterData.HP_DRAIN;
-        stats[CharacterColumn.Stat.PROJECTILE_SPEED] = initialStats[CharacterColumn.Stat.PROJECTILE_SPEED] = characterData.PROJECTILE_SPEED;
-        stats[CharacterColumn.Stat.PROJECTILE_AMOUNT] = initialStats[CharacterColumn.Stat.PROJECTILE_AMOUNT] = characterData.PROJECTILE_AMOUNT;
-        
+        HP = stats[CharacterColumn.Stat.HP] = initialStats[CharacterColumn.Stat.HP] = characterData.HP;
+        ARMOR = stats[CharacterColumn.Stat.ARMOR] = initialStats[CharacterColumn.Stat.ARMOR] = characterData.ARMOR;
+        DAMAGE = stats[CharacterColumn.Stat.DAMAGE] = initialStats[CharacterColumn.Stat.DAMAGE] = characterData.DAMAGE_TYPE_1;
+        MOVE_SPEED_V = stats[CharacterColumn.Stat.MOVE_SPEED_V] = initialStats[CharacterColumn.Stat.MOVE_SPEED_V] = characterData.MOVE_SPEED_V;
+        MOVE_SPEED_H = stats[CharacterColumn.Stat.MOVE_SPEED_H] = initialStats[CharacterColumn.Stat.MOVE_SPEED_H] = characterData.MOVE_SPEED_H;
+        FIRE_RATE = stats[CharacterColumn.Stat.FIRE_RATE] = initialStats[CharacterColumn.Stat.FIRE_RATE] = characterData.FIRE_RATE;
+        FIRE_RANGE = stats[CharacterColumn.Stat.FIRE_RANGE] = initialStats[CharacterColumn.Stat.FIRE_RANGE] = characterData.FIRE_RANGE;
+        PENENTRATE = stats[CharacterColumn.Stat.PENENTRATE] = initialStats[CharacterColumn.Stat.PENENTRATE] = characterData.PENENTRATE;
+        SPLASH_DAMAGE = stats[CharacterColumn.Stat.SPLASH_DAMAGE] = initialStats[CharacterColumn.Stat.SPLASH_DAMAGE] = characterData.SPLASH_DAMAGE;
+        SPLASH_RANGE = stats[CharacterColumn.Stat.SPLASH_RANGE] = initialStats[CharacterColumn.Stat.SPLASH_RANGE] = characterData.SPLASH_RANGE;
+        CRITICAL = stats[CharacterColumn.Stat.CRITICAL] = initialStats[CharacterColumn.Stat.CRITICAL] = characterData.CRITICAL;
+        CRITICAL_DAMAGE = stats[CharacterColumn.Stat.CRITICAL_DAMAGE] = initialStats[CharacterColumn.Stat.CRITICAL_DAMAGE] = characterData.CRITICAL_DAMAGE;
+        HP_DRAIN = stats[CharacterColumn.Stat.HP_DRAIN] = initialStats[CharacterColumn.Stat.HP_DRAIN] = characterData.HP_DRAIN;
+        PROJECTILE_SPEED = stats[CharacterColumn.Stat.PROJECTILE_SPEED] = initialStats[CharacterColumn.Stat.PROJECTILE_SPEED] = characterData.PROJECTILE_SPEED;
+        PROJECTILE_AMOUNT = stats[CharacterColumn.Stat.PROJECTILE_AMOUNT] = initialStats[CharacterColumn.Stat.PROJECTILE_AMOUNT] = characterData.PROJECTILE_AMOUNT;
+
         price = characterData.PRICE;
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            LevelUp();
+        }
     }
 
     // 매개변수 : 스텟 종류, 증가량
@@ -94,16 +130,15 @@ public class PlayerStats : MonoBehaviour
                 stats[(CharacterColumn.Stat)stat] += value;
                 break;
         }
-        stats[CharacterColumn.Stat.DAMAGE] += 10;
-
+        SyncDevStat();
         return true;
     }
 
     public void GetExp(int score) // 스코어를 exp로 사용
     {
         exp += score;
-
-        if(exp > expForNextLevel)
+        textExp.text = string.Format(scoreFormat, exp);
+        if (exp > expForNextLevel)
         {
             LevelUp();
         }
@@ -112,7 +147,27 @@ public class PlayerStats : MonoBehaviour
     public void LevelUp()
     {
         // level up 효과 생성
-        exp = 0;
+        expForNextLevel *= 1.8f;
+        var platformIndex = GameManager.Instance.currentPlatformIndex;
+        GameManager.Instance.platforms[platformIndex].GetComponent<OptionController>().ResetOptions(level);
+    }
 
+    private void SyncDevStat()
+    {
+        HP = stats[CharacterColumn.Stat.HP];
+        ARMOR = stats[CharacterColumn.Stat.ARMOR];
+        DAMAGE = stats[CharacterColumn.Stat.DAMAGE];
+        MOVE_SPEED_V = stats[CharacterColumn.Stat.MOVE_SPEED_V];
+        MOVE_SPEED_H = stats[CharacterColumn.Stat.MOVE_SPEED_H];
+        FIRE_RATE = stats[CharacterColumn.Stat.FIRE_RATE];
+        FIRE_RANGE = stats[CharacterColumn.Stat.FIRE_RANGE];
+        PENENTRATE = stats[CharacterColumn.Stat.PENENTRATE];
+        SPLASH_DAMAGE = stats[CharacterColumn.Stat.SPLASH_DAMAGE];
+        SPLASH_RANGE = stats[CharacterColumn.Stat.SPLASH_RANGE];
+        CRITICAL = stats[CharacterColumn.Stat.CRITICAL];
+        CRITICAL_DAMAGE = stats[CharacterColumn.Stat.CRITICAL_DAMAGE];
+        HP_DRAIN = stats[CharacterColumn.Stat.HP_DRAIN];
+        PROJECTILE_SPEED = stats[CharacterColumn.Stat.PROJECTILE_SPEED];
+        PROJECTILE_AMOUNT = stats[CharacterColumn.Stat.PROJECTILE_AMOUNT];
     }
 }

@@ -14,12 +14,12 @@ public class PlayerShooter : MonoBehaviour
     public int currentProjectileIndex = 0;
     private float maxFireRateLevel = 40;
     private float minFireRate = 0.5f;
-    private float currentFireRateLevel;
+    public float currentFireRateLevel;
     private float FireRate
     {
         get
         {
-            return minFireRate - (0.4f * currentFireRateLevel) / 40;
+            return minFireRate - (0.4f * currentFireRateLevel) / maxFireRateLevel;
         }
     }
     public float speed = 20f;
@@ -35,6 +35,13 @@ public class PlayerShooter : MonoBehaviour
         Debug.Log(FireRate);
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.A))
+        {
+            ChangeProjectile();
+        }
+    }
     void FixedUpdate()
     {
         if(lastFireTime < Time.time - FireRate)
@@ -57,8 +64,13 @@ public class PlayerShooter : MonoBehaviour
         }
         else
         {
-            var projectile = Instantiate(projectilePrefabs[currentProjectileIndex], muzzle.transform.position, Quaternion.identity);
-            usingProjectiles.Add(projectile);
+            var go = Instantiate(projectilePrefabs[currentProjectileIndex], muzzle.transform.position, Quaternion.identity);
+
+            var projectile = go.GetComponent<Projectile>();
+            projectile.range = playerStats.stats[CharacterColumn.Stat.FIRE_RANGE];
+            projectile.speed = playerStats.stats[CharacterColumn.Stat.PROJECTILE_SPEED];
+
+            usingProjectiles.Add(go);
         }
     }
 
@@ -66,5 +78,23 @@ public class PlayerShooter : MonoBehaviour
     {
         unusingProjectiles.Add(projectile);
         usingProjectiles.Remove(projectile);
+    }
+
+    private void ChangeProjectile()
+    {
+        currentProjectileIndex = (currentProjectileIndex + 1) % (projectilePrefabs.Count - 1);
+
+        foreach(var item in usingProjectiles)
+        {
+            Destroy(item);
+        }
+
+        foreach (var item in unusingProjectiles)
+        {
+            Destroy(item);
+        }
+
+        usingProjectiles.Clear();
+        unusingProjectiles.Clear();
     }
 }

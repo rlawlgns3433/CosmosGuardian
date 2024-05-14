@@ -1,7 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.UI;
 
 // 스테이지가 진행될수록 강력해진다.
 
@@ -15,6 +19,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour, IDamageable
 {
+    public TextMeshProUGUI textHealth;
     public int score;
     public EnemyTable enemyTable;
     public event Action onDeath;
@@ -42,15 +47,18 @@ public class Enemy : MonoBehaviour, IDamageable
     private void Start()
     {
         onDeath += OnDie;
-        direction = (target.transform.position - transform.position).normalized;
+        onDeath += () => { target.GetComponent<PlayerStats>().GetExp(score); };
 
-        enemyTable = DataTableMgr.Get<EnemyTable>(DataTableIds.Enemy);
+        direction = (target.transform.position - transform.position).normalized;
     }
 
     private void OnEnable()
     {
+        enemyTable = DataTableMgr.Get<EnemyTable>(DataTableIds.Enemy);
+        score = enemyTable.Get(40000).SCORE;
+
         isAlive = true;
-        maxHealth = 20f;
+        maxHealth = enemyTable.Get(40000).HP;
         currentHealth = maxHealth;
 
         Collider[] colliders = gameObject.GetComponents<Collider>();
@@ -83,6 +91,7 @@ public class Enemy : MonoBehaviour, IDamageable
         if (!isAlive) return;
 
         currentHealth -= damage;
+        textHealth.text = currentHealth.ToString();
         if (currentHealth <= 0)
         {
             onDeath();

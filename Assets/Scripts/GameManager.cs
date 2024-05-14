@@ -6,9 +6,6 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
-    public EnemySpawnController enemySpawnController;
-    private Coroutine enemySpawnCoroutine;
-
     // ÇÃ·§Æû °ü¸® ÇÊ¿ä
     public List<GameObject> platforms = new List<GameObject>();
 
@@ -24,7 +21,15 @@ public class GameManager : Singleton<GameManager>
         GameObject currentPlatform = platforms[currentPlatformIndex];
         if (currentPlatform.transform.position.z + platformSpacing < playerStats.gameObject.transform.position.z)
         {
-            enemySpawnCoroutine = StartCoroutine(enemySpawnController.SpawnEnemy());
+            foreach(var enemy in EnemySpawnController.Instance.spawnedEnemies)
+            {
+                Destroy(enemy);
+            }
+            EnemySpawnController.Instance.spawnedEnemies.Clear();
+
+            var platform =  currentPlatform.GetComponent<Platform>();
+            platform.ResetPlatform();
+
             Vector3 lastPlatformPosition = platforms[platforms.Count - 1].transform.position;
             Vector3 newPlatformPosition = lastPlatformPosition + new Vector3(0, 0, platformSpacing);
             currentPlatform.transform.position = newPlatformPosition;
@@ -34,11 +39,8 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-
     public void Gameover()
     {
-        StopCoroutine(enemySpawnCoroutine);
-
         playerStats.stats[CharacterColumn.Stat.MOVE_SPEED_H] = 0;
         playerStats.stats[CharacterColumn.Stat.MOVE_SPEED_V] = 0;
         playerStats.gameObject.GetComponent<PlayerShooter>().enabled = false;
@@ -51,7 +53,7 @@ public class GameManager : Singleton<GameManager>
             collider.enabled = false;
         }
 
-        foreach(var enemy in enemySpawnController.spawnedEnemies)
+        foreach(var enemy in EnemySpawnController.Instance.spawnedEnemies)
         {
             enemy.direction = Vector3.zero;
         }

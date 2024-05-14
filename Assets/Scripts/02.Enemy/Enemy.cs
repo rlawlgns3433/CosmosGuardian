@@ -19,6 +19,7 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour, IDamageable
 {
+    public Coroutine chaseCoroutine;
     public TextMeshProUGUI textHealth;
     public int score;
     public EnemyTable enemyTable;
@@ -27,13 +28,14 @@ public class Enemy : MonoBehaviour, IDamageable
     public float currentHealth;
     private Animator animator;
     public float damage = 10;
-    private PlayerHealth target = null;
-    private Coroutine chaseCoroutine = null;
+    public PlayerHealth target = null;
+    //private Coroutine chaseCoroutine = null;
     private WaitForSeconds chaseTimer = new WaitForSeconds(1f);
     private bool isAlive = true;
-    public float speed = 1;
+    public float speed = 5;
     public float rotationSpeed = 180;
     public Vector3 direction;
+    public bool isChasing = false;
 
     private void Awake()
     {
@@ -70,20 +72,23 @@ public class Enemy : MonoBehaviour, IDamageable
         target = GameObject.FindWithTag(Tags.Player).GetComponent<PlayerHealth>();
         isAlive = true;
 
-        chaseCoroutine = StartCoroutine(CoChasePlayer());
+        //chaseCoroutine = StartCoroutine(CoChasePlayer());
     }
 
     private void OnDisable()
     {
-        StopCoroutine(chaseCoroutine);
+        //StopCoroutine(chaseCoroutine);
     }
 
     private void Update()
     {
-        transform.Translate(direction * speed * Time.deltaTime, Space.World);
-        Vector3 directionToTarget = target.transform.position - transform.position;
-        Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+        if(isChasing)
+        {
+            transform.Translate(direction * speed * Time.deltaTime, Space.World);
+            Vector3 directionToTarget = target.transform.position - transform.position;
+            Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+        }
     }
 
     public void OnDamage(float damage, Vector3 hitPoint = default, Vector3 hitNormal = default)
@@ -101,9 +106,14 @@ public class Enemy : MonoBehaviour, IDamageable
     public void OnDie()
     {
         isAlive = false;
-        StopCoroutine(chaseCoroutine);
+        isChasing = false;
 
-        Collider[] colliders = gameObject.GetComponents<Collider>();
+        //if(chaseCoroutine != null)
+        //{
+        //    StopCoroutine(chaseCoroutine);
+        //}
+
+        Collider[] colliders = GetComponents<Collider>();
         foreach(var collider in colliders)
         {
             collider.enabled = false;
@@ -114,12 +124,14 @@ public class Enemy : MonoBehaviour, IDamageable
         speed = 0;
     }
 
-    IEnumerator CoChasePlayer()
+    public IEnumerator CoChasePlayer()
     {
-        while(isAlive && target.isAlive)
+        isChasing = true;
+
+        while(isAlive && target.isAlive && isChasing)
         {
             yield return chaseTimer;
-
+            
             direction = (target.transform.position - transform.position).normalized;
         }
 
@@ -127,5 +139,10 @@ public class Enemy : MonoBehaviour, IDamageable
         {
             direction = Vector3.zero;
         }
+    }
+
+    public void Chase()
+    {
+        chaseCoroutine = StartCoroutine(CoChasePlayer());
     }
 }

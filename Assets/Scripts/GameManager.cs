@@ -10,32 +10,45 @@ public class GameManager : Singleton<GameManager>
     public List<GameObject> platforms = new List<GameObject>();
 
     public int currentPlatformIndex = 0;
+    public int nextPlatformIndex = 1;
 
     public PlayerStats playerStats = null;
     public bool IsGameover { get; set; }
 
     public float platformSpacing = 27f;
 
+    private void Start()
+    {
+        GameObject currentPlatform = platforms[currentPlatformIndex];
+        var platform = currentPlatform.GetComponent<Platform>();
+
+        foreach (var enemy in platform.spawnedEnemies)
+        {
+            enemy.Chase();
+        }
+    }
+
     private void Update()
     {
         GameObject currentPlatform = platforms[currentPlatformIndex];
         if (currentPlatform.transform.position.z + platformSpacing < playerStats.gameObject.transform.position.z)
         {
-            foreach(var enemy in EnemySpawnController.Instance.spawnedEnemies)
-            {
-                Destroy(enemy);
-            }
-            EnemySpawnController.Instance.spawnedEnemies.Clear();
-
-            var platform =  currentPlatform.GetComponent<Platform>();
-            platform.ResetPlatform();
-
             Vector3 lastPlatformPosition = platforms[platforms.Count - 1].transform.position;
             Vector3 newPlatformPosition = lastPlatformPosition + new Vector3(0, 0, platformSpacing);
             currentPlatform.transform.position = newPlatformPosition;
 
             platforms.RemoveAt(currentPlatformIndex);
             platforms.Add(currentPlatform);
+
+            var platform = currentPlatform.GetComponent<Platform>();
+            platform.ResetPlatform();
+
+            // 다음 플랫폼의 몬스터들이 움직이게 함
+            Platform nextPlatform = platforms[nextPlatformIndex].GetComponent<Platform>();
+            foreach(var enemy in nextPlatform.spawnedEnemies)
+            {
+                enemy.Chase();
+            }
         }
     }
 

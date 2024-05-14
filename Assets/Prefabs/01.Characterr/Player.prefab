@@ -4145,6 +4145,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05823c49c34cb65499f0d5f4d5612d6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textExp: {fileID: 0}
+  level: 1
+  DAMAGE: 0
+  FIRE_RATE: 0
+  FIRE_RANGE: 0
+  PENENTRATE: 0
+  SPLASH_DAMAGE: 0
+  SPLASH_RANGE: 0
+  CRITICAL: 0
+  CRITICAL_DAMAGE: 0
+  HP_DRAIN: 0
+  PROJECTILE_SPEED: 0
+  PROJECTILE_AMOUNT: 0
+  HP: 0
+  MOVE_SPEED_V: 0
+  MOVE_SPEED_H: 0
+  ARMOR: 0
   price: 0
 --- !u!114 &2686379450363031452
 MonoBehaviour:
@@ -4216,24 +4233,25 @@ MonoBehaviour:
   usingProjectiles: []
   unusingProjectiles: []
   projectilePrefabs:
-  - {fileID: 1213529451062198, guid: 5576c3bd9494c2a4cafd8dfb35fe9a77, type: 3}
-  - {fileID: 1049895169098164, guid: e94f89c13cc3cca44b258de7ce7833c0, type: 3}
-  - {fileID: 1433909751113846, guid: 0fdfc0da348ca384f92f409216976d9b, type: 3}
-  - {fileID: 1759596753954018, guid: 5f6645e0f00a5b843a5dbdef08e17599, type: 3}
-  - {fileID: 1096327089596252, guid: bacbd2a6ff083ec409b1595b03556643, type: 3}
-  - {fileID: 1224549118569052, guid: c42d805dcab7887429eb955e3116517d, type: 3}
-  - {fileID: 1254724754748870, guid: 9004eb83c08d52d489e06c0e2efc3308, type: 3}
-  - {fileID: 1828155836940170, guid: 708ec374d26a038449da07df997061c5, type: 3}
-  - {fileID: 1103476841190090, guid: e8f96b9f19b772748a90313057384912, type: 3}
-  - {fileID: 1401322386234506, guid: fea335c9b8e0dc645937a34ec1e3d442, type: 3}
-  - {fileID: 1795072395756124, guid: 42015b42f9baaf14f9e13d14acb42e25, type: 3}
-  - {fileID: 1332939437983934, guid: 1eff6405040626c4fa3e6b85b1e22b5a, type: 3}
-  - {fileID: 1533846767962012, guid: 27c15c2c257f4d943bb9ea5b49a97e5f, type: 3}
-  - {fileID: 1428542714614976, guid: 2403d6f62dae40649b4211afb959e2d9, type: 3}
-  - {fileID: 1835938022181820, guid: 91ae1f68b51949f4ea96f43eb0fe8a74, type: 3}
+  - {fileID: 1213529451062198, guid: f39b97bbc3a6a9f4ab9ee7e13e43112f, type: 3}
+  - {fileID: 1049895169098164, guid: 4620ea4ad6748204fbbd6657881e1d2b, type: 3}
+  - {fileID: 1433909751113846, guid: 8599b043bfa6f4e47b8f4f637bc72ba1, type: 3}
+  - {fileID: 1759596753954018, guid: 2a5b2a0ea561a1249803e59f610b5c32, type: 3}
+  - {fileID: 1096327089596252, guid: 2adbf691b047e7044a366080f94f78a7, type: 3}
+  - {fileID: 1224549118569052, guid: e328e744b34e90845a77a00cd76e6fb2, type: 3}
+  - {fileID: 1254724754748870, guid: 460db9e041704e147a355cf3063b99c5, type: 3}
+  - {fileID: 1828155836940170, guid: bb1b4c89490bc7f439d95bb18b2b4604, type: 3}
+  - {fileID: 1103476841190090, guid: 8565b07ecb41cbc4394a95d89cea3364, type: 3}
+  - {fileID: 1401322386234506, guid: b76b78227f50326489687d21fa74edf6, type: 3}
+  - {fileID: 1795072395756124, guid: 5d7252d2cd277f34e92ef6f8f3500e38, type: 3}
+  - {fileID: 1332939437983934, guid: fae5c6a20ab2b5d43817f10d5a8c72fd, type: 3}
+  - {fileID: 1533846767962012, guid: 23ffcf0f1d7965f4db32cd204582c860, type: 3}
+  - {fileID: 1428542714614976, guid: fb14ae8d12348c9489c620869a2bfef9, type: 3}
+  - {fileID: 1835938022181820, guid: 1980ac68af831b341ad588119a94764d, type: 3}
   muzzle: {fileID: 5448946995338291177}
+  playerStats: {fileID: 2295086922680514110}
   currentProjectileIndex: 0
-  fireRate: 1
+  currentFireRateLevel: 0
   speed: 20
 --- !u!114 &4508787347923785903
 MonoBehaviour:
@@ -4248,8 +4266,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStats: {fileID: 2295086922680514110}
-  maxHealth: 0
-  currentHealth: 0
+  maxHealth: 200
+  currentHealth: 200
+  isAlive: 1
 --- !u!136 &6157067695724090070
 CapsuleCollider:
   m_ObjectHideFlags: 0

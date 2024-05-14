@@ -16,7 +16,14 @@ public class Platform : MonoBehaviour
 
     public void ResetPlatform()
     {
-        // 적 생성이 필요
+        foreach (var enemy in spawnedEnemies)
+        {
+            if (enemy != null)
+            {
+                enemy.OnDie();
+            }
+        }
+        spawnedEnemies.Clear();
         Spawn();
     }
 

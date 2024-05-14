@@ -582,7 +582,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77dd0a2afd4b5b44e858a5126645b885, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemySpawnController: {fileID: 1911009430}
   platforms:
   - {fileID: 454247651}
   - {fileID: 1387228720}
@@ -592,6 +591,7 @@ MonoBehaviour:
   - {fileID: 954388347}
   - {fileID: 136674916}
   currentPlatformIndex: 0
+  nextPlatformIndex: 0
   playerStats: {fileID: 1387199563}
   platformSpacing: 27
 --- !u!4 &682662810
@@ -828,14 +828,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 302829191086297507, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
-      propertyPath: m_IsKinematic
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2178642780895092122, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2178642780895092122, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
       propertyPath: dynamicJoystick
       value: 
@@ -847,14 +839,6 @@ PrefabInstance:
     - target: {fileID: 5541493190259963240, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 6157067695724090070, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6596744918915436003, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7818869945511880141, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -896,78 +880,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8178177954245249217, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
-      propertyPath: fireRate
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8178177954245249217, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
-      propertyPath: playerStats
-      value: 
-      objectReference: {fileID: 1387199563}
-    - target: {fileID: 8178177954245249217, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
-      propertyPath: projectilePrefabs.Array.size
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 8178177954245249217, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
-      propertyPath: projectilePrefabs.Array.data[0]
-      value: 
-      objectReference: {fileID: 1213529451062198, guid: f39b97bbc3a6a9f4ab9ee7e13e43112f, type: 3}
-    - target: {fileID: 8178177954245249217, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
-      propertyPath: projectilePrefabs.Array.data[1]
-      value: 
-      objectReference: {fileID: 1049895169098164, guid: 4620ea4ad6748204fbbd6657881e1d2b, type: 3}
-    - target: {fileID: 8178177954245249217, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
-      propertyPath: projectilePrefabs.Array.data[2]
-      value: 
-      objectReference: {fileID: 1433909751113846, guid: 8599b043bfa6f4e47b8f4f637bc72ba1, type: 3}
-    - target: {fileID: 8178177954245249217, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
-      propertyPath: projectilePrefabs.Array.data[3]
-      value: 
-      objectReference: {fileID: 1759596753954018, guid: 2a5b2a0ea561a1249803e59f610b5c32, type: 3}
-    - target: {fileID: 8178177954245249217, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
-      propertyPath: projectilePrefabs.Array.data[4]
-      value: 
-      objectReference: {fileID: 1096327089596252, guid: 2adbf691b047e7044a366080f94f78a7, type: 3}
-    - target: {fileID: 8178177954245249217, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
-      propertyPath: projectilePrefabs.Array.data[5]
-      value: 
-      objectReference: {fileID: 1224549118569052, guid: e328e744b34e90845a77a00cd76e6fb2, type: 3}
-    - target: {fileID: 8178177954245249217, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
-      propertyPath: projectilePrefabs.Array.data[6]
-      value: 
-      objectReference: {fileID: 1254724754748870, guid: 460db9e041704e147a355cf3063b99c5, type: 3}
-    - target: {fileID: 8178177954245249217, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
-      propertyPath: projectilePrefabs.Array.data[7]
-      value: 
-      objectReference: {fileID: 1828155836940170, guid: bb1b4c89490bc7f439d95bb18b2b4604, type: 3}
-    - target: {fileID: 8178177954245249217, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
-      propertyPath: projectilePrefabs.Array.data[8]
-      value: 
-      objectReference: {fileID: 1103476841190090, guid: 8565b07ecb41cbc4394a95d89cea3364, type: 3}
-    - target: {fileID: 8178177954245249217, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
-      propertyPath: projectilePrefabs.Array.data[9]
-      value: 
-      objectReference: {fileID: 1401322386234506, guid: b76b78227f50326489687d21fa74edf6, type: 3}
-    - target: {fileID: 8178177954245249217, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
-      propertyPath: projectilePrefabs.Array.data[10]
-      value: 
-      objectReference: {fileID: 1795072395756124, guid: 5d7252d2cd277f34e92ef6f8f3500e38, type: 3}
-    - target: {fileID: 8178177954245249217, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
-      propertyPath: projectilePrefabs.Array.data[11]
-      value: 
-      objectReference: {fileID: 1332939437983934, guid: fae5c6a20ab2b5d43817f10d5a8c72fd, type: 3}
-    - target: {fileID: 8178177954245249217, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
-      propertyPath: projectilePrefabs.Array.data[12]
-      value: 
-      objectReference: {fileID: 1533846767962012, guid: 23ffcf0f1d7965f4db32cd204582c860, type: 3}
-    - target: {fileID: 8178177954245249217, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
-      propertyPath: projectilePrefabs.Array.data[13]
-      value: 
-      objectReference: {fileID: 1428542714614976, guid: fb14ae8d12348c9489c620869a2bfef9, type: 3}
-    - target: {fileID: 8178177954245249217, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
-      propertyPath: projectilePrefabs.Array.data[14]
-      value: 
-      objectReference: {fileID: 1835938022181820, guid: 1980ac68af831b341ad588119a94764d, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

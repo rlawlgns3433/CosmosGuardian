@@ -1508,9 +1508,11 @@ MonoBehaviour:
   maxHealth: 20
   currentHealth: 20
   damage: 10
+  target: {fileID: 0}
   speed: 1
   rotationSpeed: 180
   direction: {x: 0, y: 0, z: 1}
+  isChasing: 0
 --- !u!1 &9098729714593212743
 GameObject:
   m_ObjectHideFlags: 0

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.0060825134, g: 0.0029428285, b: 0.029609201, a: 1}
+  m_IndirectSpecularColor: {r: 0.006080829, g: 0.0029385951, b: 0.029612528, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -244,6 +244,10 @@ PrefabInstance:
       propertyPath: maxTest
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 6011530658994398209, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
+      propertyPath: minTest
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6730982171852493837, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
       propertyPath: playerStats
       value: 
@@ -316,6 +320,10 @@ PrefabInstance:
     - target: {fileID: 6011530658994398209, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
       propertyPath: maxTest
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6011530658994398209, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
+      propertyPath: minTest
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6730982171852493837, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
       propertyPath: playerStats
@@ -533,6 +541,10 @@ PrefabInstance:
     - target: {fileID: 6011530658994398209, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
       propertyPath: maxTest
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6011530658994398209, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
+      propertyPath: minTest
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6730982171852493837, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
       propertyPath: playerStats
@@ -761,6 +773,10 @@ PrefabInstance:
       propertyPath: maxTest
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 6011530658994398209, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
+      propertyPath: minTest
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6730982171852493837, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
       propertyPath: playerStats
       value: 
@@ -868,7 +884,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: 0.19509031, y: 0, z: 0, w: 0.98078537}
-  m_LocalPosition: {x: 0, y: 8, z: -3}
+  m_LocalPosition: {x: 0, y: 8, z: -4.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -976,7 +992,7 @@ PrefabInstance:
     - target: {fileID: 8178177954245249217, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
       propertyPath: projectilePrefabs.Array.data[0]
       value: 
-      objectReference: {fileID: 1213529451062198, guid: f39b97bbc3a6a9f4ab9ee7e13e43112f, type: 3}
+      objectReference: {fileID: 1213529451062198, guid: 7992e0bc456955748a220dbf00080d99, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1129,6 +1145,10 @@ PrefabInstance:
     - target: {fileID: 6011530658994398209, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
       propertyPath: maxTest
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6011530658994398209, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
+      propertyPath: minTest
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6730982171852493837, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
       propertyPath: playerStats
@@ -1522,6 +1542,10 @@ PrefabInstance:
       propertyPath: maxTest
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 6011530658994398209, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
+      propertyPath: minTest
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6730982171852493837, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
       propertyPath: playerStats
       value: 
@@ -1594,6 +1618,10 @@ PrefabInstance:
     - target: {fileID: 6011530658994398209, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
       propertyPath: maxTest
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6011530658994398209, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
+      propertyPath: minTest
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6730982171852493837, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
       propertyPath: playerStats

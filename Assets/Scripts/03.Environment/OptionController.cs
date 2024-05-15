@@ -18,6 +18,13 @@ public class OptionController : MonoBehaviour
     {
         playerStats = GameObject.FindWithTag(Tags.Player).GetComponent<PlayerStats>();
         optionTable = DataTableMgr.Get<OptionTable>(DataTableIds.Option);
+
+        foreach(var option in options)
+        {
+            Collider collider = option.GetComponent<Collider>();
+            collider.enabled = true;
+        }
+
         // 키 중 하나를 선택
         ResetOptions(playerStats.level);
     }
@@ -40,7 +47,7 @@ public class OptionController : MonoBehaviour
                 continue;
             }
 
-                int index = Random.Range(0, gradedOptions.Count);
+            int index = Random.Range(0, gradedOptions.Count);
 
             if (selectedId.Contains(gradedOptions[index].UPGRADE_ID))
             {
@@ -50,6 +57,10 @@ public class OptionController : MonoBehaviour
             selectedId.Add(gradedOptions[index].UPGRADE_ID);
 
             options[i].gameObject.SetActive(true);
+
+            Collider collider = options[i].GetComponent<Collider>();
+            collider.enabled = true;
+
             optionTexts[i].text = gradedOptions[index].NAME_DEV.ToString();
             OptionStat option = options[i].gameObject.GetComponent<OptionStat>();
             option.stat = gradedOptions[index].STAT;

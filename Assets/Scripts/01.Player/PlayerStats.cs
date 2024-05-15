@@ -148,10 +148,12 @@ public class PlayerStats : MonoBehaviour
 
     public void LevelUp()
     {
+        ++level;
         // level up 효과 생성
         expForNextLevel *= 1.8f;
         var platformIndex = GameManager.Instance.currentPlatformIndex;
-        GameManager.Instance.platforms[platformIndex].GetComponent<OptionController>().ResetOptions(level);
+        var platform = GameManager.Instance.platforms[platformIndex].GetComponent<Platform>();
+        platform.optionController.ResetOptions(level);
     }
 
     public void SyncDevStat()

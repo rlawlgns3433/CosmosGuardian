@@ -10,34 +10,64 @@ public class Projectile : MonoBehaviour
 {
     private PlayerShooter playerShooter;
     private PlayerStats playerStats;
-    public float range;
+
+    // =======Range
+    public float rangeScale;
+    public float weaponRange;
     public float Range
     {
         get
         {
-            return range * rangeCoefficient;
+            return rangeScale * weaponRange;
         }
     }
-    public float rangeCoefficient = 20;
-    public float speed;
+
+    // =======Projectile Speed
+    public float speedScale;
+    public float weaponSpeed;
     public float Speed
     {
         get
         {
-            return speed * speedCoefficient;
+            return speedScale * weaponSpeed;
         }
     }
-    private float speedCoefficient = 20;
-    public float criticalRate;
-    public float damage;
+
+
+    // =======Critical Rate
+    public float criticalRateScale;
+    public float weaponCriticalRate;
+    public float CriticalRate
+    {
+        get
+        {
+            return criticalRateScale * weaponCriticalRate;
+        }
+    }
+
+    // =======Critical Damage
+    public float criticalDamageScale;
+    public float weaponCriticalDamage;
+    public float CriticalDamage
+    {
+        get
+        {
+            return criticalDamageScale * weaponCriticalDamage;
+        }
+    }
+
+    // =======Damage
+    public float damageScale;
+    public float weaponDamage;
     public float Damage
     {
         get
         {
-            return damage * damageCoefficient;
+            return damageScale * weaponDamage;
         }
     }
-    private float damageCoefficient = 5;
+
+
     public float splashDamage;
     public float splashDamageRange;
     public int penetrationCount;
@@ -58,14 +88,26 @@ public class Projectile : MonoBehaviour
             return;
         }
 
-        range = playerStats.stats[CharacterColumn.Stat.FIRE_RANGE];
-        speed = playerStats.stats[CharacterColumn.Stat.PROJECTILE_SPEED];
-        criticalRate = playerStats.stats[CharacterColumn.Stat.CRITICAL];
-        damage = playerStats.stats[CharacterColumn.Stat.DAMAGE];
+        rangeScale = playerStats.stats[CharacterColumn.Stat.FIRE_RANGE];
+        weaponRange = playerShooter.weapon.stats[WeaponColumn.Stat.FIRE_RANGE];
+
+        speedScale = playerStats.stats[CharacterColumn.Stat.PROJECTILE_SPEED];
+        weaponSpeed = playerShooter.weapon.stats[WeaponColumn.Stat.PROJECTILE_SPEED];
+
+        criticalRateScale = playerStats.stats[CharacterColumn.Stat.CRITICAL];
+        weaponCriticalRate = playerShooter.weapon.stats[WeaponColumn.Stat.CRITICAL];
+
+        criticalDamageScale = playerStats.stats[CharacterColumn.Stat.CRITICAL_DAMAGE];
+        weaponCriticalDamage = playerShooter.weapon.stats[WeaponColumn.Stat.CRITICAL_DAMAGE];
+
+        damageScale = playerStats.stats[CharacterColumn.Stat.DAMAGE];
+        weaponDamage = playerShooter.weapon.stats[WeaponColumn.Stat.DAMAGE];
 
         splashDamage = playerStats.stats[CharacterColumn.Stat.SPLASH_DAMAGE];
+
         splashDamageRange = playerStats.stats[CharacterColumn.Stat.SPLASH_RANGE];
-        penetrationCount = (int)playerStats.stats[CharacterColumn.Stat.PENENTRATE];
+
+        penetrationCount = (int)playerStats.stats[CharacterColumn.Stat.PENETRATE];
 
         startPosition = playerShooter.muzzle.transform.position;
         transform.position = startPosition;

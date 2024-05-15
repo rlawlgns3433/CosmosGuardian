@@ -21,7 +21,7 @@ public class CharacterData
     public float MOVE_SPEED_H { get; set; }
     public float FIRE_RATE { get; set; }
     public float FIRE_RANGE { get; set; }
-    public float PENENTRATE { get; set; }
+    public float PENETRATE { get; set; }
     public float SPLASH_DAMAGE { get; set; }
     public float SPLASH_RANGE { get; set; }
     public float CRITICAL { get; set; }

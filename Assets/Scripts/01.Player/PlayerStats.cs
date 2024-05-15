@@ -9,6 +9,7 @@ using UnityEngine.TextCore.Text;
 public class PlayerStats : MonoBehaviour
 {
     public PlayerHealth playerHealth;
+    public PlayerShooter playerShooter;
     public TextMeshProUGUI textExp;
 
     private readonly string scoreFormat = "Score : {0}";
@@ -29,7 +30,7 @@ public class PlayerStats : MonoBehaviour
     public float DAMAGE;
     public float FIRE_RATE;
     public float FIRE_RANGE;
-    public float PENENTRATE;
+    public float PENETRATE;
     public float SPLASH_DAMAGE;
     public float SPLASH_RANGE;
     public float CRITICAL;
@@ -72,7 +73,7 @@ public class PlayerStats : MonoBehaviour
         MOVE_SPEED_H = stats[CharacterColumn.Stat.MOVE_SPEED_H] = initialStats[CharacterColumn.Stat.MOVE_SPEED_H] = characterData.MOVE_SPEED_H;
         FIRE_RATE = stats[CharacterColumn.Stat.FIRE_RATE] = initialStats[CharacterColumn.Stat.FIRE_RATE] = characterData.FIRE_RATE;
         FIRE_RANGE = stats[CharacterColumn.Stat.FIRE_RANGE] = initialStats[CharacterColumn.Stat.FIRE_RANGE] = characterData.FIRE_RANGE;
-        PENENTRATE = stats[CharacterColumn.Stat.PENENTRATE] = initialStats[CharacterColumn.Stat.PENENTRATE] = characterData.PENENTRATE;
+        PENETRATE = stats[CharacterColumn.Stat.PENETRATE] = initialStats[CharacterColumn.Stat.PENETRATE] = characterData.PENETRATE;
         SPLASH_DAMAGE = stats[CharacterColumn.Stat.SPLASH_DAMAGE] = initialStats[CharacterColumn.Stat.SPLASH_DAMAGE] = characterData.SPLASH_DAMAGE;
         SPLASH_RANGE = stats[CharacterColumn.Stat.SPLASH_RANGE] = initialStats[CharacterColumn.Stat.SPLASH_RANGE] = characterData.SPLASH_RANGE;
         CRITICAL = stats[CharacterColumn.Stat.CRITICAL] = initialStats[CharacterColumn.Stat.CRITICAL] = characterData.CRITICAL;
@@ -111,7 +112,18 @@ public class PlayerStats : MonoBehaviour
                 stats[(CharacterColumn.Stat)stat] = stats[(CharacterColumn.Stat)stat] * (1.0f + value / 100.0f);
                 break;
             case OptionColumn.Type.Fixed:
-                stats[(CharacterColumn.Stat)stat] += value;
+                {
+                    if (stat == OptionColumn.Stat.HP)
+                    {
+                        stats[(CharacterColumn.Stat)stat] += value;
+                        playerHealth.UpdateHealthUI();
+                    }
+                    else
+                    {
+                        // Weapon 값을 업그레이드
+                        playerShooter.weapon.stats[(WeaponColumn.Stat)stat] += value;
+                    }
+                }
                 break;
         }
 
@@ -151,7 +163,7 @@ public class PlayerStats : MonoBehaviour
         MOVE_SPEED_H = stats[CharacterColumn.Stat.MOVE_SPEED_H];
         FIRE_RATE = stats[CharacterColumn.Stat.FIRE_RATE];
         FIRE_RANGE = stats[CharacterColumn.Stat.FIRE_RANGE];
-        PENENTRATE = stats[CharacterColumn.Stat.PENENTRATE];
+        PENETRATE = stats[CharacterColumn.Stat.PENETRATE];
         SPLASH_DAMAGE = stats[CharacterColumn.Stat.SPLASH_DAMAGE];
         SPLASH_RANGE = stats[CharacterColumn.Stat.SPLASH_RANGE];
         CRITICAL = stats[CharacterColumn.Stat.CRITICAL];

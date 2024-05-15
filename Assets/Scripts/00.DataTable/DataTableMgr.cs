@@ -24,6 +24,10 @@ public static class DataTableMgr
         characterTable.Load(DataTableIds.Character);
         tables.Add(DataTableIds.Character, characterTable);
 
+        WeaponTable weaponTable = new WeaponTable();
+        weaponTable.Load(DataTableIds.Weapon);
+        tables.Add(DataTableIds.Weapon, weaponTable);
+
         EnemyTable enemyTable = new EnemyTable();
         enemyTable.Load(DataTableIds.Enemy);
         tables.Add(DataTableIds.Enemy, enemyTable);

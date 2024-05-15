@@ -1,3 +1,4 @@
+using Mono.Cecil.Cil;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -21,21 +22,19 @@ public class Enemy : MonoBehaviour, IDamageable
 {
     public Coroutine chaseCoroutine;
     public TextMeshProUGUI textHealth;
-    public int score;
     public EnemyTable enemyTable;
     public event Action onDeath;
-    public float maxHealth;
+    public int score;
     public float currentHealth;
-    private Animator animator;
     public float damage = 10;
-    public PlayerHealth target = null;
-    //private Coroutine chaseCoroutine = null;
-    private WaitForSeconds chaseTimer = new WaitForSeconds(1f);
-    private bool isAlive = true;
     public float speed = 5;
-    public float rotationSpeed = 180;
-    public Vector3 direction;
+    private bool isAlive = true;
     public bool isChasing = false;
+    public float rotationSpeed = 180;
+    private Animator animator;
+    public PlayerHealth target = null;
+    private WaitForSeconds chaseTimer = new WaitForSeconds(1f);
+    public Vector3 direction;
 
     private void Awake()
     {
@@ -60,8 +59,7 @@ public class Enemy : MonoBehaviour, IDamageable
         score = enemyTable.Get(40000).SCORE;
 
         isAlive = true;
-        maxHealth = enemyTable.Get(40000).HP;
-        currentHealth = maxHealth;
+        currentHealth = enemyTable.Get(40000).HP;
 
         Collider[] colliders = gameObject.GetComponents<Collider>();
         foreach (var collider in colliders)
@@ -71,13 +69,6 @@ public class Enemy : MonoBehaviour, IDamageable
 
         target = GameObject.FindWithTag(Tags.Player).GetComponent<PlayerHealth>();
         isAlive = true;
-
-        //chaseCoroutine = StartCoroutine(CoChasePlayer());
-    }
-
-    private void OnDisable()
-    {
-        //StopCoroutine(chaseCoroutine);
     }
 
     private void Update()
@@ -110,11 +101,6 @@ public class Enemy : MonoBehaviour, IDamageable
         isAlive = false;
         isChasing = false;
 
-        //if(chaseCoroutine != null)
-        //{
-        //    StopCoroutine(chaseCoroutine);
-        //}
-
         Collider[] colliders = GetComponents<Collider>();
         foreach(var collider in colliders)
         {
@@ -146,5 +132,15 @@ public class Enemy : MonoBehaviour, IDamageable
     public void Chase()
     {
         chaseCoroutine = StartCoroutine(CoChasePlayer());
+    }
+
+    public void UpdateStats(/*int score,*/ float currentHealth/*, float damage, float speed*/)
+    {
+        //this.score = score;
+        this.currentHealth = currentHealth;
+        //this.damage = damage;
+        //this.speed = speed;
+
+        textHealth.text = currentHealth.ToString();
     }
 }

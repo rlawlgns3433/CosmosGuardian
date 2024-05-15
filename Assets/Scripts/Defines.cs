@@ -67,7 +67,7 @@ public static class OptionColumn
         DAMAGE,
         FIRE_RATE,
         FIRE_RANGE,
-        PENENTRATE,
+        PENETRATE,
         SPLASH_DAMAGE,
         SPLASH_RANGE,
         CRITICAL,
@@ -94,7 +94,7 @@ public static class CharacterColumn
         DAMAGE,
         FIRE_RATE,
         FIRE_RANGE,
-        PENENTRATE,
+        PENETRATE,
         SPLASH_DAMAGE,
         SPLASH_RANGE,
         CRITICAL,
@@ -106,6 +106,24 @@ public static class CharacterColumn
         MOVE_SPEED_V,
         MOVE_SPEED_H,
         ARMOR,
+    }
+}
+
+public static class WeaponColumn
+{
+    public enum Stat
+    {
+        DAMAGE,
+        FIRE_RATE,
+        FIRE_RANGE,
+        PENETRATE,
+        SPLASH_DAMAGE,
+        SPLASH_RANGE,
+        CRITICAL,
+        CRITICAL_DAMAGE,
+        HP_DRAIN,
+        PROJECTILE_SPEED,
+        PROJECTILE_AMOUNT,
     }
 }
 

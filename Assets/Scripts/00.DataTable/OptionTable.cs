@@ -67,7 +67,6 @@ public class OptionTable : DataTable
             foreach (var record in records)
             {
                 table.Add(record.UPGRADE_ID, record);
-                Debug.Log(record);
             }
         }
     }

@@ -4230,6 +4230,7 @@ GameObject:
   - component: {fileID: 4508787347923785903}
   - component: {fileID: 6157067695724090070}
   - component: {fileID: 6596744918915436003}
+  - component: {fileID: 8102333513985256963}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -4489,6 +4490,7 @@ MonoBehaviour:
   muzzle: {fileID: 5448946995338291177}
   playerStats: {fileID: 2295086922680514110}
   currentProjectileIndex: 0
+  weapon: {fileID: 8102333513985256963}
   speed: 20
 --- !u!114 &4508787347923785903
 MonoBehaviour:
@@ -4549,6 +4551,18 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.45
   m_Center: {x: 0, y: 1.4, z: 0.1}
+--- !u!114 &8102333513985256963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5541493190259963240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3773a04e08a17cb479bf6817f85fbc55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5635138574146748691
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 
 public class Platform : MonoBehaviour
@@ -10,17 +11,16 @@ public class Platform : MonoBehaviour
     public OptionController optionController;
     public List<GameObject> enemySpawnTile = new List<GameObject>();
     public List<Enemy> spawnedEnemies = new List<Enemy>();
+    [Tooltip("리셋 횟수")]
+    public int resetCount = 0;
+    [Tooltip("배율")]
+    public float hpScale = 1.8f; 
 
     private void Start()
     {
         playerStats = GameObject.FindWithTag(Tags.Player).GetComponent<PlayerStats>();
         Spawn();
     }
-
-    //private void OnEnable()
-    //{
-    //    Spawn();
-    //}
 
     public void ResetPlatform()
     {
@@ -31,6 +31,8 @@ public class Platform : MonoBehaviour
                 enemy.OnDie();
             }
         }
+
+        ++resetCount;
         spawnedEnemies.Clear();
         Spawn(); // 몬스터 스폰
         optionController.ResetOptions(playerStats.level); // 옵션 초기화
@@ -51,6 +53,10 @@ public class Platform : MonoBehaviour
                     int rand = Random.Range(0, GameManager.Instance.enemies.Count);
                     var enemy = Instantiate(GameManager.Instance.enemies[rand], spawnPos, Quaternion.identity);
 
+                    if(resetCount > 0)
+                    {
+                        enemy.UpdateStats(enemy.currentHealth * Mathf.Pow(hpScale, resetCount));
+                    }
                     spawnedEnemies.Add(enemy);
                 }
             }

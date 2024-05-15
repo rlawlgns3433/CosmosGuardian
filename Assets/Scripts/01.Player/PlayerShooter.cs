@@ -12,24 +12,18 @@ public class PlayerShooter : MonoBehaviour
     public GameObject muzzle;
     public PlayerStats playerStats;
     public int currentProjectileIndex = 0;
-    private float maxFireRateLevel = 40;
-    private float minFireRate = 0.5f;
+    public Weapon weapon;
+    private int oneMinute = 60;
     private float FireRate
     {
         get
         {
-            return minFireRate - (0.4f * playerStats.stats[CharacterColumn.Stat.FIRE_RATE]) / maxFireRateLevel;
+            return 1 / (((playerStats.stats[CharacterColumn.Stat.FIRE_RATE]) * weapon.stats[WeaponColumn.Stat.FIRE_RATE]) / oneMinute);
+            //return minFireRate - (0.4f * playerStats.stats[CharacterColumn.Stat.FIRE_RATE]) / maxFireRateLevel;
         }
     }
     public float speed = 20f;
     private float lastFireTime = 0f;
-    private Vector3 direction = Vector3.forward;
-
-    private void Start()
-    {
-        Debug.Log(playerStats.stats[CharacterColumn.Stat.FIRE_RATE]);
-        Debug.Log(FireRate);
-    }
 
     private void Update()
     {

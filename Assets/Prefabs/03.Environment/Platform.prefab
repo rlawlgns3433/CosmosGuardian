@@ -54,13 +54,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca8178ea24c1b2443a3e729bad65daf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerStats: {fileID: 0}
   optionController: {fileID: 6792018370236454779}
   enemySpawnTile:
   - {fileID: 5067660589563095517}
   - {fileID: 481623737042499884}
   - {fileID: 77430350144561851}
   spawnedEnemies: []
+  resetCount: 0
+  hpScale: 1.8
 --- !u!1001 &662574613967742912
 PrefabInstance:
   m_ObjectHideFlags: 0

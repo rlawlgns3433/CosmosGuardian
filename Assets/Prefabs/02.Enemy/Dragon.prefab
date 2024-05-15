@@ -808,16 +808,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25b5c890cccfd4248beefee1ccbf75d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyType: 40100
   textHealth: {fileID: 5646388579843758660}
-  score: 0
-  maxHealth: 20
-  currentHealth: 20
-  damage: 10
-  target: {fileID: 0}
   speed: 1
-  rotationSpeed: 180
-  direction: {x: 0, y: 0, z: 1}
   isChasing: 0
+  rotationSpeed: 180
+  target: {fileID: 0}
+  direction: {x: 0, y: 0, z: 1}
 --- !u!135 &-4745713309901149687
 SphereCollider:
   m_ObjectHideFlags: 0

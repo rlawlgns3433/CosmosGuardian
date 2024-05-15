@@ -2,6 +2,7 @@ using Mono.Cecil.Cil;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -18,20 +19,27 @@ using UnityEngine.UI;
 /// 이동속도
 /// </summary>
 
+public enum EnemyType
+{
+    Normal = 40000,
+    Elite = 40100,
+    MidBoss = 40200,
+    Boss = 40300
+}
+
 public class Enemy : MonoBehaviour, IDamageable
 {
+    public EnemyType enemyType;
+    public EnemyTable enemyTable;
     public Coroutine chaseCoroutine;
     public TextMeshProUGUI textHealth;
-    public EnemyTable enemyTable;
     public event Action onDeath;
-    public int score;
-    public float currentHealth;
-    public float damage = 10;
     public float speed = 5;
     private bool isAlive = true;
     public bool isChasing = false;
     public float rotationSpeed = 180;
     private Animator animator;
+    public EnemyData enemyData;
     public PlayerHealth target = null;
     private WaitForSeconds chaseTimer = new WaitForSeconds(1f);
     public Vector3 direction;
@@ -45,30 +53,20 @@ public class Enemy : MonoBehaviour, IDamageable
         }
     }
 
-    private void Start()
-    {
-        onDeath += OnDie;
-        onDeath += () => { target.GetComponent<PlayerStats>().GetExp(score); };
-
-        direction = (target.transform.position - transform.position).normalized;
-    }
-
     private void OnEnable()
     {
         enemyTable = DataTableMgr.Get<EnemyTable>(DataTableIds.Enemy);
-        score = enemyTable.Get(40000).SCORE;
-
-        isAlive = true;
-        currentHealth = enemyTable.Get(40000).HP;
-
-        Collider[] colliders = gameObject.GetComponents<Collider>();
-        foreach (var collider in colliders)
-        {
-            collider.enabled = true;
-        }
+        enemyData = enemyTable.Get((int)(enemyType));
 
         target = GameObject.FindWithTag(Tags.Player).GetComponent<PlayerHealth>();
-        isAlive = true;
+    }
+
+    private void Start()
+    {
+        onDeath += OnDie;
+        onDeath += () => { target.GetComponent<PlayerStats>().GetExp(enemyData.SCORE); };
+
+        direction = (target.transform.position - transform.position).normalized;
     }
 
     private void Update()
@@ -86,14 +84,14 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         if (!isAlive) return;
 
-        currentHealth -= damage;
-        if (currentHealth <= 0)
+        enemyData.HP -= damage;
+        if (enemyData.HP <= 0)
         {
-            currentHealth = 0;
+            enemyData.HP = 0;
             onDeath();
         }
 
-        textHealth.text = currentHealth.ToString();
+        textHealth.text = ((int)enemyData.HP).ToString();
     }
 
     public void OnDie()
@@ -131,16 +129,31 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public void Chase()
     {
+        if(chaseCoroutine != null)
+        {
+            StopCoroutine(chaseCoroutine);
+        }
         chaseCoroutine = StartCoroutine(CoChasePlayer());
     }
 
-    public void UpdateStats(/*int score,*/ float currentHealth/*, float damage, float speed*/)
-    {
-        //this.score = score;
-        this.currentHealth = currentHealth;
-        //this.damage = damage;
-        //this.speed = speed;
+    //public void UpdateStats(EnemyData enemyData, float hpScale, int resetCount)
+    //{
+    //    this.enemyData.TYPE = enemyData.TYPE;
+    //    this.enemyData.DAMAGE = enemyData.DAMAGE;
+    //    this.enemyData.SCORE = enemyData.SCORE;
+    //    this.enemyData.GOLD = enemyData.GOLD;
+    //    this.enemyData.MONSTER_ID = enemyData.MONSTER_ID;
+    //    this.enemyData.HP = enemyData.HP * Mathf.Pow(hpScale, resetCount);
 
-        textHealth.text = currentHealth.ToString();
+    //    textHealth.text = ((int)this.enemyData.HP).ToString();
+    //}
+
+    public void UpdateStats(EnemyData enemyData, float hpScale, int resetCount)
+    {
+        this.enemyData = new EnemyData(enemyData); // 복사된 데이터 사용
+        this.enemyData.HP *= Mathf.Pow(hpScale, resetCount);
+
+        textHealth.text = ((int)this.enemyData.HP).ToString();
     }
+
 }

@@ -1,23 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using Unity.Logging;
 using UnityEngine;
 
 public class Platform : MonoBehaviour
 {
-    private readonly int minTest = 1;
-    private readonly int maxTest = 4;
+    public int minTest = 1;
+    public int maxTest = 4;
     private PlayerStats playerStats;
     public OptionController optionController;
     public List<GameObject> enemySpawnTile = new List<GameObject>();
     public List<Enemy> spawnedEnemies = new List<Enemy>();
+    public EnemyTable enemyTable;
+
     [Tooltip("리셋 횟수")]
     public int resetCount = 0;
     [Tooltip("배율")]
     public float hpScale = 1.8f; 
 
+
     private void Start()
     {
+        enemyTable = DataTableMgr.Get<EnemyTable>(DataTableIds.Enemy);
         playerStats = GameObject.FindWithTag(Tags.Player).GetComponent<PlayerStats>();
         Spawn();
     }
@@ -53,15 +58,26 @@ public class Platform : MonoBehaviour
                     int rand = Random.Range(0, GameManager.Instance.enemies.Count);
                     var enemy = Instantiate(GameManager.Instance.enemies[rand], spawnPos, Quaternion.identity);
 
-                    if(resetCount > 0)
+                    // EnemyData 객체를 복사하여 사용
+                    EnemyData originalData = enemyTable.Get((int)enemy.enemyType);
+                    if (originalData != null)
                     {
-                        enemy.UpdateStats(enemy.currentHealth * Mathf.Pow(hpScale, resetCount));
+                        EnemyData dataCopy = new EnemyData(originalData);
+                        enemy.UpdateStats(dataCopy, hpScale, resetCount);
+
+                        Debug.Log($"{enemy.enemyType} : {enemy.enemyData.HP}");
+                        spawnedEnemies.Add(enemy);
                     }
-                    spawnedEnemies.Add(enemy);
+                    else
+                    {
+                        Debug.LogError("EnemyData를 찾을 수 없습니다.");
+                    }
                 }
             }
         }
     }
+
+
 
 
     // 랜덤한 Row 타일의 하위에 있는 Box 콜라이더들을 가져온다.

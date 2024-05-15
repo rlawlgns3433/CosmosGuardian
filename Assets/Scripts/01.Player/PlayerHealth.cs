@@ -39,7 +39,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         if (!isAlive) return;
 
         playerStats.stats[CharacterColumn.Stat.HP] -= damage;
-        playerStats.SyncDevStat();
+        //playerStats.SyncDevStat();
 
         if (playerStats.stats[CharacterColumn.Stat.HP] <= 0)
         {
@@ -78,7 +78,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
             camShakeCoroutine = StartCoroutine(cameraShake.Shake(0.15f, 1f));
 
             var enemy = other.GetComponent<Enemy>();
-            OnDamage(enemy.currentHealth);
+            OnDamage(enemy.enemyData.HP);
             enemy.OnDie();
             Debug.Log($"Damaged : {playerStats.stats[CharacterColumn.Stat.HP]}");
         }

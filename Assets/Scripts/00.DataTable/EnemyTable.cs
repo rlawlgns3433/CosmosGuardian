@@ -17,12 +17,25 @@ public class EnemyData
     public int SCORE { get; set; }
     public int GOLD { get; set; }
 
+    public EnemyData(EnemyData other)
+    {
+        this.MONSTER_ID = other.MONSTER_ID;
+        this.TYPE = other.TYPE;
+        this.HP = other.HP;
+        this.DAMAGE = other.DAMAGE;
+        this.MAGNIFICATION = other.MAGNIFICATION;
+        this.SCORE = other.SCORE;
+        this.GOLD = other.GOLD;
+    }
+
+    public EnemyData() { }
 
     public override string ToString()
     {
         return $"Monster id : {MONSTER_ID} / {TYPE} / {HP} / {DAMAGE} / {MAGNIFICATION} / {SCORE} / {GOLD}";
     }
 }
+
 
 public class EnemyTable : DataTable
 {

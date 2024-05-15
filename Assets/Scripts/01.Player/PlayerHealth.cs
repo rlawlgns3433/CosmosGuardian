@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour, IDamageable
 {
+    public CameraShake cameraShake;
     public TextMeshProUGUI textHealth;
     public event Action onDeath;
     public PlayerStats playerStats = null;
     private Animator animator;
     public bool isAlive = true;
+    private Coroutine camShakeCoroutine;
 
     private void Awake()
     {
@@ -68,6 +70,13 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     {
         if(other.CompareTag("Enemy"))
         {
+            if(camShakeCoroutine != null)
+            {
+                StopCoroutine(camShakeCoroutine);
+            }
+
+            camShakeCoroutine = StartCoroutine(cameraShake.Shake(0.15f, 1f));
+
             var enemy = other.GetComponent<Enemy>();
             OnDamage(enemy.currentHealth);
             enemy.OnDie();

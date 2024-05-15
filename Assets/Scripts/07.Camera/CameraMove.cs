@@ -14,9 +14,9 @@ public class CameraMove : MonoBehaviour
 
     private void LateUpdate()
     {
-        Vector3 camPos = transform.position;
+        Vector3 camPos = target.position - offset;
         camPos.x = 0;
 
-        transform.position = Vector3.SmoothDamp(transform.position, target.position - offset, ref velocity, speed * Time.deltaTime);
+        transform.position = camPos;
     }
 }

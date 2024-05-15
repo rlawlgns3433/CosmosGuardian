@@ -4384,12 +4384,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHealth: {fileID: 4508787347923785903}
+  playerShooter: {fileID: 8178177954245249217}
   textExp: {fileID: 0}
   level: 1
   DAMAGE: 0
   FIRE_RATE: 0
   FIRE_RANGE: 0
-  PENENTRATE: 0
+  PENETRATE: 0
   SPLASH_DAMAGE: 0
   SPLASH_RANGE: 0
   CRITICAL: 0

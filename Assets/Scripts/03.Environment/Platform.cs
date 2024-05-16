@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,7 +21,7 @@ public class Platform : MonoBehaviour
     {
         enemyTable = DataTableMgr.Get<EnemyTable>(DataTableIds.Enemy);
         playerStats = GameObject.FindWithTag(Tags.Player).GetComponent<PlayerStats>();
-        Spawn();
+        StartCoroutine(DelaySpawn(0.1f));
     }
 
     public void ResetPlatform()
@@ -42,6 +43,12 @@ public class Platform : MonoBehaviour
 
     public void Spawn()
     {
+        if (GameManager.Instance == null)
+        {
+            Debug.LogError("GameManager 인스턴스가 null입니다. 적을 생성할 수 없습니다.");
+            return;
+        }
+
         foreach (var row in enemySpawnTile)
         {
             BoxCollider[] colliders = row.GetComponentsInChildren<BoxCollider>();
@@ -62,7 +69,6 @@ public class Platform : MonoBehaviour
                         EnemyData dataCopy = new EnemyData(originalData);
                         enemy.UpdateStats(dataCopy, hpScale, resetCount);
 
-                        Debug.Log($"{enemy.enemyType} : {enemy.enemyData.HP}");
                         spawnedEnemies.Add(enemy);
                     }
                     else
@@ -73,6 +79,7 @@ public class Platform : MonoBehaviour
             }
         }
     }
+
 
 
 
@@ -101,5 +108,11 @@ public class Platform : MonoBehaviour
         Vector3 randomWorldPosition = tile.transform.TransformPoint(randomLocalPosition);
 
         return randomWorldPosition;
+    }
+
+    IEnumerator DelaySpawn(float t)
+    {
+        yield return new WaitForSeconds(t);
+        Spawn();
     }
 }

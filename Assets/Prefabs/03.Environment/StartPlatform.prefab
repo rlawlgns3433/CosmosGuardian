@@ -97,7 +97,8 @@ PrefabInstance:
       propertyPath: m_TagString
       value: EnemySpawnArea
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5163372288094269348, guid: 160b2fb2c57f10940847583241621df4, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -411,7 +412,8 @@ PrefabInstance:
       propertyPath: m_TagString
       value: EnemySpawnArea
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5163372288094269348, guid: 160b2fb2c57f10940847583241621df4, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -477,7 +479,8 @@ PrefabInstance:
       propertyPath: m_TagString
       value: EnemySpawnArea
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5163372288094269348, guid: 160b2fb2c57f10940847583241621df4, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

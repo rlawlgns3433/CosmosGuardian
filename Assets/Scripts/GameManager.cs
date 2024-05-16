@@ -4,8 +4,6 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
-
-
     public List<GameObject> platforms = new List<GameObject>();
     public List<GameObject> enemies = new List<GameObject>(); // GameManager에서 갖는 것이 좋겠음.
 
@@ -53,6 +51,14 @@ public class GameManager : Singleton<GameManager>
             //    enemy.Chase();
             //}
         }
+
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            if(IsGameover)
+            {
+                SceneManager.LoadScene(0);
+            }
+        }
         
         if(Input.GetKeyDown(KeyCode.Escape))
         {
@@ -64,11 +70,13 @@ public class GameManager : Singleton<GameManager>
             {
                 Time.timeScale = 1f;
             }
+            IsPaused = !IsPaused;
         }
     }
 
     public void Gameover()
     {
+        IsGameover = true;
         playerStats.stats[CharacterColumn.Stat.MOVE_SPEED_H] = 0;
         playerStats.stats[CharacterColumn.Stat.MOVE_SPEED_V] = 0;
         playerStats.gameObject.GetComponent<PlayerShooter>().enabled = false;

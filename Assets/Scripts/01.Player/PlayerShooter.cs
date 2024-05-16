@@ -6,6 +6,7 @@ public class PlayerShooter : MonoBehaviour
     public List<GameObject> usingProjectiles = new List<GameObject>();
     public List<GameObject> unusingProjectiles = new List<GameObject>();
     public List<GameObject> projectilePrefabs = new List<GameObject>();
+    public RuntimeAnimatorController[] animatorControllers;
     public GameObject muzzle;
     public PlayerStats playerStats;
     public int currentProjectileIndex = 0;

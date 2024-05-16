@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3537504080978281147}
-  - component: {fileID: 5163372288094269348}
   m_Layer: 0
   m_Name: EnemySpawnTile
   m_TagString: EnemySpawnArea
@@ -35,21 +34,6 @@ Transform:
   - {fileID: 6010158993388356607}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5163372288094269348
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6708319747612093526}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 721ca7f8725149f4d9fc749aa5d346f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemies:
-  - {fileID: 2705906089778004512, guid: a31a22b275c159e4fa28755b495bad91, type: 3}
-  - {fileID: -630123401486560859, guid: acf6fe2f747250343bf9070e941ce57f, type: 3}
 --- !u!1001 &1351179294775835533
 PrefabInstance:
   m_ObjectHideFlags: 0

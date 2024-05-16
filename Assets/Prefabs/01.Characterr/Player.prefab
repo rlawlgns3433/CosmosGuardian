@@ -4489,6 +4489,7 @@ MonoBehaviour:
   - {fileID: 1533846767962012, guid: 23ffcf0f1d7965f4db32cd204582c860, type: 3}
   - {fileID: 1428542714614976, guid: fb14ae8d12348c9489c620869a2bfef9, type: 3}
   - {fileID: 1835938022181820, guid: 1980ac68af831b341ad588119a94764d, type: 3}
+  animatorControllers: []
   muzzle: {fileID: 5448946995338291177}
   playerStats: {fileID: 2295086922680514110}
   currentProjectileIndex: 0
@@ -4583,6 +4584,23 @@ MonoBehaviour:
   - {fileID: 7378025945233247512}
   - {fileID: 8149379232182994295}
   - {fileID: 4813069366637212482}
+  animatorControllers:
+  - {fileID: 9100000, guid: 754223ca98f6d3249a40eb103efdc674, type: 2}
+  - {fileID: 9100000, guid: 64e4ba9a61a083a459dde8265a3d5295, type: 2}
+  - {fileID: 9100000, guid: 8d768eb13b0d828499c28e49fab416da, type: 2}
+  - {fileID: 9100000, guid: 48f33187670273846ad6bd403b10eb4e, type: 2}
+  - {fileID: 9100000, guid: 91468e12735484741a3f95709c52ccf5, type: 2}
+  - {fileID: 9100000, guid: 248006cd84fcef246b485f5afd00c26a, type: 2}
+  - {fileID: 9100000, guid: 29b1c41f618d0fb4f928ea44a54bc3fd, type: 2}
+  - {fileID: 9100000, guid: 6f2e969546541944eb2cc7cbfb9b28a1, type: 2}
+  - {fileID: 9100000, guid: 3f8837f7e1eb98c4aac43f9c8545b9ca, type: 2}
+  - {fileID: 9100000, guid: afef9762a7835bf468cfca7d412392fc, type: 2}
+  - {fileID: 9100000, guid: 13e3797c3e306434696364d4459e3a45, type: 2}
+  - {fileID: 9100000, guid: ba2c554850e76d040bd78ea95e5572b7, type: 2}
+  - {fileID: 9100000, guid: f564c90c196317948aefd1a1e7fb192d, type: 2}
+  - {fileID: 9100000, guid: 0d57f98eeee801d4c9f4ba0744339ce7, type: 2}
+  - {fileID: 9100000, guid: 32602855139365a45aa5325ce5f6a5a3, type: 2}
+  - {fileID: 9100000, guid: 98bd239cd2702a5479fd86809ad5eb14, type: 2}
 --- !u!65 &1213873208607445376
 BoxCollider:
   m_ObjectHideFlags: 0

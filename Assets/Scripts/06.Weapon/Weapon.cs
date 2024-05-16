@@ -7,6 +7,17 @@ public class Weapon : MonoBehaviour
     public GameObject[] weapons;
     public WeaponData weaponData;
     public Dictionary<WeaponColumn.Stat, float> stats = new Dictionary<WeaponColumn.Stat, float>();
+    public RuntimeAnimatorController[] animatorControllers;
+    private Animator animator;
+
+    private void Awake()
+    {
+        if(!TryGetComponent(out animator))
+        {
+            animator.enabled = false;
+            return;
+        }
+    }
 
     private void Start()
     {
@@ -20,6 +31,21 @@ public class Weapon : MonoBehaviour
 
         Debug.Log(weaponId);
         weaponData = weaponTable.Get(weaponId);
+
+
+        for (int i = 0; i < weapons.Length; ++i)
+        {
+            if (weaponData.PREFAB_ID == i)
+            {
+                animator.runtimeAnimatorController = animatorControllers[i];
+                weapons[i].SetActive(true);
+                break;
+            }
+            else
+            {
+                weapons[i].SetActive(false);
+            }
+        }
 
         /*
         DAMAGE,

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
@@ -7,7 +8,6 @@ public class UiCharacterSelect : MonoBehaviour
 {
     public CharacterTable characterTable;
     public WeaponTable weaponTable;
-
     private Animator animator;
     public RuntimeAnimatorController[] animatorControllers;
     public GameObject[] characterBodys;
@@ -27,6 +27,10 @@ public class UiCharacterSelect : MonoBehaviour
         {
             animator.enabled = false;
         }
+
+
+        UpdateCharacter(PlayerPrefs.GetInt("SelectedCharacterIndex", 0));
+        UpdateWeapon(PlayerPrefs.GetInt("SelectedWeaponId", 0) % 100);
     }
 
     private void Start()
@@ -34,11 +38,6 @@ public class UiCharacterSelect : MonoBehaviour
         characterTable = DataTableMgr.Get<CharacterTable>(DataTableIds.Character);
         weaponTable = DataTableMgr.Get<WeaponTable>(DataTableIds.Weapon);
 
-        // �ʱⰪ
-        selectedCharacterIndex = characterTable.Get(initialCharId).BODY_TYPE;
-
-        UpdateCharacter(PlayerPrefs.GetInt("SelectedCharacterIndex",0));
-        UpdateWeapon(PlayerPrefs.GetInt("SelectedWeaponIndex",0));
     }
 
     public void UpdateCharacter(int characterIndex)

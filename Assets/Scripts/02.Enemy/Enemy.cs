@@ -99,7 +99,7 @@ public class Enemy : MonoBehaviour, IDamageable
         }
 
         animator.SetTrigger("Die");
-        Destroy(gameObject, 3f);
+        Destroy(gameObject, 1.5f);
         speed = 0;
     }
 

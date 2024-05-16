@@ -34,6 +34,11 @@ public class OptionController : MonoBehaviour
                                           where option.GRADE <= grade
                                           select option).ToList();
 
+        int selectedIndex = Random.Range(0, gradedOptions.Count);
+        gradedOptions = (from option in gradedOptions
+                         where option.GRADE == gradedOptions[selectedIndex].GRADE
+                         select option).ToList();
+
         List<int> selectedId = new List<int>();
 
         int excludeIndex = Random.Range(0, options.Count + 1); // Exclude 될 수도 있고 안 될 수도 있다. 그래서 배제할 인덱스를 1개 더 추가

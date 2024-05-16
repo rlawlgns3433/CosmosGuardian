@@ -132,3 +132,10 @@ public enum TableIdentifier
     Option = 1, // id + type + stat(D2) + grade(D2)
     Character = 2, // id + body(D2) + head(D2)
 }
+
+public enum SceneIds
+{ 
+    Main,
+    Game,
+    Shop
+}

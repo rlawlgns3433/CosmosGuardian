@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -13,6 +14,7 @@ public class GameManager : Singleton<GameManager>
 
     public PlayerStats playerStats = null;
     public bool IsGameover { get; set; }
+    public bool IsPaused { get; set; }
 
     public float platformSpacing = 27f;
 
@@ -48,6 +50,18 @@ public class GameManager : Singleton<GameManager>
             //{
             //    enemy.Chase();
             //}
+        }
+        
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            if(!IsPaused)
+            {
+                Time.timeScale = 0f;
+            }
+            else
+            {
+                Time.timeScale = 1f;
+            }
         }
     }
 

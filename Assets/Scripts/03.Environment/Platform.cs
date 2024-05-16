@@ -16,7 +16,7 @@ public class Platform : MonoBehaviour
     [Tooltip("πË¿≤")]
     public float hpScale = 1.8f;
 
-    private void OnEnable()
+    private void Start()
     {
         enemyTable = DataTableMgr.Get<EnemyTable>(DataTableIds.Enemy);
         playerStats = GameObject.FindWithTag(Tags.Player).GetComponent<PlayerStats>();

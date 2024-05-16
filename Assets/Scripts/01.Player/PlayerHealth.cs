@@ -47,7 +47,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
             onDeath();
         }
 
-        textHealth.text = playerStats.stats[CharacterColumn.Stat.HP].ToString();
+        UpdateHealthUI();
     }
 
     public void OnDie()
@@ -63,7 +63,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     }
     public void UpdateHealthUI()
     {
-        textHealth.text = playerStats.stats[CharacterColumn.Stat.HP].ToString();
+        textHealth.text = ((int)playerStats.stats[CharacterColumn.Stat.HP]).ToString();
     }
 
     private void OnTriggerEnter(Collider other)

@@ -23,10 +23,17 @@ public class UiCharacterSelect : MonoBehaviour
 
     private void Start()
     {
-        // Weapon에 따라서 달라지는 애니메이션 컨트롤러
-        for(int i = 0; i < weapons.Length; ++i)
+        UpdateWeapon(selectedWeaponIndex);
+    }
+
+    public void UpdateWeapon(int weaponIndex)
+    {
+
+        selectedWeaponIndex = weaponIndex;
+
+        for (int i = 0; i < weapons.Length; ++i)
         {
-            if(selectedWeaponIndex == i)
+            if (selectedWeaponIndex == i)
             {
                 animator.runtimeAnimatorController = animatorControllers[i];
                 weapons[i].SetActive(true);

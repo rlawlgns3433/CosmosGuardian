@@ -31,11 +31,6 @@ public class UiCharacterSelect : MonoBehaviour
         UpdateWeapon(selectedWeaponIndex);
     }
 
-    private void Update()
-    {
-        transform.Rotate(rot * rotationSpeed * Time.deltaTime);
-    }
-
     public void UpdateCharacter(int characterIndex)
     {
         selectedCharacterIndex = characterIndex;

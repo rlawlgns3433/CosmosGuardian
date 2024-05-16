@@ -6,6 +6,7 @@ using UnityEngine;
 public class UiWeaponSelect : MonoBehaviour
 {
     public UiCharacterSelect uiCharacterSelect;
+    public GameObject weaponParent;
     public GameObject[] weapons;
     public int selectedWeaponIndex = 0;
     private float rotationSpeed = 30;
@@ -30,7 +31,7 @@ public class UiWeaponSelect : MonoBehaviour
 
     private void Update()
     {
-        transform.Rotate(rot * rotationSpeed * Time.deltaTime, Space.World);
+        weaponParent.transform.Rotate(rot * rotationSpeed * Time.deltaTime);
     }
 
     public void PrevButton()

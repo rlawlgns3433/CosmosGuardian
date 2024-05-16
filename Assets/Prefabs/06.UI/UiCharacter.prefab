@@ -5991,7 +5991,7 @@ MonoBehaviour:
   - {fileID: 3327729241410947303}
   - {fileID: 3077934750999753567}
   selectedCharacterIndex: 0
-  selectedWeaponIndex: 5
+  selectedWeaponIndex: 0
 --- !u!1 &7845648227413569080
 GameObject:
   m_ObjectHideFlags: 0

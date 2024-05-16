@@ -8,6 +8,8 @@ public class UiWeaponSelect : MonoBehaviour
     public UiCharacterSelect uiCharacterSelect;
     public GameObject[] weapons;
     public int selectedWeaponIndex = 0;
+    private float rotationSpeed = 30;
+    private Vector3 rot = new Vector3(0, -1, 0);
 
     private void Start()
     {
@@ -24,6 +26,11 @@ public class UiWeaponSelect : MonoBehaviour
                 weapons[i].SetActive(false);
             }
         }
+    }
+
+    private void Update()
+    {
+        transform.Rotate(rot * rotationSpeed * Time.deltaTime, Space.World);
     }
 
     public void PrevButton()

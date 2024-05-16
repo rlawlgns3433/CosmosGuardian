@@ -11,6 +11,7 @@ public class EnemyData
 {
     public int MONSTER_ID { get; set; }
     public int TYPE { get; set; }
+    //public int STAGE { get; set; }
     public float HP { get; set; }
     public float DAMAGE { get; set; }
     public float MAGNIFICATION { get; set; }
@@ -21,6 +22,7 @@ public class EnemyData
     {
         this.MONSTER_ID = other.MONSTER_ID;
         this.TYPE = other.TYPE;
+        //this.STAGE = other.STAGE;
         this.HP = other.HP;
         this.DAMAGE = other.DAMAGE;
         this.MAGNIFICATION = other.MAGNIFICATION;

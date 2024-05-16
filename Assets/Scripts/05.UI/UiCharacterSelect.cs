@@ -14,6 +14,8 @@ public class UiCharacterSelect : MonoBehaviour
     // weapon 선택에 의해 animator가 변경
     public int selectedCharacterIndex = 0;
     public int selectedWeaponIndex = 0;
+    private float rotationSpeed = 30;
+    private Vector3 rot = new Vector3(0, 1, 0);
 
     private void Awake()
     {
@@ -27,6 +29,11 @@ public class UiCharacterSelect : MonoBehaviour
     {
         UpdateCharacter(selectedCharacterIndex);
         UpdateWeapon(selectedWeaponIndex);
+    }
+
+    private void Update()
+    {
+        transform.Rotate(rot * rotationSpeed * Time.deltaTime);
     }
 
     public void UpdateCharacter(int characterIndex)

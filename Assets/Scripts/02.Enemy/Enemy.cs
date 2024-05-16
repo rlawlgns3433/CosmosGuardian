@@ -16,7 +16,6 @@ using UnityEngine;
 public enum EnemyType
 {
     Normal = 40000,
-    Elite = 40100,
     MidBoss = 40200,
     Boss = 40300
 }

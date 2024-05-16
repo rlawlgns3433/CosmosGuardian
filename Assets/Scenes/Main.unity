@@ -155,10 +155,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1295130717}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 104.92227, y: -59.999992}
+  m_SizeDelta: {x: 69.94818, y: 119.999985}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &35020072
 MonoBehaviour:
@@ -232,10 +232,10 @@ RectTransform:
   - {fileID: 1711445559}
   m_Father: {fileID: 739255561}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 34.97409, y: -88.749985}
+  m_SizeDelta: {x: 59.94818, y: 52.499992}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &42138643
 MonoBehaviour:
@@ -1045,7 +1045,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 277321915}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1762018171694866939}
+        m_TargetAssemblyTypeName: UiCharacterSelect, Assembly-CSharp
+        m_MethodName: PrevCharacter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &277321915
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3274,7 +3286,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1329768403}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1762018171694866939}
+        m_TargetAssemblyTypeName: UiCharacterSelect, Assembly-CSharp
+        m_MethodName: NextCharacter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1329768403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3666,10 +3690,10 @@ RectTransform:
   - {fileID: 739255561}
   m_Father: {fileID: 1295130717}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 34.97409, y: -59.999992}
+  m_SizeDelta: {x: 69.94818, y: 119.999985}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1536954606
 MonoBehaviour:
@@ -3743,10 +3767,10 @@ RectTransform:
   - {fileID: 1021523214}
   m_Father: {fileID: 739255561}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 34.97409, y: -31.249996}
+  m_SizeDelta: {x: 59.94818, y: 52.499992}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1545219350
 MonoBehaviour:
@@ -4830,10 +4854,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1753759855842953383, guid: e4082e0d42033b94da094938b6759d82, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6426344241983760088, guid: e4082e0d42033b94da094938b6759d82, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.05
@@ -4875,12 +4895,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7363405602202689305, guid: e4082e0d42033b94da094938b6759d82, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7363405602202689305, guid: e4082e0d42033b94da094938b6759d82, type: 3}
       propertyPath: selectedWeaponIndex
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7808841121157725970, guid: e4082e0d42033b94da094938b6759d82, type: 3}
       propertyPath: m_Name

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class UiWeaponSelect : MonoBehaviour
@@ -7,12 +8,9 @@ public class UiWeaponSelect : MonoBehaviour
     public UiCharacterSelect uiCharacterSelect;
     public GameObject[] weapons;
     public int selectedWeaponIndex = 0;
-    public int weaponCount = 0;
 
     private void Start()
     {
-        weaponCount = weapons.Length;
-
         selectedWeaponIndex = uiCharacterSelect.selectedWeaponIndex;
         for (int i = 0; i < weapons.Length; ++i)
         {
@@ -35,7 +33,7 @@ public class UiWeaponSelect : MonoBehaviour
 
         if(selectedWeaponIndex < 0)
         {
-            selectedWeaponIndex = weaponCount - 1;
+            selectedWeaponIndex = weapons.Length - 1;
         }
 
         weapons[selectedWeaponIndex].SetActive(true);
@@ -47,7 +45,7 @@ public class UiWeaponSelect : MonoBehaviour
         weapons[selectedWeaponIndex].SetActive(false);
         ++selectedWeaponIndex;
 
-        if (selectedWeaponIndex >= weaponCount)
+        if (selectedWeaponIndex >= weapons.Length)
         {
             selectedWeaponIndex = 0;
         }

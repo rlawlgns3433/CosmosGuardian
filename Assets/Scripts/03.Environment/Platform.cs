@@ -37,6 +37,7 @@ public class Platform : MonoBehaviour
         spawnedEnemies.Clear();
         Spawn(); // 몬스터 스폰
         optionController.ResetOptions(playerStats.level); // 옵션 초기화
+        playerStats.UpdateStats(OptionColumn.Stat.MOVE_SPEED_V, OptionColumn.Type.Scale, 0.5f); // 직진 속도 0.5프로 증가
     }
 
     public void Spawn()

@@ -14,7 +14,7 @@ public class UiWeaponSelect : MonoBehaviour
 
     private void Start()
     {
-        selectedWeaponIndex = uiCharacterSelect.selectedWeaponIndex;
+        selectedWeaponIndex = PlayerPrefs.GetInt("SelectedWeaponId") % 100;
         for (int i = 0; i < weapons.Length; ++i)
         {
             if (selectedWeaponIndex == i)

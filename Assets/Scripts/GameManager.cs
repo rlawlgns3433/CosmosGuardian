@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
-    // 플랫폼 관리 필요
+
 
     public List<GameObject> platforms = new List<GameObject>();
     public List<GameObject> enemies = new List<GameObject>(); // GameManager에서 갖는 것이 좋겠음.
@@ -17,6 +17,8 @@ public class GameManager : Singleton<GameManager>
     public bool IsPaused { get; set; }
 
     public float platformSpacing = 27f;
+
+
 
     //private void Start()
     //{

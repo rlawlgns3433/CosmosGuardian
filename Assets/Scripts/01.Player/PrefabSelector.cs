@@ -7,11 +7,13 @@ public class PrefabSelector : MonoBehaviour
     public List<GameObject> bodyPrefabs = new List<GameObject>();
     public List<GameObject> headPrefabs = new List<GameObject>();
 
-    public CharacterPrefabNumber prefabNumber;
+    public int prefabNumber;
 
-    private void Start()
+    private void OnEnable()
     {
-        prefabNumber = CharacterPrefabNumber.Anna; // 선택으로 변경 필요
+        int selectedCharacterIndex = PlayerPrefs.GetInt("SelectedCharacterIndex", 0); // 두 번째 매개변수는 기본값
+
+        prefabNumber = selectedCharacterIndex; // 선택으로 변경 필요
 
         for (int i = 0; i < bodyPrefabs.Count; ++i)
         {
@@ -19,7 +21,7 @@ public class PrefabSelector : MonoBehaviour
             headPrefabs[i].SetActive(false);
         }
 
-        bodyPrefabs[(int)prefabNumber].SetActive(true);
-        headPrefabs[(int)prefabNumber].SetActive(true);
+        bodyPrefabs[selectedCharacterIndex].SetActive(true);
+        headPrefabs[selectedCharacterIndex].SetActive(true);
     }
 }

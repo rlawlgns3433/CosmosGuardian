@@ -40,6 +40,14 @@ public class WeaponTable : DataTable
         }
     }
 
+    public List<WeaponData> AllItems
+    {
+        get
+        {
+            return table.Values.ToList();
+        }
+    }
+
     public override void Load(string path)
     {
         path = string.Format(FormatPath, path);

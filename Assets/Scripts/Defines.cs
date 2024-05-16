@@ -131,6 +131,7 @@ public enum TableIdentifier
 {
     Option = 1, // id + type + stat(D2) + grade(D2)
     Character = 2, // id + body(D2) + head(D2)
+    Weapon = 3, // id + type(D2) + 분류번호?
 }
 
 public enum SceneIds

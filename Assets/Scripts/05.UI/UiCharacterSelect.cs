@@ -5,8 +5,10 @@ using UnityEngine;
 
 public class UiCharacterSelect : MonoBehaviour
 {
-    private Animator animator;
+    public CharacterTable characterTable;
+    public WeaponTable weaponTable;
 
+    private Animator animator;
     public RuntimeAnimatorController[] animatorControllers;
     public GameObject[] characterBodys;
     public GameObject[] characterHeads;
@@ -16,10 +18,12 @@ public class UiCharacterSelect : MonoBehaviour
     public int selectedWeaponIndex = 0;
     private float rotationSpeed = 30;
     private Vector3 rot = new Vector3(0, 1, 0);
+    private int initialCharId = 20101;
+
 
     private void Awake()
     {
-        if(!TryGetComponent(out animator))
+        if (!TryGetComponent(out animator))
         {
             animator.enabled = false;
         }
@@ -27,8 +31,14 @@ public class UiCharacterSelect : MonoBehaviour
 
     private void Start()
     {
-        UpdateCharacter(selectedCharacterIndex);
-        UpdateWeapon(selectedWeaponIndex);
+        characterTable = DataTableMgr.Get<CharacterTable>(DataTableIds.Character);
+        weaponTable = DataTableMgr.Get<WeaponTable>(DataTableIds.Weapon);
+
+        // �ʱⰪ
+        selectedCharacterIndex = characterTable.Get(initialCharId).BODY_TYPE;
+
+        UpdateCharacter(PlayerPrefs.GetInt("SelectedCharacterIndex",0));
+        UpdateWeapon(PlayerPrefs.GetInt("SelectedWeaponIndex",0));
     }
 
     public void UpdateCharacter(int characterIndex)
@@ -52,7 +62,7 @@ public class UiCharacterSelect : MonoBehaviour
 
     public void UpdateWeapon(int weaponIndex)
     {
-        if(weaponIndex == 0)
+        if (weaponIndex == 0)
         {
             weapons[weapons.Length - 1].SetActive(false);
         }
@@ -97,7 +107,7 @@ public class UiCharacterSelect : MonoBehaviour
         characterHeads[selectedCharacterIndex].SetActive(false);
         ++selectedCharacterIndex;
 
-        if (selectedCharacterIndex >= characterBodys.Length )
+        if (selectedCharacterIndex >= characterBodys.Length)
         {
             selectedCharacterIndex = 0;
         }

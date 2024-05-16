@@ -151,6 +151,7 @@ public class PlayerStats : MonoBehaviour
         var platformIndex = GameManager.Instance.currentPlatformIndex;
         var platform = GameManager.Instance.platforms[platformIndex].GetComponent<Platform>();
         platform.optionController.ResetOptions(level);
+
     }
 
     public void SyncDevStat()

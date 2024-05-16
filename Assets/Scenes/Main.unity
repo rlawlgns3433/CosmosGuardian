@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.006080829, g: 0.0029385951, b: 0.029612528, a: 1}
+  m_IndirectSpecularColor: {r: 0.0060825134, g: 0.0029428285, b: 0.029609201, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -594,8 +594,8 @@ MonoBehaviour:
   - {fileID: 1229888354}
   - {fileID: 1923986985}
   enemies:
-  - {fileID: 2705906089778004512, guid: a31a22b275c159e4fa28755b495bad91, type: 3}
-  - {fileID: -630123401486560859, guid: acf6fe2f747250343bf9070e941ce57f, type: 3}
+  - {fileID: 9093663750402790569, guid: a31a22b275c159e4fa28755b495bad91, type: 3}
+  - {fileID: 3492455130390485712, guid: acf6fe2f747250343bf9070e941ce57f, type: 3}
   currentPlatformIndex: 0
   nextPlatformIndex: 0
   playerStats: {fileID: 1387199563}
@@ -989,10 +989,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8178177954245249217, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
-      propertyPath: projectilePrefabs.Array.data[0]
-      value: 
-      objectReference: {fileID: 1213529451062198, guid: 7992e0bc456955748a220dbf00080d99, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

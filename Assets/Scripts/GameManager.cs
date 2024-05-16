@@ -6,7 +6,7 @@ public class GameManager : Singleton<GameManager>
     // 플랫폼 관리 필요
 
     public List<GameObject> platforms = new List<GameObject>();
-    public List<Enemy> enemies = new List<Enemy>(); // GameManager에서 갖는 것이 좋겠음.
+    public List<GameObject> enemies = new List<GameObject>(); // GameManager에서 갖는 것이 좋겠음.
 
     public int currentPlatformIndex = 0;
     public int nextPlatformIndex = 1;
@@ -16,16 +16,16 @@ public class GameManager : Singleton<GameManager>
 
     public float platformSpacing = 27f;
 
-    private void Start()
-    {
-        GameObject currentPlatform = platforms[currentPlatformIndex];
-        var platform = currentPlatform.GetComponent<Platform>();
+    //private void Start()
+    //{
+    //    GameObject currentPlatform = platforms[currentPlatformIndex];
+    //    var platform = currentPlatform.GetComponent<Platform>();
 
-        foreach (var enemy in platform.spawnedEnemies)
-        {
-            enemy.Chase();
-        }
-    }
+    //    foreach (var enemy in platform.spawnedEnemies)
+    //    {
+    //        enemy.Chase();
+    //    }
+    //}
 
     private void Update()
     {
@@ -43,11 +43,11 @@ public class GameManager : Singleton<GameManager>
             platform.ResetPlatform();
 
             // 다음 플랫폼의 몬스터들이 움직이게 함
-            Platform nextPlatform = platforms[nextPlatformIndex].GetComponent<Platform>();
-            foreach(var enemy in nextPlatform.spawnedEnemies)
-            {
-                enemy.Chase();
-            }
+            //Platform nextPlatform = platforms[nextPlatformIndex].GetComponent<Platform>();
+            //foreach(var enemy in nextPlatform.spawnedEnemies)
+            //{
+            //    enemy.Chase();
+            //}
         }
     }
 

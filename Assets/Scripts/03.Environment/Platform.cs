@@ -52,8 +52,8 @@ public class Platform : MonoBehaviour
                 {
                     Vector3 spawnPos = GetRandomPositionOnObject(collider, collider.gameObject);
                     int rand = Random.Range(0, GameManager.Instance.enemies.Count);
-                    var enemy = Instantiate(GameManager.Instance.enemies[rand], spawnPos, Quaternion.identity);
-
+                    var go = Instantiate(GameManager.Instance.enemies[rand], spawnPos, Quaternion.Euler(new Vector3(0, 180, 0)));
+                    var enemy = go.GetComponent<Enemy>();
                     // EnemyData 객체를 복사하여 사용
                     EnemyData originalData = enemyTable.Get((int)enemy.enemyType);
                     if (originalData != null)

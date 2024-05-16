@@ -855,7 +855,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6236336226813265215}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0.5953311, z: -0.67977947}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1439,7 +1439,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9093663750402790569}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
   m_ConstrainProportionsScale: 0
@@ -1448,7 +1448,7 @@ Transform:
   - {fileID: 1555786422262545441}
   - {fileID: 564856162520062268}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!95 &8935539207301354788
 Animator:
   serializedVersion: 5
@@ -1489,7 +1489,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 0.7
   m_Center: {x: 0, y: 1.29, z: 0}
 --- !u!114 &2705906089778004512
 MonoBehaviour:
@@ -1509,7 +1509,6 @@ MonoBehaviour:
   isChasing: 0
   rotationSpeed: 180
   target: {fileID: 0}
-  direction: {x: 0, y: 0, z: 1}
 --- !u!1 &9098729714593212743
 GameObject:
   m_ObjectHideFlags: 0

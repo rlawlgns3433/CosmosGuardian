@@ -1,7 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Data;
-using Unity.Logging;
 using UnityEngine;
 
 public class Platform : MonoBehaviour
@@ -17,10 +14,9 @@ public class Platform : MonoBehaviour
     [Tooltip("리셋 횟수")]
     public int resetCount = 0;
     [Tooltip("배율")]
-    public float hpScale = 1.8f; 
+    public float hpScale = 1.8f;
 
-
-    private void Start()
+    private void OnEnable()
     {
         enemyTable = DataTableMgr.Get<EnemyTable>(DataTableIds.Enemy);
         playerStats = GameObject.FindWithTag(Tags.Player).GetComponent<PlayerStats>();

@@ -3,7 +3,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
-using Unity.VisualScripting;
 
 public class OptionController : MonoBehaviour
 {

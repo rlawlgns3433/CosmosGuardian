@@ -1,10 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.ParticleSystemJobs;
-using static UnityEngine.ParticleSystem;
 
 public class Projectile : MonoBehaviour
 {

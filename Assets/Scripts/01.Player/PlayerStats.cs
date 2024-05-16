@@ -1,10 +1,7 @@
 using System.Collections.Generic;
 using System.Text;
-using UnityEditor.UI;
 using UnityEngine;
 using TMPro;
-using System;
-using UnityEngine.TextCore.Text;
 
 public class PlayerStats : MonoBehaviour
 {

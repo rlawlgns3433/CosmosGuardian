@@ -11,16 +11,20 @@ public class PlayerMovement : MonoBehaviour
     private float horizontalCoefficient = 3.0f; // 수평 속력 계수
     private float minX = -4.05f;
     private float maxX = 4.05f;
+    Vector3 movement;
 
     private void FixedUpdate()
     {
+
         // 이동 거리 계산
-        Vector3 movement;
 #if UNITY_ANDROID
         movement = forward * playerStats.stats[CharacterColumn.Stat.MOVE_SPEED_V] * verticalCoefficient + Vector3.right * dynamicJoystick.Horizontal * playerStats.stats[CharacterColumn.Stat.MOVE_SPEED_H] * horizontalCoefficient;
-#elif UNITY_EDITOR_WIN
-        movement = forward * playerStats.speedVertical * verticalCoefficient + Vector3.right * dynamicJoystick.Horizontal * playerStats.speedHorizontal * horizontalCoefficient;
+#elif UNITY_EDITOR
+        movement = forward * playerStats.stats[CharacterColumn.Stat.MOVE_SPEED_V]* verticalCoefficient + Vector3.right * dynamicJoystick.Horizontal * playerStats.stats[CharacterColumn.Stat.MOVE_SPEED_H] * horizontalCoefficient;
+#elif PLATFORM_STANDALONE_WIN
+        movement = forward * playerStats.stats[CharacterColumn.Stat.MOVE_SPEED_V]* verticalCoefficient + Vector3.right * dynamicJoystick.Horizontal * playerStats.stats[CharacterColumn.Stat.MOVE_SPEED_H] * horizontalCoefficient;
 #endif
+
         movement *= Time.deltaTime;
 
         // 새 위치 계산

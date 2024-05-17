@@ -184,15 +184,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 982dfe87d41ec2644850cc91bcaa07a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rangeCoefficient: 20
-  speed: 0
-  criticalRate: 0
-  damage: 0
-  splashDamageRate: 0
+  rangeScale: 0
+  weaponRange: 0
+  speedScale: 0
+  weaponSpeed: 0
+  criticalRateScale: 0
+  weaponCriticalRate: 0
+  criticalDamageScale: 0
+  weaponCriticalDamage: 0
+  damageScale: 0
+  weaponDamage: 0
+  splashDamage: 0
   splashDamageRange: 0
   penetrationCount: 0
   startPosition: {x: 0, y: 0, z: 0}
-  rigidbody: {fileID: 54778722868498932, guid: 8599b043bfa6f4e47b8f4f637bc72ba1, type: 3}
+  rigidbody: {fileID: 54548785167277834}
 --- !u!1 &1396238382972568
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 350563141063868867}
   - component: {fileID: -48444124875787011}
   - component: {fileID: 555327335540752582}
+  - component: {fileID: 4160323309430172982}
   m_Layer: 0
   m_Name: bullet
   m_TagString: Untagged
@@ -133,3 +134,16 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4160323309430172982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2245107836117157507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 867783a15078e7042ae02ed6c14d53bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boss: {fileID: 8498097923696691664, guid: aa776dce7bb631747a6663e61f29a18b, type: 3}

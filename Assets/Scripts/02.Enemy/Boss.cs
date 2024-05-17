@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Boss : Enemy
@@ -11,31 +10,12 @@ public class Boss : Enemy
     public float projectileSpeed = 10;
     public float angle = 30f;
 
-    private IEnumerator Start()
+    protected override void Start()
     {
-        UpdateStats(enemyData, 1, 0);
+        base.Start();
 
-        while(isAlive)
-        {
-            if(attackOneCoroutine != null)
-            {
-                StopCoroutine(attackOneCoroutine);
-            }
-            // 패턴 1
-            yield return StartCoroutine(ShotThreeAngle());
-            yield return new WaitForSeconds(3);
-            // 패턴 2
-
-            // 패턴 3
-
-        }
+        StartCoroutine(AttackPattern());
     }
-
-    public override void UpdateStats(EnemyData enemyData, float hpScale, int resetCount)
-    {
-        base.UpdateStats(enemyData, hpScale, resetCount);
-    }
-
 
     public IEnumerator ShotThreeAngle()
     {
@@ -53,5 +33,23 @@ public class Boss : Enemy
         GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
         Rigidbody rb = projectile.GetComponent<Rigidbody>();
         rb.velocity = direction * projectileSpeed;
+    }
+
+    IEnumerator AttackPattern()
+    {
+        while (isAlive)
+        {
+            if (attackOneCoroutine != null)
+            {
+                StopCoroutine(attackOneCoroutine);
+            }
+            // 패턴 1
+            yield return StartCoroutine(ShotThreeAngle());
+            yield return new WaitForSeconds(3);
+            // 패턴 2
+
+            // 패턴 3
+
+        }
     }
 }

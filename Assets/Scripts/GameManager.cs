@@ -16,7 +16,7 @@ public class GameManager : Singleton<GameManager>
 
     public float platformSpacing = 27f;
 
-    private void OnEnable()
+    private void Awake()
     {
         enemyTable = DataTableMgr.Get<EnemyTable>(DataTableIds.Enemy);
     }

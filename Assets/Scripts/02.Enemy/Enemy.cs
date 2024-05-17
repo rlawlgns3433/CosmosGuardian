@@ -151,10 +151,11 @@ public class Enemy : MonoBehaviour, IDamageable
     //    textHealth.text = ((int)this.enemyData.HP).ToString();
     //}
 
-    public virtual void UpdateStats(EnemyData enemyData, float hpScale, int resetCount)
+    public virtual void UpdateStats(EnemyData enemyData, float magnification, int resetCount)
     {
         this.enemyData = new EnemyData(enemyData); // 복사된 데이터 사용
-        this.enemyData.HP *= Mathf.Pow(hpScale, resetCount);
+        this.enemyData.HP *= Mathf.Pow(magnification, resetCount);
+        this.enemyData.DAMAGE *= Mathf.Pow(magnification, resetCount);
 
         textHealth.text = ((int)this.enemyData.HP).ToString();
     }

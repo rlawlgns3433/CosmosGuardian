@@ -14,6 +14,9 @@ public class Boss : Enemy
     public EnemyState enemyState = EnemyState.Idle;
     public float projectileSpeed = 10;
     public float angle = 30f;
+    private float distance = float.PositiveInfinity;
+    [Tooltip("이 거리에 내에 들어올 때 공격")]
+    public float attackDistance = 30;
 
     protected override void Start()
     {
@@ -71,6 +74,14 @@ public class Boss : Enemy
     {
         while (isAlive)
         {
+            distance = Vector3.Distance(target.transform.position, transform.position);
+
+            if (distance > attackDistance)
+            {
+                yield return new WaitForSeconds(0.1f);
+                continue;
+            }
+
             if (attackOneCoroutine != null)
             {
                 StopCoroutine(attackOneCoroutine);

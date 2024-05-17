@@ -34,6 +34,11 @@ public class Platform : MonoBehaviour
             }
         }
 
+        if(TryGetComponent(out BossSpawnController bossSpawnController))
+        {
+            bossSpawnController.SpawnBoss();
+        }
+
         ++resetCount;
         spawnedEnemies.Clear();
         Spawn(); // 몬스터 스폰

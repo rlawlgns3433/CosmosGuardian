@@ -13,7 +13,7 @@ public class Boss : Enemy
     protected override void Start()
     {
         base.Start();
-
+        base.UpdateStats(enemyData, 1, 0);
         StartCoroutine(AttackPattern());
     }
 

@@ -58,8 +58,8 @@ public class PlayerStats : MonoBehaviour
 
         StringBuilder sb = new StringBuilder();
         sb.Append((int)TableIdentifier.Character);
-        sb.Append(((int)prefabSelector.prefabNumber).ToString("D2"));
-        sb.Append(((int)prefabSelector.prefabNumber).ToString("D2")); // id + body(D2) + head(D2)
+        sb.Append((prefabSelector.prefabNumber + 1).ToString("D2"));
+        sb.Append((prefabSelector.prefabNumber + 1).ToString("D2")); // id + body(D2) + head(D2)
         string id = sb.ToString();
         characterData = characterTable.Get(int.Parse(id));
 

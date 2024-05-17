@@ -8,10 +8,13 @@ public class Boss : Enemy
     private readonly string attack2 = "Attack2";
     private readonly string attack3 = "Attack3";
 
-    private WaitForSeconds shotInterval = new WaitForSeconds(0.3f);
+    [Tooltip("Attack 1 발사 간격")]
+    public float intervalFloat = 0.3f;
+    private WaitForSeconds shotInterval;
     public GameObject projectilePrefab;
     public Coroutine attackOneCoroutine;
     public EnemyState enemyState = EnemyState.Idle;
+    [Tooltip("Attack 1 발사 속도")]
     public float projectileSpeed = 10;
     public float angle = 30f;
     private float distance = float.PositiveInfinity;
@@ -22,6 +25,8 @@ public class Boss : Enemy
     {
         base.Start();
         base.UpdateStats(enemyData, 1, 0);
+        shotInterval = new WaitForSeconds(intervalFloat);
+
         StartCoroutine(AttackPattern());
     }
 
@@ -65,9 +70,13 @@ public class Boss : Enemy
 
     public void Shot(Vector3 direction)
     {
-        GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+        var shotPos = transform.position;
+        shotPos += (Vector3.up * 3);
+        GameObject projectile = Instantiate(projectilePrefab, shotPos, Quaternion.identity);
         Rigidbody rb = projectile.GetComponent<Rigidbody>();
-        rb.velocity = direction * projectileSpeed;
+        rb.velocity = (direction - Vector3.up * 0.1f) * projectileSpeed;
+
+        Destroy(projectile, 5f);
     }
 
     IEnumerator AttackPattern()

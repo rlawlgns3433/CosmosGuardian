@@ -2029,6 +2029,7 @@ GameObject:
   - component: {fileID: 7379252335875354934}
   - component: {fileID: 7379252335866060610}
   - component: {fileID: 8498097923696691664}
+  - component: {fileID: 6403449722843573419}
   m_Layer: 0
   m_Name: BossMonster
   m_TagString: Boss
@@ -2045,7 +2046,7 @@ Transform:
   m_GameObject: {fileID: 7379252335875583254}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.83, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -2090,9 +2091,33 @@ MonoBehaviour:
   enemyType: 40300
   textHealth: {fileID: 896874337899129022}
   target: {fileID: 0}
+  intervalFloat: 0.3
   projectilePrefab: {fileID: 2245107836117157507, guid: 5f4ea3ac08006fc4e8cb68cb886f6821, type: 3}
+  enemyState: 0
   projectileSpeed: 10
   angle: 30
+  attackDistance: 30
+--- !u!65 &6403449722843573419
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7379252335875583254}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 2, z: 1}
+  m_Center: {x: 0, y: 1, z: 0.5}
 --- !u!1 &7379252335875583264
 GameObject:
   m_ObjectHideFlags: 0

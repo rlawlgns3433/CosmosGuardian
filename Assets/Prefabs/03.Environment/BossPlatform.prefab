@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5847827965554300113}
   - component: {fileID: 5220609208338446750}
+  - component: {fileID: 4962473657693050575}
   m_Layer: 0
   m_Name: BossPlatform
   m_TagString: Untagged
@@ -64,6 +65,20 @@ MonoBehaviour:
   spawnedEnemies: []
   resetCount: 0
   hpScale: 1.8
+--- !u!114 &4962473657693050575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2948242366810809454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9807e054511d69249996ced99a555ebe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossSpawnTile: {fileID: 2235904593576892941}
+  bossPrefab: {fileID: 7379252335875583254, guid: aa776dce7bb631747a6663e61f29a18b, type: 3}
 --- !u!1001 &395819241177443509
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -183,6 +198,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7667d5e9d568544180453e8e4f19be0, type: 3}
+--- !u!1 &2235904593576892941 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1352837839450252915, guid: b7667d5e9d568544180453e8e4f19be0, type: 3}
+  m_PrefabInstance: {fileID: 991277598307990654}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4383696240912088773 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3537504080978281147, guid: b7667d5e9d568544180453e8e4f19be0, type: 3}

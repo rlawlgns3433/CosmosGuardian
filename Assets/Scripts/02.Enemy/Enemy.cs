@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using static Enemy;
 
 // 스테이지가 진행될수록 강력해진다.
 
@@ -32,7 +33,7 @@ public class Enemy : MonoBehaviour, IDamageable
         Attack3
     }
 
-
+    public EnemyState enemyState = EnemyState.Idle;
     public EnemyType enemyType;
     //public Coroutine chaseCoroutine;
     public TextMeshProUGUI textHealth;
@@ -96,6 +97,7 @@ public class Enemy : MonoBehaviour, IDamageable
     public void OnDie()
     {
         isAlive = false;
+        enemyState = EnemyState.Dead;
         //isChasing = false;
 
         Collider[] colliders = GetComponents<Collider>();

@@ -125,7 +125,7 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag(Tags.Enemy))
+        if(other.CompareTag(Tags.Enemy) || other.CompareTag(Tags.Boss))
         {
             var enemy = other.gameObject.GetComponent<Enemy>();
             enemy.OnDamage(Damage);

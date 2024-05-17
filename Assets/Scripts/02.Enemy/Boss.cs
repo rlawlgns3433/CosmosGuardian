@@ -9,10 +9,10 @@ public class Boss : Enemy
 
     [Tooltip("Attack 1 발사 간격")]
     public float intervalFloat = 0.3f;
+    private CameraMove cameraMove;
     private WaitForSeconds shotInterval;
     public GameObject projectilePrefab;
     public Coroutine attackOneCoroutine;
-    public EnemyState enemyState = EnemyState.Idle;
     [Tooltip("Attack 1 발사 속도")]
     public float projectileSpeed = 10;
     public float angle = 30f;
@@ -27,6 +27,11 @@ public class Boss : Enemy
         base.Start();
         base.UpdateStats(enemyData, 1, 0);
         shotInterval = new WaitForSeconds(intervalFloat);
+        if(!Camera.main.TryGetComponent(out cameraMove))
+        {
+            cameraMove.enabled = false;
+            return;
+        }
 
         StartCoroutine(AttackPattern());
     }
@@ -35,8 +40,12 @@ public class Boss : Enemy
     {
         if(Vector3.Distance(transform.position, target.transform.position) < 12)
         {
-            savedVerticalSpeed = target.gameObject.GetComponent<PlayerStats>().stats[CharacterColumn.Stat.MOVE_SPEED_V];
-            target.gameObject.GetComponent<PlayerStats>().stats[CharacterColumn.Stat.MOVE_SPEED_V] = 0f;
+            if (isAlive && cameraMove.IsTOP)
+            {
+                cameraMove.IsTOP = !cameraMove.IsTOP;
+                savedVerticalSpeed = target.gameObject.GetComponent<PlayerStats>().stats[CharacterColumn.Stat.MOVE_SPEED_V];
+                target.gameObject.GetComponent<PlayerStats>().stats[CharacterColumn.Stat.MOVE_SPEED_V] = 0f;
+            }
         }
 
         switch (enemyState)
@@ -49,6 +58,7 @@ public class Boss : Enemy
             case EnemyState.Damaged:
                 break;
             case EnemyState.Dead:
+                cameraMove.IsTOP = true;
                 target.gameObject.GetComponent<PlayerStats>().stats[CharacterColumn.Stat.MOVE_SPEED_V] = savedVerticalSpeed;
                 break;
             case EnemyState.Attack1:

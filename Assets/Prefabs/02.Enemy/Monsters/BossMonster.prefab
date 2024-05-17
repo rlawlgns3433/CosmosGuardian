@@ -2091,12 +2091,12 @@ MonoBehaviour:
   enemyType: 40300
   textHealth: {fileID: 896874337899129022}
   target: {fileID: 0}
-  intervalFloat: 0.3
+  intervalFloat: 1
   projectilePrefab: {fileID: 2245107836117157507, guid: 5f4ea3ac08006fc4e8cb68cb886f6821, type: 3}
   enemyState: 0
-  projectileSpeed: 10
+  projectileSpeed: 7
   angle: 30
-  attackDistance: 30
+  attackDistance: 50
 --- !u!65 &6403449722843573419
 BoxCollider:
   m_ObjectHideFlags: 0

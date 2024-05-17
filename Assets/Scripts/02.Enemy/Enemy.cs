@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -20,21 +19,30 @@ public enum EnemyType
     Boss = 40300
 }
 
+public enum State
+{
+    Idle,
+    Damaged,
+    Dead,
+    Attack1,
+    Attack2,
+    Attack3
+}
+
 public class Enemy : MonoBehaviour, IDamageable
 {
     public EnemyType enemyType;
-    public EnemyTable enemyTable;
-    public Coroutine chaseCoroutine;
+    //public Coroutine chaseCoroutine;
     public TextMeshProUGUI textHealth;
     public event Action onDeath;
-    public float speed = 5;
-    private bool isAlive = true;
-    public bool isChasing = false;
-    public float rotationSpeed = 180;
+    //public float speed = 5;
+    protected bool isAlive = true;
+    //public bool isChasing = false;
+    //public float rotationSpeed = 180;
     private Animator animator;
     public EnemyData enemyData;
     public PlayerHealth target = null;
-    private WaitForSeconds chaseTimer = new WaitForSeconds(1f);
+    //private WaitForSeconds chaseTimer = new WaitForSeconds(1f);
     //public Vector3 direction;
 
     private void Awake()
@@ -46,16 +54,21 @@ public class Enemy : MonoBehaviour, IDamageable
         }
     }
 
+    //private void OnEnable()
+    //{
+    //    enemyData = /*DataTableMgr.Get<EnemyTable>(DataTableIds.Enemy).Get((int)(enemyType));*/new EnemyData(GameManager.Instance.enemyTable.Get((int)(enemyType)));
+    //    target = GameObject.FindWithTag(Tags.Player).GetComponent<PlayerHealth>();
+    //}
+
     private void OnEnable()
     {
-        enemyTable = DataTableMgr.Get<EnemyTable>(DataTableIds.Enemy);
-        enemyData = enemyTable.Get((int)(enemyType));
-
         target = GameObject.FindWithTag(Tags.Player).GetComponent<PlayerHealth>();
     }
 
     private void Start()
     {
+        enemyData = /*DataTableMgr.Get<EnemyTable>(DataTableIds.Enemy).Get((int)(enemyType));*/new EnemyData(GameManager.Instance.enemyTable.Get((int)(enemyType)));
+
         onDeath += OnDie;
         onDeath += () => { target.GetComponent<PlayerStats>().GetExp(enemyData.SCORE); };
 
@@ -90,7 +103,7 @@ public class Enemy : MonoBehaviour, IDamageable
     public void OnDie()
     {
         isAlive = false;
-        isChasing = false;
+        //isChasing = false;
 
         Collider[] colliders = GetComponents<Collider>();
         foreach(var collider in colliders)
@@ -100,7 +113,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
         animator.SetTrigger("Die");
         Destroy(gameObject, 1.5f);
-        speed = 0;
+        //speed = 0;
     }
 
     //public IEnumerator CoChasePlayer()
@@ -141,7 +154,7 @@ public class Enemy : MonoBehaviour, IDamageable
     //    textHealth.text = ((int)this.enemyData.HP).ToString();
     //}
 
-    public void UpdateStats(EnemyData enemyData, float hpScale, int resetCount)
+    public virtual void UpdateStats(EnemyData enemyData, float hpScale, int resetCount)
     {
         this.enemyData = new EnemyData(enemyData); // 복사된 데이터 사용
         this.enemyData.HP *= Mathf.Pow(hpScale, resetCount);

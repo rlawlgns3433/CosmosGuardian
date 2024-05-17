@@ -9,14 +9,17 @@ public class GameManager : Singleton<GameManager>
 
     public int currentPlatformIndex = 0;
     public int nextPlatformIndex = 1;
-
+    public EnemyTable enemyTable;
     public PlayerStats playerStats = null;
     public bool IsGameover { get; set; }
     public bool IsPaused { get; set; }
 
     public float platformSpacing = 27f;
 
-
+    private void OnEnable()
+    {
+        enemyTable = DataTableMgr.Get<EnemyTable>(DataTableIds.Enemy);
+    }
 
     //private void Start()
     //{

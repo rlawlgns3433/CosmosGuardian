@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 350563141063868867}
   - component: {fileID: -48444124875787011}
   - component: {fileID: 555327335540752582}
-  - component: {fileID: -6937166759169027106}
   m_Layer: 0
   m_Name: bullet
   m_TagString: Untagged
@@ -31,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.33, y: 1.642, z: 1.331}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -134,25 +133,3 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-6937166759169027106
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2245107836117157507}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 982dfe87d41ec2644850cc91bcaa07a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  particle: {fileID: 198757939829437176, guid: 07cb870d9797ec84baba66ffc9d8664a, type: 3}
-  rangeCoefficient: 20
-  speed: 0
-  criticalRate: 0
-  damage: 10
-  splashDamageRate: 0
-  splashDamageRange: 0
-  penetrationCount: 0
-  startPosition: {x: 0, y: 0, z: 0}
-  rigidbody: {fileID: -48444124875787011}

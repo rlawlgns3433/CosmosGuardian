@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using static Enemy;
 
 public class Boss : Enemy
 {
@@ -21,6 +20,8 @@ public class Boss : Enemy
     [Tooltip("이 거리에 내에 들어올 때 공격")]
     public float attackDistance = 30;
 
+    private float savedVerticalSpeed;
+
     protected override void Start()
     {
         base.Start();
@@ -32,6 +33,12 @@ public class Boss : Enemy
 
     private void Update()
     {
+        if(Vector3.Distance(transform.position, target.transform.position) < 12)
+        {
+            savedVerticalSpeed = target.gameObject.GetComponent<PlayerStats>().stats[CharacterColumn.Stat.MOVE_SPEED_V];
+            target.gameObject.GetComponent<PlayerStats>().stats[CharacterColumn.Stat.MOVE_SPEED_V] = 0f;
+        }
+
         switch (enemyState)
         {
             case EnemyState.Idle:
@@ -42,6 +49,7 @@ public class Boss : Enemy
             case EnemyState.Damaged:
                 break;
             case EnemyState.Dead:
+                target.gameObject.GetComponent<PlayerStats>().stats[CharacterColumn.Stat.MOVE_SPEED_V] = savedVerticalSpeed;
                 break;
             case EnemyState.Attack1:
                 break;

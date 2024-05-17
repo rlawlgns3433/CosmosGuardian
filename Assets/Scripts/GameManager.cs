@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,6 +12,7 @@ public class GameManager : Singleton<GameManager>
     public int nextPlatformIndex = 1;
     public EnemyTable enemyTable;
     public PlayerStats playerStats = null;
+    public TextMeshProUGUI textPasue;
     public bool IsGameover { get; set; }
     public bool IsPaused { get; set; }
 
@@ -91,5 +93,20 @@ public class GameManager : Singleton<GameManager>
         {
             collider.enabled = false;
         }
+    }
+
+    public void Pasue()
+    {
+        if (!IsPaused)
+        {
+            textPasue.gameObject.SetActive(true);
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            textPasue.gameObject.SetActive(false);
+            Time.timeScale = 1f;
+        }
+        IsPaused = !IsPaused;
     }
 }

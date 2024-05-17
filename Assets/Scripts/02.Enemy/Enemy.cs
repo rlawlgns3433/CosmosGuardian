@@ -43,7 +43,7 @@ public class Enemy : MonoBehaviour, IDamageable
     //public bool isChasing = false;
     //public float rotationSpeed = 180;
     protected Animator animator;
-    public EnemyData enemyData;
+    public EnemyData enemyData = null;
     public PlayerHealth target = null;
     //private WaitForSeconds chaseTimer = new WaitForSeconds(1f);
     //public Vector3 direction;
@@ -59,10 +59,12 @@ public class Enemy : MonoBehaviour, IDamageable
 
     protected virtual void Start()
     {
-        Debug.Log(GameManager.Instance.enemyTable == null);
-        enemyData = new EnemyData(GameManager.Instance.enemyTable.Get((int)(enemyType)));
-        target = GameObject.FindWithTag(Tags.Player).GetComponent<PlayerHealth>();
+        if (enemyData == null)
+        {
+            enemyData = new EnemyData(GameManager.Instance.enemyTable.Get((int)(enemyType)));
+        }
 
+        target = GameObject.FindWithTag(Tags.Player).GetComponent<PlayerHealth>();
         onDeath += OnDie;
         onDeath += () => { target.GetComponent<PlayerStats>().GetExp(enemyData.SCORE); };
 
@@ -156,5 +158,4 @@ public class Enemy : MonoBehaviour, IDamageable
 
         textHealth.text = ((int)this.enemyData.HP).ToString();
     }
-
 }

@@ -25,14 +25,13 @@ public class Boss : Enemy
     protected override void Start()
     {
         base.Start();
-        base.UpdateStats(enemyData, 1, 0);
         shotInterval = new WaitForSeconds(intervalFloat);
         if(!Camera.main.TryGetComponent(out cameraMove))
         {
             cameraMove.enabled = false;
             return;
         }
-
+        savedVerticalSpeed = target.gameObject.GetComponent<PlayerStats>().stats[CharacterColumn.Stat.MOVE_SPEED_V];
         StartCoroutine(AttackPattern());
     }
 

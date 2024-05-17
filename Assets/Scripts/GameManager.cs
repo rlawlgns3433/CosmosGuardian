@@ -56,27 +56,6 @@ public class GameManager : Singleton<GameManager>
             //    enemy.Chase();
             //}
         }
-
-        if(Input.GetKeyDown(KeyCode.R))
-        {
-            if(IsGameover)
-            {
-                SceneManager.LoadScene(0);
-            }
-        }
-        
-        if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            if(!IsPaused)
-            {
-                Time.timeScale = 0f;
-            }
-            else
-            {
-                Time.timeScale = 1f;
-            }
-            IsPaused = !IsPaused;
-        }
     }
 
     public void Gameover()
@@ -108,5 +87,11 @@ public class GameManager : Singleton<GameManager>
             Time.timeScale = 1f;
         }
         IsPaused = !IsPaused;
+    }
+
+    public void EnterMainScene()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(0);
     }
 }

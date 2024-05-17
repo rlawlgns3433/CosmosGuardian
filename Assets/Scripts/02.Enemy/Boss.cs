@@ -1,12 +1,17 @@
 using System.Collections;
 using UnityEngine;
+using static Enemy;
 
 public class Boss : Enemy
 {
+    private readonly string attack1 = "Attack1";
+    private readonly string attack2 = "Attack2";
+    private readonly string attack3 = "Attack3";
+
     private WaitForSeconds shotInterval = new WaitForSeconds(0.3f);
-    
     public GameObject projectilePrefab;
     public Coroutine attackOneCoroutine;
+    public EnemyState enemyState = EnemyState.Idle;
     public float projectileSpeed = 10;
     public float angle = 30f;
 
@@ -17,8 +22,35 @@ public class Boss : Enemy
         StartCoroutine(AttackPattern());
     }
 
+    private void Update()
+    {
+        switch (enemyState)
+        {
+            case EnemyState.Idle:
+                animator.SetBool(Animator.StringToHash(attack1), false);
+                animator.SetBool(Animator.StringToHash(attack2), false);
+                animator.SetBool(Animator.StringToHash(attack3), false);
+                break;
+            case EnemyState.Damaged:
+                break;
+            case EnemyState.Dead:
+                break;
+            case EnemyState.Attack1:
+                break;
+            case EnemyState.Attack2:
+                break;
+            case EnemyState.Attack3:
+                break;
+        }
+    }
+
     public IEnumerator ShotThreeAngle()
     {
+        enemyState = EnemyState.Attack1;
+        animator.SetBool(Animator.StringToHash(attack1), true);
+        animator.SetBool(Animator.StringToHash(attack2), false);
+        animator.SetBool(Animator.StringToHash(attack3), false);
+
         int shotCount = 0;
         while(shotCount++ < 3)
         {
@@ -45,6 +77,7 @@ public class Boss : Enemy
             }
             // 패턴 1
             yield return StartCoroutine(ShotThreeAngle());
+            enemyState = EnemyState.Idle;
             yield return new WaitForSeconds(3);
             // 패턴 2
 

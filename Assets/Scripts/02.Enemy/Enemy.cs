@@ -19,18 +19,20 @@ public enum EnemyType
     Boss = 40300
 }
 
-public enum State
-{
-    Idle,
-    Damaged,
-    Dead,
-    Attack1,
-    Attack2,
-    Attack3
-}
 
 public class Enemy : MonoBehaviour, IDamageable
 {
+    public enum EnemyState
+    {
+        Idle,
+        Damaged,
+        Dead,
+        Attack1,
+        Attack2,
+        Attack3
+    }
+
+
     public EnemyType enemyType;
     //public Coroutine chaseCoroutine;
     public TextMeshProUGUI textHealth;
@@ -39,7 +41,7 @@ public class Enemy : MonoBehaviour, IDamageable
     protected bool isAlive = true;
     //public bool isChasing = false;
     //public float rotationSpeed = 180;
-    private Animator animator;
+    protected Animator animator;
     public EnemyData enemyData;
     public PlayerHealth target = null;
     //private WaitForSeconds chaseTimer = new WaitForSeconds(1f);

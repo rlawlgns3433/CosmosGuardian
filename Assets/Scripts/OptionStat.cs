@@ -2,10 +2,21 @@ using UnityEngine;
 
 public class OptionStat : MonoBehaviour
 {
+    UiController uiController;
+
     public PlayerStats playerStats;
     public OptionColumn.Type type;
     public OptionColumn.Stat stat;
     public float value;
+
+    private void Start()
+    {
+        if(!GameObject.FindWithTag(Tags.UiController).TryGetComponent(out uiController))
+        {
+            uiController.enabled = false;
+            return;
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -23,7 +34,8 @@ public class OptionStat : MonoBehaviour
                 Collider collider = image.GetComponent<Collider>();
                 collider.enabled = false;
             }
-            
+
+            uiController.UpdatePauseUI();
 
             // 부모 컴포넌트 중 optioncontroller를 찾고
             // option (Image)들을 검색하고 이들의 모든 collider를 끈다.

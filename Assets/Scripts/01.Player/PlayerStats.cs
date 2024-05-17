@@ -106,7 +106,7 @@ public class PlayerStats : MonoBehaviour
         switch (type)
         {
             case OptionColumn.Type.Scale:
-                stats[(CharacterColumn.Stat)stat] = stats[(CharacterColumn.Stat)stat] * (1.0f + value / 100.0f);
+                stats[(CharacterColumn.Stat)stat] += initialStats[(CharacterColumn.Stat)stat] * (value / 100.0f);
                 break;
             case OptionColumn.Type.Fixed:
                 {

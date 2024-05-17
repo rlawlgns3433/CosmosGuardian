@@ -22,6 +22,11 @@ public class PlayerShooter : MonoBehaviour
     public float speed = 20f;
     private float lastFireTime = 0f;
 
+    private void Start()
+    {
+        currentProjectileIndex = weapon.weaponData.PROJECTILE_ID - 1;
+    }
+
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.A))

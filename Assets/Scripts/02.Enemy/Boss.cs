@@ -13,6 +13,8 @@ public class Boss : Enemy
 
     private IEnumerator Start()
     {
+        UpdateStats(enemyData, 1, 0);
+
         while(isAlive)
         {
             if(attackOneCoroutine != null)

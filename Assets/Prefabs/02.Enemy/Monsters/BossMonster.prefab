@@ -2090,7 +2090,7 @@ MonoBehaviour:
   enemyType: 40300
   textHealth: {fileID: 896874337899129022}
   target: {fileID: 0}
-  projectilePrefab: {fileID: 0}
+  projectilePrefab: {fileID: 2245107836117157507, guid: 5f4ea3ac08006fc4e8cb68cb886f6821, type: 3}
   projectileSpeed: 10
   angle: 30
 --- !u!1 &7379252335875583264

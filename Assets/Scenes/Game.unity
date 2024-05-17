@@ -3581,10 +3581,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: BossMonster
       objectReference: {fileID: 0}
-    - target: {fileID: 8498097923696691664, guid: aa776dce7bb631747a6663e61f29a18b, type: 3}
-      propertyPath: projectilePrefab
-      value: 
-      objectReference: {fileID: 2245107836117157507, guid: 5f4ea3ac08006fc4e8cb68cb886f6821, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -54,21 +54,15 @@ public class Enemy : MonoBehaviour, IDamageable
         }
     }
 
-    //private void OnEnable()
-    //{
-    //    enemyData = /*DataTableMgr.Get<EnemyTable>(DataTableIds.Enemy).Get((int)(enemyType));*/new EnemyData(GameManager.Instance.enemyTable.Get((int)(enemyType)));
-    //    target = GameObject.FindWithTag(Tags.Player).GetComponent<PlayerHealth>();
-    //}
-
     private void OnEnable()
     {
+        enemyData = /*DataTableMgr.Get<EnemyTable>(DataTableIds.Enemy).Get((int)(enemyType));*/new EnemyData(GameManager.Instance.enemyTable.Get((int)(enemyType)));
         target = GameObject.FindWithTag(Tags.Player).GetComponent<PlayerHealth>();
     }
 
+
     private void Start()
     {
-        enemyData = /*DataTableMgr.Get<EnemyTable>(DataTableIds.Enemy).Get((int)(enemyType));*/new EnemyData(GameManager.Instance.enemyTable.Get((int)(enemyType)));
-
         onDeath += OnDie;
         onDeath += () => { target.GetComponent<PlayerStats>().GetExp(enemyData.SCORE); };
 

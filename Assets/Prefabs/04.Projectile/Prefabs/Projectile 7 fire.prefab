@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4399021083629618}
-  - component: {fileID: 114981672378350052}
   - component: {fileID: 54488790111006576}
   - component: {fileID: 135219337407746228}
   - component: {fileID: 108919900232066054}
@@ -37,32 +36,6 @@ Transform:
   - {fileID: 8861943000613911297}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114981672378350052
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1254724754748870}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 605a456cfc02f6b499a64717539a27e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 15
-  hitOffset: 0.1
-  UseFirePointRotation: 0
-  rotationOffset: {x: 0, y: 0, z: 0}
-  hit: {fileID: 411345952982442794}
-  hitPS: {fileID: 507812177244753956}
-  flash: {fileID: 3151957531930537338}
-  rb: {fileID: 54488790111006576}
-  col: {fileID: 135219337407746228}
-  lightSourse: {fileID: 108919900232066054}
-  Detached:
-  - {fileID: 1853683965846254}
-  projectilePS: {fileID: 329737889198186567}
-  notDestroy: 0
 --- !u!54 &54488790111006576
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -105,11 +78,11 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.05
+  m_Radius: 0.4
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!108 &108919900232066054
 Light:
@@ -185,6 +158,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 982dfe87d41ec2644850cc91bcaa07a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  disappearTimer: 1
+  startPosition: {x: 0, y: 0, z: 0}
+  rb: {fileID: 54488790111006576}
+  splashDamage: 0
+  splashDamageRange: 0
+  penetrationCount: 0
   speed: 15
   hitOffset: 0
   UseFirePointRotation: 0
@@ -198,7 +177,6 @@ MonoBehaviour:
   - {fileID: 1853683965846254}
   projectilePS: {fileID: 329737889198186567}
   notDestroy: 0
-  disappearTimer: 1
   rangeScale: 0
   weaponRange: 0
   speedScale: 0
@@ -209,11 +187,6 @@ MonoBehaviour:
   weaponCriticalDamage: 0
   damageScale: 0
   weaponDamage: 0
-  splashDamage: 0
-  splashDamageRange: 0
-  penetrationCount: 0
-  startPosition: {x: 0, y: 0, z: 0}
-  rigidbody: {fileID: 54488790111006576}
 --- !u!1 &1800544799133088
 GameObject:
   m_ObjectHideFlags: 0

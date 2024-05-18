@@ -26,7 +26,7 @@ public class Boss : Enemy
     {
         base.Start();
         shotInterval = new WaitForSeconds(intervalFloat);
-        if(!Camera.main.TryGetComponent(out cameraMove))
+        if (!Camera.main.TryGetComponent(out cameraMove))
         {
             cameraMove.enabled = false;
             return;
@@ -37,7 +37,7 @@ public class Boss : Enemy
 
     private void Update()
     {
-        if(Vector3.Distance(transform.position, target.transform.position) < 12)
+        if (Vector3.Distance(transform.position, target.transform.position) < 12)
         {
             if (isAlive && cameraMove.IsTOP)
             {
@@ -59,10 +59,7 @@ public class Boss : Enemy
             case EnemyState.Dead:
                 StopAllCoroutines();
                 cameraMove.IsTOP = true;
-                if(target.isAlive)
-                {
-                    target.gameObject.GetComponent<PlayerStats>().stats[CharacterColumn.Stat.MOVE_SPEED_V] = savedVerticalSpeed;
-                }
+                target.gameObject.GetComponent<PlayerStats>().stats[CharacterColumn.Stat.MOVE_SPEED_V] = savedVerticalSpeed;
                 break;
             case EnemyState.Attack1:
                 break;
@@ -81,7 +78,7 @@ public class Boss : Enemy
         animator.SetBool(Animator.StringToHash(attack3), false);
 
         int shotCount = 0;
-        while(shotCount++ < 3)
+        while (shotCount++ < 3)
         {
             var direction = (target.transform.position - transform.position).normalized;
             Shot(direction);

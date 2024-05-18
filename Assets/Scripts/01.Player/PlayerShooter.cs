@@ -24,6 +24,12 @@ public class PlayerShooter : MonoBehaviour
 
     private void Start()
     {
+        if(!TryGetComponent(out weapon))
+        {
+            weapon.enabled = false;
+            return;
+        }
+
         currentProjectileIndex = weapon.weaponData.PROJECTILE_ID - 1;
     }
 

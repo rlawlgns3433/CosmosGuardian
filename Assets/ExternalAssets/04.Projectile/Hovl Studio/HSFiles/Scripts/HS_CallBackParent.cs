@@ -8,15 +8,15 @@ public class HS_CallBackParent : MonoBehaviour
 
     protected virtual void OnParticleSystemStopped()
     {
-        //if (parentObject != null)
-        //{
-        //    transform.parent = parentObject;
-        //    transform.localPosition = Vector3.zero;
-        //    transform.localEulerAngles = Vector3.zero;
-        //}
+        if (parentObject != null)
+        {
+            transform.parent = parentObject;
+            transform.localPosition = Vector3.zero;
+            transform.localEulerAngles = Vector3.zero;
+        }
         //else
         //    Destroy(gameObject);
 
-        transform.parent = parentObject;
+        //transform.parent = parentObject;
     }
 }

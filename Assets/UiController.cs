@@ -17,7 +17,7 @@ public class UiController : MonoBehaviour
         group.SetActive(true);
         pause.SetActive(false);
 
-        UpdatePauseUI();
+        Invoke("UpdatePauseUI", 0.01f);
     }
 
     public void UpdatePauseUI()

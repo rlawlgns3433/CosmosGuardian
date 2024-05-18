@@ -1565,7 +1565,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 723555c749ab51a47a9a72dd5a13734a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 0}
 --- !u!1 &1442126789383843100
 GameObject:
   m_ObjectHideFlags: 0
@@ -4403,22 +4402,10 @@ MonoBehaviour:
   playerShooter: {fileID: 8178177954245249217}
   textExp: {fileID: 0}
   level: 1
-  DAMAGE: 0
-  FIRE_RATE: 0
-  FIRE_RANGE: 0
-  PENETRATE: 0
-  SPLASH_DAMAGE: 0
-  SPLASH_RANGE: 0
-  CRITICAL: 0
-  CRITICAL_DAMAGE: 0
-  HP_DRAIN: 0
-  PROJECTILE_SPEED: 0
-  PROJECTILE_AMOUNT: 0
-  HP: 0
-  MOVE_SPEED_V: 0
-  MOVE_SPEED_H: 0
-  ARMOR: 0
   price: 0
+  maxLevel: 10
+  expForNextLevel: 100
+  magnification: 1.8
 --- !u!114 &2686379450363031452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4489,7 +4476,7 @@ MonoBehaviour:
   usingProjectiles: []
   unusingProjectiles: []
   projectilePrefabs:
-  - {fileID: 1213529451062198, guid: f39b97bbc3a6a9f4ab9ee7e13e43112f, type: 3}
+  - {fileID: 1213529451062198, guid: 7992e0bc456955748a220dbf00080d99, type: 3}
   - {fileID: 1049895169098164, guid: 4620ea4ad6748204fbbd6657881e1d2b, type: 3}
   - {fileID: 1433909751113846, guid: 8599b043bfa6f4e47b8f4f637bc72ba1, type: 3}
   - {fileID: 1759596753954018, guid: 2a5b2a0ea561a1249803e59f610b5c32, type: 3}

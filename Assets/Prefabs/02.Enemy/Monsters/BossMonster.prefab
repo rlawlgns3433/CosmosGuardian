@@ -2093,10 +2093,10 @@ MonoBehaviour:
   textHealth: {fileID: 896874337899129022}
   target: {fileID: 0}
   intervalFloat: 1
-  projectilePrefab: {fileID: 2245107836117157507, guid: 5f4ea3ac08006fc4e8cb68cb886f6821, type: 3}
   projectileSpeed: 7
-  angle: 30
   attackDistance: 50
+  projectilePrefab: {fileID: 2245107836117157507, guid: 5f4ea3ac08006fc4e8cb68cb886f6821, type: 3}
+  angle: 30
 --- !u!65 &6403449722843573419
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2797,7 +2797,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 2}
-  m_SizeDelta: {x: 3, y: 1}
+  m_SizeDelta: {x: 10, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &1629662729730239965
 Canvas:

@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -8,8 +7,6 @@ public class Projectile : MonoBehaviour
     public float disappearTimer = 1f;
     public Vector3 startPosition = Vector3.zero;
     public Rigidbody rb;
-
-    public int penetrationCount;
 
     [SerializeField] protected float speed = 15f;
     [SerializeField] protected float hitOffset = 0f;
@@ -119,6 +116,19 @@ public class Projectile : MonoBehaviour
         }
     }
 
+    public float weaponpenetrate;
+    public int Penetrate
+    {
+        get
+        {
+            return Mathf.RoundToInt(weaponpenetrate);
+        }
+        set
+        {
+            weaponpenetrate = value;
+        }
+    }
+
     private void OnEnable()
     {
         if (playerShooter == null && !GameObject.FindWithTag(Tags.Player).TryGetComponent(out playerShooter))
@@ -132,7 +142,7 @@ public class Projectile : MonoBehaviour
             playerStats.enabled = false;
             return;
         }
-        
+
         if (playerHealth == null && !GameObject.FindWithTag(Tags.Player).TryGetComponent(out playerHealth))
         {
             playerHealth.enabled = false;
@@ -183,7 +193,7 @@ public class Projectile : MonoBehaviour
         splashDamageRangeScale = playerStats.stats[CharacterColumn.Stat.SPLASH_RANGE];
         weaponSplashDamageRange = playerShooter.weapon.stats[WeaponColumn.Stat.SPLASH_RANGE];
 
-        penetrationCount = (int)playerStats.stats[CharacterColumn.Stat.PENETRATE];
+        weaponpenetrate = playerShooter.weapon.stats[WeaponColumn.Stat.PENETRATE];
 
         startPosition = playerShooter.muzzle.transform.position;
         transform.position = startPosition;
@@ -207,12 +217,12 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag(Tags.Enemy) || other.CompareTag(Tags.Boss))
+        if (other.CompareTag(Tags.Enemy) || other.CompareTag(Tags.Boss))
         {
             var enemy = other.gameObject.GetComponent<Enemy>();
             // 크리티컬 확률일 경우
             rand = Random.value;
-            if(rand <= CriticalRate)
+            if (rand <= CriticalRate)
             {
                 enemy.OnDamage(CriticalDamage); // 크리티컬 뎀
             }
@@ -222,64 +232,71 @@ public class Projectile : MonoBehaviour
                 enemy.OnDamage(Damage);
             }
 
-            if (SplashDamageRange > 0)
-            {
-                Collider[] colliders = Physics.OverlapSphere(transform.position, SplashDamageRange);
 
-                foreach(var collider in colliders)
-                {
-                    if (collider == other) continue;
-
-                    if (collider.CompareTag(Tags.Enemy) || collider.CompareTag(Tags.Boss))
-                    {
-                        var e = collider.gameObject.GetComponent<Enemy>();
-                        e.OnDamage(SplashDamage);
-                    }
-                }
-            }
 
             playerStats.stats[CharacterColumn.Stat.HP] += HpDrain; // 흡수
             playerHealth.UpdateHealthUI();
 
-            rb.constraints = RigidbodyConstraints.FreezeAll;
-            //speed = 0;
-            if (lightSourse != null)
-                lightSourse.enabled = false;
-            col.enabled = false;
-            projectilePS.Stop();
-            projectilePS.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
-
-            Vector3 contact = other.ClosestPoint(transform.position);
-            Quaternion rot = Quaternion.FromToRotation(Vector3.up, (transform.position - contact).normalized);
-            Vector3 pos = contact + contact * hitOffset;
-
-            if (hit != null)
+            if(Penetrate <= 0)
             {
-                hit.transform.rotation = rot;
-                hit.transform.position = pos;
-                if (UseFirePointRotation) { hit.transform.rotation = gameObject.transform.rotation * Quaternion.Euler(0, 180f, 0); }
-                else if (rotationOffset != Vector3.zero) { hit.transform.rotation = Quaternion.Euler(rotationOffset); }
-                else { hit.transform.LookAt((transform.position - contact).normalized + (transform.position - contact).normalized); }
-                hitPS.Play();
-            }
+                rb.constraints = RigidbodyConstraints.FreezeAll;
+                //speed = 0;
+                if (lightSourse != null)
+                    lightSourse.enabled = false;
+                col.enabled = false;
+                projectilePS.Stop();
+                projectilePS.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
 
-            foreach (var detachedPrefab in Detached)
-            {
-                if (detachedPrefab != null)
+                Vector3 contact = other.ClosestPoint(transform.position);
+                Quaternion rot = Quaternion.FromToRotation(Vector3.up, (transform.position - contact).normalized);
+                Vector3 pos = contact + contact * hitOffset;
+
+                if (hit != null)
                 {
-                    ParticleSystem detachedPS = detachedPrefab.GetComponent<ParticleSystem>();
-                    detachedPS.Stop();
+                    hit.transform.rotation = rot;
+                    hit.transform.position = pos;
+                    if (UseFirePointRotation) { hit.transform.rotation = gameObject.transform.rotation * Quaternion.Euler(0, 180f, 0); }
+                    else if (rotationOffset != Vector3.zero) { hit.transform.rotation = Quaternion.Euler(rotationOffset); }
+                    else { hit.transform.LookAt((transform.position - contact).normalized + (transform.position - contact).normalized); }
+                    hitPS.Play();
                 }
+
+                foreach (var detachedPrefab in Detached)
+                {
+                    if (detachedPrefab != null)
+                    {
+                        ParticleSystem detachedPS = detachedPrefab.GetComponent<ParticleSystem>();
+                        detachedPS.Stop();
+                    }
+                }
+
+                startChecker = false;
+
+
+                if (SplashDamageRange > 0)
+                {
+                    Collider[] colliders = Physics.OverlapSphere(transform.position, SplashDamageRange);
+
+                    foreach (var collider in colliders)
+                    {
+                        if (collider == other) continue;
+
+                        if (collider.CompareTag(Tags.Enemy) || collider.CompareTag(Tags.Boss))
+                        {
+                            var e = collider.gameObject.GetComponent<Enemy>();
+                            e.OnDamage(SplashDamage);
+                        }
+                    }
+                }
+
+                if (returnCoroutine != null)
+                {
+                    StopCoroutine(returnCoroutine);
+                }
+
+                returnCoroutine = StartCoroutine(ReturnProjectileAfter(disappearTimer));
             }
-
-            startChecker = false;
-
-            if(returnCoroutine != null)
-            {
-                StopCoroutine(returnCoroutine);
-            }
-
-            returnCoroutine = StartCoroutine(ReturnProjectileAfter(disappearTimer));
+            --Penetrate;
         }
     }
 

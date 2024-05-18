@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using static CharacterColumn;
 
 public class PrefabSelector : MonoBehaviour
 {
@@ -11,9 +10,9 @@ public class PrefabSelector : MonoBehaviour
 
     private void OnEnable()
     {
-        int selectedCharacterIndex = PlayerPrefs.GetInt("SelectedCharacterIndex", 0); // 두 번째 매개변수는 기본값
+        int selectedCharacterIndex = PlayerPrefs.GetInt("SelectedCharacterIndex", 0);
 
-        prefabNumber = selectedCharacterIndex; // 선택으로 변경 필요
+        prefabNumber = selectedCharacterIndex;
 
         for (int i = 0; i < bodyPrefabs.Count; ++i)
         {

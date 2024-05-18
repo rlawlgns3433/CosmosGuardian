@@ -15,8 +15,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-
-        // 이동 거리 계산
 #if UNITY_ANDROID
         movement = forward * playerStats.stats[CharacterColumn.Stat.MOVE_SPEED_V] * verticalCoefficient + Vector3.right * dynamicJoystick.Horizontal * playerStats.stats[CharacterColumn.Stat.MOVE_SPEED_H] * horizontalCoefficient;
 #elif UNITY_EDITOR
@@ -24,17 +22,12 @@ public class PlayerMovement : MonoBehaviour
 #elif PLATFORM_STANDALONE_WIN
         movement = forward * playerStats.stats[CharacterColumn.Stat.MOVE_SPEED_V]* verticalCoefficient + Vector3.right * dynamicJoystick.Horizontal * playerStats.stats[CharacterColumn.Stat.MOVE_SPEED_H] * horizontalCoefficient;
 #endif
-
         movement *= Time.deltaTime;
 
-        // 새 위치 계산
         Vector3 newPosition = transform.position + movement;
 
-        // X 위치 제한
         newPosition.x = Mathf.Clamp(newPosition.x, minX, maxX);
 
-        // Rigidbody 이동
         rb.MovePosition(newPosition);
     }
-
 }

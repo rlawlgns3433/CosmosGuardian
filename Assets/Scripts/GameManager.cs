@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,11 +6,12 @@ public class GameManager : Singleton<GameManager>
 {
     public List<GameObject> platforms = new List<GameObject>();
     public List<GameObject> enemies = new List<GameObject>(); // GameManager에서 갖는 것이 좋겠음.
+    public EnemyTable enemyTable;
+    public PlayerStats playerStats = null;
 
     public int currentPlatformIndex = 0;
     public int nextPlatformIndex = 1;
-    public EnemyTable enemyTable;
-    public PlayerStats playerStats = null;
+
     public bool IsGameover { get; set; }
     public bool IsPaused { get; set; }
 

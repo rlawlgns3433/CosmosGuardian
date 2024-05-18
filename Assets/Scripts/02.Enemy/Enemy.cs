@@ -1,17 +1,6 @@
 using System;
 using TMPro;
 using UnityEngine;
-using static Enemy;
-
-// 스테이지가 진행될수록 강력해진다.
-
-/// <summary>
-/// 스코어
-/// 재화
-/// 경험치
-/// HP
-/// 이동속도
-/// </summary>
 
 public enum EnemyType
 {
@@ -19,7 +8,6 @@ public enum EnemyType
     MidBoss = 40200,
     Boss = 40300
 }
-
 
 public class Enemy : MonoBehaviour, IDamageable
 {

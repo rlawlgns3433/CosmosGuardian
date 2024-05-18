@@ -8,9 +8,10 @@ public class PlayerStats : MonoBehaviour
     public PlayerHealth playerHealth;
     public PlayerShooter playerShooter;
     public TextMeshProUGUI textExp;
+    public int level = 1;
+    public int price = default;
 
     private readonly string scoreFormat = "Score : {0}";
-    public int level = 1;
     private float exp;
     [Tooltip("최대 레벨")]
     public int maxLevel = 10;
@@ -26,28 +27,6 @@ public class PlayerStats : MonoBehaviour
     private PrefabSelector prefabSelector = null;
     public CharacterData characterData = null;
 
-    /// <summary>
-    /// 시각적으로 스텟을 확인하기 위한 변수들
-    /// </summary>
-
-    //public float DAMAGE;
-    //public float FIRE_RATE;
-    //public float FIRE_RANGE;
-    //public float PENETRATE;
-    //public float SPLASH_DAMAGE;
-    //public float SPLASH_RANGE;
-    //public float CRITICAL;
-    //public float CRITICAL_DAMAGE;
-    //public float HP_DRAIN;
-    //public float PROJECTILE_SPEED;
-    //public float PROJECTILE_AMOUNT;
-    //public float HP;
-    //public float MOVE_SPEED_V;
-    //public float MOVE_SPEED_H;
-    //public float ARMOR;
-
-    // 이 부분을 Scriptable Assets로 변경할 수도 있음
-    public int price = default;
 
     private void Awake()
     {
@@ -96,15 +75,6 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    // 매개변수 : 스텟 종류, 증가량
-    public bool UpdateStats(CharacterColumn.Stat stat, float value)
-    {
-        // Maximum이 있을 경우를 고려해 bool을 반환
-        stats[stat] += value;
-
-        return true;
-    }
-
     public bool UpdateStats(OptionColumn.Stat stat, OptionColumn.Type type, float value)
     {
         // 옵저버 패턴으로 stat을 observe하고 동작하는 클래스를 생성하여 변경 필요
@@ -135,7 +105,6 @@ public class PlayerStats : MonoBehaviour
             playerHealth.UpdateHealthUI();
         }
 
-        //SyncDevStat(); // 테스트
         return true;
     }
 
@@ -160,25 +129,5 @@ public class PlayerStats : MonoBehaviour
         var platformIndex = GameManager.Instance.currentPlatformIndex;
         var platform = GameManager.Instance.platforms[platformIndex].GetComponent<Platform>();
         platform.optionController.ResetOptions(level);
-
     }
-
-    //public void SyncDevStat()
-    //{
-    //    HP = stats[CharacterColumn.Stat.HP];
-    //    ARMOR = stats[CharacterColumn.Stat.ARMOR];
-    //    DAMAGE = stats[CharacterColumn.Stat.DAMAGE];
-    //    MOVE_SPEED_V = stats[CharacterColumn.Stat.MOVE_SPEED_V];
-    //    MOVE_SPEED_H = stats[CharacterColumn.Stat.MOVE_SPEED_H];
-    //    FIRE_RATE = stats[CharacterColumn.Stat.FIRE_RATE];
-    //    FIRE_RANGE = stats[CharacterColumn.Stat.FIRE_RANGE];
-    //    PENETRATE = stats[CharacterColumn.Stat.PENETRATE];
-    //    SPLASH_DAMAGE = stats[CharacterColumn.Stat.SPLASH_DAMAGE];
-    //    SPLASH_RANGE = stats[CharacterColumn.Stat.SPLASH_RANGE];
-    //    CRITICAL = stats[CharacterColumn.Stat.CRITICAL];
-    //    CRITICAL_DAMAGE = stats[CharacterColumn.Stat.CRITICAL_DAMAGE];
-    //    HP_DRAIN = stats[CharacterColumn.Stat.HP_DRAIN];
-    //    PROJECTILE_SPEED = stats[CharacterColumn.Stat.PROJECTILE_SPEED];
-    //    PROJECTILE_AMOUNT = stats[CharacterColumn.Stat.PROJECTILE_AMOUNT];
-    //}
 }

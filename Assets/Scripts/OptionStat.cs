@@ -2,12 +2,13 @@ using UnityEngine;
 
 public class OptionStat : MonoBehaviour
 {
-    UiController uiController;
 
     public PlayerStats playerStats;
     public OptionColumn.Type type;
     public OptionColumn.Stat stat;
     public float value;
+
+    private UiController uiController;
 
     private void Start()
     {
@@ -36,11 +37,6 @@ public class OptionStat : MonoBehaviour
             }
 
             uiController.UpdatePauseUI();
-
-            // 부모 컴포넌트 중 optioncontroller를 찾고
-            // option (Image)들을 검색하고 이들의 모든 collider를 끈다.
-            // 플랫폼이 생성될 때 active를 설정하고
-            // collider를 켠다.
         }
     }
 }

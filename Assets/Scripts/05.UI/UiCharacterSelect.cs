@@ -1,25 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 public class UiCharacterSelect : MonoBehaviour
 {
     public CharacterTable characterTable;
     public WeaponTable weaponTable;
-    private Animator animator;
     public RuntimeAnimatorController[] animatorControllers;
     public GameObject[] characterBodys;
     public GameObject[] characterHeads;
     public GameObject[] weapons;
-    // weapon 선택에 의해 animator가 변경
     public int selectedCharacterIndex = 0;
     public int selectedWeaponIndex = 0;
-    //private float rotationSpeed = 30;
-    private Vector3 rot = new Vector3(0, 1, 0);
-    //private int initialCharId = 20101;
 
+    private Vector3 rot = new Vector3(0, 1, 0);
+    private Animator animator;
 
     private void Awake()
     {
@@ -27,7 +20,6 @@ public class UiCharacterSelect : MonoBehaviour
         {
             animator.enabled = false;
         }
-
 
         UpdateCharacter(PlayerPrefs.GetInt("SelectedCharacterIndex", 0));
         UpdateWeapon(PlayerPrefs.GetInt("SelectedWeaponId", 0) % 100);
@@ -37,7 +29,6 @@ public class UiCharacterSelect : MonoBehaviour
     {
         characterTable = DataTableMgr.Get<CharacterTable>(DataTableIds.Character);
         weaponTable = DataTableMgr.Get<WeaponTable>(DataTableIds.Weapon);
-
     }
 
     public void UpdateCharacter(int characterIndex)

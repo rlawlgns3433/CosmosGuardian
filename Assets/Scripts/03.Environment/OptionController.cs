@@ -6,7 +6,7 @@ using System.Linq;
 
 public class OptionController : MonoBehaviour
 {
-    public List<Image> options = new List<Image>(); // OnOff로 생성/미생성
+    public List<Image> options = new List<Image>();
     public List<TextMeshProUGUI> optionTexts = new List<TextMeshProUGUI>();
 
     private OptionTable optionTable;
@@ -24,7 +24,6 @@ public class OptionController : MonoBehaviour
             collider.enabled = true;
         }
 
-        // 키 중 하나를 선택
         ResetOptions(playerStats.level);
     }
 

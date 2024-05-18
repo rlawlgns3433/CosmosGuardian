@@ -16,7 +16,6 @@ public class PlayerShooter : MonoBehaviour
         get
         {
             return 1 / (((playerStats.stats[CharacterColumn.Stat.FIRE_RATE]) * weapon.stats[WeaponColumn.Stat.FIRE_RATE]) / oneMinute);
-            //return minFireRate - (0.4f * playerStats.stats[CharacterColumn.Stat.FIRE_RATE]) / maxFireRateLevel;
         }
     }
     public float speed = 20f;

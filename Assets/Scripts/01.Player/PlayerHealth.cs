@@ -80,7 +80,6 @@ public class PlayerHealth : MonoBehaviour, IDamageable
             var enemy = other.GetComponent<Enemy>();
             OnDamage(enemy.enemyData.HP);
             enemy.OnDie();
-            Debug.Log($"Damaged : {playerStats.stats[CharacterColumn.Stat.HP]}");
         }
     }
 }

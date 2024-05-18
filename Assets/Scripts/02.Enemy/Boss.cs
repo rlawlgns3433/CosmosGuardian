@@ -9,17 +9,17 @@ public class Boss : Enemy
 
     [Tooltip("Attack 1 발사 간격")]
     public float intervalFloat = 0.3f;
-    private CameraMove cameraMove;
-    private WaitForSeconds shotInterval;
-    public GameObject projectilePrefab;
-    public Coroutine attackOneCoroutine;
     [Tooltip("Attack 1 발사 속도")]
     public float projectileSpeed = 10;
-    public float angle = 30f;
-    private float distance = float.PositiveInfinity;
     [Tooltip("이 거리에 내에 들어올 때 공격")]
     public float attackDistance = 30;
+    public GameObject projectilePrefab;
+    public Coroutine attackOneCoroutine;
+    public float angle = 30f;
 
+    private CameraMove cameraMove;
+    private WaitForSeconds shotInterval;
+    private float distance = float.PositiveInfinity;
     private float savedVerticalSpeed;
 
     protected override void Start()

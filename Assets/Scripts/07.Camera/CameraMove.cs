@@ -1,30 +1,12 @@
 using UnityEngine;
-using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 public class CameraMove : MonoBehaviour
 {
-    //public Transform target;
-    //private Vector3 offset = Vector3.zero;
-
-    //private void Start()
-    //{
-    //    offset = target.position - transform.position;
-    //}
-
-    //private void LateUpdate()
-    //{
-    //    Vector3 camPos = target.position -offset;
-    //    camPos.x = 0;
-
-    //    transform.position = camPos;
-    //}
-
-    public Transform TPS, TOP;
     public bool IsTOP = true;
+    public Transform TPS, TOP;
 
     private void Update()
     {
-        
         if (Input.GetKeyDown(KeyCode.Y))
         {
             IsTOP = !IsTOP;

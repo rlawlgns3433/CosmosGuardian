@@ -3,8 +3,14 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    private PlayerShooter playerShooter;
-    private PlayerStats playerStats;
+    [Tooltip("총알이 사라지기까지 걸리는 시간")]
+    public float disappearTimer = 1f;
+    public Vector3 startPosition = Vector3.zero;
+    public Rigidbody rb;
+    public float splashDamage;
+    public float splashDamageRange;
+    public int penetrationCount;
+
 
     [SerializeField] protected float speed = 15f;
     [SerializeField] protected float hitOffset = 0f;
@@ -13,17 +19,17 @@ public class Projectile : MonoBehaviour
     [SerializeField] protected GameObject hit;
     [SerializeField] protected ParticleSystem hitPS;
     [SerializeField] protected GameObject flash;
-    //[SerializeField] protected Rigidbody rb;
     [SerializeField] protected Collider col;
     [SerializeField] protected Light lightSourse;
     [SerializeField] protected GameObject[] Detached;
     [SerializeField] protected ParticleSystem projectilePS;
-    private bool startChecker = false;
     [SerializeField] protected bool notDestroy = false;
 
-    Coroutine returnCoroutine = null;
-    [Tooltip("총알이 사라지기까지 걸리는 시간")]
-    public float disappearTimer = 1f;
+    private Coroutine returnCoroutine = null;
+    private PlayerShooter playerShooter;
+    private PlayerStats playerStats;
+    private bool startChecker = false;
+
     // =======Range
     public float rangeScale;
     public float weaponRange;
@@ -45,7 +51,6 @@ public class Projectile : MonoBehaviour
             return speedScale * weaponSpeed;
         }
     }
-
 
     // =======Critical Rate
     public float criticalRateScale;
@@ -81,11 +86,6 @@ public class Projectile : MonoBehaviour
     }
 
 
-    public float splashDamage;
-    public float splashDamageRange;
-    public int penetrationCount;
-    public Vector3 startPosition = Vector3.zero;
-    public Rigidbody rigidbody;
 
     private void OnEnable()
     {
@@ -100,7 +100,6 @@ public class Projectile : MonoBehaviour
             playerStats.enabled = false;
             return;
         }
-        //--===================================
 
         hitPS.Stop();
         hitPS.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
@@ -115,13 +114,12 @@ public class Projectile : MonoBehaviour
             if (lightSourse != null)
                 lightSourse.enabled = true;
             col.enabled = true;
-            rigidbody.constraints = RigidbodyConstraints.None;
+            rb.constraints = RigidbodyConstraints.None;
         }
-        startPosition = rigidbody.position = playerShooter.muzzle.transform.position;
-        rigidbody.velocity = Vector3.forward * speed;
+        startPosition = rb.position = playerShooter.muzzle.transform.position;
+        rb.velocity = Vector3.forward * speed;
 
         startChecker = true;
-        //--===================================
 
         rangeScale = playerStats.stats[CharacterColumn.Stat.FIRE_RANGE];
         weaponRange = playerShooter.weapon.stats[WeaponColumn.Stat.FIRE_RANGE];
@@ -147,13 +145,13 @@ public class Projectile : MonoBehaviour
         startPosition = playerShooter.muzzle.transform.position;
         transform.position = startPosition;
 
-        rigidbody.velocity = Vector3.zero;  // Rigidbody 속도 초기화
-        rigidbody.angularVelocity = Vector3.zero; // 각속도 초기화
+        rb.velocity = Vector3.zero;  // Rigidbody 속도 초기화
+        rb.angularVelocity = Vector3.zero; // 각속도 초기화
     }
 
     private void Update()
     {
-        rigidbody.AddForce(transform.forward * Speed * Time.deltaTime, ForceMode.Impulse);
+        rb.AddForce(transform.forward * Speed * Time.deltaTime, ForceMode.Impulse);
 
         float distance = Vector3.Distance(startPosition, transform.position);
 
@@ -172,10 +170,7 @@ public class Projectile : MonoBehaviour
             enemy.OnDamage(Damage);
 
 
-            //==================================
-
-            //Lock all axes movement and rotation
-            rigidbody.constraints = RigidbodyConstraints.FreezeAll;
+            rb.constraints = RigidbodyConstraints.FreezeAll;
             //speed = 0;
             if (lightSourse != null)
                 lightSourse.enabled = false;
@@ -187,7 +182,6 @@ public class Projectile : MonoBehaviour
             Quaternion rot = Quaternion.FromToRotation(Vector3.up, (transform.position - contact).normalized);
             Vector3 pos = contact + contact * hitOffset;
 
-            //Spawn hit effect on collision
             if (hit != null)
             {
                 hit.transform.rotation = rot;
@@ -198,7 +192,6 @@ public class Projectile : MonoBehaviour
                 hitPS.Play();
             }
 
-            //Removing trail from the projectile on cillision enter or smooth removing. Detached elements must have "AutoDestroying script"
             foreach (var detachedPrefab in Detached)
             {
                 if (detachedPrefab != null)
@@ -210,11 +203,6 @@ public class Projectile : MonoBehaviour
 
             startChecker = false;
 
-            //==================================
-
-            //gameObject.SetActive(false);
-            //playerShooter.ReturnProjectile(gameObject);
-            
             if(returnCoroutine != null)
             {
                 StopCoroutine(returnCoroutine);

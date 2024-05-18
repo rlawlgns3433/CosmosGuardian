@@ -7,8 +7,7 @@ public class Projectile : MonoBehaviour
     public float disappearTimer = 1f;
     public Vector3 startPosition = Vector3.zero;
     public Rigidbody rb;
-    public float splashDamage;
-    public float splashDamageRange;
+
     public int penetrationCount;
 
     [SerializeField] protected float speed = 15f;
@@ -29,6 +28,7 @@ public class Projectile : MonoBehaviour
     private PlayerStats playerStats;
     private PlayerHealth playerHealth;
     private bool startChecker = false;
+    private float rand;
 
     // =======Range
     public float rangeScale;
@@ -59,7 +59,7 @@ public class Projectile : MonoBehaviour
     {
         get
         {
-            return criticalRateScale * weaponCriticalRate;
+            return criticalRateScale * (weaponCriticalRate / 100);
         }
     }
 
@@ -70,7 +70,7 @@ public class Projectile : MonoBehaviour
     {
         get
         {
-            return criticalDamageScale * weaponCriticalDamage;
+            return criticalDamageScale * (weaponCriticalDamage / 100) * Damage;
         }
     }
 
@@ -92,7 +92,29 @@ public class Projectile : MonoBehaviour
     {
         get
         {
-            return hpDrainScale * weaponHpDrain * Damage;
+            return rand <= CriticalRate ? hpDrainScale * (weaponHpDrain / 100) * CriticalDamage : hpDrainScale * (weaponHpDrain / 100) * Damage;
+        }
+    }
+
+    // =======SplashDamage
+    public float splashDamageScale;
+    public float weaponSplashDamage;
+    public float SplashDamage
+    {
+        get
+        {
+            return splashDamageScale * (weaponSplashDamage / 100) * Damage;
+        }
+    }
+
+    // =======SplashDamageRange
+    public float splashDamageRangeScale;
+    public float weaponSplashDamageRange;
+    public float SplashDamageRange
+    {
+        get
+        {
+            return splashDamageRangeScale * weaponSplashDamageRange; // (N unit의 범위)
         }
     }
 
@@ -154,9 +176,11 @@ public class Projectile : MonoBehaviour
         hpDrainScale = playerStats.stats[CharacterColumn.Stat.HP_DRAIN];
         weaponHpDrain = playerShooter.weapon.stats[WeaponColumn.Stat.HP_DRAIN];
 
-        splashDamage = playerStats.stats[CharacterColumn.Stat.SPLASH_DAMAGE];
+        splashDamageScale = playerStats.stats[CharacterColumn.Stat.SPLASH_DAMAGE];
+        weaponSplashDamage = playerShooter.weapon.stats[WeaponColumn.Stat.SPLASH_DAMAGE];
 
-        splashDamageRange = playerStats.stats[CharacterColumn.Stat.SPLASH_RANGE];
+        splashDamageRangeScale = playerStats.stats[CharacterColumn.Stat.SPLASH_RANGE];
+        weaponSplashDamageRange = playerShooter.weapon.stats[WeaponColumn.Stat.SPLASH_RANGE];
 
         penetrationCount = (int)playerStats.stats[CharacterColumn.Stat.PENETRATE];
 
@@ -185,7 +209,17 @@ public class Projectile : MonoBehaviour
         if(other.CompareTag(Tags.Enemy) || other.CompareTag(Tags.Boss))
         {
             var enemy = other.gameObject.GetComponent<Enemy>();
-            enemy.OnDamage(Damage);
+            // 크리티컬 확률일 경우
+            rand = Random.value;
+            if(rand <= CriticalRate)
+            {
+                enemy.OnDamage(CriticalDamage);
+            }
+            // 크리티컬 확률이 아닐 경우
+            else
+            {
+                enemy.OnDamage(Damage);
+            }
 
             playerStats.stats[CharacterColumn.Stat.HP] += HpDrain;
             playerHealth.UpdateHealthUI();

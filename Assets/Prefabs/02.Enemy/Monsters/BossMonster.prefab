@@ -2088,12 +2088,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a1c20d58fb869c4e9c964b358a34aa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyState: 0
   enemyType: 40300
   textHealth: {fileID: 896874337899129022}
   target: {fileID: 0}
   intervalFloat: 1
   projectilePrefab: {fileID: 2245107836117157507, guid: 5f4ea3ac08006fc4e8cb68cb886f6821, type: 3}
-  enemyState: 0
   projectileSpeed: 7
   angle: 30
   attackDistance: 50
@@ -2112,7 +2112,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3

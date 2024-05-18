@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4233112883645224}
   - component: {fileID: 198375846102343790}
   - component: {fileID: 199208911497290468}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4911,7 +4911,7 @@ GameObject:
   - component: {fileID: 4761235654287462}
   - component: {fileID: 198148331767866702}
   - component: {fileID: 199781911144099612}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9764,7 +9764,7 @@ GameObject:
   - component: {fileID: 54977693062725906}
   - component: {fileID: 135224436757174648}
   - component: {fileID: -3716946021917815629}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Projectile 15 arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9838,7 +9838,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 1
 --- !u!135 &135224436757174648
 SphereCollider:
@@ -9873,6 +9873,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 982dfe87d41ec2644850cc91bcaa07a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 15
+  hitOffset: 0
+  UseFirePointRotation: 0
+  rotationOffset: {x: 0, y: 0, z: 0}
+  hit: {fileID: 8653532076408168695}
+  hitPS: {fileID: 8849816205400644259}
+  flash: {fileID: 7254096830481915306}
+  col: {fileID: 135224436757174648}
+  lightSourse: {fileID: 0}
+  Detached:
+  - {fileID: 1759973884228510}
+  projectilePS: {fileID: 1778089589070535909}
+  notDestroy: 0
+  disappearTimer: 1
   rangeScale: 0
   weaponRange: 0
   speedScale: 0
@@ -9897,7 +9911,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7287799410709283391}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9934,7 +9948,7 @@ GameObject:
   - component: {fileID: 448563260293322282}
   - component: {fileID: 1778089589070535909}
   - component: {fileID: 3837797214611401471}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14833,9 +14847,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7287799410709283391}
     m_Modifications:
+    - target: {fileID: 1064140201601884, guid: 21c2c2f37bb45894e8c5ac0cb9e2cb90, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1130829623795662, guid: 21c2c2f37bb45894e8c5ac0cb9e2cb90, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1219950416405142, guid: 21c2c2f37bb45894e8c5ac0cb9e2cb90, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1303664784583148, guid: 21c2c2f37bb45894e8c5ac0cb9e2cb90, type: 3}
       propertyPath: m_Name
       value: Flash 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1303664784583148, guid: 21c2c2f37bb45894e8c5ac0cb9e2cb90, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1394233575859700, guid: 21c2c2f37bb45894e8c5ac0cb9e2cb90, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4860370044713210, guid: 21c2c2f37bb45894e8c5ac0cb9e2cb90, type: 3}
       propertyPath: m_RootOrder
@@ -14911,6 +14945,22 @@ PrefabInstance:
     - target: {fileID: 1690548281334034, guid: 60ff48a39b3e7b644aa620b288bb256e, type: 3}
       propertyPath: m_Name
       value: Hit 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1690548281334034, guid: 60ff48a39b3e7b644aa620b288bb256e, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1776349880673444, guid: 60ff48a39b3e7b644aa620b288bb256e, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1828947739188492, guid: 60ff48a39b3e7b644aa620b288bb256e, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1971927616018926, guid: 60ff48a39b3e7b644aa620b288bb256e, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4243744591809436, guid: 60ff48a39b3e7b644aa620b288bb256e, type: 3}
       propertyPath: m_RootOrder

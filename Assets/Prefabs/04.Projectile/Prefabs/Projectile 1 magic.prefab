@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 135521883611116180}
   - component: {fileID: 108212708603584814}
   - component: {fileID: 1351508375912292085}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Projectile 1 magic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 1
 --- !u!135 &135521883611116180
 SphereCollider:
@@ -185,6 +185,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 982dfe87d41ec2644850cc91bcaa07a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 15
+  hitOffset: 0
+  UseFirePointRotation: 0
+  rotationOffset: {x: 0, y: 0, z: 0}
+  hit: {fileID: 8294832557830357184}
+  hitPS: {fileID: 8203534417606696790}
+  flash: {fileID: 6112855512584066102}
+  col: {fileID: 135521883611116180}
+  lightSourse: {fileID: 108212708603584814}
+  Detached:
+  - {fileID: 1828698928921012}
+  projectilePS: {fileID: 8233666921735145134}
+  notDestroy: 0
+  disappearTimer: 1
   rangeScale: 0
   weaponRange: 0
   speedScale: 0
@@ -211,7 +225,7 @@ GameObject:
   - component: {fileID: 4331539615852696}
   - component: {fileID: 198701938044226476}
   - component: {fileID: 199252365091405832}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Lightning
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5062,7 +5076,7 @@ GameObject:
   - component: {fileID: 4549684551196332}
   - component: {fileID: 198909700012747184}
   - component: {fileID: 199209307688147640}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Derbis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9912,7 +9926,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4929761025421273454}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9949,7 +9963,7 @@ GameObject:
   - component: {fileID: 9174313421509407854}
   - component: {fileID: 8233666921735145134}
   - component: {fileID: 8529977592126624267}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14847,9 +14861,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4929761025421273454}
     m_Modifications:
+    - target: {fileID: 1380750139919576, guid: 4ab48a9a03327fb4ca76018592f4626d, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1381101985586660, guid: 4ab48a9a03327fb4ca76018592f4626d, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1543457059762004, guid: 4ab48a9a03327fb4ca76018592f4626d, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1762171864188014, guid: 4ab48a9a03327fb4ca76018592f4626d, type: 3}
       propertyPath: m_Name
       value: Flash 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1762171864188014, guid: 4ab48a9a03327fb4ca76018592f4626d, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1808930670177518, guid: 4ab48a9a03327fb4ca76018592f4626d, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4711859871735304, guid: 4ab48a9a03327fb4ca76018592f4626d, type: 3}
       propertyPath: m_RootOrder
@@ -14922,9 +14956,37 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4929761025421273454}
     m_Modifications:
+    - target: {fileID: 1110616493869866, guid: 8b78bf871862d08409f84a0bac02efdd, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167428934537366, guid: 8b78bf871862d08409f84a0bac02efdd, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1242051555635342, guid: 8b78bf871862d08409f84a0bac02efdd, type: 3}
       propertyPath: m_Name
       value: Hit 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1242051555635342, guid: 8b78bf871862d08409f84a0bac02efdd, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1325936971903670, guid: 8b78bf871862d08409f84a0bac02efdd, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1555647102988192, guid: 8b78bf871862d08409f84a0bac02efdd, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1793469433833054, guid: 8b78bf871862d08409f84a0bac02efdd, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1955419121112384, guid: 8b78bf871862d08409f84a0bac02efdd, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4781605611208294, guid: 8b78bf871862d08409f84a0bac02efdd, type: 3}
       propertyPath: m_RootOrder

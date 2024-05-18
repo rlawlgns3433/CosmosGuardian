@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 135808208697255858}
   - component: {fileID: 108281567877914018}
   - component: {fileID: -265190591394930321}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Projectile 5 star
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 1
 --- !u!135 &135808208697255858
 SphereCollider:
@@ -185,6 +185,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 982dfe87d41ec2644850cc91bcaa07a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 15
+  hitOffset: 0
+  UseFirePointRotation: 0
+  rotationOffset: {x: 0, y: 0, z: 0}
+  hit: {fileID: 3465907473366466043}
+  hitPS: {fileID: 3664999371377383575}
+  flash: {fileID: 1316644135015522624}
+  col: {fileID: 135808208697255858}
+  lightSourse: {fileID: 108281567877914018}
+  Detached:
+  - {fileID: 1482199675861490}
+  projectilePS: {fileID: 2845027708941264583}
+  notDestroy: 0
+  disappearTimer: 1
   rangeScale: 0
   weaponRange: 0
   speedScale: 0
@@ -211,7 +225,7 @@ GameObject:
   - component: {fileID: 4207564452593538}
   - component: {fileID: 198816903985887136}
   - component: {fileID: 199062454697388060}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Star
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5054,7 +5068,7 @@ GameObject:
   - component: {fileID: 4760491898477808}
   - component: {fileID: 198913579921893280}
   - component: {fileID: 199938799173728376}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9905,7 +9919,7 @@ GameObject:
   - component: {fileID: 8648348356025262657}
   - component: {fileID: 2845027708941264583}
   - component: {fileID: 9195124745496308388}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14814,7 +14828,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3223155342517474662}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14851,9 +14865,17 @@ PrefabInstance:
       propertyPath: parentObject
       value: 
       objectReference: {fileID: 3223155342517474662}
+    - target: {fileID: 1447885756327830, guid: 0c493020e111d7e4fac7535fde124408, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1546629397207042, guid: 0c493020e111d7e4fac7535fde124408, type: 3}
       propertyPath: m_Name
       value: Flash 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1546629397207042, guid: 0c493020e111d7e4fac7535fde124408, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4323846599028608, guid: 0c493020e111d7e4fac7535fde124408, type: 3}
       propertyPath: m_RootOrder
@@ -14922,9 +14944,41 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3223155342517474662}
     m_Modifications:
+    - target: {fileID: 1321660807035802, guid: 8b585bd4793e2404c9ce7e3770159d4b, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1406580767736680, guid: 8b585bd4793e2404c9ce7e3770159d4b, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1425761081412174, guid: 8b585bd4793e2404c9ce7e3770159d4b, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1459569085489068, guid: 8b585bd4793e2404c9ce7e3770159d4b, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1553327564893038, guid: 8b585bd4793e2404c9ce7e3770159d4b, type: 3}
       propertyPath: m_Name
       value: Hit 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1553327564893038, guid: 8b585bd4793e2404c9ce7e3770159d4b, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1646056354635764, guid: 8b585bd4793e2404c9ce7e3770159d4b, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1840172301859346, guid: 8b585bd4793e2404c9ce7e3770159d4b, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1934686077933314, guid: 8b585bd4793e2404c9ce7e3770159d4b, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4329870988094038, guid: 8b585bd4793e2404c9ce7e3770159d4b, type: 3}
       propertyPath: m_RootOrder

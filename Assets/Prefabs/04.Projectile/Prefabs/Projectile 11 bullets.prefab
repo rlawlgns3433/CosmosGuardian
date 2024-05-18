@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 54175853139288072}
   - component: {fileID: 135786877233098124}
   - component: {fileID: 7252205876694491565}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Projectile 11 bullets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,7 +149,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 1
 --- !u!135 &135786877233098124
 SphereCollider:
@@ -184,6 +184,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 982dfe87d41ec2644850cc91bcaa07a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 15
+  hitOffset: 0
+  UseFirePointRotation: 0
+  rotationOffset: {x: 0, y: 0, z: 0}
+  hit: {fileID: 6884380850797253533}
+  hitPS: {fileID: 6715649725111404099}
+  flash: {fileID: 7554614938119970461}
+  col: {fileID: 135786877233098124}
+  lightSourse: {fileID: 108080247811274414}
+  Detached: []
+  projectilePS: {fileID: 2427266194698700188}
+  notDestroy: 0
+  disappearTimer: 1
   rangeScale: 0
   weaponRange: 0
   speedScale: 0
@@ -208,7 +221,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 667126842202125762}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -244,7 +257,7 @@ GameObject:
   - component: {fileID: 7273118861324098987}
   - component: {fileID: 2427266194698700188}
   - component: {fileID: 8132894550643741941}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5141,9 +5154,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 667126842202125762}
     m_Modifications:
+    - target: {fileID: 1251842676681410, guid: b15a120c1390db449b8eb5af19d62424, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1544302413308360, guid: b15a120c1390db449b8eb5af19d62424, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1974592250055434, guid: b15a120c1390db449b8eb5af19d62424, type: 3}
       propertyPath: m_Name
       value: Hit 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1974592250055434, guid: b15a120c1390db449b8eb5af19d62424, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4273727487683586, guid: b15a120c1390db449b8eb5af19d62424, type: 3}
       propertyPath: m_RootOrder
@@ -5241,9 +5266,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 667126842202125762}
     m_Modifications:
+    - target: {fileID: 1233206054401234, guid: 6b80d5fba4e83cb4584421b219575610, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1434253245967370, guid: 6b80d5fba4e83cb4584421b219575610, type: 3}
       propertyPath: m_Name
       value: Flash 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1434253245967370, guid: 6b80d5fba4e83cb4584421b219575610, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1807085131023808, guid: 6b80d5fba4e83cb4584421b219575610, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4482868464420182, guid: 6b80d5fba4e83cb4584421b219575610, type: 3}
       propertyPath: m_RootOrder

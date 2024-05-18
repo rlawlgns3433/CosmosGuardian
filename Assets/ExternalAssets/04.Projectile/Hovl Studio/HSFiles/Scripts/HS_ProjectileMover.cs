@@ -27,7 +27,7 @@ public class HS_ProjectileMover : MonoBehaviour
     {
         playerShooter = GameObject.FindWithTag(Tags.Player).GetComponent<PlayerShooter>();
 
-        if (startChecker)
+        if (!startChecker)
         {
             if (flash != null)
             {

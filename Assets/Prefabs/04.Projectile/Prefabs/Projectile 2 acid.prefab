@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 54908155343697094}
   - component: {fileID: 135651835456056574}
   - component: {fileID: -5059575538270929322}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Projectile 2 acid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 1
 --- !u!135 &135651835456056574
 SphereCollider:
@@ -122,11 +122,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 982dfe87d41ec2644850cc91bcaa07a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rangeCoefficient: 20
   speed: 0
-  criticalRate: 0
-  damage: 0
-  splashDamageRate: 0
+  hitOffset: 0
+  UseFirePointRotation: 0
+  rotationOffset: {x: 0, y: 0, z: 0}
+  hit: {fileID: 6687870158276300843}
+  hitPS: {fileID: 6779847799419597131}
+  flash: {fileID: 802178712430623745}
+  col: {fileID: 135651835456056574}
+  lightSourse: {fileID: 0}
+  Detached:
+  - {fileID: 1087620334247294}
+  projectilePS: {fileID: 1132049205864586564}
+  notDestroy: 0
+  disappearTimer: 1
+  rangeScale: 0
+  weaponRange: 0
+  speedScale: 0
+  weaponSpeed: 0
+  criticalRateScale: 0
+  weaponCriticalRate: 0
+  criticalDamageScale: 0
+  weaponCriticalDamage: 0
+  damageScale: 0
+  weaponDamage: 0
+  splashDamage: 0
   splashDamageRange: 0
   penetrationCount: 0
   startPosition: {x: 0, y: 0, z: 0}
@@ -142,7 +162,7 @@ GameObject:
   - component: {fileID: 4410983339199582}
   - component: {fileID: 198019438013897556}
   - component: {fileID: 199944310965992408}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4985,7 +5005,7 @@ GameObject:
   - component: {fileID: 4588295141892858}
   - component: {fileID: 198366174129140362}
   - component: {fileID: 199948439753437100}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9836,7 +9856,7 @@ GameObject:
   - component: {fileID: 4715037388612229826}
   - component: {fileID: 1132049205864586564}
   - component: {fileID: 570061755079307984}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14734,7 +14754,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2189638646452515160}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14768,9 +14788,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2189638646452515160}
     m_Modifications:
+    - target: {fileID: 1044715023209048, guid: b15ff8497c1816242b4531a624ad5784, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1099480999921434, guid: b15ff8497c1816242b4531a624ad5784, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1554156215293492, guid: b15ff8497c1816242b4531a624ad5784, type: 3}
       propertyPath: m_Name
       value: Flash 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1554156215293492, guid: b15ff8497c1816242b4531a624ad5784, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1949725224499254, guid: b15ff8497c1816242b4531a624ad5784, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4537818801186128, guid: b15ff8497c1816242b4531a624ad5784, type: 3}
       propertyPath: m_RootOrder
@@ -14846,6 +14882,34 @@ PrefabInstance:
     - target: {fileID: 1186752452136346, guid: 8fea08f7cd39cd243840dcfe935c84bc, type: 3}
       propertyPath: m_Name
       value: Hit 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1186752452136346, guid: 8fea08f7cd39cd243840dcfe935c84bc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1196508905809446, guid: 8fea08f7cd39cd243840dcfe935c84bc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1202624421346894, guid: 8fea08f7cd39cd243840dcfe935c84bc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1211690764826892, guid: 8fea08f7cd39cd243840dcfe935c84bc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1292047536070626, guid: 8fea08f7cd39cd243840dcfe935c84bc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1440417047115150, guid: 8fea08f7cd39cd243840dcfe935c84bc, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1537006524574392, guid: 8fea08f7cd39cd243840dcfe935c84bc, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4252801894676002, guid: 8fea08f7cd39cd243840dcfe935c84bc, type: 3}
       propertyPath: m_RootOrder

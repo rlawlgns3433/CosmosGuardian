@@ -37,6 +37,7 @@ public class UiWeaponSelect : MonoBehaviour
     public void PrevButton()
     {
         weapons[selectedWeaponIndex].SetActive(false);
+        uiCharacterSelect.weapons[selectedWeaponIndex].SetActive(false);
         --selectedWeaponIndex;
 
         if(selectedWeaponIndex < 0)

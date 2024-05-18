@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 54306541025699842}
   - component: {fileID: 135603251481575800}
   - component: {fileID: -4456159990487330404}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Projectile 13 star
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 1
 --- !u!135 &135603251481575800
 SphereCollider:
@@ -122,6 +122,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 982dfe87d41ec2644850cc91bcaa07a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 15
+  hitOffset: 0
+  UseFirePointRotation: 0
+  rotationOffset: {x: 0, y: 0, z: 0}
+  hit: {fileID: 7231808931115384776}
+  hitPS: {fileID: 7415006092692221622}
+  flash: {fileID: 1478475927705875481}
+  col: {fileID: 135603251481575800}
+  lightSourse: {fileID: 0}
+  Detached:
+  - {fileID: 1571712001798040}
+  projectilePS: {fileID: 2347107316282744}
+  notDestroy: 0
+  disappearTimer: 1
   rangeScale: 0
   weaponRange: 0
   speedScale: 0
@@ -148,7 +162,7 @@ GameObject:
   - component: {fileID: 4299372439586744}
   - component: {fileID: 198130962148191310}
   - component: {fileID: 199010317799991236}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4999,7 +5013,7 @@ GameObject:
   - component: {fileID: 3508849126376277929}
   - component: {fileID: 2347107316282744}
   - component: {fileID: 4514162212035488431}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9907,7 +9921,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3017262339035204333}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9945,9 +9959,17 @@ PrefabInstance:
       propertyPath: parentObject
       value: 
       objectReference: {fileID: 3017262339035204333}
+    - target: {fileID: 1447885756327830, guid: 0054ac7e7008b144eae4abce4d57bfed, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1546629397207042, guid: 0054ac7e7008b144eae4abce4d57bfed, type: 3}
       propertyPath: m_Name
       value: Flash 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1546629397207042, guid: 0054ac7e7008b144eae4abce4d57bfed, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4323846599028608, guid: 0054ac7e7008b144eae4abce4d57bfed, type: 3}
       propertyPath: m_RootOrder
@@ -10019,6 +10041,38 @@ PrefabInstance:
     - target: {fileID: 1135403995393518, guid: ae2b13f9ecf0d2444b46bdcb21f42ce3, type: 3}
       propertyPath: m_Name
       value: Hit 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1135403995393518, guid: ae2b13f9ecf0d2444b46bdcb21f42ce3, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1229235379409466, guid: ae2b13f9ecf0d2444b46bdcb21f42ce3, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1353789426271054, guid: ae2b13f9ecf0d2444b46bdcb21f42ce3, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1386326565884620, guid: ae2b13f9ecf0d2444b46bdcb21f42ce3, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1399041758149642, guid: ae2b13f9ecf0d2444b46bdcb21f42ce3, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1669141358786386, guid: ae2b13f9ecf0d2444b46bdcb21f42ce3, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1693427124895392, guid: ae2b13f9ecf0d2444b46bdcb21f42ce3, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1716009826945216, guid: ae2b13f9ecf0d2444b46bdcb21f42ce3, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4953497897028252, guid: ae2b13f9ecf0d2444b46bdcb21f42ce3, type: 3}
       propertyPath: m_RootOrder

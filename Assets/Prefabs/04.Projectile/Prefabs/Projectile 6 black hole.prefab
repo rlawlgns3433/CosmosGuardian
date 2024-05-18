@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 54548785167277834}
   - component: {fileID: 135212983001450162}
   - component: {fileID: -4725569358699803101}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Projectile 6 black hole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,7 +149,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 1
 --- !u!135 &135212983001450162
 SphereCollider:
@@ -184,6 +184,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 982dfe87d41ec2644850cc91bcaa07a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 15
+  hitOffset: 0
+  UseFirePointRotation: 0
+  rotationOffset: {x: 0, y: 0, z: 0}
+  hit: {fileID: 260568148259951513}
+  hitPS: {fileID: 97562819612379453}
+  flash: {fileID: 7825504638554353349}
+  col: {fileID: 135212983001450162}
+  lightSourse: {fileID: 108007601741742706}
+  Detached: []
+  projectilePS: {fileID: 3973951072516795455}
+  notDestroy: 0
+  disappearTimer: 1
   rangeScale: 0
   weaponRange: 0
   speedScale: 0
@@ -210,7 +223,7 @@ GameObject:
   - component: {fileID: 4149178907527920}
   - component: {fileID: 198586554059791292}
   - component: {fileID: 199576304973098490}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Darkness
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5110,7 +5123,7 @@ GameObject:
   - component: {fileID: 4394488319889316}
   - component: {fileID: 198219633218547452}
   - component: {fileID: 199386116118728384}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9950,7 +9963,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 119197727011687940}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9986,7 +9999,7 @@ GameObject:
   - component: {fileID: 8646282155344511962}
   - component: {fileID: 3973951072516795455}
   - component: {fileID: 675318182712783277}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14885,9 +14898,45 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 119197727011687940}
     m_Modifications:
+    - target: {fileID: 1220780482319142, guid: d6ebe1b9125e36747b5aaed57e503724, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1498152551406518, guid: d6ebe1b9125e36747b5aaed57e503724, type: 3}
       propertyPath: m_Name
       value: Hit 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1498152551406518, guid: d6ebe1b9125e36747b5aaed57e503724, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1541240730299544, guid: d6ebe1b9125e36747b5aaed57e503724, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1617743902173376, guid: d6ebe1b9125e36747b5aaed57e503724, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1694369994128684, guid: d6ebe1b9125e36747b5aaed57e503724, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1725099918477980, guid: d6ebe1b9125e36747b5aaed57e503724, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1761894948239730, guid: d6ebe1b9125e36747b5aaed57e503724, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1803926572069096, guid: d6ebe1b9125e36747b5aaed57e503724, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1930238321789472, guid: d6ebe1b9125e36747b5aaed57e503724, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4655027228926184, guid: d6ebe1b9125e36747b5aaed57e503724, type: 3}
       propertyPath: m_RootOrder
@@ -15036,6 +15085,10 @@ PrefabInstance:
     - target: {fileID: 1344824185198126, guid: 4ab34b8edd399b3499e3bfb5dff80b4d, type: 3}
       propertyPath: m_Name
       value: Flash 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1344824185198126, guid: 4ab34b8edd399b3499e3bfb5dff80b4d, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4741583383825198, guid: 4ab34b8edd399b3499e3bfb5dff80b4d, type: 3}
       propertyPath: m_RootOrder

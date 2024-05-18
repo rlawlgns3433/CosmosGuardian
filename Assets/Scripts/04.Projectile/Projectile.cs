@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -5,6 +6,24 @@ public class Projectile : MonoBehaviour
     private PlayerShooter playerShooter;
     private PlayerStats playerStats;
 
+    [SerializeField] protected float speed = 15f;
+    [SerializeField] protected float hitOffset = 0f;
+    [SerializeField] protected bool UseFirePointRotation;
+    [SerializeField] protected Vector3 rotationOffset = new Vector3(0, 0, 0);
+    [SerializeField] protected GameObject hit;
+    [SerializeField] protected ParticleSystem hitPS;
+    [SerializeField] protected GameObject flash;
+    //[SerializeField] protected Rigidbody rb;
+    [SerializeField] protected Collider col;
+    [SerializeField] protected Light lightSourse;
+    [SerializeField] protected GameObject[] Detached;
+    [SerializeField] protected ParticleSystem projectilePS;
+    private bool startChecker = false;
+    [SerializeField] protected bool notDestroy = false;
+
+    Coroutine returnCoroutine = null;
+    [Tooltip("총알이 사라지기까지 걸리는 시간")]
+    public float disappearTimer = 1f;
     // =======Range
     public float rangeScale;
     public float weaponRange;
@@ -81,6 +100,28 @@ public class Projectile : MonoBehaviour
             playerStats.enabled = false;
             return;
         }
+        //--===================================
+
+        hitPS.Stop();
+        hitPS.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        projectilePS.Play();
+
+        if (!startChecker)
+        {
+            if (flash != null)
+            {
+                flash.transform.parent = null;
+            }
+            if (lightSourse != null)
+                lightSourse.enabled = true;
+            col.enabled = true;
+            rigidbody.constraints = RigidbodyConstraints.None;
+        }
+        startPosition = rigidbody.position = playerShooter.muzzle.transform.position;
+        rigidbody.velocity = Vector3.forward * speed;
+
+        startChecker = true;
+        //--===================================
 
         rangeScale = playerStats.stats[CharacterColumn.Stat.FIRE_RANGE];
         weaponRange = playerShooter.weapon.stats[WeaponColumn.Stat.FIRE_RANGE];
@@ -130,8 +171,63 @@ public class Projectile : MonoBehaviour
             var enemy = other.gameObject.GetComponent<Enemy>();
             enemy.OnDamage(Damage);
 
-            gameObject.SetActive(false);
-            playerShooter.ReturnProjectile(gameObject);
+
+            //==================================
+
+            //Lock all axes movement and rotation
+            rigidbody.constraints = RigidbodyConstraints.FreezeAll;
+            //speed = 0;
+            if (lightSourse != null)
+                lightSourse.enabled = false;
+            col.enabled = false;
+            projectilePS.Stop();
+            projectilePS.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+
+            Vector3 contact = other.ClosestPoint(transform.position);
+            Quaternion rot = Quaternion.FromToRotation(Vector3.up, (transform.position - contact).normalized);
+            Vector3 pos = contact + contact * hitOffset;
+
+            //Spawn hit effect on collision
+            if (hit != null)
+            {
+                hit.transform.rotation = rot;
+                hit.transform.position = pos;
+                if (UseFirePointRotation) { hit.transform.rotation = gameObject.transform.rotation * Quaternion.Euler(0, 180f, 0); }
+                else if (rotationOffset != Vector3.zero) { hit.transform.rotation = Quaternion.Euler(rotationOffset); }
+                else { hit.transform.LookAt((transform.position - contact).normalized + (transform.position - contact).normalized); }
+                hitPS.Play();
+            }
+
+            //Removing trail from the projectile on cillision enter or smooth removing. Detached elements must have "AutoDestroying script"
+            foreach (var detachedPrefab in Detached)
+            {
+                if (detachedPrefab != null)
+                {
+                    ParticleSystem detachedPS = detachedPrefab.GetComponent<ParticleSystem>();
+                    detachedPS.Stop();
+                }
+            }
+
+            startChecker = false;
+
+            //==================================
+
+            //gameObject.SetActive(false);
+            //playerShooter.ReturnProjectile(gameObject);
+            
+            if(returnCoroutine != null)
+            {
+                StopCoroutine(returnCoroutine);
+            }
+
+            returnCoroutine = StartCoroutine(ReturnProjectileAfter(disappearTimer));
         }
+    }
+
+    IEnumerator ReturnProjectileAfter(float t)
+    {
+        yield return new WaitForSeconds(t);
+        gameObject.SetActive(false);
+        playerShooter.ReturnProjectile(gameObject);
     }
 }

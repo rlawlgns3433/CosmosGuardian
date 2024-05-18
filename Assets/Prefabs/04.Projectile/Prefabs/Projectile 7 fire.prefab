@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 135219337407746228}
   - component: {fileID: 108919900232066054}
   - component: {fileID: -1330390441452258465}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Projectile 7 fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 1
 --- !u!135 &135219337407746228
 SphereCollider:
@@ -185,6 +185,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 982dfe87d41ec2644850cc91bcaa07a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 15
+  hitOffset: 0
+  UseFirePointRotation: 0
+  rotationOffset: {x: 0, y: 0, z: 0}
+  hit: {fileID: 411345952982442794}
+  hitPS: {fileID: 507812177244753956}
+  flash: {fileID: 3151957531930537338}
+  col: {fileID: 135219337407746228}
+  lightSourse: {fileID: 0}
+  Detached:
+  - {fileID: 1853683965846254}
+  projectilePS: {fileID: 329737889198186567}
+  notDestroy: 0
+  disappearTimer: 1
   rangeScale: 0
   weaponRange: 0
   speedScale: 0
@@ -211,7 +225,7 @@ GameObject:
   - component: {fileID: 4000204042258922}
   - component: {fileID: 198347292852406180}
   - component: {fileID: 199381448505880882}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5062,7 +5076,7 @@ GameObject:
   - component: {fileID: 4648228566563176}
   - component: {fileID: 198904408555212570}
   - component: {fileID: 199042042599827284}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9903,7 +9917,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8861943000613911297}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9940,7 +9954,7 @@ GameObject:
   - component: {fileID: 1925035534504327226}
   - component: {fileID: 329737889198186567}
   - component: {fileID: 6412190615643291113}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14837,9 +14851,45 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8861943000613911297}
     m_Modifications:
+    - target: {fileID: 1033789153393210, guid: ac2312a3e32471549882f1a6da5568e6, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1117256330352902, guid: ac2312a3e32471549882f1a6da5568e6, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1126909459459230, guid: ac2312a3e32471549882f1a6da5568e6, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1258516646242924, guid: ac2312a3e32471549882f1a6da5568e6, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1284827934106646, guid: ac2312a3e32471549882f1a6da5568e6, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1682315990178646, guid: ac2312a3e32471549882f1a6da5568e6, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1845764070681338, guid: ac2312a3e32471549882f1a6da5568e6, type: 3}
       propertyPath: m_Name
       value: Hit 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1845764070681338, guid: ac2312a3e32471549882f1a6da5568e6, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1950984331986788, guid: ac2312a3e32471549882f1a6da5568e6, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973191258884458, guid: ac2312a3e32471549882f1a6da5568e6, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4082612673821794, guid: ac2312a3e32471549882f1a6da5568e6, type: 3}
       propertyPath: m_RootOrder
@@ -14992,6 +15042,22 @@ PrefabInstance:
     - target: {fileID: 1023540632372170, guid: 12c5a36b60a39734f80150bc3e23e850, type: 3}
       propertyPath: m_Name
       value: Flash 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1023540632372170, guid: 12c5a36b60a39734f80150bc3e23e850, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1422696845553164, guid: 12c5a36b60a39734f80150bc3e23e850, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1720421275153246, guid: 12c5a36b60a39734f80150bc3e23e850, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887156476188772, guid: 12c5a36b60a39734f80150bc3e23e850, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4752928875407616, guid: 12c5a36b60a39734f80150bc3e23e850, type: 3}
       propertyPath: m_RootOrder

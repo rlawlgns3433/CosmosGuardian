@@ -59,7 +59,10 @@ public class Boss : Enemy
             case EnemyState.Dead:
                 StopAllCoroutines();
                 cameraMove.IsTOP = true;
-                target.gameObject.GetComponent<PlayerStats>().stats[CharacterColumn.Stat.MOVE_SPEED_V] = savedVerticalSpeed;
+                if(target.isAlive)
+                {
+                    target.gameObject.GetComponent<PlayerStats>().stats[CharacterColumn.Stat.MOVE_SPEED_V] = savedVerticalSpeed;
+                }
                 break;
             case EnemyState.Attack1:
                 break;

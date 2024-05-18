@@ -1,4 +1,5 @@
 using UnityEngine;
+using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 public class CameraMove : MonoBehaviour
 {
@@ -29,9 +30,16 @@ public class CameraMove : MonoBehaviour
             IsTOP = !IsTOP;
         }
         if (IsTOP)
+        {
             Camera.main.transform.position = Vector3.Slerp(Camera.main.transform.position, TOP.position, 5 * Time.deltaTime);
+            Camera.main.transform.rotation = Quaternion.Slerp(Camera.main.transform.rotation, TOP.rotation, 5 * Time.deltaTime);
+            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, 60f, 5 * Time.deltaTime);
+        }
         else
+        {
             Camera.main.transform.position = Vector3.Slerp(Camera.main.transform.position, TPS.position, 5 * Time.deltaTime);
-
+            Camera.main.transform.rotation = Quaternion.Slerp(Camera.main.transform.rotation, TPS.rotation, 5 * Time.deltaTime);
+            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, 120f, 5 * Time.deltaTime);
+        }
     }
 }

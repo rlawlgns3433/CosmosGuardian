@@ -56,7 +56,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minTest: 1
-  maxTest: 3
+  maxTest: 1
   optionController: {fileID: 5279780523254580929}
   enemySpawnTile:
   - {fileID: 5584861355278079084}

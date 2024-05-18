@@ -55,7 +55,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minTest: 1
-  maxTest: 4
+  maxTest: 1
   optionController: {fileID: 6792018370236454779}
   enemySpawnTile:
   - {fileID: 5067660589563095517}
@@ -724,21 +724,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4148429173555472336, guid: 534822b313d3c4145b13cb5b8feab21f, type: 3}
-      propertyPath: playerStats
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6132908620140323025, guid: 534822b313d3c4145b13cb5b8feab21f, type: 3}
-      propertyPath: playerStats
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 6708319747612093526, guid: 534822b313d3c4145b13cb5b8feab21f, type: 3}
       propertyPath: m_Name
-      value: OptionTile
-      objectReference: {fileID: 0}
-    - target: {fileID: 7254338191707637561, guid: 534822b313d3c4145b13cb5b8feab21f, type: 3}
-      propertyPath: playerStats
-      value: 
+      value: OptionRow
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

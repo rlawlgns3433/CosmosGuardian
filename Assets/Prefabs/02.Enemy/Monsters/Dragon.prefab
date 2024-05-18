@@ -808,11 +808,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25b5c890cccfd4248beefee1ccbf75d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyState: 0
   enemyType: 40100
   textHealth: {fileID: 5646388579843758660}
-  speed: 1
-  isChasing: 0
-  rotationSpeed: 180
   target: {fileID: 0}
 --- !u!135 &-4745713309901149687
 SphereCollider:

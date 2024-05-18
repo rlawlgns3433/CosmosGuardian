@@ -4404,8 +4404,8 @@ MonoBehaviour:
   level: 1
   price: 0
   maxLevel: 10
-  expForNextLevel: 100
-  magnification: 1.8
+  expForNextLevel: 150
+  magnification: 2.8
 --- !u!114 &2686379450363031452
 MonoBehaviour:
   m_ObjectHideFlags: 0

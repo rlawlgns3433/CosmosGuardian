@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -213,7 +214,7 @@ public class Projectile : MonoBehaviour
             rand = Random.value;
             if(rand <= CriticalRate)
             {
-                enemy.OnDamage(CriticalDamage);
+                enemy.OnDamage(CriticalDamage); // 크리티컬 뎀
             }
             // 크리티컬 확률이 아닐 경우
             else
@@ -221,7 +222,23 @@ public class Projectile : MonoBehaviour
                 enemy.OnDamage(Damage);
             }
 
-            playerStats.stats[CharacterColumn.Stat.HP] += HpDrain;
+            if (SplashDamageRange > 0)
+            {
+                Collider[] colliders = Physics.OverlapSphere(transform.position, SplashDamageRange);
+
+                foreach(var collider in colliders)
+                {
+                    if (collider == other) continue;
+
+                    if (collider.CompareTag(Tags.Enemy) || collider.CompareTag(Tags.Boss))
+                    {
+                        var e = collider.gameObject.GetComponent<Enemy>();
+                        e.OnDamage(SplashDamage);
+                    }
+                }
+            }
+
+            playerStats.stats[CharacterColumn.Stat.HP] += HpDrain; // 흡수
             playerHealth.UpdateHealthUI();
 
             rb.constraints = RigidbodyConstraints.FreezeAll;

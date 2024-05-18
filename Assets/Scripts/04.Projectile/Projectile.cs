@@ -11,7 +11,6 @@ public class Projectile : MonoBehaviour
     public float splashDamageRange;
     public int penetrationCount;
 
-
     [SerializeField] protected float speed = 15f;
     [SerializeField] protected float hitOffset = 0f;
     [SerializeField] protected bool UseFirePointRotation;
@@ -28,6 +27,7 @@ public class Projectile : MonoBehaviour
     private Coroutine returnCoroutine = null;
     private PlayerShooter playerShooter;
     private PlayerStats playerStats;
+    private PlayerHealth playerHealth;
     private bool startChecker = false;
 
     // =======Range
@@ -85,7 +85,16 @@ public class Projectile : MonoBehaviour
         }
     }
 
-
+    // =======HpDrain
+    public float hpDrainScale;
+    public float weaponHpDrain;
+    public float HpDrain
+    {
+        get
+        {
+            return hpDrainScale * weaponHpDrain * Damage;
+        }
+    }
 
     private void OnEnable()
     {
@@ -98,6 +107,12 @@ public class Projectile : MonoBehaviour
         if (playerStats == null && !GameObject.FindWithTag(Tags.Player).TryGetComponent(out playerStats))
         {
             playerStats.enabled = false;
+            return;
+        }
+        
+        if (playerHealth == null && !GameObject.FindWithTag(Tags.Player).TryGetComponent(out playerHealth))
+        {
+            playerHealth.enabled = false;
             return;
         }
 
@@ -136,6 +151,9 @@ public class Projectile : MonoBehaviour
         damageScale = playerStats.stats[CharacterColumn.Stat.DAMAGE];
         weaponDamage = playerShooter.weapon.stats[WeaponColumn.Stat.DAMAGE];
 
+        hpDrainScale = playerStats.stats[CharacterColumn.Stat.HP_DRAIN];
+        weaponHpDrain = playerShooter.weapon.stats[WeaponColumn.Stat.HP_DRAIN];
+
         splashDamage = playerStats.stats[CharacterColumn.Stat.SPLASH_DAMAGE];
 
         splashDamageRange = playerStats.stats[CharacterColumn.Stat.SPLASH_RANGE];
@@ -169,6 +187,8 @@ public class Projectile : MonoBehaviour
             var enemy = other.gameObject.GetComponent<Enemy>();
             enemy.OnDamage(Damage);
 
+            playerStats.stats[CharacterColumn.Stat.HP] += HpDrain;
+            playerHealth.UpdateHealthUI();
 
             rb.constraints = RigidbodyConstraints.FreezeAll;
             //speed = 0;

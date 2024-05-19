@@ -31,6 +31,7 @@ public class Enemy : MonoBehaviour, IDamageable
     //public bool isChasing = false;
     //public float rotationSpeed = 180;
     protected Animator animator;
+    protected ItemController itemController;
     public EnemyData enemyData = null;
     public PlayerHealth target = null;
     //private WaitForSeconds chaseTimer = new WaitForSeconds(1f);

@@ -1,12 +1,12 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class OptionStat : MonoBehaviour
 {
-
     public PlayerStats playerStats;
-    public OptionColumn.Type type;
-    public OptionColumn.Stat stat;
-    public float value;
+    public List<OptionColumn.Type> type = new List<OptionColumn.Type>();
+    public List<OptionColumn.Stat> stat = new List<OptionColumn.Stat>();
+    public List<float> value = new List<float>();
 
     private UiController uiController;
 
@@ -23,20 +23,40 @@ public class OptionStat : MonoBehaviour
     {
         if(other.CompareTag(Tags.Player))
         {
-            // playerStats의 스텟 중 stat에
-            // type (scale, fixed)의 양을 계산하여
-            // value를 적용
-            playerStats.UpdateStats(stat, type, value);
-            gameObject.SetActive(false);
-
-            var optionController = GetComponentInParent<OptionController>();
-            foreach(var image in optionController.options)
+            for(int i = 0; i < type.Count; ++i)
             {
-                Collider collider = image.GetComponent<Collider>();
-                collider.enabled = false;
+                playerStats.UpdateStats(stat[i], type[i], value[i]);
+                gameObject.SetActive(false);
+
+                var optionController = GetComponentInParent<OptionController>();
+                foreach (var image in optionController.options)
+                {
+                    Collider collider = image.GetComponent<Collider>();
+                    collider.enabled = false;
+                }
             }
 
             uiController.UpdatePauseUI();
         }
+
+        type.Clear();
+        stat.Clear();
+        value.Clear();
+    }
+
+    public void OptionButtonClicked()
+    {
+        for (int i = 0; i < type.Count; ++i)
+        {
+            playerStats.UpdateStats(stat[i], type[i], value[i]);
+
+            uiController.UpdatePauseUI();
+        }
+
+        playerStats.items.Add(GetComponent<ItemStat>().itemData);
+        type.Clear();
+        stat.Clear();
+        value.Clear();
+        Time.timeScale = 1f;
     }
 }

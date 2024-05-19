@@ -1,3 +1,5 @@
+using UnityEngine.Rendering;
+
 public static class DataTableIds
 {
     public static readonly string[] String =
@@ -11,6 +13,7 @@ public static class DataTableIds
     public static readonly string Enemy = "MONSTER_TABLE";
     public static readonly string Option = "OptionTable";
     public static readonly string Weapon = "WEAPON_TABLE";
+    public static readonly string Item = "ITEM_TABLE";
     public static string CurrString
     {
         get
@@ -37,6 +40,8 @@ public static class Tags
     public static readonly string Player = "Player";
     public static readonly string GameController = "GameController";
     public static readonly string UiController = "UiController";
+    public static readonly string Joystick = "Joystick";
+    public static readonly string ItemController = "ItemController";
 }
 
 public static class SortingLayers
@@ -134,6 +139,8 @@ public enum TableIdentifier
     Option = 1, // id + type + stat(D2) + grade(D2)
     Character = 2, // id + body(D2) + head(D2)
     Weapon = 3, // id + type(D2) + 분류번호?
+    Enemy = 4,
+    Item = 5, // id + type(D1) + grade(D2) + iconId(D3)
 }
 
 public enum SceneIds

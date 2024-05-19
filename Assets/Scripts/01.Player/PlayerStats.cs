@@ -24,6 +24,7 @@ public class PlayerStats : MonoBehaviour
     private CharacterTable characterTable = null;
     private Dictionary<CharacterColumn.Stat, float> initialStats = new Dictionary<CharacterColumn.Stat, float>(); // 능력치 종류, 능력치 배율
     public Dictionary<CharacterColumn.Stat, float> stats = new Dictionary<CharacterColumn.Stat, float>(); // 능력치 종류, 능력치 배율
+    public List<ItemData> items = new List<ItemData>();
     private PrefabSelector prefabSelector = null;
     public CharacterData characterData = null;
 

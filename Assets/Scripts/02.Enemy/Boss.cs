@@ -25,6 +25,21 @@ public class Boss : Enemy
     protected override void Start()
     {
         base.Start();
+
+        onDeath += () =>
+        {
+            StopAllCoroutines();
+            cameraMove.IsTOP = true;
+            target.gameObject.GetComponent<PlayerStats>().stats[CharacterColumn.Stat.MOVE_SPEED_V] = savedVerticalSpeed;
+
+            Time.timeScale = 0f;
+            var uiController = GameObject.FindWithTag(Tags.UiController).GetComponent<UiController>();
+            uiController.item.SetActive(true);
+            itemController = GameObject.FindWithTag(Tags.ItemController).GetComponent<ItemController>();
+            itemController.UpdateItemData();
+            GameObject.FindWithTag(Tags.Joystick).SetActive(false);
+        };
+
         shotInterval = new WaitForSeconds(intervalFloat);
         if (!Camera.main.TryGetComponent(out cameraMove))
         {
@@ -57,9 +72,6 @@ public class Boss : Enemy
             case EnemyState.Damaged:
                 break;
             case EnemyState.Dead:
-                StopAllCoroutines();
-                cameraMove.IsTOP = true;
-                target.gameObject.GetComponent<PlayerStats>().stats[CharacterColumn.Stat.MOVE_SPEED_V] = savedVerticalSpeed;
                 break;
             case EnemyState.Attack1:
                 break;

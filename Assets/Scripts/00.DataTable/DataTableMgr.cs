@@ -20,6 +20,10 @@ public static class DataTableMgr
         optionTable.Load(DataTableIds.Option);
         tables.Add(DataTableIds.Option, optionTable);
 
+        ItemTable itemTable = new ItemTable();
+        itemTable.Load(DataTableIds.Item);
+        tables.Add(DataTableIds.Item, itemTable);
+
         CharacterTable characterTable = new CharacterTable();
         characterTable.Load(DataTableIds.Character);
         tables.Add(DataTableIds.Character, characterTable);
@@ -36,6 +40,11 @@ public static class DataTableMgr
     public static StringTable GetStringTable()
     {
         return Get<StringTable>(DataTableIds.String[(int)Vars.currentLang]);
+    }
+
+    public static OptionTable GetOptionTable()
+    {
+        return Get<OptionTable>(DataTableIds.Option);
     }
 
     public static T Get<T>(string id) where T : DataTable

@@ -11,6 +11,8 @@ TagManager:
   - Enemy
   - Boss
   - UiController
+  - Joystick
+  - ItemController
   layers:
   - Default
   - TransparentFX

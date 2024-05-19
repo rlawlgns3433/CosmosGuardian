@@ -1,82 +1,82 @@
 STRING_ID,STRING
 string,string
-20101Name,ì œìž„ìŠ¤
-20202Name,ì•ˆë‚˜
-20101Desc,ì œìž„ìŠ¤ ì„¤ëª…
-20202Desc,ì•ˆë‚˜ ì„¤ëª…
-20303Name,ì™¸ê³„ì¸
-20303Desc,ì™¸ê³„ì¸ ì„¤ëª…
-30111Name,í”¼ìŠ¤í†¨
+20101Name,Á¦ÀÓ½º
+20202Name,¾È³ª
+20101Desc,Á¦ÀÓ½º ¼³¸í
+20202Desc,¾È³ª ¼³¸í
+20303Name,¿Ü°èÀÎ
+20303Desc,¿Ü°èÀÎ ¼³¸í
+30111Name,ÇÇ½ºÅç
 30114Name,SMG
 30107Name,HMG
-30100Name,ëŒê²©ì†Œì´
-30101Name,ëŒ€ì „ì°¨í¬
-30108Name,ë¦¬í”¼í„°
-30110Name,ë¯¸ë‹ˆê±´
-30113Name,ì‚°íƒ„ì´
-30115Name,ì €ê²©ì†Œì´
-30103Name,í¬ë¡œìŠ¤ë³´ìš°
-30202Name,ìƒí™”í•™ë³‘ê¸°
-30205Name,í™”ì—¼ë°©ì‚¬ê¸°
-30209Name,ëƒ‰ê¸°ë¶„ì‚¬ê¸°
-30304Name,ì•„í¬ë°œì‚¬ê¸°
-30306Name,ì¤‘ë ¥ìžë°œì‚¬ê¸°
-30312Name,ë ˆì¼ê±´
-20404Name,í…Œë“œ
-20505Name,ê¸¸ë¦¬
-20606Name,ë¶ˆì‚¬ì¡°
-20707Name,ì‚ì—ë¡œ
-20808Name,ê³ ì‚°
-20909Name,ë§ˆì´í¬
-21010Name,ì¹´ìš°ë³´ì´
-21111Name,ëžŒë³´
-21212Name,ì†”ì ¸77
-21313Name,ë°ì´ë¹„ë“œ
-21414Name,ë§¤ë“œ ì‚¬ì´ì–¸í‹°ìŠ¤íŠ¸
-21515Name,í‘ê¸°ì‚¬
-21616Name,ì½”ìŠ¤ëª¨ìŠ¤ë§¨
-21717Name,ì˜¤í† ë§ˆí†¤
-21818Name,ì‚¬ë¬´ë¼ì´
-21919Name,ë‹Œìž
-22020Name,ì•”ìŠ¤íŠ¸ë¡±
-20404Desc,í…Œë“œ ì„¤ëª…
-20505Desc,ê¸¸ë¦¬ ì„¤ëª…
-20606Desc,ë¶ˆì‚¬ì¡° ì„¤ëª…
-20707Desc,ì‚ì—ë¡œ ì„¤ëª…
-20808Desc,ê³ ì‚° ì„¤ëª…
-20909Desc,ë§ˆì´í¬ ì„¤ëª…
-21010Desc,ì¹´ìš°ë³´ì´ ì„¤ëª…
-21111Desc,ëžŒë³´ ì„¤ëª…
-21212Desc,ì†”ì ¸77 ì„¤ëª…
-21313Desc,ë°ì´ë¹„ë“œ ì„¤ëª…
-21414Desc,ë§¤ë“œ ì‚¬ì´ì–¸í‹°ìŠ¤íŠ¸ ì„¤ëª…
-21515Desc,í‘ê¸°ì‚¬ ì„¤ëª…
-21616Desc,ì½”ìŠ¤ëª¨ìŠ¤ë§¨ ì„¤ëª…
-21717Desc,ì˜¤í† ë§ˆí†¤ ì„¤ëª…
-21818Desc,ì‚¬ë¬´ë¼ì´ ì„¤ëª…
-21919Desc,ë‹Œìž ì„¤ëª…
-22020Desc,ì•”ìŠ¤íŠ¸ë¡± ì„¤ëª…
-5301042Name,ì´ì—´ ì¦ê°€ Lv.1
-5302042Name,ì´ì—´ ì¦ê°€ Lv.2
-5303042Name,ì´ì—´ ì¦ê°€ Lv.3
-5301102Name,í¡í˜ˆ ê°•í™” Lv.1
-5302102Name,í¡í˜ˆ ê°•í™” Lv.2
-5303102Name,í¡í˜ˆ ê°•í™” Lv.3
-5301045Name,ì†ë„ ê°•í™” Lv.1
-5302045Name,ì†ë„ ê°•í™” Lv.2
-5303045Name,ì†ë„ ê°•í™” Lv.3
-0Name,ëŒ€ë¯¸ì§€
-1Name,ê³µê²© ë¹ˆë„
-2Name,ì‚¬ê±°ë¦¬
-3Name,ê´€í†µ
-4Name,ìŠ¤í”Œëž˜ì‹œ ëŒ€ë¯¸ì§€
-5Name,ìŠ¤í”Œëž˜ì‹œ ë²”ìœ„
-6Name,í¬ë¦¬í‹°ì»¬ í™•ë¥ 
-7Name,í¬ë¦¬í‹°ì»¬ ëŒ€ë¯¸ì§€
-8Name,HP í¡ìˆ˜
-9Name,íˆ¬ì‚¬ì²´ ì†ë„
-10Name,íˆ¬ì‚¬ì²´ ê°œìˆ˜
+30100Name,µ¹°Ý¼ÒÃÑ
+30101Name,´ëÀüÂ÷Æ÷
+30108Name,¸®ÇÇÅÍ
+30110Name,¹Ì´Ï°Ç
+30113Name,»êÅºÃÑ
+30115Name,Àú°Ý¼ÒÃÑ
+30103Name,Å©·Î½ºº¸¿ì
+30202Name,»ýÈ­ÇÐº´±â
+30205Name,È­¿°¹æ»ç±â
+30209Name,³Ã±âºÐ»ç±â
+30304Name,¾ÆÅ©¹ß»ç±â
+30306Name,Áß·ÂÀÚ¹ß»ç±â
+30312Name,·¹ÀÏ°Ç
+20404Name,Å×µå
+20505Name,±æ¸®
+20606Name,ºÒ»çÁ¶
+20707Name,»ß¿¡·Î
+20808Name,°í»ê
+20909Name,¸¶ÀÌÅ©
+21010Name,Ä«¿ìº¸ÀÌ
+21111Name,¶÷º¸
+21212Name,¼ÖÁ®77
+21313Name,µ¥ÀÌºñµå
+21414Name,¸Åµå »çÀÌ¾ðÆ¼½ºÆ®
+21515Name,Èæ±â»ç
+21616Name,ÄÚ½º¸ð½º¸Ç
+21717Name,¿ÀÅä¸¶Åæ
+21818Name,»ç¹«¶óÀÌ
+21919Name,´ÑÀÚ
+22020Name,¾Ï½ºÆ®·Õ
+20404Desc,Å×µå ¼³¸í
+20505Desc,±æ¸® ¼³¸í
+20606Desc,ºÒ»çÁ¶ ¼³¸í
+20707Desc,»ß¿¡·Î ¼³¸í
+20808Desc,°í»ê ¼³¸í
+20909Desc,¸¶ÀÌÅ© ¼³¸í
+21010Desc,Ä«¿ìº¸ÀÌ ¼³¸í
+21111Desc,¶÷º¸ ¼³¸í
+21212Desc,¼ÖÁ®77 ¼³¸í
+21313Desc,µ¥ÀÌºñµå ¼³¸í
+21414Desc,¸Åµå »çÀÌ¾ðÆ¼½ºÆ® ¼³¸í
+21515Desc,Èæ±â»ç ¼³¸í
+21616Desc,ÄÚ½º¸ð½º¸Ç ¼³¸í
+21717Desc,¿ÀÅä¸¶Åæ ¼³¸í
+21818Desc,»ç¹«¶óÀÌ ¼³¸í
+21919Desc,´ÑÀÚ ¼³¸í
+22020Desc,¾Ï½ºÆ®·Õ ¼³¸í
+5301042Name,ÃÑ¿­ Áõ°¡ Lv.1
+5302042Name,ÃÑ¿­ Áõ°¡ Lv.2
+5303042Name,ÃÑ¿­ Áõ°¡ Lv.3
+5301102Name,ÈíÇ÷ °­È­ Lv.1
+5302102Name,ÈíÇ÷ °­È­ Lv.2
+5303102Name,ÈíÇ÷ °­È­ Lv.3
+5301045Name,¼Óµµ °­È­ Lv.1
+5302045Name,¼Óµµ °­È­ Lv.2
+5303045Name,¼Óµµ °­È­ Lv.3
+0Name,´ë¹ÌÁö
+1Name,°ø°Ý ºóµµ
+2Name,»ç°Å¸®
+3Name,°üÅë
+4Name,½ºÇÃ·¡½Ã ´ë¹ÌÁö
+5Name,½ºÇÃ·¡½Ã ¹üÀ§
+6Name,Å©¸®Æ¼ÄÃ È®·ü
+7Name,Å©¸®Æ¼ÄÃ ´ë¹ÌÁö
+8Name,HP Èí¼ö
+9Name,Åõ»çÃ¼ ¼Óµµ
+10Name,Åõ»çÃ¼ °³¼ö
 11Name,HP
-12Name,ì „ì§„ ì†ë„
-13Name,ì¢Œìš° ì†ë„
-14Name,ë°©ì–´ë ¥
+12Name,ÀüÁø ¼Óµµ
+13Name,ÁÂ¿ì ¼Óµµ
+14Name,¹æ¾î·Â

@@ -9,8 +9,11 @@ public class PlayerShooter : MonoBehaviour
     public GameObject muzzle;
     public PlayerStats playerStats;
     public int currentProjectileIndex = 0;
+    [Tooltip("총알 발사 각도")]
+    public float spreadAngle = 30f;
     public Weapon weapon;
     private int oneMinute = 60;
+
     private float FireRate
     {
         get
@@ -50,19 +53,39 @@ public class PlayerShooter : MonoBehaviour
 
     void Fire()
     {
-        if(unusingProjectiles.Count > 0)
+        int projectileCount = (int)weapon.stats[WeaponColumn.Stat.PROJECTILE_AMOUNT];
+        float angleStep = projectileCount > 1 ? spreadAngle / (projectileCount - 1) : 0;
+        float startAngle = -spreadAngle / 2;
+
+        for (int i = 0; i < projectileCount; i++)
         {
-            var projectile = unusingProjectiles[0];
+            float angle = startAngle + i * angleStep;
+
+            if (projectileCount % 2 == 1 && i == projectileCount / 2)
+            {
+                angle = 0;
+            }
+
+            Quaternion rotation = Quaternion.Euler(0, angle, 0);
+            Vector3 projectileDirection = rotation * muzzle.transform.forward;
+
+            GameObject projectile;
+            if (unusingProjectiles.Count > 0)
+            {
+                projectile = unusingProjectiles[0];
+                unusingProjectiles.RemoveAt(0);
+            }
+            else
+            {
+                projectile = Instantiate(projectilePrefabs[currentProjectileIndex], muzzle.transform.position, Quaternion.identity);
+            }
+
             projectile.transform.position = muzzle.transform.position;
+            projectile.transform.rotation = rotation;
             projectile.SetActive(true);
+            projectile.GetComponent<Rigidbody>().velocity = projectileDirection * speed;
 
             usingProjectiles.Add(projectile);
-            unusingProjectiles.Remove(projectile);
-        }
-        else
-        {
-            var go = Instantiate(projectilePrefabs[currentProjectileIndex], muzzle.transform.position, Quaternion.identity);
-            usingProjectiles.Add(go);
         }
     }
 

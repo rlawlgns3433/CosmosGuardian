@@ -79,7 +79,7 @@ public class Projectile : MonoBehaviour
     {
         get
         {
-            return damageScale * weaponDamage;
+            return (damageScale * weaponDamage) / playerShooter.weapon.stats[WeaponColumn.Stat.PROJECTILE_AMOUNT];
         }
     }
 

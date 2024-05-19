@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class UiController : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class UiController : MonoBehaviour
     [Header("Group")]
     public GameObject group;
     public GameObject pause;
+    public GameObject item;
     public TextMeshProUGUI textStats;
     public PlayerStats playerStats;
     public PlayerShooter playerShooter;
@@ -16,6 +18,7 @@ public class UiController : MonoBehaviour
     {
         group.SetActive(true);
         pause.SetActive(false);
+        item.SetActive(false);
 
         Invoke("UpdatePauseUI", 0.01f);
     }

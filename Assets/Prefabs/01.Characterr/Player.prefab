@@ -2011,8 +2011,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: HP
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b70966bfd6fe78745b7231a0b5e71973, type: 2}
+  m_sharedMaterial: {fileID: 1946749432035379676, guid: b70966bfd6fe78745b7231a0b5e71973, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4494,6 +4494,7 @@ MonoBehaviour:
   muzzle: {fileID: 5448946995338291177}
   playerStats: {fileID: 2295086922680514110}
   currentProjectileIndex: 0
+  spreadAngle: 30
   weapon: {fileID: 8102333513985256963}
   speed: 20
 --- !u!114 &4508787347923785903

@@ -8,8 +8,8 @@ public class StringTable : DataTable
 {
     private class Data
     {
-        public string Id { get; set; }
-        public string String { get; set; }
+        public string STRING_ID { get; set; }
+        public string STRING { get; set; }
     }
 
     private Dictionary<string, string> table = new Dictionary<string, string>();
@@ -21,15 +21,18 @@ public class StringTable : DataTable
         table.Clear();
 
         var textAsset = Resources.Load<TextAsset>(path);
-        Debug.Log(textAsset.text);
 
         using (var reader = new StringReader(textAsset.text))
         using (var csvReader = new CsvReader(reader, CultureInfo.InvariantCulture))
         {
+            csvReader.Read();
+            csvReader.ReadHeader();
+            csvReader.Read();
+
             var records = csvReader.GetRecords<Data>();
             foreach (var record in records)
             {
-                table.Add(record.Id, record.String);
+                table.Add(record.STRING_ID, record.STRING);
             }
         }
     }

@@ -12,6 +12,9 @@ public static class DataTableMgr
         //    table.Load(id);
         //    tables.Add(id, table);
         //}
+        DataTable table = new StringTable();
+        table.Load(DataTableIds.String[(int)Vars.currentLang]);
+        tables.Add(DataTableIds.String[(int)Vars.currentLang], table);
 
         OptionTable optionTable = new OptionTable();
         optionTable.Load(DataTableIds.Option);

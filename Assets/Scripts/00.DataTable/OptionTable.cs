@@ -8,14 +8,23 @@ using UnityEngine;
 public class OptionData
 {
     public int UPGRADE_ID { get; set; }
-    public string NAME_DEV { get; set; }
+    public string STRING_ID { get; set; }
+    //public string NAME_DEV { get; set; }
     public OptionColumn.Type TYPE { get; set; }
     public OptionColumn.Stat STAT { get; set; }
     public int GRADE { get; set; }
     public float VALUE { get; set; }
+
+    public string GetName
+    {
+        get
+        {
+            return DataTableMgr.GetStringTable().Get(STRING_ID);
+        }
+    }
     public override string ToString()
     {
-        return $"UPGRADE_ID : {UPGRADE_ID}\nNAME_DEV : {NAME_DEV}\nTYPE : {TYPE}\nSTAT : {STAT}\nGRADE : {GRADE}\nVALUE : {VALUE}";
+        return $"UPGRADE_ID : {UPGRADE_ID}\nNAME_DEV : {GetName}\nTYPE : {TYPE}\nSTAT : {STAT}\nGRADE : {GRADE}\nVALUE : {VALUE}";
     }
 }
 

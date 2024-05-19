@@ -7,24 +7,6 @@ using System.Linq;
 public class OptionController : MonoBehaviour
 {
     private static readonly string Format = "<size=0.45>{0}\r\n<size=0.3>+{1}";
-    private static readonly string[] optionName =
-    {
-        "데미지",
-        "공격 빈도",
-        "사거리",
-        "관통",
-        "스플래시 데미지",
-        "스플래시 범위",
-        "치명타 확률",
-        "치명타 데미지",
-        "HP 흡수",
-        "투사체 속도",
-        "투사체 개수",
-        "HP",
-        "",
-        "좌우 속도",
-        "방어구"
-    };
 
 
     public List<Image> options = new List<Image>();
@@ -85,16 +67,14 @@ public class OptionController : MonoBehaviour
             Collider collider = options[i].GetComponent<Collider>();
             collider.enabled = true;
 
-            //optionTexts[i].text = gradedOptions[index].NAME_DEV.ToString();
-
             switch (gradedOptions[index].TYPE)
             {
                 case OptionColumn.Type.Scale:
-                    optionTexts[i].text = string.Format(Format, optionName[(int)gradedOptions[index].STAT].ToString(), gradedOptions[index].VALUE.ToString()) + "%";
+                    optionTexts[i].text = string.Format(Format, gradedOptions[index].GetName, gradedOptions[index].VALUE.ToString()) + "%";
 
                     break;
                 case OptionColumn.Type.Fixed:
-                    optionTexts[i].text = string.Format(Format, optionName[(int)gradedOptions[index].STAT].ToString(), gradedOptions[index].VALUE.ToString());
+                    optionTexts[i].text = string.Format(Format, gradedOptions[index].GetName, gradedOptions[index].VALUE.ToString());
                     break;
             }
 

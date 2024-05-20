@@ -54,9 +54,17 @@ public class OptionStat : MonoBehaviour
         }
 
         playerStats.items.Add(GetComponent<ItemStat>().itemData);
-        type.Clear();
-        stat.Clear();
-        value.Clear();
+
+        // sibling node에 있는 optionstat 초기화 필요
+        var itemController = GetComponentInParent<ItemController>(); // null
+        var optionStats = itemController.gameObject.GetComponentsInChildren<OptionStat>();
+
+        foreach(var optionStat in optionStats)
+        { 
+            optionStat.type.Clear();
+            optionStat.stat.Clear();  
+            optionStat.value.Clear();  
+        }
         Time.timeScale = 1f;
     }
 }

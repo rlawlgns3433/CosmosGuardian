@@ -29,7 +29,7 @@ public class ProgressSlider : MonoBehaviour
     {
         pooledPlatformCount = GameManager.Instance.platforms.Count;
         appearanceThreshold = bossSpawnController.bossAppearanceThreshold;
-        totalDistance = startPlatformDistance + (appearanceThreshold + 1) * platformDistance * pooledPlatformCount + stopDistanceAtBoss;
+        totalDistance = startPlatformDistance + (appearanceThreshold + 1) * platformDistance * pooledPlatformCount;
         progressRate = playerMovement.transform.position.z / totalDistance;
     }
 

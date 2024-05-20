@@ -37,11 +37,11 @@ public class OptionStat : MonoBehaviour
             }
 
             uiController.UpdatePauseUI();
-        }
 
-        type.Clear();
-        stat.Clear();
-        value.Clear();
+            type.Clear();
+            stat.Clear();
+            value.Clear();
+        }
     }
 
     public void OptionButtonClicked()

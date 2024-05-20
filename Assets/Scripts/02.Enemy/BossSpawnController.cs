@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class BossSpawnController : MonoBehaviour
@@ -23,6 +24,15 @@ public class BossSpawnController : MonoBehaviour
 
     public void SpawnBoss()
     {
+        // 현재 플랫폼에 있는 몬스터 전체 삭제
+        foreach (var enemy in platform.spawnedEnemies)
+        {
+            if (enemy != null)
+            {
+                enemy.OnDie();
+            }
+        }
+
         var spawnPos = bossSpawnTile.transform.position;
         spawnPos += new Vector3(0, 1f, 0);
 

@@ -29,7 +29,6 @@ public class Weapon : MonoBehaviour
 
     public void SetWeapon(int weaponId)
     {
-        Debug.Log(weaponId);
         weaponData = weaponTable.Get(weaponId);
 
 

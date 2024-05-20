@@ -35,14 +35,15 @@ public class Platform : MonoBehaviour
             }
         }
 
-        if(TryGetComponent(out BossSpawnController bossSpawnController))
-        {
-            bossSpawnController.SpawnMidBoss();
-        }
+
 
         ++resetCount;
         spawnedEnemies.Clear();
         Spawn(); // 몬스터 스폰
+        if (TryGetComponent(out BossSpawnController bossSpawnController))
+        {
+            bossSpawnController.SpawnMidBoss();
+        }
         optionController.ResetOptions(playerStats.level); // 옵션 초기화
         playerStats.UpdateStats(OptionColumn.Stat.MOVE_SPEED_V, OptionColumn.Type.Scale, 0.5f); // 직진 속도 0.5프로 증가
     }

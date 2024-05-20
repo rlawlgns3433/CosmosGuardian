@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using System.Text;
-using UnityEditor.Experimental.Rendering;
 
 public class ItemController : MonoBehaviour
 {

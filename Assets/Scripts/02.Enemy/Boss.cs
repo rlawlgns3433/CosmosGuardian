@@ -68,15 +68,6 @@ public class Boss : Enemy
                 cameraMove.IsTOP = !cameraMove.IsTOP;
                 savedVerticalSpeed = target.gameObject.GetComponent<PlayerStats>().stats[CharacterColumn.Stat.MOVE_SPEED_V];
                 target.gameObject.GetComponent<PlayerStats>().stats[CharacterColumn.Stat.MOVE_SPEED_V] = 0f;
-
-                // 현재 플랫폼에 있는 몬스터 전체 삭제
-                foreach (var enemy in bossPlatform.spawnedEnemies)
-                {
-                    if (enemy != null)
-                    {
-                        enemy.OnDie();
-                    }
-                }
             }
         }
 

@@ -56,7 +56,9 @@ public class PlayerShooter : MonoBehaviour
 
     void Fire()
     {
-        int projectileCount = (int)weapon.stats[WeaponColumn.Stat.PROJECTILE_AMOUNT];
+        int projectileCount = Mathf.CeilToInt(weapon.stats[WeaponColumn.Stat.PROJECTILE_AMOUNT] * playerStats.stats[CharacterColumn.Stat.PROJECTILE_AMOUNT]);
+
+        Debug.Log(projectileCount);
         //float angleStep = projectileCount > 1 ? spreadAngle / (projectileCount - 1) : 0;
         // 2개 이하라면 작은 각도로
         // 3개 이상이라면 큰 각도로

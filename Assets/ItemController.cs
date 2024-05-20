@@ -93,15 +93,15 @@ public class ItemController : MonoBehaviour
 
             sb.Append(itemdatas[i].GetOption1.GetName);
             sb.Append(" ");
-             sb.Append(FormatSignedValue(itemdatas[i].GetOption1.VALUE));
+            sb.Append(FormatSignedValue(itemdatas[i].GetOption1));
             sb.Append("\n");
             sb.Append(itemdatas[i].GetOption2.GetName);
             sb.Append(" ");
-            sb.Append(FormatSignedValue(itemdatas[i].GetOption2.VALUE));
+            sb.Append(FormatSignedValue(itemdatas[i].GetOption2));
             sb.Append("\n");
             sb.Append(itemdatas[i].GetOption3.GetName);
             sb.Append(" ");
-            sb.Append(FormatSignedValue(itemdatas[i].GetOption3.VALUE));
+            sb.Append(FormatSignedValue(itemdatas[i].GetOption3));
 
             descs[i].text = sb.ToString();
 
@@ -128,11 +128,11 @@ public class ItemController : MonoBehaviour
         }
     }
 
-    public static string FormatSignedValue(float value)
+    public static string FormatSignedValue(OptionData optionData)
     {
         StringBuilder sb = new StringBuilder();
 
-        if (value < 0)
+        if (optionData.VALUE < 0)
         {
             sb.Append(redText);
         }
@@ -140,7 +140,13 @@ public class ItemController : MonoBehaviour
         {
             sb.Append(greenText);
         }
-        sb.Append(value.ToString("+#.##;-#.##;+0.00"));
+        sb.Append(optionData.VALUE.ToString("+#.##;-#.##;+0.00"));
+
+        if(optionData.TYPE == OptionColumn.Type.Scale)
+        {
+            sb.Append("%");
+        }
+
         sb.Append(colorEndText);
 
         return sb.ToString();

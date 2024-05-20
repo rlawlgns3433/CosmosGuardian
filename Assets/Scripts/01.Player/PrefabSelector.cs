@@ -7,11 +7,16 @@ public class PrefabSelector : MonoBehaviour
     public List<GameObject> headPrefabs = new List<GameObject>();
 
     public int prefabNumber;
+    public int selectedCharacterIndex;
+
+    private void Awake()
+    {
+        selectedCharacterIndex = PlayerPrefs.GetInt("SelectedCharacterIndex", 0);
+        Debug.Log($"SelectedCharacterIndex : {selectedCharacterIndex}");
+    }
 
     private void OnEnable()
     {
-        int selectedCharacterIndex = PlayerPrefs.GetInt("SelectedCharacterIndex", 0);
-
         prefabNumber = selectedCharacterIndex;
 
         for (int i = 0; i < bodyPrefabs.Count; ++i)
@@ -19,7 +24,7 @@ public class PrefabSelector : MonoBehaviour
             bodyPrefabs[i].SetActive(false);
             headPrefabs[i].SetActive(false);
         }
-
+        Debug.Log($"Loaded SelectedCharacterIndex: {selectedCharacterIndex}");
         bodyPrefabs[selectedCharacterIndex].SetActive(true);
         headPrefabs[selectedCharacterIndex].SetActive(true);
     }

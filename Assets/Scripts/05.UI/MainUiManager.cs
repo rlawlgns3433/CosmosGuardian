@@ -18,8 +18,7 @@ public class MainUiManager : MonoBehaviour
         }
 
         PlayerPrefs.SetInt("SelectedCharacterIndex", uiCharacterSelect.selectedCharacterIndex);
-        PlayerPrefs.Save();
-
+        Debug.Log($"Saved SelectedCharacterIndex: {uiCharacterSelect.selectedCharacterIndex}");
         LoadScene("Game");
 
         //SceneManager.LoadScene(1);

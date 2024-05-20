@@ -13,6 +13,8 @@ public class PlayerShooter : MonoBehaviour
     public float spreadAngle = 30f;
     public Weapon weapon;
     private int oneMinute = 60;
+    private float tempAngle = 10f;
+
 
     private float FireRate
     {
@@ -31,9 +33,6 @@ public class PlayerShooter : MonoBehaviour
             weapon.enabled = false;
             return;
         }
-
-        //int selectedWeaponId = PlayerPrefs.GetInt("SelectedWeaponId", 0);
-        //weapon.SetWeapon(selectedWeaponId);
 
         currentProjectileIndex = weapon.weaponData.PROJECTILE_ID - 1;
     }
@@ -58,10 +57,12 @@ public class PlayerShooter : MonoBehaviour
     {
         int projectileCount = Mathf.RoundToInt(weapon.stats[WeaponColumn.Stat.PROJECTILE_AMOUNT] * playerStats.stats[CharacterColumn.Stat.PROJECTILE_AMOUNT]);
 
+        Debug.Log($"Type : {playerStats.characterData.BODY_TYPE}");
+        Debug.Log($"character projectCount : {playerStats.stats[CharacterColumn.Stat.PROJECTILE_AMOUNT]}");
+        Debug.Log($"weapon projectCount : {weapon.stats[WeaponColumn.Stat.PROJECTILE_AMOUNT]}");
         //float angleStep = projectileCount > 1 ? spreadAngle / (projectileCount - 1) : 0;
         // 2개 이하라면 작은 각도로
         // 3개 이상이라면 큰 각도로
-        float tempAngle = 10f;
 
         float angleStep;
 

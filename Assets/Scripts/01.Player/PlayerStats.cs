@@ -41,6 +41,10 @@ public class PlayerStats : MonoBehaviour
             prefabSelector.enabled = false;
             return;
         }
+    }
+
+    private void Start()
+    {
 
         StringBuilder sb = new StringBuilder();
         sb.Append((int)TableIdentifier.Character);
@@ -64,6 +68,8 @@ public class PlayerStats : MonoBehaviour
         stats[CharacterColumn.Stat.HP_DRAIN] = initialStats[CharacterColumn.Stat.HP_DRAIN] = characterData.HP_DRAIN;
         stats[CharacterColumn.Stat.PROJECTILE_SPEED] = initialStats[CharacterColumn.Stat.PROJECTILE_SPEED] = characterData.PROJECTILE_SPEED;
         stats[CharacterColumn.Stat.PROJECTILE_AMOUNT] = initialStats[CharacterColumn.Stat.PROJECTILE_AMOUNT] = characterData.PROJECTILE_AMOUNT;
+
+        Debug.Log($"character projectile amount : {stats[CharacterColumn.Stat.PROJECTILE_AMOUNT]}");
 
         price = characterData.PRICE;
     }

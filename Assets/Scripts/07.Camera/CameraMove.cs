@@ -15,7 +15,7 @@ public class CameraMove : MonoBehaviour
         {
             Camera.main.transform.position = Vector3.Slerp(Camera.main.transform.position, TOP.position, 5 * Time.deltaTime);
             Camera.main.transform.rotation = Quaternion.Slerp(Camera.main.transform.rotation, TOP.rotation, 5 * Time.deltaTime);
-            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, 60f, 5 * Time.deltaTime);
+            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, 80f, 5 * Time.deltaTime);
         }
         else
         {

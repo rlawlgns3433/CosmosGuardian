@@ -18,7 +18,9 @@ public class ItemController : MonoBehaviour
 
     private ItemTable itemTable;
 
-    private void Start()
+
+
+    private void Awake()
     {
         itemTable = DataTableMgr.Get<ItemTable>(DataTableIds.Item);
     }

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class UiController : MonoBehaviour
 {
-    private static readonly string statFormat = "데미지 : {0}\n공격빈도 : {1}회/min\n투사체 속도 : {2}\n사거리 : {3}\n크리티컬 확률 : {4}%\n크리티컬 데미지 : {5}%\n관통 : {6}개\n스플래시 범위 : {7}\n스플래시 데미지 : {8}%\n체력 흡수 : {9}%\n투사체 개수 : {10}개\n";
+    private static readonly string statFormat = "HP : {0}\n데미지 : {1}\n공격빈도 : {2}회/min\n투사체 속도 : {3}\n사거리 : {4}\n크리티컬 확률 : {5}%\n크리티컬 데미지 : {6}%\n관통 : {7}개\n스플래시 범위 : {8}\n스플래시 데미지 : {9}%\n좌우 속도 : {10}%\n전진 속도: {11}%\n체력 흡수 : {12}%\n투사체 개수 : {13}개\n";
 
     [Header("Group")]
     public GameObject group;
@@ -25,6 +25,7 @@ public class UiController : MonoBehaviour
     public void UpdatePauseUI()
     {
         textStats.text = string.Format(statFormat,
+        (int)(playerStats.stats[CharacterColumn.Stat.HP]),
         (int)(playerShooter.weapon.stats[WeaponColumn.Stat.DAMAGE] * playerStats.stats[CharacterColumn.Stat.DAMAGE]),
         (int)(playerShooter.weapon.stats[WeaponColumn.Stat.FIRE_RATE] * playerStats.stats[CharacterColumn.Stat.FIRE_RATE]),
         (int)(playerShooter.weapon.stats[WeaponColumn.Stat.PROJECTILE_SPEED] * playerStats.stats[CharacterColumn.Stat.PROJECTILE_SPEED]),
@@ -34,6 +35,8 @@ public class UiController : MonoBehaviour
         (int)(playerShooter.weapon.stats[WeaponColumn.Stat.PENETRATE] * playerStats.stats[CharacterColumn.Stat.PENETRATE]),
         (int)(playerShooter.weapon.stats[WeaponColumn.Stat.SPLASH_RANGE] * playerStats.stats[CharacterColumn.Stat.SPLASH_RANGE]),
         (int)(playerShooter.weapon.stats[WeaponColumn.Stat.SPLASH_DAMAGE] * playerStats.stats[CharacterColumn.Stat.SPLASH_DAMAGE]),
+        playerStats.stats[CharacterColumn.Stat.MOVE_SPEED_H] * 100f,
+        playerStats.stats[CharacterColumn.Stat.MOVE_SPEED_V] * 100f,
         (int)(playerShooter.weapon.stats[WeaponColumn.Stat.HP_DRAIN] * playerStats.stats[CharacterColumn.Stat.HP_DRAIN]),
         (int)(playerShooter.weapon.stats[WeaponColumn.Stat.PROJECTILE_AMOUNT] * playerStats.stats[CharacterColumn.Stat.PROJECTILE_AMOUNT]));
     }

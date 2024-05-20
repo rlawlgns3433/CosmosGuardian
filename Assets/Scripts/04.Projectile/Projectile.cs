@@ -234,7 +234,21 @@ public class Projectile : MonoBehaviour
                 enemy.OnDamage(Damage);
             }
 
+            if (SplashDamageRange > 0)
+            {
+                Collider[] colliders = Physics.OverlapSphere(transform.position, SplashDamageRange);
 
+                foreach (var collider in colliders)
+                {
+                    if (collider == other) continue;
+
+                    if (collider.CompareTag(Tags.Enemy) || collider.CompareTag(Tags.Boss))
+                    {
+                        var e = collider.gameObject.GetComponent<Enemy>();
+                        e.OnDamage(SplashDamage);
+                    }
+                }
+            }
 
             playerStats.stats[CharacterColumn.Stat.HP] += HpDrain; // Èí¼ö
             playerHealth.UpdateHealthUI();
@@ -273,23 +287,6 @@ public class Projectile : MonoBehaviour
                 }
 
                 startChecker = false;
-
-
-                if (SplashDamageRange > 0)
-                {
-                    Collider[] colliders = Physics.OverlapSphere(transform.position, SplashDamageRange);
-
-                    foreach (var collider in colliders)
-                    {
-                        if (collider == other) continue;
-
-                        if (collider.CompareTag(Tags.Enemy) || collider.CompareTag(Tags.Boss))
-                        {
-                            var e = collider.gameObject.GetComponent<Enemy>();
-                            e.OnDamage(SplashDamage);
-                        }
-                    }
-                }
 
                 if (returnCoroutine != null)
                 {

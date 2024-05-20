@@ -79,6 +79,10 @@ public class OptionController : MonoBehaviour
             }
 
             OptionStat option = options[i].gameObject.GetComponent<OptionStat>();
+            option.stat.Clear();
+            option.type.Clear();
+            option.value.Clear();
+
             option.stat.Add(gradedOptions[index].STAT);
             option.type.Add(gradedOptions[index].TYPE);
             option.value.Add(gradedOptions[index].VALUE);

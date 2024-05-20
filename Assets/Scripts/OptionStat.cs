@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class OptionStat : MonoBehaviour
 {
@@ -21,14 +22,15 @@ public class OptionStat : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag(Tags.Player))
+        var optionController = GetComponentInParent<OptionController>();
+
+        if (other.CompareTag(Tags.Player))
         {
             for(int i = 0; i < type.Count; ++i)
             {
                 playerStats.UpdateStats(stat[i], type[i], value[i]);
                 gameObject.SetActive(false);
 
-                var optionController = GetComponentInParent<OptionController>();
                 foreach (var image in optionController.options)
                 {
                     Collider collider = image.GetComponent<Collider>();
@@ -37,10 +39,6 @@ public class OptionStat : MonoBehaviour
             }
 
             uiController.UpdatePauseUI();
-
-            type.Clear();
-            stat.Clear();
-            value.Clear();
         }
     }
 
@@ -55,16 +53,20 @@ public class OptionStat : MonoBehaviour
 
         playerStats.items.Add(GetComponent<ItemStat>().itemData);
 
-        // sibling node에 있는 optionstat 초기화 필요
-        var itemController = GetComponentInParent<ItemController>(); // null
+        ClearOptions();
+        Time.timeScale = 1f;
+    }
+
+    private void ClearOptions()
+    {
+        var itemController = GetComponentInParent<ItemController>();
         var optionStats = itemController.gameObject.GetComponentsInChildren<OptionStat>();
 
-        foreach(var optionStat in optionStats)
-        { 
+        foreach (var optionStat in optionStats)
+        {
             optionStat.type.Clear();
-            optionStat.stat.Clear();  
-            optionStat.value.Clear();  
+            optionStat.stat.Clear();
+            optionStat.value.Clear();
         }
-        Time.timeScale = 1f;
     }
 }

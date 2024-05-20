@@ -89,6 +89,13 @@ public class GameManager : Singleton<GameManager>
     public void EnterMainScene()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(0);
+        LoadScene("Main");
+        //SceneManager.LoadScene(0);
+    }
+
+    public void LoadScene(string sceneName)
+    {
+        PlayerPrefs.SetString("SceneToLoad", sceneName); // 로드할 씬 이름 저장
+        SceneManager.LoadScene("Loading"); // 로딩 씬 로드
     }
 }

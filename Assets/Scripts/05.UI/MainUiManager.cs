@@ -20,11 +20,21 @@ public class MainUiManager : MonoBehaviour
         PlayerPrefs.SetInt("SelectedCharacterIndex", uiCharacterSelect.selectedCharacterIndex);
         PlayerPrefs.Save();
 
-        SceneManager.LoadScene(1);
+        LoadScene("Game");
+
+        //SceneManager.LoadScene(1);
     }
 
     public void EnterShop()
     {
-        SceneManager.LoadScene(2);
+        LoadScene("Shop");
+
+        //SceneManager.LoadScene(2);
+    }
+
+    public void LoadScene(string sceneName)
+    {
+        PlayerPrefs.SetString("SceneToLoad", sceneName); // 로드할 씬 이름 저장
+        SceneManager.LoadScene("Loading"); // 로딩 씬 로드
     }
 }

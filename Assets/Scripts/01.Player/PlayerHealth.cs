@@ -44,6 +44,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         if (playerStats.stats[CharacterColumn.Stat.HP] <= 0)
         {
             playerStats.stats[CharacterColumn.Stat.HP] = 0;
+            UpdateHealthUI();
             onDeath();
         }
 
@@ -63,7 +64,10 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     }
     public void UpdateHealthUI()
     {
-        textHealth.text = ((int)playerStats.stats[CharacterColumn.Stat.HP]).ToString();
+        if(isAlive)
+        {
+            textHealth.text = ((int)playerStats.stats[CharacterColumn.Stat.HP]).ToString();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -79,7 +83,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
             var enemy = other.GetComponent<Enemy>();
             OnDamage(enemy.enemyData.HP);
-            enemy.OnDie();
+            enemy.OnDamage(enemy.enemyData.HP);
         }
     }
 }

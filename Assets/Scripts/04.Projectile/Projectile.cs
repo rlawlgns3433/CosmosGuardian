@@ -117,6 +117,8 @@ public class Projectile : MonoBehaviour
     }
 
     public float weaponpenetrate;
+
+    // =======Penetrate
     public int Penetrate
     {
         get

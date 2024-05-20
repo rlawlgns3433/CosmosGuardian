@@ -32,6 +32,9 @@ public class PlayerShooter : MonoBehaviour
             return;
         }
 
+        //int selectedWeaponId = PlayerPrefs.GetInt("SelectedWeaponId", 0);
+        //weapon.SetWeapon(selectedWeaponId);
+
         currentProjectileIndex = weapon.weaponData.PROJECTILE_ID - 1;
     }
 

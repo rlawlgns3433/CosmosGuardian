@@ -37,7 +37,7 @@ public class Platform : MonoBehaviour
 
         if(TryGetComponent(out BossSpawnController bossSpawnController))
         {
-            bossSpawnController.SpawnBoss();
+            bossSpawnController.SpawnMidBoss();
         }
 
         ++resetCount;

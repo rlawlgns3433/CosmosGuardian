@@ -809,7 +809,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyState: 0
-  enemyType: 40100
+  enemyType: 40000
   textHealth: {fileID: 5646388579843758660}
   target: {fileID: 0}
 --- !u!135 &-4745713309901149687

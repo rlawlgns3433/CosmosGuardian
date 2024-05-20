@@ -28,16 +28,17 @@ public class Boss : Enemy
 
         onDeath += () =>
         {
+            var uiController = GameObject.FindWithTag(Tags.UiController).GetComponent<UiController>();
+            uiController.item.SetActive(true);
+
             StopAllCoroutines();
             cameraMove.IsTOP = true;
             target.gameObject.GetComponent<PlayerStats>().stats[CharacterColumn.Stat.MOVE_SPEED_V] = savedVerticalSpeed;
 
-            Time.timeScale = 0f;
-            var uiController = GameObject.FindWithTag(Tags.UiController).GetComponent<UiController>();
-            uiController.item.SetActive(true);
             itemController = GameObject.FindWithTag(Tags.ItemController).GetComponent<ItemController>();
             itemController.UpdateItemData();
             GameObject.FindWithTag(Tags.Joystick).SetActive(false);
+            Time.timeScale = 0f;
         };
 
         shotInterval = new WaitForSeconds(intervalFloat);

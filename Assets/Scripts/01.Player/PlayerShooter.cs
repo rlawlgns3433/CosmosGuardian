@@ -54,16 +54,54 @@ public class PlayerShooter : MonoBehaviour
     void Fire()
     {
         int projectileCount = (int)weapon.stats[WeaponColumn.Stat.PROJECTILE_AMOUNT];
-        float angleStep = projectileCount > 1 ? spreadAngle / (projectileCount - 1) : 0;
+        //float angleStep = projectileCount > 1 ? spreadAngle / (projectileCount - 1) : 0;
+        // 2개 이하라면 작은 각도로
+        // 3개 이상이라면 큰 각도로
+        float tempAngle = 10f;
+
+        float angleStep;
+
+        if (projectileCount > 1)
+        {
+            if (projectileCount == 2)
+            {
+                angleStep = tempAngle;
+            }
+            else
+            {
+                angleStep = spreadAngle / (projectileCount - 1);
+            }
+        }
+        else
+        {
+            angleStep = 0;
+        }
+
         float startAngle = -spreadAngle / 2;
 
         for (int i = 0; i < projectileCount; i++)
         {
             float angle = startAngle + i * angleStep;
 
-            if (projectileCount % 2 == 1 && i == projectileCount / 2)
+            if(projectileCount == 2)
             {
-                angle = 0;
+                if(i == 0)
+                {
+                    angle = -tempAngle / 2;   
+                }
+                else
+                {
+                    angle = tempAngle / 2;
+                }
+            }
+            else
+            {
+                angle = startAngle + i * angleStep;
+
+                if (projectileCount % 2 == 1 && i == projectileCount / 2)
+                {
+                    angle = 0;
+                }
             }
 
             Quaternion rotation = Quaternion.Euler(0, angle, 0);

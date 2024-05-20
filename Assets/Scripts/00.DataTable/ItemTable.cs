@@ -38,6 +38,9 @@ public class ItemData
     {
         get
         {
+            if (OPTION_3 == 0)
+                return default(OptionData);
+
             return DataTableMgr.GetOptionTable().Get(OPTION_3);
         }
     }

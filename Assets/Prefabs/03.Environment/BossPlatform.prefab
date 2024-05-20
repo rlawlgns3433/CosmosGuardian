@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4962473657693050575}
   m_Layer: 0
   m_Name: BossPlatform
-  m_TagString: Untagged
+  m_TagString: BossPlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -81,7 +81,7 @@ MonoBehaviour:
   bossPrefab: {fileID: 7379252335875583254, guid: aa776dce7bb631747a6663e61f29a18b, type: 3}
   midBossPrefab: {fileID: 4735800100427854253, guid: b2453862aa3bdf34891c7f2c06fdf594, type: 3}
   midBossSpawnCount: 0
-  bossAppearanceThreshold: 3
+  bossAppearanceThreshold: 0
 --- !u!1001 &395819241177443509
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -691,7 +691,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6708319747612093526, guid: 534822b313d3c4145b13cb5b8feab21f, type: 3}
       propertyPath: m_Name
-      value: OptionTile
+      value: OptionRow
       objectReference: {fileID: 0}
     - target: {fileID: 7254338191707637561, guid: 534822b313d3c4145b13cb5b8feab21f, type: 3}
       propertyPath: playerStats

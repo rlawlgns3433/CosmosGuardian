@@ -3,9 +3,14 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using System.Text;
+using UnityEditor.Experimental.Rendering;
 
 public class ItemController : MonoBehaviour
 {
+    private static readonly string redText = "<color=red>";
+    private static readonly string greenText = "<color=green>";
+    private static readonly string colorEndText = "</color>";
     private const int buttonCount = 3;
     private int startGrade = 1;
 
@@ -17,8 +22,6 @@ public class ItemController : MonoBehaviour
     public List<ItemData> itemdatas = new List<ItemData>();
 
     private ItemTable itemTable;
-
-
 
     private void Awake()
     {
@@ -35,7 +38,7 @@ public class ItemController : MonoBehaviour
         int itemCount = itemTable.GetKeys.ToList().Count;
 
         // 아이템 뽑기
-        while(id.Count < 3)
+        while (id.Count < 3)
         {
             int index = Random.Range(0, itemCount);
             int itemGrade = startGrade;
@@ -49,7 +52,7 @@ public class ItemController : MonoBehaviour
 
             for (int k = 0; k < playerStats.items.Count; ++k)
             {
-                if(playerStats.items[k].GetIconIdInt == itemTable.GetAllData[index].GetIconIdInt)
+                if (playerStats.items[k].GetIconIdInt == itemTable.GetAllData[index].GetIconIdInt)
                 {
                     ItemData playerData = new ItemData();
 
@@ -70,9 +73,9 @@ public class ItemController : MonoBehaviour
 
             id.Add(iconInt);
 
-            foreach(var item in itemTable.GetAllData) 
-            { 
-                if(item.GetIconIdInt == iconInt && itemGrade == item.GRADE)
+            foreach (var item in itemTable.GetAllData)
+            {
+                if (item.GetIconIdInt == iconInt && itemGrade == item.GRADE)
                 {
                     itemdatas.Add(item);
                     break;
@@ -81,21 +84,40 @@ public class ItemController : MonoBehaviour
         }
 
         // 아이템 뿌려주기
-        for(int i = 0; i < buttonCount; ++i )
+        for (int i = 0; i < buttonCount; ++i)
         {
+            StringBuilder sb = new StringBuilder();
+
             icons[i].sprite = itemdatas[i].GetSprite;
             names[i].text = itemdatas[i].GetString;
-            descs[i].text = itemdatas[i].GetString;
+
+            sb.Append(itemdatas[i].GetOption1.GetName);
+            sb.Append(" ");
+             sb.Append(FormatSignedValue(itemdatas[i].GetOption1.VALUE));
+            sb.Append("\n");
+            sb.Append(itemdatas[i].GetOption2.GetName);
+            sb.Append(" ");
+            sb.Append(FormatSignedValue(itemdatas[i].GetOption2.VALUE));
+            sb.Append("\n");
+            sb.Append(itemdatas[i].GetOption3.GetName);
+            sb.Append(" ");
+            sb.Append(FormatSignedValue(itemdatas[i].GetOption3.VALUE));
+
+            descs[i].text = sb.ToString();
 
             List<OptionData> options = new List<OptionData>
             {
                 itemdatas[i].GetOption1,
-                itemdatas[i].GetOption2,
-                itemdatas[i].GetOption3
+                itemdatas[i].GetOption2
             };
 
+            if (itemdatas[i].GetOption3 != default(OptionData))
+            {
+                options.Add(itemdatas[i].GetOption3);
+            }
+
             var optionStat = buttons[i].GetComponent<OptionStat>();
-            for(int j = 0; j < options.Count;++j)
+            for (int j = 0; j < options.Count; ++j)
             {
                 optionStat.type.Add(options[j].TYPE);
                 optionStat.stat.Add(options[j].STAT);
@@ -104,5 +126,23 @@ public class ItemController : MonoBehaviour
 
             buttons[i].GetComponent<ItemStat>().itemData = itemdatas[i];
         }
+    }
+
+    public static string FormatSignedValue(float value)
+    {
+        StringBuilder sb = new StringBuilder();
+
+        if (value < 0)
+        {
+            sb.Append(redText);
+        }
+        else
+        {
+            sb.Append(greenText);
+        }
+        sb.Append(value.ToString("+#.##;-#.##;+0.00"));
+        sb.Append(colorEndText);
+
+        return sb.ToString();
     }
 }

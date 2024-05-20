@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class Boss : Enemy
@@ -17,6 +18,7 @@ public class Boss : Enemy
     public Coroutine attackOneCoroutine;
     public float angle = 30f;
 
+    private Platform bossPlatform;
     private CameraMove cameraMove;
     private WaitForSeconds shotInterval;
     private float distance = float.PositiveInfinity;
@@ -25,6 +27,12 @@ public class Boss : Enemy
     protected override void Start()
     {
         base.Start();
+
+        if (!GameObject.FindWithTag(Tags.BossPlatform).TryGetComponent(out bossPlatform))
+        {
+            bossPlatform.enabled = false;
+            return;
+        }
 
         onDeath += () =>
         {
@@ -60,6 +68,15 @@ public class Boss : Enemy
                 cameraMove.IsTOP = !cameraMove.IsTOP;
                 savedVerticalSpeed = target.gameObject.GetComponent<PlayerStats>().stats[CharacterColumn.Stat.MOVE_SPEED_V];
                 target.gameObject.GetComponent<PlayerStats>().stats[CharacterColumn.Stat.MOVE_SPEED_V] = 0f;
+
+                // 현재 플랫폼에 있는 몬스터 전체 삭제
+                foreach (var enemy in bossPlatform.spawnedEnemies)
+                {
+                    if (enemy != null)
+                    {
+                        enemy.OnDie();
+                    }
+                }
             }
         }
 

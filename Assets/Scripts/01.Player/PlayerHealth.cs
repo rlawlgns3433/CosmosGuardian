@@ -38,6 +38,8 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     {
         if (!isAlive) return;
 
+        damage = damage * (1 - (playerStats.stats[CharacterColumn.Stat.ARMOR] - 1));
+
         playerStats.stats[CharacterColumn.Stat.HP] -= damage;
         //playerStats.SyncDevStat();
 
@@ -79,7 +81,10 @@ public class PlayerHealth : MonoBehaviour, IDamageable
                 StopCoroutine(camShakeCoroutine);
             }
 
-            camShakeCoroutine = StartCoroutine(cameraShake.Shake(0.15f, 1f));
+            if(ParamManager.IsCameraShaking)
+            {
+                camShakeCoroutine = StartCoroutine(cameraShake.Shake(0.15f, 1f));
+            }
 
             var enemy = other.GetComponent<Enemy>();
             OnDamage(enemy.enemyData.HP);

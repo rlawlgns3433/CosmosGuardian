@@ -26,6 +26,16 @@ public class UiOption : MonoBehaviour
             buttonState = buttonOn;
             buttonImg.sprite = buttonSprites[buttonState];
         }
+
+        bgmSlider.onValueChanged.AddListener((float value) =>
+        {
+            ParamManager.BgmValue = value;
+        });
+
+        sfxSlider.onValueChanged.AddListener((float value) =>
+        {
+            ParamManager.SfxValue = value;
+        });
     }
 
     public void CameraShakeToggle()
@@ -42,4 +52,6 @@ public class UiOption : MonoBehaviour
         }
         buttonImg.sprite = buttonSprites[buttonState];
     }
+
+    
 }

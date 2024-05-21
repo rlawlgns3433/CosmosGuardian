@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class MidBoss : Enemy
 {
-    private CameraShake cameraShake;
-
     protected override void Start()
     {
         var playerHealth = GameObject.FindWithTag(Tags.Player).GetComponent<PlayerHealth>();

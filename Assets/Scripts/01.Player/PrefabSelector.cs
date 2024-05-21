@@ -31,8 +31,8 @@ public class PrefabSelector : MonoBehaviour
             bodyPrefabs[i].SetActive(false);
             headPrefabs[i].SetActive(false);
         }
-        Debug.Log($"Loaded SelectedCharacterIndex: {SelectedCharacterIndex}");
-        Debug.Log($"{gameObject.GetInstanceID()}, {this.GetInstanceID()}");
+        //Debug.Log($"Loaded SelectedCharacterIndex: {SelectedCharacterIndex}");
+        //Debug.Log($"{gameObject.GetInstanceID()}, {this.GetInstanceID()}");
 
         bodyPrefabs[SelectedCharacterIndex].SetActive(true);
         headPrefabs[SelectedCharacterIndex].SetActive(true);

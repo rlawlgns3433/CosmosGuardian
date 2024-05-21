@@ -1,5 +1,3 @@
-using UnityEngine.Rendering;
-
 public static class DataTableIds
 {
     public static readonly string[] String =

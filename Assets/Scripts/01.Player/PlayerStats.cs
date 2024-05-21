@@ -1,9 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using Unity.VisualScripting;
 using System.Text;
-using Unity.Collections.LowLevel.Unsafe;
 using System;
 
 public class PlayerStats : MonoBehaviour

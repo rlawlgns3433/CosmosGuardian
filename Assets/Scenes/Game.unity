@@ -12997,6 +12997,38 @@ MonoBehaviour:
   audioSource: {fileID: 1702172602}
   bgmClips:
   - {fileID: 8300000, guid: 1c64bd3a6ecc5c4409e8aa874c7315bf, type: 3}
+  flashClips:
+  - {fileID: 8300000, guid: 4470a5d3fe598af41980ab31dcacced5, type: 3}
+  - {fileID: 8300000, guid: 81e92a834cb3d0f48b1e3a19529cc4d9, type: 3}
+  - {fileID: 8300000, guid: 401e91ca592623e4287336ade33597f9, type: 3}
+  - {fileID: 8300000, guid: 5f6794e04b3dab348ba812448ad96715, type: 3}
+  - {fileID: 8300000, guid: 35a42713dbb744c4fba4233ba729a87b, type: 3}
+  - {fileID: 8300000, guid: c0d648491f087ac45b6003dcf38ea396, type: 3}
+  - {fileID: 8300000, guid: d5e0643b3c766bc43bee15512a2ea98b, type: 3}
+  - {fileID: 8300000, guid: ebf51f1cd662cb04cad7e49c3194c41d, type: 3}
+  - {fileID: 8300000, guid: c927e1d6234467c4f84ce883ad400653, type: 3}
+  - {fileID: 8300000, guid: 46d78ab366ea2eb4487be2746f6c925c, type: 3}
+  - {fileID: 8300000, guid: 1ce4627a5f17d75449f3f8eb503de530, type: 3}
+  - {fileID: 8300000, guid: f970e9018e578b64b83be7766b356e3d, type: 3}
+  - {fileID: 8300000, guid: e6c39aef04e55ca4d9842389a6ace49e, type: 3}
+  - {fileID: 8300000, guid: c81cc460d934acc42b58cce308f41bea, type: 3}
+  - {fileID: 8300000, guid: 668747d55c9c8104093f75c8f1903979, type: 3}
+  hitClips:
+  - {fileID: 8300000, guid: 6c58f0506df65f547b13be91c5755303, type: 3}
+  - {fileID: 8300000, guid: a037aff17c8abc842be8ca6c566592fa, type: 3}
+  - {fileID: 8300000, guid: b38af0fc18e965448b848324d2d11e83, type: 3}
+  - {fileID: 8300000, guid: 18043da3c1aa96244a573766edf790f7, type: 3}
+  - {fileID: 8300000, guid: 5be3fde44ae49814c9e1811e3b864db8, type: 3}
+  - {fileID: 8300000, guid: b8d09da56fd7f9241aa6466f53989988, type: 3}
+  - {fileID: 8300000, guid: 46910faaced5abe43aaaba434cd8ba08, type: 3}
+  - {fileID: 8300000, guid: 0700a739d0e9d9942889d68742070a97, type: 3}
+  - {fileID: 8300000, guid: 352e88edd0f9b854aaf25d38cc61a743, type: 3}
+  - {fileID: 8300000, guid: 70be6ec1b96195e43b4e66c256069b08, type: 3}
+  - {fileID: 8300000, guid: 28bd3a6df6b271c4c8249642dfe6f9e9, type: 3}
+  - {fileID: 8300000, guid: 566dfad739906e8468abf9aed08b9471, type: 3}
+  - {fileID: 8300000, guid: 3bbff1d5d4c00f44587de59ed16f6ace, type: 3}
+  - {fileID: 8300000, guid: 5ec1f9e24ef394f43b46fb9a7382a19f, type: 3}
+  - {fileID: 8300000, guid: 551788b3c2bbc6848ac24c3aa4079cba, type: 3}
 --- !u!82 &1702172602
 AudioSource:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -7,6 +8,7 @@ public class Projectile : MonoBehaviour
     public float disappearTimer = 1f;
     public Vector3 startPosition = Vector3.zero;
     public Rigidbody rb;
+    public AudioSource audioSource;
 
     [SerializeField] protected float speed = 15f;
     [SerializeField] protected float hitOffset = 0f;
@@ -131,6 +133,11 @@ public class Projectile : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        audioSource.volume = ParamManager.SfxValue;
+    }
+
     private void OnEnable()
     {
         if (playerShooter == null && !GameObject.FindWithTag(Tags.Player).TryGetComponent(out playerShooter))
@@ -202,6 +209,12 @@ public class Projectile : MonoBehaviour
 
         rb.velocity = Vector3.zero;  // Rigidbody 속도 초기화
         rb.angularVelocity = Vector3.zero; // 각속도 초기화
+
+        if (!audioSource.isPlaying)
+        {
+            audioSource.clip = SoundManager.Instance.flashClips[playerShooter.weapon.weaponData.PROJECTILE_ID - 1];
+            audioSource.Play();
+        }
     }
 
     private void Update()
@@ -275,6 +288,10 @@ public class Projectile : MonoBehaviour
                     else if (rotationOffset != Vector3.zero) { hit.transform.rotation = Quaternion.Euler(rotationOffset); }
                     else { hit.transform.LookAt((transform.position - contact).normalized + (transform.position - contact).normalized); }
                     hitPS.Play();
+
+                    audioSource.clip = SoundManager.Instance.hitClips[playerShooter.weapon.weaponData.PROJECTILE_ID - 1];
+                    audioSource.Play();
+                    
                 }
 
                 foreach (var detachedPrefab in Detached)

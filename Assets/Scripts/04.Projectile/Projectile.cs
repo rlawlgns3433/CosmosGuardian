@@ -101,7 +101,7 @@ public class Projectile : MonoBehaviour
     {
         get
         {
-            return splashDamageScale * (weaponSplashDamage / 100) * Damage;
+            return splashDamageScale * weaponSplashDamage;
         }
     }
 

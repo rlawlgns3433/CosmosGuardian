@@ -10,7 +10,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     public PlayerStats playerStats = null;
     private Animator animator;
     public bool isAlive = true;
-    private Coroutine camShakeCoroutine;
+    public Coroutine camShakeCoroutine;
 
     private void Awake()
     {

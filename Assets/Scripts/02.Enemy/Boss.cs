@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class Boss : Enemy
@@ -44,7 +43,7 @@ public class Boss : Enemy
             target.gameObject.GetComponent<PlayerStats>().stats[CharacterColumn.Stat.MOVE_SPEED_V] = savedVerticalSpeed;
 
             itemController = GameObject.FindWithTag(Tags.ItemController).GetComponent<ItemController>();
-            itemController.UpdateItemData();
+            itemController.UpdateItemData(enemyData.TYPE);
             GameObject.FindWithTag(Tags.Joystick).SetActive(false);
             Time.timeScale = 0f;
         };

@@ -56,8 +56,10 @@ public class BossSpawnController : MonoBehaviour
         ++midBossSpawnCount;
         var spawnPos = bossSpawnTile.transform.position;
         spawnPos += new Vector3(0, 1f, 0);
+
         var go = Instantiate(midBossPrefab, spawnPos, Quaternion.Euler(0, 180, 0));
-        var midBoss = go.GetComponent<Enemy>();
+        var midBoss = go.GetComponent<MidBoss>();
+
         EnemyData midBossData = new EnemyData(platform.enemyTable.Get((int)EnemyType.MidBoss));
         midBoss.UpdateStats(midBossData, midBossData.MAGNIFICATION, platform.resetCount);
     }

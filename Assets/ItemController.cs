@@ -27,7 +27,7 @@ public class ItemController : MonoBehaviour
         itemTable = DataTableMgr.Get<ItemTable>(DataTableIds.Item);
     }
 
-    public void UpdateItemData()
+    public void UpdateItemData(int type)
     {
         itemdatas.Clear();
 
@@ -42,6 +42,8 @@ public class ItemController : MonoBehaviour
             int index = Random.Range(0, itemCount);
             int itemGrade = startGrade;
             int iconInt = itemTable.GetAllData[index].GetIconIdInt;
+
+            if (itemTable.GetAllData[index].TYPE != type) continue;
 
             if (id.Contains(iconInt))
             {
@@ -98,9 +100,13 @@ public class ItemController : MonoBehaviour
             sb.Append(" ");
             sb.Append(FormatSignedValue(itemdatas[i].GetOption2));
             sb.Append("\n");
-            sb.Append(itemdatas[i].GetOption3.GetName);
-            sb.Append(" ");
-            sb.Append(FormatSignedValue(itemdatas[i].GetOption3));
+
+            if(itemdatas[i].GetOption3 != null)
+            {
+                sb.Append(itemdatas[i].GetOption3.GetName);
+                sb.Append(" ");
+                sb.Append(FormatSignedValue(itemdatas[i].GetOption3));
+            }
 
             descs[i].text = sb.ToString();
 

@@ -1,7 +1,10 @@
 using System.Collections.Generic;
-using System.Text;
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
+using System.Text;
+using Unity.Collections.LowLevel.Unsafe;
+using System;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -25,17 +28,16 @@ public class PlayerStats : MonoBehaviour
     public Dictionary<CharacterColumn.Stat, float> initialStats = new Dictionary<CharacterColumn.Stat, float>(); // 능력치 종류, 능력치 배율
     public Dictionary<CharacterColumn.Stat, float> stats = new Dictionary<CharacterColumn.Stat, float>(); // 능력치 종류, 능력치 배율
     public List<ItemData> items = new List<ItemData>();
-    private PrefabSelector prefabSelector = null;
+    [NonSerialized]
+    public PrefabSelector prefabSelector = null;
     public CharacterData characterData = null;
+    public string id = string.Empty;
 
 
     private void Awake()
     {
         characterTable = DataTableMgr.Get<CharacterTable>(DataTableIds.Character);
-    }
 
-    private void OnEnable()
-    {
         if (!TryGetComponent(out prefabSelector))
         {
             prefabSelector.enabled = false;
@@ -43,35 +45,18 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void OnEnable()
     {
+        if (characterData == null)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append((int)TableIdentifier.Character);
+            sb.Append((prefabSelector.SelectedCharacterIndex + 1).ToString("D2"));
+            sb.Append((prefabSelector.SelectedCharacterIndex + 1).ToString("D2")); // id + body(D2) + head(D2)
+            id = sb.ToString();
 
-        StringBuilder sb = new StringBuilder();
-        sb.Append((int)TableIdentifier.Character);
-        sb.Append((prefabSelector.prefabNumber + 1).ToString("D2"));
-        sb.Append((prefabSelector.prefabNumber + 1).ToString("D2")); // id + body(D2) + head(D2)
-        string id = sb.ToString();
-        characterData = characterTable.Get(int.Parse(id));
-
-        stats[CharacterColumn.Stat.HP] = initialStats[CharacterColumn.Stat.HP] = characterData.HP;
-        stats[CharacterColumn.Stat.ARMOR] = initialStats[CharacterColumn.Stat.ARMOR] = characterData.ARMOR;
-        stats[CharacterColumn.Stat.DAMAGE] = initialStats[CharacterColumn.Stat.DAMAGE] = characterData.DAMAGE_TYPE_1;
-        stats[CharacterColumn.Stat.MOVE_SPEED_V] = initialStats[CharacterColumn.Stat.MOVE_SPEED_V] = characterData.MOVE_SPEED_V;
-        stats[CharacterColumn.Stat.MOVE_SPEED_H] = initialStats[CharacterColumn.Stat.MOVE_SPEED_H] = characterData.MOVE_SPEED_H;
-        stats[CharacterColumn.Stat.FIRE_RATE] = initialStats[CharacterColumn.Stat.FIRE_RATE] = characterData.FIRE_RATE;
-        stats[CharacterColumn.Stat.FIRE_RANGE] = initialStats[CharacterColumn.Stat.FIRE_RANGE] = characterData.FIRE_RANGE;
-        stats[CharacterColumn.Stat.PENETRATE] = initialStats[CharacterColumn.Stat.PENETRATE] = characterData.PENETRATE;
-        stats[CharacterColumn.Stat.SPLASH_DAMAGE] = initialStats[CharacterColumn.Stat.SPLASH_DAMAGE] = characterData.SPLASH_DAMAGE;
-        stats[CharacterColumn.Stat.SPLASH_RANGE] = initialStats[CharacterColumn.Stat.SPLASH_RANGE] = characterData.SPLASH_RANGE;
-        stats[CharacterColumn.Stat.CRITICAL] = initialStats[CharacterColumn.Stat.CRITICAL] = characterData.CRITICAL;
-        stats[CharacterColumn.Stat.CRITICAL_DAMAGE] = initialStats[CharacterColumn.Stat.CRITICAL_DAMAGE] = characterData.CRITICAL_DAMAGE;
-        stats[CharacterColumn.Stat.HP_DRAIN] = initialStats[CharacterColumn.Stat.HP_DRAIN] = characterData.HP_DRAIN;
-        stats[CharacterColumn.Stat.PROJECTILE_SPEED] = initialStats[CharacterColumn.Stat.PROJECTILE_SPEED] = characterData.PROJECTILE_SPEED;
-        stats[CharacterColumn.Stat.PROJECTILE_AMOUNT] = initialStats[CharacterColumn.Stat.PROJECTILE_AMOUNT] = characterData.PROJECTILE_AMOUNT;
-
-        Debug.Log($"character projectile amount : {stats[CharacterColumn.Stat.PROJECTILE_AMOUNT]}");
-
-        price = characterData.PRICE;
+            InitCharacterInfo(id);
+        }
     }
 
     private void Update()
@@ -136,5 +121,31 @@ public class PlayerStats : MonoBehaviour
         var platformIndex = GameManager.Instance.currentPlatformIndex;
         var platform = GameManager.Instance.platforms[platformIndex].GetComponent<Platform>();
         platform.optionController.ResetOptions(level);
+    }
+
+    public void InitCharacterInfo(string id)
+    {
+
+        characterData = characterTable.Get(int.Parse(id));
+
+        stats[CharacterColumn.Stat.HP] = initialStats[CharacterColumn.Stat.HP] = characterData.HP;
+        stats[CharacterColumn.Stat.ARMOR] = initialStats[CharacterColumn.Stat.ARMOR] = characterData.ARMOR;
+        stats[CharacterColumn.Stat.DAMAGE] = initialStats[CharacterColumn.Stat.DAMAGE] = characterData.DAMAGE_TYPE_1;
+        stats[CharacterColumn.Stat.MOVE_SPEED_V] = initialStats[CharacterColumn.Stat.MOVE_SPEED_V] = characterData.MOVE_SPEED_V;
+        stats[CharacterColumn.Stat.MOVE_SPEED_H] = initialStats[CharacterColumn.Stat.MOVE_SPEED_H] = characterData.MOVE_SPEED_H;
+        stats[CharacterColumn.Stat.FIRE_RATE] = initialStats[CharacterColumn.Stat.FIRE_RATE] = characterData.FIRE_RATE;
+        stats[CharacterColumn.Stat.FIRE_RANGE] = initialStats[CharacterColumn.Stat.FIRE_RANGE] = characterData.FIRE_RANGE;
+        stats[CharacterColumn.Stat.PENETRATE] = initialStats[CharacterColumn.Stat.PENETRATE] = characterData.PENETRATE;
+        stats[CharacterColumn.Stat.SPLASH_DAMAGE] = initialStats[CharacterColumn.Stat.SPLASH_DAMAGE] = characterData.SPLASH_DAMAGE;
+        stats[CharacterColumn.Stat.SPLASH_RANGE] = initialStats[CharacterColumn.Stat.SPLASH_RANGE] = characterData.SPLASH_RANGE;
+        stats[CharacterColumn.Stat.CRITICAL] = initialStats[CharacterColumn.Stat.CRITICAL] = characterData.CRITICAL;
+        stats[CharacterColumn.Stat.CRITICAL_DAMAGE] = initialStats[CharacterColumn.Stat.CRITICAL_DAMAGE] = characterData.CRITICAL_DAMAGE;
+        stats[CharacterColumn.Stat.HP_DRAIN] = initialStats[CharacterColumn.Stat.HP_DRAIN] = characterData.HP_DRAIN;
+        stats[CharacterColumn.Stat.PROJECTILE_SPEED] = initialStats[CharacterColumn.Stat.PROJECTILE_SPEED] = characterData.PROJECTILE_SPEED;
+        stats[CharacterColumn.Stat.PROJECTILE_AMOUNT] = initialStats[CharacterColumn.Stat.PROJECTILE_AMOUNT] = characterData.PROJECTILE_AMOUNT;
+
+        Debug.Log($"character projectile amount : {stats[CharacterColumn.Stat.PROJECTILE_AMOUNT]}");
+
+        price = characterData.PRICE;
     }
 }

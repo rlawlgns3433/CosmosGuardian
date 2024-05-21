@@ -60,6 +60,8 @@ public class PlayerShooter : MonoBehaviour
         Debug.Log($"Type : {playerStats.characterData.BODY_TYPE}");
         Debug.Log($"character projectCount : {playerStats.stats[CharacterColumn.Stat.PROJECTILE_AMOUNT]}");
         Debug.Log($"weapon projectCount : {weapon.stats[WeaponColumn.Stat.PROJECTILE_AMOUNT]}");
+        Debug.Log($"{gameObject.GetInstanceID()}, {playerStats.prefabSelector.GetInstanceID()}");
+
         //float angleStep = projectileCount > 1 ? spreadAngle / (projectileCount - 1) : 0;
         // 2개 이하라면 작은 각도로
         // 3개 이상이라면 큰 각도로

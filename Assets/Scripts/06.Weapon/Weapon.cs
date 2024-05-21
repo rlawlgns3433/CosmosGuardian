@@ -11,9 +11,14 @@ public class Weapon : MonoBehaviour
 
     private Animator animator;
     private WeaponTable weaponTable;
+    int selectedWeaponId = default;
 
     private void Awake()
     {
+        weaponTable = DataTableMgr.Get<WeaponTable>(DataTableIds.Weapon);
+        selectedWeaponId = PlayerPrefs.GetInt("SelectedWeaponId", 0);
+
+
         if (!TryGetComponent(out animator))
         {
             animator.enabled = false;
@@ -21,10 +26,8 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void OnEnable()
     {
-        weaponTable = DataTableMgr.Get<WeaponTable>(DataTableIds.Weapon);
-        int selectedWeaponId = PlayerPrefs.GetInt("SelectedWeaponId", 0);
         SetWeapon(selectedWeaponId);
     }
 

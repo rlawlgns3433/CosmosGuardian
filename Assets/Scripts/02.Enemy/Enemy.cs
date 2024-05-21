@@ -82,7 +82,7 @@ public class Enemy : MonoBehaviour, IDamageable
             onDeath();
         }
 
-        textHealth.text = ((int)enemyData.HP).ToString();
+        textHealth.text = Mathf.FloorToInt(enemyData.HP).ToString();
     }
 
     public void OnDie()

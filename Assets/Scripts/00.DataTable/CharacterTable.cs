@@ -64,6 +64,15 @@ public class CharacterTable : DataTable
         }
     }
 
+    public Dictionary<int, CharacterData> AllData
+    {
+        get
+        {
+            return table;
+        }
+    }
+
+
     public override void Load(string path)
     {
         path = string.Format(FormatPath, path);

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.0060809674, g: 0.002938462, b: 0.02961255, a: 1}
+  m_IndirectSpecularColor: {r: 0.0060825134, g: 0.0029428285, b: 0.029609201, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1399,7 +1399,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 142.10527, y: -27.714285}
+  m_AnchoredPosition: {x: 142.10529, y: -27.714233}
   m_SizeDelta: {x: 284.21054, y: 55.42857}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &161784075
@@ -4032,6 +4032,7 @@ MonoBehaviour:
   pause: {fileID: 1916639170}
   item: {fileID: 316969797}
   stat: {fileID: 252709221}
+  gameover: {fileID: 632683578}
   textStats: {fileID: 1572561582}
   textItemSelectStats: {fileID: 1048429175}
   playerStats: {fileID: 1387199563}
@@ -4678,6 +4679,7 @@ MonoBehaviour:
   - {fileID: 9093663750402790569, guid: a31a22b275c159e4fa28755b495bad91, type: 3}
   - {fileID: 3492455130390485712, guid: acf6fe2f747250343bf9070e941ce57f, type: 3}
   playerStats: {fileID: 1387199563}
+  uiController: {fileID: 606105416}
   currentPlatformIndex: 0
   nextPlatformIndex: 0
   platformSpacing: 27
@@ -7347,7 +7349,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 976409065}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 682662809}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: EnterMainScene
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &976409065
 MonoBehaviour:
   m_ObjectHideFlags: 0

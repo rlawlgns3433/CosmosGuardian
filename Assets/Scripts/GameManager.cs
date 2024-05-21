@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -8,6 +9,7 @@ public class GameManager : Singleton<GameManager>
     public List<GameObject> enemies = new List<GameObject>(); // GameManager에서 갖는 것이 좋겠음.
     public EnemyTable enemyTable;
     public PlayerStats playerStats = null;
+    public UiController uiController;
 
     public int currentPlatformIndex = 0;
     public int nextPlatformIndex = 1;
@@ -71,6 +73,10 @@ public class GameManager : Singleton<GameManager>
         {
             collider.enabled = false;
         }
+
+        GameObject.FindWithTag(Tags.Joystick).SetActive(false);
+        // alpha lerp 필요
+        uiController.gameover.SetActive(true);
     }
 
     public void Pasue()

@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Analytics;
 
 public class UiController : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class UiController : MonoBehaviour
     public GameObject pause;
     public GameObject item;
     public GameObject stat;
+    public GameObject gameover;
     public TextMeshProUGUI textStats;
     public TextMeshProUGUI textItemSelectStats;
     public PlayerStats playerStats;
@@ -21,6 +23,7 @@ public class UiController : MonoBehaviour
         pause.SetActive(false);
         item.SetActive(false);
         stat.SetActive(false);
+        gameover.SetActive(false);
 
         Invoke("UpdatePauseUI", 0.01f);
     }

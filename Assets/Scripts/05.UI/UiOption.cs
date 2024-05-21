@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 public class UiOption : MonoBehaviour
 {
+    public Lobby lobby;
     public Slider bgmSlider;
     public Slider sfxSlider;
     public Button buttonCameraShake;
@@ -33,6 +34,7 @@ public class UiOption : MonoBehaviour
         bgmSlider.onValueChanged.AddListener((float value) =>
         {
             ParamManager.BgmValue = value;
+            lobby.audioSource.volume = ParamManager.BgmValue;
         });
 
         sfxSlider.onValueChanged.AddListener((float value) =>

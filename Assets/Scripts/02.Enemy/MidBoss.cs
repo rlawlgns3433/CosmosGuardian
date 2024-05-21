@@ -10,6 +10,8 @@ public class MidBoss : Enemy
 
         onDeath += () =>
         {
+            if (target.playerStats.stats[CharacterColumn.Stat.HP] <= 0) return;
+
             playerHealth.StopCoroutine(playerHealth.camShakeCoroutine);
             Time.timeScale = 0f;
             var uiController = GameObject.FindWithTag(Tags.UiController).GetComponent<UiController>();

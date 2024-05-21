@@ -9,7 +9,9 @@ public class UiController : MonoBehaviour
     public GameObject group;
     public GameObject pause;
     public GameObject item;
+    public GameObject stat;
     public TextMeshProUGUI textStats;
+    public TextMeshProUGUI textItemSelectStats;
     public PlayerStats playerStats;
     public PlayerShooter playerShooter;
 
@@ -18,13 +20,14 @@ public class UiController : MonoBehaviour
         group.SetActive(true);
         pause.SetActive(false);
         item.SetActive(false);
+        stat.SetActive(false);
 
         Invoke("UpdatePauseUI", 0.01f);
     }
 
     public void UpdatePauseUI()
     {
-        textStats.text = string.Format(statFormat,
+        textItemSelectStats.text = textStats.text = string.Format(statFormat,
         (int)(playerStats.stats[CharacterColumn.Stat.HP]),
         (int)(playerShooter.weapon.stats[WeaponColumn.Stat.DAMAGE] * playerStats.stats[CharacterColumn.Stat.DAMAGE]),
         (int)(playerShooter.weapon.stats[WeaponColumn.Stat.FIRE_RATE] * playerStats.stats[CharacterColumn.Stat.FIRE_RATE]),

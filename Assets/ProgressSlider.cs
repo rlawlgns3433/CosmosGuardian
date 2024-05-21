@@ -37,7 +37,7 @@ public class ProgressSlider : MonoBehaviour
     {
         if (Time.frameCount % 3 == 0)
         {
-            if(stage == 1)
+            if (stage == 1)
             {
                 movedDistance = playerMovement.transform.position.z;
             }
@@ -53,10 +53,13 @@ public class ProgressSlider : MonoBehaviour
     // 스테이지 클리어 시 호출 필요
     public void ResetProgressSlider()
     {
+        if (!Boss.IsBossDead) return;
+
         ++stage;
+        Boss.IsBossDead = false;
         // 플레이어 위치에서 totalDistance 뺀 값을 설정
         stageLength += movedDistance;
         movedDistance = 0; // 플레이어가 이동한 거리
-        totalDistance = distanceToNextStage + (appearanceThreshold + 1) * platformDistance * (pooledPlatformCount - 1)+ stopDistanceAtBoss; // 다음 이동할 거리
+        totalDistance = distanceToNextStage + (appearanceThreshold + 1) * platformDistance * (pooledPlatformCount - 1) + stopDistanceAtBoss; // 다음 이동할 거리
     }
 }

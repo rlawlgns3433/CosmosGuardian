@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Boss : Enemy
 {
+    public static bool IsBossDead = false; // 보스 사망 플래그
+
     private readonly string attack1 = "Attack1";
     private readonly string attack2 = "Attack2";
     private readonly string attack3 = "Attack3";
@@ -35,6 +37,8 @@ public class Boss : Enemy
 
         onDeath += () =>
         {
+            IsBossDead = true;
+
             var uiController = GameObject.FindWithTag(Tags.UiController).GetComponent<UiController>();
             uiController.item.SetActive(true);
 
@@ -121,6 +125,12 @@ public class Boss : Enemy
     {
         while (isAlive)
         {
+            if (!target.isAlive)
+            {
+                StopCoroutine(attackOneCoroutine);
+                yield break;
+            }
+
             distance = Vector3.Distance(target.transform.position, transform.position);
 
             if (distance > attackDistance)

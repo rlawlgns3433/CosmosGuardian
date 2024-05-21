@@ -38,7 +38,7 @@ public class CharacterData
         }
     }
 
-    public string GetDESC
+    public string GetDesc
     {
         get
         {

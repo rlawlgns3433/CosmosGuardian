@@ -9,6 +9,7 @@ public class WeaponData
 {
     public int WEAPON_ID { get; set; }
     public string NAME_ID { get; set; }
+    public string DESC_ID { get; set; }
     public int PREFAB_ID { get; set; }
     public int TYPE { get; set; }
     public int ANIM_TYPE { get; set; }
@@ -26,6 +27,21 @@ public class WeaponData
     public float PROJECTILE_SPEED { get; set; }
     public int PROJECTILE_AMOUNT { get; set; }
 
+    public string GetName
+    {
+        get
+        {
+            return DataTableMgr.GetStringTable().Get(NAME_ID);
+        }
+    }
+
+    public string GetDesc
+    {
+        get
+        {
+            return DataTableMgr.GetStringTable().Get(DESC_ID);
+        }
+    }
 }
 
 public class WeaponTable : DataTable
@@ -46,6 +62,15 @@ public class WeaponTable : DataTable
         {
             return table.Values.ToList();
         }
+    }
+
+    public Dictionary<int, WeaponData> AllData
+    {
+        get
+        {
+            return table;
+        }
+
     }
 
     public override void Load(string path)

@@ -10,6 +10,7 @@ public class UiCharacterSelect : MonoBehaviour
     public GameObject[] weapons;
     public int selectedCharacterIndex = 0;
     public int selectedWeaponIndex = 0;
+    public int selectedWeaponType = 0;
 
     private Vector3 rot = new Vector3(0, 1, 0);
     private Animator animator;

@@ -810,7 +810,7 @@ MonoBehaviour:
   m_text: "\uAC8C\uC784 \uC2DC\uC791"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 011191614450acb42853f8554aabf83e, type: 2}
-  m_sharedMaterial: {fileID: 115214938366592039, guid: 011191614450acb42853f8554aabf83e, type: 2}
+  m_sharedMaterial: {fileID: 3222911397177082518, guid: 011191614450acb42853f8554aabf83e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1027,7 +1027,7 @@ MonoBehaviour:
   m_text: "\uC7AC\uD654"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 011191614450acb42853f8554aabf83e, type: 2}
-  m_sharedMaterial: {fileID: 115214938366592039, guid: 011191614450acb42853f8554aabf83e, type: 2}
+  m_sharedMaterial: {fileID: 3222911397177082518, guid: 011191614450acb42853f8554aabf83e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1485,7 +1485,7 @@ MonoBehaviour:
   m_text: "\uC0C1\uC810"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 011191614450acb42853f8554aabf83e, type: 2}
-  m_sharedMaterial: {fileID: 115214938366592039, guid: 011191614450acb42853f8554aabf83e, type: 2}
+  m_sharedMaterial: {fileID: 3222911397177082518, guid: 011191614450acb42853f8554aabf83e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5343,6 +5343,7 @@ GameObject:
   - component: {fileID: 1553246668}
   - component: {fileID: 1553246667}
   - component: {fileID: 1553246666}
+  - component: {fileID: 1553246669}
   m_Layer: 5
   m_Name: Weapon
   m_TagString: Untagged
@@ -5428,6 +5429,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1553246664}
   m_CullTransparentMesh: 1
+--- !u!114 &1553246669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1553246664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e98c366cd7e697d4e9a88f2276c59c59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiCharacterSelect: {fileID: 1762018171694866939}
+  textWindowHeader: {fileID: 1104728226}
+  textWeaponDesc: {fileID: 1082372257}
 --- !u!1 &1568204370
 GameObject:
   m_ObjectHideFlags: 0

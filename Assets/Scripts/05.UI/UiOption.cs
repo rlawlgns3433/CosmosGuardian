@@ -17,6 +17,9 @@ public class UiOption : MonoBehaviour
     {
         buttonState = ParamManager.IsCameraShaking ? buttonOn : buttonOff;
         buttonImg.sprite = buttonSprites[buttonState];
+
+        bgmSlider.value = ParamManager.BgmValue;
+        sfxSlider.value = ParamManager.SfxValue;
     }
 
     private void Start()

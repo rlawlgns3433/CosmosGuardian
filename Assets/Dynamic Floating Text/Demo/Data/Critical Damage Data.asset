@@ -28,7 +28,7 @@ MonoBehaviour:
   colourAlternationDuration: 0.1
   sizeAlternationDuration: 0.1
   enterDuration: 0.1
-  exitDuration: 0.5
+  exitDuration: 0.1
   maxDrift: 0.5
   maxHeight: 0.25
   popModifier: 2

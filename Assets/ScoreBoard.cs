@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class ScoreBoard : MonoBehaviour
 {
-    public static readonly string rankingFormat = "{0}, {1}, {2}점"; // 캐릭터 이름, 무기 이름, 점수
+    public static readonly string rankingFormat = "{0}점, {1}, {2}";
 
     public TextMeshProUGUI[] textRecords;
     public SaveDataV1 savedRecord;
@@ -35,9 +35,9 @@ public class ScoreBoard : MonoBehaviour
 
 
             textRecords[i].text = string.Format(rankingFormat,
+                savedRecord.records[i].score,
                 uiCharacterSelect.characterTable.Get(savedRecord.records[i].characterDataId).GetName,
-                uiCharacterSelect.weaponTable.Get(savedRecord.records[i].weaponDataId).GetName,
-                savedRecord.records[i].score
+                uiCharacterSelect.weaponTable.Get(savedRecord.records[i].weaponDataId).GetName
                 );
         }
     }

@@ -4,7 +4,7 @@ using UnityEngine.Analytics;
 
 public class UiController : MonoBehaviour
 {
-    private static readonly string statFormat = "HP : {0}\n데미지 : {1}\n공격빈도 : {2}회/min\n투사체 속도 : {3}%\n사거리 : {4}\n크리티컬 확률 : {5}%\n크리티컬 데미지 : {6}%\n관통 : {7}개\n스플래시 범위 : {8}\n스플래시 데미지 : {9}%\n좌우 속도 : {10}%\n전진 속도: {11}%\n체력 흡수 : {12}%\n투사체 개수 : {13}개\n";
+    private static readonly string statFormat = "HP : {0}\n데미지 : {1}\n공격빈도 : {2}회/min\n투사체 속도 : {3}%\n사거리 : {4}\n치명타 확률 : {5}%\n치명타 데미지 : {6}%\n관통 : {7}개\n스플래시 범위 : {8}\n스플래시 데미지 : {9}%\n좌우 속도 : {10}%\n전진 속도: {11}%\n체력 흡수 : {12}%\n투사체 개수 : {13}개\n";
 
     [Header("Group")]
     public GameObject group;

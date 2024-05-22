@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -35,5 +36,14 @@ public class MainUiManager : MonoBehaviour
     {
         PlayerPrefs.SetString("SceneToLoad", sceneName); // 로드할 씬 이름 저장
         SceneManager.LoadScene("Loading"); // 로딩 씬 로드
+    }
+
+    public void QuitApplication()
+    {
+#if UNITY_EDITOR
+        EditorApplication.ExitPlaymode();
+#else
+            Application.Quit();
+#endif
     }
 }

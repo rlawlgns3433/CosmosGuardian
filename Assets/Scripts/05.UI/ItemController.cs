@@ -96,10 +96,14 @@ public class ItemController : MonoBehaviour
             sb.Append(" ");
             sb.Append(FormatSignedValue(itemdatas[i].GetOption1));
             sb.Append("\n");
-            sb.Append(itemdatas[i].GetOption2.GetName);
-            sb.Append(" ");
-            sb.Append(FormatSignedValue(itemdatas[i].GetOption2));
-            sb.Append("\n");
+
+            if (itemdatas[i].GetOption2 != null)
+            {
+                sb.Append(itemdatas[i].GetOption2.GetName);
+                sb.Append(" ");
+                sb.Append(FormatSignedValue(itemdatas[i].GetOption2));
+                sb.Append("\n");
+            }
 
             if(itemdatas[i].GetOption3 != null)
             {
@@ -112,9 +116,13 @@ public class ItemController : MonoBehaviour
 
             List<OptionData> options = new List<OptionData>
             {
-                itemdatas[i].GetOption1,
-                itemdatas[i].GetOption2
+                itemdatas[i].GetOption1
             };
+
+            if (itemdatas[i].GetOption3 != default(OptionData))
+            {
+                options.Add(itemdatas[i].GetOption2);
+            }
 
             if (itemdatas[i].GetOption3 != default(OptionData))
             {

@@ -119,7 +119,7 @@ public class ItemController : MonoBehaviour
                 itemdatas[i].GetOption1
             };
 
-            if (itemdatas[i].GetOption3 != default(OptionData))
+            if (itemdatas[i].GetOption2 != default(OptionData))
             {
                 options.Add(itemdatas[i].GetOption2);
             }

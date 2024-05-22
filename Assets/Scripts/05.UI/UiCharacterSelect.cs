@@ -29,8 +29,11 @@ public class UiCharacterSelect : MonoBehaviour
             animator.enabled = false;
         }
 
-        UpdateCharacter(PlayerPrefs.GetInt("SelectedCharacterIndex", 0));
-        UpdateWeapon(PlayerPrefs.GetInt("SelectedWeaponId", 0) % 100);
+        ParamManager.selectedCharacterIndex = PlayerPrefs.GetInt("SelectedCharacterIndex", 0) % 100;
+        ParamManager.selectedWeaponIndex = PlayerPrefs.GetInt("SelectedWeaponId", 0) % 100;
+
+        UpdateCharacter(ParamManager.selectedCharacterIndex);
+        UpdateWeapon(ParamManager.selectedWeaponIndex);
     }
 
     public void UpdateCharacter(int characterIndex)

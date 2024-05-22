@@ -13,7 +13,7 @@ public class PlayerStats : MonoBehaviour
     public int price = default;
 
     private readonly string scoreFormat = "Score : {0}";
-    private float exp;
+    public int exp;
     [Tooltip("최대 레벨")]
     public int maxLevel = 10;
     [Tooltip("레벨업에 필요한 경험치(즉, 스코어)")]

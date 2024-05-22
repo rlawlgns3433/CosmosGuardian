@@ -34,7 +34,7 @@ public class MainUiManager : MonoBehaviour
 
     public void LoadScene(string sceneName)
     {
-        PlayerPrefs.SetString("SceneToLoad", sceneName); // 로드할 씬 이름 저장
+        ParamManager.SceneToLoad = sceneName; // 로드할 씬 이름 저장
         SceneManager.LoadScene("Loading"); // 로딩 씬 로드
     }
 

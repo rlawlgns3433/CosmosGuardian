@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -69,7 +68,7 @@ public class GameManager : Singleton<GameManager>
 
         Collider[] colliders = playerStats.gameObject.GetComponents<Collider>();
 
-        foreach(var collider in colliders)
+        foreach (var collider in colliders)
         {
             collider.enabled = false;
         }
@@ -101,7 +100,22 @@ public class GameManager : Singleton<GameManager>
 
     public void LoadScene(string sceneName)
     {
-        PlayerPrefs.SetString("SceneToLoad", sceneName); // 로드할 씬 이름 저장
+        if (IsGameover)
+        {
+            RecordData record = new RecordData();
+            record.characterDataId = playerStats.characterData.CHARACTER_ID;
+            record.weaponDataId = playerStats.playerShooter.weapon.weaponData.WEAPON_ID;
+            record.score = playerStats.exp;
+
+            SaveRecord(record);
+        }
+
+        ParamManager.SceneToLoad = sceneName; // 로드할 씬 이름 저장
         SceneManager.LoadScene("Loading"); // 로딩 씬 로드
+    }
+
+    public void SaveRecord(RecordData recordData)
+    {
+        ParamManager.currentRecord = recordData;
     }
 }

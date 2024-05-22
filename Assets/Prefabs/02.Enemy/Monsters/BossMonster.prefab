@@ -2095,7 +2095,7 @@ MonoBehaviour:
   intervalFloat: 1
   projectileSpeed: 7
   attackDistance: 50
-  projectilePrefab: {fileID: 2245107836117157507, guid: 5f4ea3ac08006fc4e8cb68cb886f6821, type: 3}
+  projectilePrefab: {fileID: 1128728136785006, guid: ff7ef3210dd085b4085c9d433a07b5ab, type: 3}
   angle: 30
 --- !u!65 &6403449722843573419
 BoxCollider:

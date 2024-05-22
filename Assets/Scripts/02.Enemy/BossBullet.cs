@@ -20,6 +20,16 @@ public class BossBullet : MonoBehaviour
             var player = other.GetComponent<PlayerHealth>();
             player.OnDamage(boss.enemyData.DAMAGE);
 
+            if (player.camShakeCoroutine != null)
+            {
+                StopCoroutine(player.camShakeCoroutine);
+            }
+
+            if (ParamManager.IsCameraShaking)
+            {
+                player.camShakeCoroutine = StartCoroutine(player.cameraShake.Shake(0.15f, 1f));
+            }
+
             Destroy(gameObject);
         }
     }

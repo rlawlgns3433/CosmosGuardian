@@ -75,7 +75,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Enemy"))
+        if(other.CompareTag(Tags.Enemy))
         {
             if(camShakeCoroutine != null)
             {
@@ -92,4 +92,5 @@ public class PlayerHealth : MonoBehaviour, IDamageable
             enemy.OnDamage(enemy.enemyData.HP);
         }
     }
+
 }

@@ -12,7 +12,7 @@ public class Boss : Enemy
     [Tooltip("Attack 1 발사 간격")]
     public float intervalFloat = 0.3f;
     [Tooltip("Attack 1 발사 속도")]
-    public float projectileSpeed = 10;
+    public float projectileSpeed = -10;
     [Tooltip("이 거리에 내에 들어올 때 공격")]
     public float attackDistance = 30;
     public GameObject projectilePrefab;
@@ -127,7 +127,11 @@ public class Boss : Enemy
         {
             if (!target.isAlive)
             {
-                StopCoroutine(attackOneCoroutine);
+                if(attackOneCoroutine != null)
+                {
+                    StopCoroutine(attackOneCoroutine);
+                }
+
                 yield break;
             }
 

@@ -41,6 +41,7 @@ public static class Tags
     public static readonly string Joystick = "Joystick";
     public static readonly string ItemController = "ItemController";
     public static readonly string BossPlatform = "BossPlatform";
+    public static readonly string BossBullet = "BossBullet";
 }
 
 public static class SortingLayers

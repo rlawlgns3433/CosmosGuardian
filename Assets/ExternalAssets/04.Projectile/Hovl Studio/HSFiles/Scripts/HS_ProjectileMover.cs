@@ -1,5 +1,5 @@
 ﻿using System.Collections;
-using Unity.VisualScripting;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class HS_ProjectileMover : MonoBehaviour
@@ -19,15 +19,38 @@ public class HS_ProjectileMover : MonoBehaviour
     private bool startChecker = false;
     [SerializeField]protected bool notDestroy = false;
 
-    private PlayerShooter playerShooter;
-    private Vector3 startPosition = Vector3.zero;
+    protected virtual void Start()
+    {
+        if (!startChecker)
+        {
+            /*lightSourse = GetComponent<Light>();
+            rb = GetComponent<Rigidbody>();
+            col = GetComponent<Collider>();
+            if (hit != null)
+                hitPS = hit.GetComponent<ParticleSystem>();*/
+            if (flash != null)
+            {
+                flash.transform.parent = null;
+            }
+        }
+        if (notDestroy)
+            StartCoroutine(DisableTimer(5));
+        else
+            Destroy(gameObject, 5);
+        startChecker = true;
+    }
 
+    protected virtual IEnumerator DisableTimer(float time)
+    {
+        yield return new WaitForSeconds(time);
+        if(gameObject.activeSelf)
+            gameObject.SetActive(false);
+        yield break;
+    }
 
     protected virtual void OnEnable()
     {
-        playerShooter = GameObject.FindWithTag(Tags.Player).GetComponent<PlayerShooter>();
-
-        if (!startChecker)
+        if (startChecker)
         {
             if (flash != null)
             {
@@ -38,20 +61,62 @@ public class HS_ProjectileMover : MonoBehaviour
             col.enabled = true;
             rb.constraints = RigidbodyConstraints.None;
         }
-        startPosition = rb.position = playerShooter.muzzle.transform.position;
-        rb.velocity = Vector3.forward * speed;
     }
 
-    protected virtual void FixedUpdate()
+    //protected virtual void FixedUpdate()
+    //{
+    //    if (speed != 0)
+    //    {
+    //        rb.velocity = transform.forward * speed;      
+    //    }
+    //}
+
+    //https ://docs.unity3d.com/ScriptReference/Rigidbody.OnCollisionEnter.html
+    protected virtual void OnCollisionEnter(Collision collision)
     {
-        float distance = Vector3.Distance(startPosition, rb.position);
+        //Lock all axes movement and rotation
+        rb.constraints = RigidbodyConstraints.FreezeAll;
+        //speed = 0;
+        if (lightSourse != null)
+            lightSourse.enabled = false;
+        col.enabled = false;
+        projectilePS.Stop();
+        projectilePS.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
 
-        if (distance >= 20)
+        ContactPoint contact = collision.contacts[0];
+        Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal);
+        Vector3 pos = contact.point + contact.normal * hitOffset;
+
+        //Spawn hit effect on collision
+        if (hit != null)
         {
-            gameObject.SetActive(false);
+            hit.transform.rotation = rot;
+            hit.transform.position = pos;
+            if (UseFirePointRotation) { hit.transform.rotation = gameObject.transform.rotation * Quaternion.Euler(0, 180f, 0); }
+            else if (rotationOffset != Vector3.zero) { hit.transform.rotation = Quaternion.Euler(rotationOffset); }
+            else { hit.transform.LookAt(contact.point + contact.normal); }
+            hitPS.Play();
+        }
 
-            playerShooter.ReturnProjectile(gameObject);
+        //Removing trail from the projectile on cillision enter or smooth removing. Detached elements must have "AutoDestroying script"
+        foreach (var detachedPrefab in Detached)
+        {
+            if (detachedPrefab != null)
+            {
+                ParticleSystem detachedPS = detachedPrefab.GetComponent<ParticleSystem>();
+                detachedPS.Stop();
+            }
+        }
+        if (notDestroy)
+            StartCoroutine(DisableTimer(hitPS.main.duration));
+        else
+        {
+            if (hitPS != null)
+            {
+                Destroy(gameObject, hitPS.main.duration);
+            }
+            else
+                Destroy(gameObject, 1);
         }
     }
-
 }

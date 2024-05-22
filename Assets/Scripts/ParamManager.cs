@@ -27,7 +27,10 @@ public class ParamManager : MonoBehaviour
     public static void SaveCurrentRecord(RecordData recordData)
     {
         saveData = SaveLoadSystem.Load() as SaveDataV1;
-
+        if (saveData == null)
+        {
+            saveData = new SaveDataV1();
+        }
         currentRecord = recordData;
         saveData.records.Add(currentRecord);
         saveData.records.Sort(comparison);

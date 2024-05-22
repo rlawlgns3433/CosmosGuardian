@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.010183215, g: 0.015701244, b: 0.068663076, a: 1}
+  m_IndirectSpecularColor: {r: 0.010255179, g: 0.015789049, b: 0.06889131, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4202,7 +4202,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -11351,7 +11351,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -14673,6 +14673,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7363405602202689305, guid: e4082e0d42033b94da094938b6759d82, type: 3}
+      propertyPath: textWeaponName
+      value: 
+      objectReference: {fileID: 538861144}
+    - target: {fileID: 7363405602202689305, guid: e4082e0d42033b94da094938b6759d82, type: 3}
+      propertyPath: textCharacterName
+      value: 
+      objectReference: {fileID: 1546310795}
     - target: {fileID: 7808841121157725970, guid: e4082e0d42033b94da094938b6759d82, type: 3}
       propertyPath: m_Name
       value: UiCharacter

@@ -1,7 +1,11 @@
+using System.Text;
+using TMPro;
 using UnityEngine;
 
 public class UiCharacterSelect : MonoBehaviour
 {
+    public TextMeshProUGUI textCharacterName;
+    public TextMeshProUGUI textWeaponName;
     public CharacterTable characterTable;
     public WeaponTable weaponTable;
     public RuntimeAnimatorController[] animatorControllers;
@@ -17,6 +21,9 @@ public class UiCharacterSelect : MonoBehaviour
 
     private void Awake()
     {
+        characterTable = DataTableMgr.Get<CharacterTable>(DataTableIds.Character);
+        weaponTable = DataTableMgr.Get<WeaponTable>(DataTableIds.Weapon);
+
         if (!TryGetComponent(out animator))
         {
             animator.enabled = false;
@@ -24,12 +31,6 @@ public class UiCharacterSelect : MonoBehaviour
 
         UpdateCharacter(PlayerPrefs.GetInt("SelectedCharacterIndex", 0));
         UpdateWeapon(PlayerPrefs.GetInt("SelectedWeaponId", 0) % 100);
-    }
-
-    private void Start()
-    {
-        characterTable = DataTableMgr.Get<CharacterTable>(DataTableIds.Character);
-        weaponTable = DataTableMgr.Get<WeaponTable>(DataTableIds.Weapon);
     }
 
     public void UpdateCharacter(int characterIndex)
@@ -49,6 +50,15 @@ public class UiCharacterSelect : MonoBehaviour
                 characterHeads[i].SetActive(false);
             }
         }
+
+        StringBuilder sb = new StringBuilder();
+        sb.Append((int)TableIdentifier.Character);
+        sb.Append((selectedCharacterIndex + 1).ToString("D2"));
+        sb.Append((selectedCharacterIndex + 1).ToString("D2"));
+        string id = sb.ToString();
+
+        int intId = int.Parse(id);
+        textCharacterName.text = characterTable.Get(intId).GetName;
     }
 
     public void UpdateWeapon(int weaponIndex)
@@ -66,11 +76,24 @@ public class UiCharacterSelect : MonoBehaviour
             {
                 animator.runtimeAnimatorController = animatorControllers[i];
                 weapons[i].SetActive(true);
+                // weapon은 prefab id를 구분자로 사용해야 한다.
+                // prefab id = index + 1
+                // index = prefab id - 1
+                // 
+                // id + type(D2) + prefabId(D2)
                 break;
             }
             else
             {
                 weapons[i].SetActive(false);
+            }
+        }
+        foreach(var _id in weaponTable.AllItemIds)
+        {
+            if (_id % 100 == selectedWeaponIndex)
+            {
+                textWeaponName.text = weaponTable.Get(_id).GetName;
+                break;
             }
         }
     }

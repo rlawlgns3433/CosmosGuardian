@@ -91,6 +91,7 @@ public class Enemy : MonoBehaviour, IDamageable
         enemyState = EnemyState.Dead;
         //isChasing = false;
 
+        textHealth.gameObject.SetActive(false);
         Collider[] colliders = GetComponents<Collider>();
         foreach(var collider in colliders)
         {

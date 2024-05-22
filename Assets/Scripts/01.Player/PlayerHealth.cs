@@ -56,6 +56,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     public void OnDie()
     {
         isAlive = false;
+        textHealth.gameObject.SetActive(false);
         animator.SetTrigger("Die");
 
         Collider[] colliders = GetComponents<Collider>();

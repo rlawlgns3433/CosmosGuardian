@@ -34,6 +34,11 @@ public class Enemy : MonoBehaviour, IDamageable
     protected ItemController itemController;
     public EnemyData enemyData = null;
     public PlayerHealth target = null;
+    public Vector3 damageFloatingPosition;
+    public float floatingTextRadius;
+    public SphereCollider sphereCollider;
+
+
     //private WaitForSeconds chaseTimer = new WaitForSeconds(1f);
     //public Vector3 direction;
 
@@ -53,6 +58,8 @@ public class Enemy : MonoBehaviour, IDamageable
             enemyData = new EnemyData(GameManager.Instance.enemyTable.Get((int)(enemyType)));
         }
 
+        damageFloatingPosition = textHealth.transform.position;
+        floatingTextRadius = 3f;
         target = GameObject.FindWithTag(Tags.Player).GetComponent<PlayerHealth>();
         onDeath += OnDie;
         onDeath += () => { target.GetComponent<PlayerStats>().GetExp(enemyData.SCORE); };
@@ -71,9 +78,18 @@ public class Enemy : MonoBehaviour, IDamageable
     //    }
     //}
 
-    public void OnDamage(float damage, Vector3 hitPoint = default, Vector3 hitNormal = default)
+    public void OnDamage(float damage, bool isCritical = false, Vector3 hitPoint = default, Vector3 hitNormal = default)
     {
         if (!isAlive) return;
+
+        if(isCritical)
+        {
+            DynamicTextManager.CreateText(damageFloatingPosition + UnityEngine.Random.onUnitSphere * sphereCollider.radius / 2, Mathf.RoundToInt(damage).ToString(), DynamicTextManager.criticalDamageData);
+        }
+        else
+        {
+            DynamicTextManager.CreateText(damageFloatingPosition + UnityEngine.Random.onUnitSphere * sphereCollider.radius / 2, Mathf.RoundToInt(damage).ToString(), DynamicTextManager.normalDamgeData);
+        }
 
         enemyData.HP -= damage;
         if (enemyData.HP <= 0)
@@ -92,11 +108,7 @@ public class Enemy : MonoBehaviour, IDamageable
         //isChasing = false;
 
         textHealth.gameObject.SetActive(false);
-        Collider[] colliders = GetComponents<Collider>();
-        foreach(var collider in colliders)
-        {
-            collider.enabled = false;
-        }
+        sphereCollider.enabled = false;
 
         animator.SetTrigger("Die");
         Destroy(gameObject, 1.5f);

@@ -812,6 +812,9 @@ MonoBehaviour:
   enemyType: 40000
   textHealth: {fileID: 5646388579843758660}
   target: {fileID: 0}
+  damageFloatingPosition: {x: 0, y: 0, z: 0}
+  floatingTextRadius: 0
+  sphereCollider: {fileID: -4745713309901149687}
 --- !u!135 &-4745713309901149687
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1723,7 +1726,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: 1065358227
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &2821506206920010941

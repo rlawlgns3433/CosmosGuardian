@@ -34,7 +34,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         onDeath += GameManager.Instance.Gameover;
     }
 
-    public void OnDamage(float damage, Vector3 hitPoint = default, Vector3 hitNormal = default)
+    public void OnDamage(float damage, bool isCritical = false, Vector3 hitPoint = default, Vector3 hitNormal = default)
     {
         if (!isAlive) return;
 

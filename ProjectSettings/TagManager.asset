@@ -14,6 +14,7 @@ TagManager:
   - Joystick
   - ItemController
   - BossPlatform
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -53,4 +54,7 @@ TagManager:
     locked: 0
   - name: Option
     uniqueID: 3266155205
+    locked: 0
+  - name: EnemyHp
+    uniqueID: 1065358227
     locked: 0

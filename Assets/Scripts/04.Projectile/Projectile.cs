@@ -239,7 +239,7 @@ public class Projectile : MonoBehaviour
             rand = Random.value;
             if (rand <= CriticalRate)
             {
-                enemy.OnDamage(CriticalDamage); // 크리티컬 뎀
+                enemy.OnDamage(CriticalDamage, true); // 크리티컬 뎀
             }
             // 크리티컬 확률이 아닐 경우
             else

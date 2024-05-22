@@ -2029,7 +2029,7 @@ GameObject:
   - component: {fileID: 7379252335875354934}
   - component: {fileID: 7379252335866060610}
   - component: {fileID: 8498097923696691664}
-  - component: {fileID: 6403449722843573419}
+  - component: {fileID: 7245538018801547053}
   m_Layer: 0
   m_Name: BossMonster
   m_TagString: Boss
@@ -2092,13 +2092,16 @@ MonoBehaviour:
   enemyType: 40300
   textHealth: {fileID: 896874337899129022}
   target: {fileID: 0}
+  damageFloatingPosition: {x: 0, y: 0, z: 0}
+  floatingTextRadius: 0
+  sphereCollider: {fileID: 7245538018801547053}
   intervalFloat: 1
   projectileSpeed: 7
   attackDistance: 50
   projectilePrefab: {fileID: 1128728136785006, guid: ff7ef3210dd085b4085c9d433a07b5ab, type: 3}
   angle: 30
---- !u!65 &6403449722843573419
-BoxCollider:
+--- !u!135 &7245538018801547053
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2116,8 +2119,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 2, z: 1}
-  m_Center: {x: 0, y: 1, z: 0.5}
+  m_Radius: 2
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &7379252335875583264
 GameObject:
   m_ObjectHideFlags: 0
@@ -2819,7 +2822,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: 1065358227
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &6726432988964841262

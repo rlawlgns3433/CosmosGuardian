@@ -1242,7 +1242,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: 1065358227
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &7670509397176144099
@@ -1507,6 +1507,9 @@ MonoBehaviour:
   enemyType: 40000
   textHealth: {fileID: 7029264151089853824}
   target: {fileID: 0}
+  damageFloatingPosition: {x: 0, y: 0, z: 0}
+  floatingTextRadius: 0
+  sphereCollider: {fileID: 2422761606757214582}
 --- !u!1 &9098729714593212743
 GameObject:
   m_ObjectHideFlags: 0

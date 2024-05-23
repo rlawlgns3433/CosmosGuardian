@@ -71,6 +71,6 @@ public class UiController : MonoBehaviour
         stringTable.Get(string.Format(nameFormat, i++)),
         playerStats.stats[CharacterColumn.Stat.MOVE_SPEED_H] * 100f,
         stringTable.Get(string.Format(nameFormat, i++)),
-        playerStats.stats[CharacterColumn.Stat.ARMOR] * 100f);
+        (playerStats.stats[CharacterColumn.Stat.ARMOR] * 100f) - 100);
     }
 }

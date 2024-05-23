@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class UiStart : MonoBehaviour
 {
+    public AudioSource audioSource;
     public TextMeshProUGUI textIntro;
     public float blinkDuration = 1.0f;
 
@@ -38,6 +39,8 @@ public class UiStart : MonoBehaviour
         ParamManager.LoadScene(ParamManager.SceneToLoad);
 
         StopAllCoroutines();
+        audioSource.Stop();
+        Destroy(audioSource);
         Destroy(this);
     }
 }

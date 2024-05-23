@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.006080829, g: 0.0029385951, b: 0.029612528, a: 1}
+  m_IndirectSpecularColor: {r: 0.0060809674, g: 0.002938462, b: 0.02961255, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1773,7 +1773,7 @@ PrefabInstance:
       objectReference: {fileID: 963194227}
     - target: {fileID: 6011530658994398209, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
       propertyPath: hpScale
-      value: 1.5
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 7382178044035454824, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
       propertyPath: playerStats
@@ -3542,7 +3542,7 @@ PrefabInstance:
       objectReference: {fileID: 963194227}
     - target: {fileID: 6011530658994398209, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
       propertyPath: hpScale
-      value: 1.5
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 7382178044035454824, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
       propertyPath: playerStats
@@ -6190,7 +6190,7 @@ PrefabInstance:
       objectReference: {fileID: 963194227}
     - target: {fileID: 6011530658994398209, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
       propertyPath: hpScale
-      value: 1.5
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 7382178044035454824, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
       propertyPath: playerStats
@@ -10032,7 +10032,7 @@ PrefabInstance:
       objectReference: {fileID: 963194227}
     - target: {fileID: 6011530658994398209, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
       propertyPath: hpScale
-      value: 1.5
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 7382178044035454824, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
       propertyPath: playerStats
@@ -12031,6 +12031,10 @@ PrefabInstance:
       propertyPath: playerStats
       value: 
       objectReference: {fileID: 1387199563}
+    - target: {fileID: 6011530658994398209, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
+      propertyPath: hpScale
+      value: 1.6
+      objectReference: {fileID: 0}
     - target: {fileID: 7382178044035454824, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
       propertyPath: playerStats
       value: 
@@ -13475,7 +13479,7 @@ PrefabInstance:
       objectReference: {fileID: 963194227}
     - target: {fileID: 6011530658994398209, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
       propertyPath: hpScale
-      value: 1.5
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 7382178044035454824, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
       propertyPath: playerStats
@@ -14026,7 +14030,7 @@ PrefabInstance:
       objectReference: {fileID: 963194227}
     - target: {fileID: 6011530658994398209, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
       propertyPath: hpScale
-      value: 1.5
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 7382178044035454824, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
       propertyPath: playerStats
@@ -15244,6 +15248,10 @@ PrefabInstance:
     - target: {fileID: 4962473657693050575, guid: d04a77f69089fe14ca4d0dbdd8834c4f, type: 3}
       propertyPath: bossAppearanceThreshold
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220609208338446750, guid: d04a77f69089fe14ca4d0dbdd8834c4f, type: 3}
+      propertyPath: hpScale
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 5847827965554300113, guid: d04a77f69089fe14ca4d0dbdd8834c4f, type: 3}
       propertyPath: m_LocalPosition.x

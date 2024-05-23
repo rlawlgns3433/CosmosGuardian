@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
@@ -118,20 +119,31 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    public float weaponpenetrate;
-
     // =======Penetrate
+    public float penetrateScale;
+    public float weaponPenetrate;
     public int Penetrate
     {
         get
         {
-            return Mathf.RoundToInt(weaponpenetrate);
+            return Mathf.RoundToInt(penetrateScale * weaponPenetrate);
+        }
+    }
+
+    // =======CurrentPenetrate
+    public int currentPenetrate;
+    public int CurrentPenetrate
+    {
+        get
+        {
+            return Penetrate - currentPenetrate;
         }
         set
         {
-            weaponpenetrate = value;
+            currentPenetrate = value;
         }
     }
+
 
     private void Awake()
     {
@@ -202,7 +214,8 @@ public class Projectile : MonoBehaviour
         splashDamageRangeScale = playerStats.stats[CharacterColumn.Stat.SPLASH_RANGE];
         weaponSplashDamageRange = playerShooter.weapon.stats[WeaponColumn.Stat.SPLASH_RANGE];
 
-        weaponpenetrate = playerShooter.weapon.stats[WeaponColumn.Stat.PENETRATE];
+        penetrateScale = playerStats.stats[CharacterColumn.Stat.PENETRATE];
+        weaponPenetrate = playerShooter.weapon.stats[WeaponColumn.Stat.PENETRATE];
 
         startPosition = playerShooter.muzzle.transform.position;
         transform.position = startPosition;
@@ -210,6 +223,7 @@ public class Projectile : MonoBehaviour
         rb.velocity = Vector3.zero;  // Rigidbody 속도 초기화
         rb.angularVelocity = Vector3.zero; // 각속도 초기화
 
+        currentPenetrate = 0;
         if (!audioSource.isPlaying)
         {
             audioSource.clip = SoundManager.Instance.flashClips[playerShooter.weapon.weaponData.PROJECTILE_ID - 1];
@@ -266,7 +280,7 @@ public class Projectile : MonoBehaviour
             playerStats.stats[CharacterColumn.Stat.HP] += HpDrain; // 흡수
             playerHealth.UpdateHealthUI();
 
-            if(Penetrate <= 0)
+            if(CurrentPenetrate <= 0)
             {
                 rb.constraints = RigidbodyConstraints.FreezeAll;
                 //speed = 0;
@@ -312,7 +326,7 @@ public class Projectile : MonoBehaviour
 
                 returnCoroutine = StartCoroutine(ReturnProjectileAfter(disappearTimer));
             }
-            --Penetrate;
+            ++currentPenetrate;
         }
     }
 

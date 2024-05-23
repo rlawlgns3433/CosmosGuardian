@@ -145,6 +145,7 @@ public enum TableIdentifier
 
 public enum SceneIds
 { 
+    Start,
     Main,
     Game,
     Loading

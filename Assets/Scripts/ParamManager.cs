@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.Analytics;
+using UnityEngine.SceneManagement;
 
 public class ParamManager : MonoBehaviour
 {
@@ -40,5 +42,11 @@ public class ParamManager : MonoBehaviour
         }
 
         SaveLoadSystem.Save(saveData);
+    }
+
+    public static void LoadScene(string sceneName)
+    {
+        SceneToLoad = sceneName;
+        SceneManager.LoadScene("Loading"); // ·Îµù ¾À ·Îµå
     }
 }

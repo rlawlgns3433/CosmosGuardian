@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Boss : Enemy
@@ -9,6 +10,8 @@ public class Boss : Enemy
     private readonly string attack2 = "Attack2";
     private readonly string attack3 = "Attack3";
 
+    private List<GameObject> projectiles = new List<GameObject>();
+
     [Tooltip("Attack 1 발사 간격")]
     public float intervalFloat = 0.3f;
     [Tooltip("Attack 1 발사 속도")]
@@ -18,7 +21,6 @@ public class Boss : Enemy
     public GameObject projectilePrefab;
     public Coroutine attackOneCoroutine;
     public float angle = 30f;
-
     private Platform bossPlatform;
     private CameraMove cameraMove;
     private WaitForSeconds shotInterval;
@@ -38,6 +40,13 @@ public class Boss : Enemy
         onDeath += () =>
         {
             IsBossDead = true;
+
+            foreach(var projectile in projectiles)
+            {
+                Destroy(projectile);
+            }
+
+            projectiles.Clear();
 
             var uiController = GameObject.FindWithTag(Tags.UiController).GetComponent<UiController>();
             uiController.item.SetActive(true);
@@ -118,7 +127,7 @@ public class Boss : Enemy
         Rigidbody rb = projectile.GetComponent<Rigidbody>();
         rb.velocity = (direction - Vector3.up * 0.1f) * projectileSpeed;
 
-        Destroy(projectile, 5f);
+        projectiles.Add(projectile);
     }
 
     IEnumerator AttackPattern()

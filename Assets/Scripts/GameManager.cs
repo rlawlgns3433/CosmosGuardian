@@ -23,17 +23,6 @@ public class GameManager : Singleton<GameManager>
         enemyTable = DataTableMgr.Get<EnemyTable>(DataTableIds.Enemy);
     }
 
-    //private void Start()
-    //{
-    //    GameObject currentPlatform = platforms[currentPlatformIndex];
-    //    var platform = currentPlatform.GetComponent<Platform>();
-
-    //    foreach (var enemy in platform.spawnedEnemies)
-    //    {
-    //        enemy.Chase();
-    //    }
-    //}
-
     private void Update()
     {
         GameObject currentPlatform = platforms[currentPlatformIndex];
@@ -48,13 +37,6 @@ public class GameManager : Singleton<GameManager>
 
             var platform = currentPlatform.GetComponent<Platform>();
             platform.ResetPlatform();
-
-            // 다음 플랫폼의 몬스터들이 움직이게 함
-            //Platform nextPlatform = platforms[nextPlatformIndex].GetComponent<Platform>();
-            //foreach(var enemy in nextPlatform.spawnedEnemies)
-            //{
-            //    enemy.Chase();
-            //}
         }
     }
 

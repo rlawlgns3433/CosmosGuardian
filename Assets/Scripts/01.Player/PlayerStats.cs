@@ -3,7 +3,6 @@ using UnityEngine;
 using TMPro;
 using System.Text;
 using System;
-using static System.Net.WebRequestMethods;
 using System.Collections;
 
 public class PlayerStats : MonoBehaviour
@@ -36,6 +35,7 @@ public class PlayerStats : MonoBehaviour
     public PrefabSelector prefabSelector = null;
     public CharacterData characterData = null;
     public string id = string.Empty;
+    public float prevPositionZ = 1.5f;
 
 
     private void Awake()
@@ -49,6 +49,7 @@ public class PlayerStats : MonoBehaviour
         }
 
         effects = getOptionEffect.GetComponentsInChildren<ParticleSystem>();
+        prevPositionZ = gameObject.transform.position.z;
     }
 
     private void OnEnable()
@@ -65,11 +66,12 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void LateUpdate()
     {
-        if(Input.GetKeyDown(KeyCode.L))
+        if((int)(transform.position.z) > (int)prevPositionZ)
         {
-            LevelUp();
+            GetExp(1);
+            prevPositionZ = transform.position.z;
         }
     }
 
@@ -86,7 +88,15 @@ public class PlayerStats : MonoBehaviour
         switch (type)
         {
             case OptionColumn.Type.Scale:
-                stats[(CharacterColumn.Stat)stat] += initialStats[(CharacterColumn.Stat)stat] * (value / 100.0f);
+                {
+                    stats[(CharacterColumn.Stat)stat] += initialStats[(CharacterColumn.Stat)stat] * (value / 100.0f);
+
+                    if (stat == OptionColumn.Stat.ARMOR)
+                    {
+                        stats[(CharacterColumn.Stat)stat] = Mathf.Min(stats[(CharacterColumn.Stat)stat], 1.9f);
+                    }
+                }
+
                 break;
             case OptionColumn.Type.Fixed:
                 {

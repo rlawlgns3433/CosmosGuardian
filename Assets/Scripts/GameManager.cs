@@ -74,7 +74,6 @@ public class GameManager : Singleton<GameManager>
         }
 
         GameObject.FindWithTag(Tags.Joystick).SetActive(false);
-        // alpha lerp ÇÊ¿ä
         uiController.gameover.SetActive(true);
     }
 
@@ -95,7 +94,6 @@ public class GameManager : Singleton<GameManager>
     {
         Time.timeScale = 1f;
         LoadScene("Main");
-        //SceneManager.LoadScene(0);
     }
 
     public void LoadScene(string sceneName)

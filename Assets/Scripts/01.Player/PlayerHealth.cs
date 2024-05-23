@@ -8,7 +8,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     public TextMeshProUGUI textHealth;
     public event Action onDeath;
     public PlayerStats playerStats = null;
-    private Animator animator;
+    public Animator animator;
     public bool isAlive = true;
     public Coroutine camShakeCoroutine;
 

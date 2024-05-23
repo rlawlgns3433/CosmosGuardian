@@ -147,5 +147,5 @@ public enum SceneIds
 { 
     Main,
     Game,
-    Shop
+    Loading
 }

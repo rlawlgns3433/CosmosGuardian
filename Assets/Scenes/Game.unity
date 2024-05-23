@@ -9822,6 +9822,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 535048338888671696, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 864263491328857693, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
+      propertyPath: lengthInSec
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 864263491328857693, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
+      propertyPath: simulationSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 864263491328857693, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
+      propertyPath: emitterVelocityMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1031264109668211848, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
+      propertyPath: lengthInSec
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1031264109668211848, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
+      propertyPath: simulationSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1031264109668211848, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
+      propertyPath: emitterVelocityMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2178642780895092122, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
       propertyPath: dynamicJoystick
       value: 
@@ -9830,6 +9858,26 @@ PrefabInstance:
       propertyPath: textExp
       value: 
       objectReference: {fileID: 610191288}
+    - target: {fileID: 4468456433601942991, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4468456433601942991, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
+      propertyPath: lengthInSec
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4468456433601942991, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4468456433601942991, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
+      propertyPath: simulationSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4468456433601942991, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
+      propertyPath: emitterVelocityMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4508787347923785903, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
       propertyPath: cameraShake
       value: 
@@ -9838,16 +9886,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 5780539546917754731, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
-      propertyPath: m_fontAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 011191614450acb42853f8554aabf83e, type: 2}
-    - target: {fileID: 5780539546917754731, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 3222911397177082518, guid: 011191614450acb42853f8554aabf83e, type: 2}
-    - target: {fileID: 5780539546917754731, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
-      propertyPath: m_hasFontAssetChanged
+    - target: {fileID: 5851080138763656397, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
+      propertyPath: lengthInSec
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5851080138763656397, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
+      propertyPath: simulationSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5851080138763656397, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
+      propertyPath: emitterVelocityMode
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7818869945511880141, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}

@@ -3,12 +3,18 @@ using UnityEngine;
 using TMPro;
 using System.Text;
 using System;
+using static System.Net.WebRequestMethods;
+using System.Collections;
 
 public class PlayerStats : MonoBehaviour
 {
     public PlayerHealth playerHealth;
     public PlayerShooter playerShooter;
     public TextMeshProUGUI textExp;
+    public GameObject getOptionEffect;
+    private ParticleSystem[] effects;
+    private WaitForSeconds oneSec = new WaitForSeconds(2f);
+    private Coroutine stopEffectCoroutine;
     public int level = 1;
     public int price = default;
 
@@ -41,6 +47,8 @@ public class PlayerStats : MonoBehaviour
             prefabSelector.enabled = false;
             return;
         }
+
+        effects = getOptionEffect.GetComponentsInChildren<ParticleSystem>();
     }
 
     private void OnEnable()
@@ -67,6 +75,12 @@ public class PlayerStats : MonoBehaviour
 
     public bool UpdateStats(OptionColumn.Stat stat, OptionColumn.Type type, float value)
     {
+        getOptionEffect.SetActive(true);
+        foreach (var particle in effects)
+        {
+            particle.Play();
+        }
+
         // 옵저버 패턴으로 stat을 observe하고 동작하는 클래스를 생성하여 변경 필요
         // Maximum이 있을 경우를 고려해 bool을 반환
         switch (type)
@@ -94,6 +108,13 @@ public class PlayerStats : MonoBehaviour
         {
             playerHealth.UpdateHealthUI();
         }
+
+        if(stopEffectCoroutine != null)
+        {
+            StopCoroutine(stopEffectCoroutine);
+        }
+
+        stopEffectCoroutine = StartCoroutine(StopEffectAfter(oneSec));
 
         return true;
     }
@@ -123,7 +144,6 @@ public class PlayerStats : MonoBehaviour
 
     public void InitCharacterInfo(string id)
     {
-
         characterData = characterTable.Get(int.Parse(id));
 
         stats[CharacterColumn.Stat.HP] = initialStats[CharacterColumn.Stat.HP] = characterData.HP;
@@ -145,5 +165,16 @@ public class PlayerStats : MonoBehaviour
         Debug.Log($"character projectile amount : {stats[CharacterColumn.Stat.PROJECTILE_AMOUNT]}");
 
         price = characterData.PRICE;
+    }
+
+    IEnumerator StopEffectAfter(WaitForSeconds sec)
+    {
+        yield return sec;
+        foreach (var particle in effects)
+        {
+            particle.Stop();
+            particle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        }
+        getOptionEffect.SetActive(false);
     }
 }

@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class Platform : MonoBehaviour
 {
-
     [Tooltip("리셋 횟수")]
     public int resetCount = 0;
     [Tooltip("배율")]
     public float hpScale = 1.8f;
+    [Tooltip("직진속도 증가량")]
+    public float verticalIncrement = 0.5f;
     public int minTest = 1;
     public int maxTest = 4;
     public OptionController optionController;
@@ -35,8 +36,6 @@ public class Platform : MonoBehaviour
             }
         }
 
-
-
         ++resetCount;
         spawnedEnemies.Clear();
         Spawn(); // 몬스터 스폰
@@ -45,7 +44,7 @@ public class Platform : MonoBehaviour
             bossSpawnController.SpawnMidBoss();
         }
         optionController.ResetOptions(playerStats.level); // 옵션 초기화
-        playerStats.UpdateStats(OptionColumn.Stat.MOVE_SPEED_V, OptionColumn.Type.Scale, 0.5f); // 직진 속도 0.5프로 증가
+        playerStats.UpdateStats(OptionColumn.Stat.MOVE_SPEED_V, OptionColumn.Type.Scale, verticalIncrement); // 직진 속도 0.5프로 증가
     }
 
     public void Spawn()

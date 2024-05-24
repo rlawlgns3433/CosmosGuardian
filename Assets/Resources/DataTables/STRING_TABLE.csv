@@ -238,8 +238,8 @@ HP 흡수 : 50%"
 1Name,공격 빈도
 2Name,사거리
 3Name,관통
-4Name,스플래시 대미지
-5Name,스플래시 범위
+4Name,폭발 대미지
+5Name,폭발 범위
 6Name,치명타 확률
 7Name,치명타 대미지
 8Name,HP 흡수

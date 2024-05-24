@@ -4,7 +4,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public PlayerInput playerInput = null;
     public PlayerStats playerStats = null;
-    public DynamicJoystick dynamicJoystick;
+    public FloatingJoystick floatingJoystick;
     private Vector3 forward = Vector3.forward;
     public Rigidbody rb;
     private float verticalCoefficient = 4.5f; // 수직 속력 계수
@@ -16,11 +16,11 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
 #if UNITY_ANDROID
-        movement = forward * playerStats.stats[CharacterColumn.Stat.MOVE_SPEED_V] * verticalCoefficient + Vector3.right * dynamicJoystick.Horizontal * playerStats.stats[CharacterColumn.Stat.MOVE_SPEED_H] * horizontalCoefficient;
+        movement = forward * playerStats.stats[CharacterColumn.Stat.MOVE_SPEED_V] * verticalCoefficient + Vector3.right * floatingJoystick.Horizontal * playerStats.stats[CharacterColumn.Stat.MOVE_SPEED_H] * horizontalCoefficient;
 #elif UNITY_EDITOR
-        movement = forward * playerStats.stats[CharacterColumn.Stat.MOVE_SPEED_V]* verticalCoefficient + Vector3.right * dynamicJoystick.Horizontal * playerStats.stats[CharacterColumn.Stat.MOVE_SPEED_H] * horizontalCoefficient;
+        movement = forward * playerStats.stats[CharacterColumn.Stat.MOVE_SPEED_V]* verticalCoefficient + Vector3.right * floatingJoystick.Horizontal * playerStats.stats[CharacterColumn.Stat.MOVE_SPEED_H] * horizontalCoefficient;
 #elif PLATFORM_STANDALONE_WIN
-        movement = forward * playerStats.stats[CharacterColumn.Stat.MOVE_SPEED_V]* verticalCoefficient + Vector3.right * dynamicJoystick.Horizontal * playerStats.stats[CharacterColumn.Stat.MOVE_SPEED_H] * horizontalCoefficient;
+        movement = forward * playerStats.stats[CharacterColumn.Stat.MOVE_SPEED_V]* verticalCoefficient + Vector3.right * floatingJoystick.Horizontal * playerStats.stats[CharacterColumn.Stat.MOVE_SPEED_H] * horizontalCoefficient;
 #endif
         movement *= Time.deltaTime;
 

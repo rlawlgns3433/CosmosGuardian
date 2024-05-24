@@ -4385,7 +4385,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerInput: {fileID: 876836260979100070}
   playerStats: {fileID: 2295086922680514110}
-  dynamicJoystick: {fileID: 0}
+  floatingJoystick: {fileID: 0}
   rb: {fileID: 302829191086297507}
 --- !u!114 &2295086922680514110
 MonoBehaviour:
@@ -4407,9 +4407,10 @@ MonoBehaviour:
   price: 0
   exp: 0
   maxLevel: 10
-  expForNextLevel: 150
-  magnification: 2.8
+  expForNextLevel: 500
+  magnification: 2.4
   id: 
+  prevPositionZ: 1.5
 --- !u!114 &2686379450363031452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4515,7 +4516,7 @@ MonoBehaviour:
   cameraShake: {fileID: 0}
   textHealth: {fileID: 5780539546917754731}
   playerStats: {fileID: 2295086922680514110}
-  animator: {fileID: 0}
+  animator: {fileID: 8760117410645967280}
   isAlive: 1
 --- !u!136 &6157067695724090070
 CapsuleCollider:
@@ -7992,24 +7993,68 @@ PrefabInstance:
     m_TransformParent: {fileID: 7818869945511880141}
     m_Modifications:
     - target: {fileID: 2254100420398333603, guid: dce37649c9e8a824fb9331e0e6efe25e, type: 3}
+      propertyPath: lengthInSec
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2254100420398333603, guid: dce37649c9e8a824fb9331e0e6efe25e, type: 3}
       propertyPath: playOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2254100420398333603, guid: dce37649c9e8a824fb9331e0e6efe25e, type: 3}
+      propertyPath: simulationSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4626554985102802662, guid: dce37649c9e8a824fb9331e0e6efe25e, type: 3}
+      propertyPath: lengthInSec
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4626554985102802662, guid: dce37649c9e8a824fb9331e0e6efe25e, type: 3}
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4626554985102802662, guid: dce37649c9e8a824fb9331e0e6efe25e, type: 3}
+      propertyPath: simulationSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5009516888347227187, guid: dce37649c9e8a824fb9331e0e6efe25e, type: 3}
+      propertyPath: lengthInSec
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5009516888347227187, guid: dce37649c9e8a824fb9331e0e6efe25e, type: 3}
       propertyPath: playOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5009516888347227187, guid: dce37649c9e8a824fb9331e0e6efe25e, type: 3}
+      propertyPath: simulationSpeed
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5266895581755745214, guid: dce37649c9e8a824fb9331e0e6efe25e, type: 3}
       propertyPath: m_Name
       value: GetOptionEffect
       objectReference: {fileID: 0}
+    - target: {fileID: 5266895581755745214, guid: dce37649c9e8a824fb9331e0e6efe25e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6294999019684569287, guid: dce37649c9e8a824fb9331e0e6efe25e, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8104297292231112609, guid: dce37649c9e8a824fb9331e0e6efe25e, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8104297292231112609, guid: dce37649c9e8a824fb9331e0e6efe25e, type: 3}
+      propertyPath: lengthInSec
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8104297292231112609, guid: dce37649c9e8a824fb9331e0e6efe25e, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8104297292231112609, guid: dce37649c9e8a824fb9331e0e6efe25e, type: 3}
+      propertyPath: simulationSpeed
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8909771759722544934, guid: dce37649c9e8a824fb9331e0e6efe25e, type: 3}
       propertyPath: m_LocalPosition.x

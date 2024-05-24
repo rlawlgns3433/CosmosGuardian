@@ -58,6 +58,7 @@ public class Boss : Enemy
             itemController = GameObject.FindWithTag(Tags.ItemController).GetComponent<ItemController>();
             itemController.UpdateItemData(enemyData.TYPE);
             GameObject.FindWithTag(Tags.Joystick).SetActive(false);
+            Time.timeScale = 0f;
         };
 
         shotInterval = new WaitForSeconds(intervalFloat);

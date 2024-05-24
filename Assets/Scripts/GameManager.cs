@@ -16,6 +16,7 @@ public class GameManager : Singleton<GameManager>
 
     public bool IsGameover { get; set; }
     public bool IsPaused { get; set; }
+    public bool isFirst = true;
 
     public float platformSpacing = 27f;
 
@@ -24,9 +25,41 @@ public class GameManager : Singleton<GameManager>
         enemyTable = DataTableMgr.Get<EnemyTable>(DataTableIds.Enemy);
     }
 
+    private void Start()
+    {
+        //GameObject currentPlatform = platforms[currentPlatformIndex];
+        //var platform = currentPlatform.GetComponent<Platform>();
+
+        //if (currentPlatform.transform.position.z < playerStats.gameObject.transform.position.z)
+        //{
+        //    foreach (var enemy in platform.spawnedEnemies)
+        //    {
+        //        enemy.Chase();
+        //    }
+        //}
+    }
+
     private void Update()
     {
+
         GameObject currentPlatform = platforms[currentPlatformIndex];
+
+        if(isFirst)
+        {
+            var platform = currentPlatform.GetComponent<Platform>();
+
+            if (currentPlatform.transform.position.z < playerStats.gameObject.transform.position.z)
+            {
+
+                foreach (var enemy in platform.spawnedEnemies)
+                {
+                    enemy.Chase();
+                }
+                isFirst = false;
+            }
+            return;
+        }
+       
         if (currentPlatform.transform.position.z + platformSpacing < playerStats.gameObject.transform.position.z)
         {
             Vector3 lastPlatformPosition = platforms[platforms.Count - 1].transform.position;
@@ -38,6 +71,12 @@ public class GameManager : Singleton<GameManager>
 
             var platform = currentPlatform.GetComponent<Platform>();
             platform.ResetPlatform();
+
+            Platform nextPlatform = platforms[nextPlatformIndex].GetComponent<Platform>();
+            foreach (var enemy in nextPlatform.spawnedEnemies)
+            {
+                enemy.Chase();
+            }
         }
     }
 

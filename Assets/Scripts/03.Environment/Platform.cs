@@ -23,7 +23,8 @@ public class Platform : MonoBehaviour
     {
         enemyTable = DataTableMgr.Get<EnemyTable>(DataTableIds.Enemy);
         playerStats = GameObject.FindWithTag(Tags.Player).GetComponent<PlayerStats>();
-        StartCoroutine(DelaySpawn(0.1f));
+        Spawn();
+        //StartCoroutine(DelaySpawn(0.1f));
     }
 
     public void ResetPlatform()

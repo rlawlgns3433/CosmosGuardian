@@ -33,13 +33,13 @@ public class OptionController : MonoBehaviour
     public void ResetOptions(int grade) // Grade 喊肺 可记 积己
     {
         List<OptionData> gradedOptions = (from option in optionTable.GetAllData
-                                          where option.GRADE <= grade
+                                          where option.GRADE == grade
                                           select option).ToList();
 
-        int selectedIndex = Random.Range(0, gradedOptions.Count);
-        gradedOptions = (from option in gradedOptions
-                         where option.GRADE == gradedOptions[selectedIndex].GRADE
-                         select option).ToList();
+        //int selectedIndex = Random.Range(0, gradedOptions.Count);
+        //gradedOptions = (from option in gradedOptions
+        //                 where option.GRADE == gradedOptions[selectedIndex].GRADE
+        //                 select option).ToList();
 
         List<int> selectedId = new List<int>();
 

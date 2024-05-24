@@ -73,7 +73,7 @@ public class Platform : MonoBehaviour
                     if (originalData != null)
                     {
                         EnemyData dataCopy = new EnemyData(originalData);
-                        enemy.UpdateStats(dataCopy, hpScale, resetCount);
+                        enemy.UpdateStats(dataCopy, dataCopy.MAGNIFICATION, resetCount);
 
                         spawnedEnemies.Add(enemy);
                     }

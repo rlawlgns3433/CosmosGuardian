@@ -10,6 +10,9 @@ public class CameraShake : MonoBehaviour
 
         while (elapsed < duration)
         {
+            if (GameManager.Instance.IsPaused)
+                yield break;
+
             float x = Random.Range(-1f, 1f) * magnitude;
 
             transform.localPosition = new Vector3(originalPos.x + x, originalPos.y, originalPos.z);

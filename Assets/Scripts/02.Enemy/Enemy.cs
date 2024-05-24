@@ -4,7 +4,8 @@ using UnityEngine;
 
 public enum EnemyType
 {
-    Normal = 40000,
+    Normal = 40000, // 움직이는 몬스터 (Chase 활성)
+    Elite = 40100,
     MidBoss = 40200,
     Boss = 40300
 }
@@ -61,6 +62,15 @@ public class Enemy : MonoBehaviour, IDamageable
         damageFloatingPosition = textHealth.transform.position;
         floatingTextRadius = 3f;
         target = GameObject.FindWithTag(Tags.Player).GetComponent<PlayerHealth>();
+        onDeath += () =>
+        {
+            isAlive = false;
+            if (target.playerStats.stats[CharacterColumn.Stat.HP] <= 0) return;
+            if (target.camShakeCoroutine != null)
+            {
+                target.StopCoroutine(target.camShakeCoroutine);
+            }
+        };
         onDeath += OnDie;
         onDeath += () => { target.GetComponent<PlayerStats>().GetExp(enemyData.SCORE); };
 
@@ -98,7 +108,7 @@ public class Enemy : MonoBehaviour, IDamageable
             onDeath();
         }
 
-        textHealth.text = Mathf.FloorToInt(enemyData.HP).ToString();
+        textHealth.text = Mathf.CeilToInt(enemyData.HP).ToString();
     }
 
     public void OnDie()

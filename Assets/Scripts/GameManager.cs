@@ -8,6 +8,7 @@ public class GameManager : Singleton<GameManager>
     public List<GameObject> enemies = new List<GameObject>(); // GameManager에서 갖는 것이 좋겠음.
     public EnemyTable enemyTable;
     public PlayerStats playerStats = null;
+    public PlayerHealth playerHealth;
     public UiController uiController;
 
     public int currentPlatformIndex = 0;
@@ -58,6 +59,8 @@ public class GameManager : Singleton<GameManager>
         GameObject.FindWithTag(Tags.Joystick).SetActive(false);
         uiController.gameover.SetActive(true);
     }
+
+
 
     public void Pasue()
     {

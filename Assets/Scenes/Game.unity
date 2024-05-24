@@ -1775,6 +1775,10 @@ PrefabInstance:
       propertyPath: hpScale
       value: 1.6
       objectReference: {fileID: 0}
+    - target: {fileID: 6011530658994398209, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
+      propertyPath: maxTest
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7382178044035454824, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
       propertyPath: playerStats
       value: 
@@ -3564,6 +3568,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floating Joystick
       objectReference: {fileID: 0}
+    - target: {fileID: 8170153791668043269, guid: 0d230cc8be529a542a08cb878ab14b18, type: 3}
+      propertyPath: m_TagString
+      value: Joystick
+      objectReference: {fileID: 0}
     - target: {fileID: 8170153791961219456, guid: 0d230cc8be529a542a08cb878ab14b18, type: 3}
       propertyPath: m_SizeDelta.x
       value: 64
@@ -3677,6 +3685,10 @@ PrefabInstance:
     - target: {fileID: 6011530658994398209, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
       propertyPath: hpScale
       value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6011530658994398209, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
+      propertyPath: maxTest
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7382178044035454824, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
       propertyPath: playerStats
@@ -4816,6 +4828,7 @@ MonoBehaviour:
   - {fileID: 9093663750402790569, guid: a31a22b275c159e4fa28755b495bad91, type: 3}
   - {fileID: 3492455130390485712, guid: acf6fe2f747250343bf9070e941ce57f, type: 3}
   playerStats: {fileID: 1387199563}
+  playerHealth: {fileID: 2139202714}
   uiController: {fileID: 606105416}
   currentPlatformIndex: 0
   nextPlatformIndex: 0
@@ -6326,6 +6339,10 @@ PrefabInstance:
       propertyPath: hpScale
       value: 1.6
       objectReference: {fileID: 0}
+    - target: {fileID: 6011530658994398209, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
+      propertyPath: maxTest
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7382178044035454824, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
       propertyPath: playerStats
       value: 
@@ -7113,7 +7130,7 @@ GameObject:
   - component: {fileID: 963194226}
   - component: {fileID: 963194229}
   - component: {fileID: 963194230}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -7975,7 +7992,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1609197621}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -10095,6 +10112,10 @@ PrefabInstance:
       propertyPath: hpScale
       value: 1.6
       objectReference: {fileID: 0}
+    - target: {fileID: 6011530658994398209, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
+      propertyPath: maxTest
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7382178044035454824, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
       propertyPath: playerStats
       value: 
@@ -11084,7 +11105,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1609197621}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -11754,7 +11775,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1609197621}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -12111,6 +12132,10 @@ PrefabInstance:
     - target: {fileID: 6011530658994398209, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
       propertyPath: hpScale
       value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6011530658994398209, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
+      propertyPath: maxTest
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7382178044035454824, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
       propertyPath: playerStats
@@ -13445,6 +13470,10 @@ PrefabInstance:
       propertyPath: hpScale
       value: 1.6
       objectReference: {fileID: 0}
+    - target: {fileID: 6011530658994398209, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
+      propertyPath: maxTest
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7382178044035454824, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
       propertyPath: playerStats
       value: 
@@ -13995,6 +14024,10 @@ PrefabInstance:
     - target: {fileID: 6011530658994398209, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
       propertyPath: hpScale
       value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6011530658994398209, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
+      propertyPath: maxTest
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7382178044035454824, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
       propertyPath: playerStats
@@ -15177,6 +15210,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 121209d492d015b4b9f8eeb9b7e87f03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2139202714 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4508787347923785903, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
+  m_PrefabInstance: {fileID: 1387199562}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45e8c7ce919ca2047aedbdd82d2cb1fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1397350480610259867 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2948242366810809454, guid: d04a77f69089fe14ca4d0dbdd8834c4f, type: 3}
@@ -15216,6 +15260,10 @@ PrefabInstance:
     - target: {fileID: 5220609208338446750, guid: d04a77f69089fe14ca4d0dbdd8834c4f, type: 3}
       propertyPath: hpScale
       value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220609208338446750, guid: d04a77f69089fe14ca4d0dbdd8834c4f, type: 3}
+      propertyPath: maxTest
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5847827965554300113, guid: d04a77f69089fe14ca4d0dbdd8834c4f, type: 3}
       propertyPath: m_LocalPosition.x

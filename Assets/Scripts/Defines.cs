@@ -66,7 +66,8 @@ public static class OptionColumn
     public enum Type
     { 
         Scale,
-        Fixed
+        Fixed,
+        WeaponChange,
     }
      
     public enum Stat
@@ -86,6 +87,7 @@ public static class OptionColumn
         MOVE_SPEED_V,
         MOVE_SPEED_H,
         ARMOR,
+        WeaponChange,
     }
 }
 

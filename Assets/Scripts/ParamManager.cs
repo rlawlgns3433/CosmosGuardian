@@ -22,6 +22,8 @@ public class ParamManager : MonoBehaviour
 
     private void Awake()
     {
+        selectedCharacterIndex = PlayerPrefs.GetInt("SelectedCharacterIndex", 0) % 100;
+        currentRecord.score = -1;
         DontDestroyOnLoad(gameObject);
     }
 
@@ -42,7 +44,10 @@ public class ParamManager : MonoBehaviour
         }
 
         SaveLoadSystem.Save(saveData);
-        currentRecord = default;
+        currentRecord.weaponDataId = 0;
+        currentRecord.characterDataId = 0;
+        currentRecord.score = -1;
+
     }
 
     public static void LoadScene(string sceneName)

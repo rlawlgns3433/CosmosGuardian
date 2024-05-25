@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 public class UiCharacterSelect : MonoBehaviour
 {
     public TextMeshProUGUI textCharacterName;
-    public TextMeshProUGUI textWeaponName;
+    //public TextMeshProUGUI textWeaponName;
     public TextMeshProUGUI[] textStats;
 
     public CharacterTable characterTable;
@@ -17,8 +17,9 @@ public class UiCharacterSelect : MonoBehaviour
     public GameObject[] characterHeads;
     public GameObject[] weapons;
     public int selectedCharacterIndex = 0;
-    public int selectedWeaponIndex = 0;
-    public int selectedWeaponType = 0;
+    public int selectedWeaponIndex = 11;
+    //public int selectedWeaponIndex = 0;
+    //public int selectedWeaponType = 0;
 
     private string[] statStringName;
 
@@ -42,8 +43,8 @@ public class UiCharacterSelect : MonoBehaviour
             animator.enabled = false;
         }
 
-        ParamManager.selectedCharacterIndex = PlayerPrefs.GetInt("SelectedCharacterIndex", 0) % 100;
-        ParamManager.selectedWeaponIndex = PlayerPrefs.GetInt("SelectedWeaponId", 0) % 100;
+        //ParamManager.selectedWeaponIndex = PlayerPrefs.GetInt("SelectedWeaponId", 0) % 100;
+        ParamManager.selectedWeaponIndex = selectedWeaponIndex;
 
         UpdateCharacter(ParamManager.selectedCharacterIndex);
         UpdateWeapon(ParamManager.selectedWeaponIndex);
@@ -105,14 +106,14 @@ public class UiCharacterSelect : MonoBehaviour
                 weapons[i].SetActive(false);
             }
         }
-        foreach(var _id in weaponTable.AllItemIds)
-        {
-            if (_id % 100 == selectedWeaponIndex)
-            {
-                textWeaponName.text = weaponTable.Get(_id).GetName;
-                break;
-            }
-        }
+        //foreach (var _id in weaponTable.AllItemIds)
+        //{
+        //    if (_id % 100 == selectedWeaponIndex)
+        //    {
+        //        textWeaponName.text = weaponTable.Get(_id).GetName;
+        //        break;
+        //    }
+        //}
     }
 
     public void PrevCharacter()

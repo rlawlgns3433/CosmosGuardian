@@ -1,3 +1,4 @@
+using System;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -18,7 +19,9 @@ public class MainUiManager : MonoBehaviour
             }
         }
 
-        PlayerPrefs.SetInt("SelectedCharacterIndex", uiCharacterSelect.selectedCharacterIndex);
+        //PlayerPrefs.SetInt("SelectedCharacterIndex", uiCharacterSelect.selectedCharacterIndex);
+        ParamManager.selectedCharacterIndex = uiCharacterSelect.selectedCharacterIndex;
+
         Debug.Log($"Saved SelectedCharacterIndex: {uiCharacterSelect.selectedCharacterIndex}");
         LoadScene("Game");
 
@@ -40,6 +43,8 @@ public class MainUiManager : MonoBehaviour
 
     public void QuitApplication()
     {
+        PlayerPrefs.SetInt("SelectedCharacterIndex", ParamManager.selectedCharacterIndex);
+
 #if UNITY_EDITOR
         EditorApplication.ExitPlaymode();
 #else

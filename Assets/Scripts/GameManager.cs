@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -30,7 +31,7 @@ public class GameManager : Singleton<GameManager>
 
         GameObject currentPlatform = platforms[currentPlatformIndex];
 
-        if(isFirst)
+        if (isFirst)
         {
             var platform = currentPlatform.GetComponent<Platform>();
 
@@ -45,7 +46,7 @@ public class GameManager : Singleton<GameManager>
             }
             return;
         }
-       
+
         if (currentPlatform.transform.position.z + platformSpacing < playerStats.gameObject.transform.position.z)
         {
             Vector3 lastPlatformPosition = platforms[platforms.Count - 1].transform.position;
@@ -70,12 +71,12 @@ public class GameManager : Singleton<GameManager>
     {
         IsGameover = true;
 
-        foreach(var platformGo in platforms)
+        foreach (var platformGo in platforms)
         {
             var platform = platformGo.GetComponent<Platform>();
-            foreach(var enemy in platform.spawnedEnemies)
+            foreach (var enemy in platform.spawnedEnemies)
             {
-                if(enemy != null)
+                if (enemy != null)
                 {
                     enemy.animator.SetTrigger(Animator.StringToHash("Victory"));
                 }
@@ -138,5 +139,16 @@ public class GameManager : Singleton<GameManager>
     public void SaveRecord(RecordData recordData)
     {
         ParamManager.currentRecord = recordData;
+    }
+
+    private void OnApplicationQuit()
+    {
+#if UNITY_EDITOR
+        PlayerPrefs.SetInt("SelectedCharacterIndex", ParamManager.selectedCharacterIndex);
+
+        EditorApplication.ExitPlaymode();
+#else
+            Application.Quit();
+#endif
     }
 }

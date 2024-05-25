@@ -29,6 +29,8 @@ public class ScoreBoard : MonoBehaviour
 
         for (int i = 0; i < savedRecord.records.Count; ++i)
         {
+            if (savedRecord.records[i].score <= 0) continue;
+
             StringBuilder sb = new StringBuilder();
             sb.Append(uiCharacterSelect.characterTable.Get(savedRecord.records[i].characterDataId).GetName);
             sb.Append(uiCharacterSelect.weaponTable.Get(savedRecord.records[i].weaponDataId).GetName);

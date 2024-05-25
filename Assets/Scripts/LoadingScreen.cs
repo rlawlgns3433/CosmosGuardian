@@ -14,7 +14,11 @@ public class LoadingScreen : MonoBehaviour
         switch(sceneToLoad)
         {
             case "Main":
-                ParamManager.SaveCurrentRecord(ParamManager.currentRecord);
+                if(ParamManager.currentRecord.score != -1)
+                {
+                    ParamManager.SaveCurrentRecord(ParamManager.currentRecord);
+                }
+
                 break;
         }
 

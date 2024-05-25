@@ -14,7 +14,12 @@ public class RecordData
     public int weaponDataId;
     public int score;
 
-    public RecordData() { }
+    public RecordData()
+    {
+        characterDataId = default;
+        weaponDataId = default;
+        score = default;
+    }
     public RecordData(int characterDataId, int weaponDataId, int score)
     {
         this.characterDataId = characterDataId;

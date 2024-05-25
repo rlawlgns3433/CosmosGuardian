@@ -5,6 +5,17 @@ using System.Text;
 using System;
 using System.Collections;
 
+public class PlayerWeaponData
+{
+    public WeaponColumn.Stat playerStat;
+    public float playerValue;
+
+    public override string ToString()
+    {
+        return $"playerStat : {playerStat}, playerValue : {playerValue}\n";
+    }
+}
+
 public class PlayerStats : MonoBehaviour
 {
     public PlayerHealth playerHealth;
@@ -31,6 +42,7 @@ public class PlayerStats : MonoBehaviour
     public Dictionary<CharacterColumn.Stat, float> initialStats = new Dictionary<CharacterColumn.Stat, float>(); // 능력치 종류, 능력치 배율
     public Dictionary<CharacterColumn.Stat, float> stats = new Dictionary<CharacterColumn.Stat, float>(); // 능력치 종류, 능력치 배율
     public List<ItemData> items = new List<ItemData>();
+    public List<PlayerWeaponData> playerWeaponDatas = new List<PlayerWeaponData>();
     [NonSerialized]
     public PrefabSelector prefabSelector = null;
     public CharacterData characterData = null;
@@ -68,7 +80,7 @@ public class PlayerStats : MonoBehaviour
 
     private void LateUpdate()
     {
-        if((int)(transform.position.z) > (int)prevPositionZ)
+        if ((int)(transform.position.z) > (int)prevPositionZ)
         {
             GetExp(1);
             prevPositionZ = transform.position.z;
@@ -109,22 +121,30 @@ public class PlayerStats : MonoBehaviour
                     {
                         // Weapon 값을 업그레이드
                         playerShooter.weapon.stats[(WeaponColumn.Stat)stat] += value;
+
+                        playerWeaponDatas.Add(new PlayerWeaponData{ playerStat = (WeaponColumn.Stat)stat, playerValue = value });
+
+                        foreach (var op in playerWeaponDatas)
+                        {
+                            Debug.Log(op.ToString());
+                        }
                     }
                 }
                 break;
         }
 
-        if(stat == OptionColumn.Stat.HP)
+        if (stat == OptionColumn.Stat.HP)
         {
             playerHealth.UpdateHealthUI();
         }
 
-        if(stopEffectCoroutine != null)
+        if (stopEffectCoroutine != null)
         {
             StopCoroutine(stopEffectCoroutine);
         }
 
         stopEffectCoroutine = StartCoroutine(StopEffectAfter(oneSec));
+
 
         return true;
     }

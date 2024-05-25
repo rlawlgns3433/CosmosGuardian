@@ -25,20 +25,6 @@ public class GameManager : Singleton<GameManager>
         enemyTable = DataTableMgr.Get<EnemyTable>(DataTableIds.Enemy);
     }
 
-    private void Start()
-    {
-        //GameObject currentPlatform = platforms[currentPlatformIndex];
-        //var platform = currentPlatform.GetComponent<Platform>();
-
-        //if (currentPlatform.transform.position.z < playerStats.gameObject.transform.position.z)
-        //{
-        //    foreach (var enemy in platform.spawnedEnemies)
-        //    {
-        //        enemy.Chase();
-        //    }
-        //}
-    }
-
     private void Update()
     {
 
@@ -83,6 +69,19 @@ public class GameManager : Singleton<GameManager>
     public void Gameover()
     {
         IsGameover = true;
+
+        foreach(var platformGo in platforms)
+        {
+            var platform = platformGo.GetComponent<Platform>();
+            foreach(var enemy in platform.spawnedEnemies)
+            {
+                if(enemy != null)
+                {
+                    enemy.animator.SetTrigger(Animator.StringToHash("Victory"));
+                }
+            }
+        }
+
         playerStats.stats[CharacterColumn.Stat.MOVE_SPEED_H] = 0;
         playerStats.stats[CharacterColumn.Stat.MOVE_SPEED_V] = 0;
         playerStats.gameObject.GetComponent<PlayerShooter>().enabled = false;

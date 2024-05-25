@@ -89,7 +89,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
             var enemy = other.GetComponent<Enemy>();
             OnDamage(enemy.enemyData.HP);
-            enemy.OnDamage(enemy.enemyData.HP);
+            enemy.OnDamage(Mathf.Min(playerStats.stats[CharacterColumn.Stat.HP], enemy.enemyData.HP));
         }
     }
 

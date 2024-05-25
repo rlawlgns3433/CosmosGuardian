@@ -37,6 +37,7 @@ public class BossSpawnController : MonoBehaviour
 
         var go = Instantiate(bossPrefab, spawnPos, Quaternion.Euler(0, 180, 0));
         var boss = go.GetComponent<Boss>();
+        platform.spawnedEnemies.Add(boss);
 
         EnemyData bossData = new EnemyData(platform.enemyTable.Get((int)EnemyType.Boss));
         boss.UpdateStats(bossData, bossData.MAGNIFICATION, platform.resetCount);
@@ -58,6 +59,7 @@ public class BossSpawnController : MonoBehaviour
 
         var go = Instantiate(midBossPrefab, spawnPos, Quaternion.Euler(0, 180, 0));
         var midBoss = go.GetComponent<MidBoss>();
+        platform.spawnedEnemies.Add(midBoss);
 
         EnemyData midBossData = new EnemyData(platform.enemyTable.Get((int)EnemyType.MidBoss));
         midBoss.UpdateStats(midBossData, midBossData.MAGNIFICATION, platform.resetCount);

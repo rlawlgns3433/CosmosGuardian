@@ -32,7 +32,7 @@ public class Enemy : MonoBehaviour, IDamageable
     protected bool isAlive = true;
     public bool isChasing = false;
     public float rotationSpeed = 180;
-    protected Animator animator;
+    public Animator animator;
     protected ItemController itemController;
     public EnemyData enemyData = null;
     public PlayerHealth target = null;
@@ -41,7 +41,7 @@ public class Enemy : MonoBehaviour, IDamageable
     public SphereCollider sphereCollider;
 
 
-    private WaitForSeconds chaseTimer = new WaitForSeconds(1f);
+    private WaitForSeconds chaseTimer = new WaitForSeconds(0.1f);
     public Vector3 direction;
 
     private void Awake()
@@ -80,13 +80,28 @@ public class Enemy : MonoBehaviour, IDamageable
 
     private void Update()
     {
-        if (isChasing)
+        switch (enemyType)
         {
-            transform.Translate(direction * speed * Time.deltaTime, Space.World);
-            Vector3 directionToTarget = target.transform.position - transform.position;
-            Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+            case EnemyType.Normal:
+                if (isChasing)
+                {
+                    transform.Translate(direction * speed * Time.deltaTime, Space.World);
+                    Vector3 directionToTarget = target.transform.position - transform.position;
+                    Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+                }
+                break;
+            case EnemyType.Elite:
+                break;
+            case EnemyType.MidBoss:
+                break;
+            case EnemyType.Boss:
+                break;
+            default:
+                break;
         }
+
+
     }
 
     public void OnDamage(float damage, bool isCritical = false, Vector3 hitPoint = default, Vector3 hitNormal = default)
@@ -149,7 +164,11 @@ public class Enemy : MonoBehaviour, IDamageable
         {
             StopCoroutine(chaseCoroutine);
         }
-        chaseCoroutine = StartCoroutine(CoChasePlayer());
+
+        if(isAlive)
+        {
+            chaseCoroutine = StartCoroutine(CoChasePlayer());
+        }
     }
 
     //public void UpdateStats(EnemyData enemyData, float hpScale, int resetCount)

@@ -42,6 +42,7 @@ public class ParamManager : MonoBehaviour
         }
 
         SaveLoadSystem.Save(saveData);
+        currentRecord = default;
     }
 
     public static void LoadScene(string sceneName)

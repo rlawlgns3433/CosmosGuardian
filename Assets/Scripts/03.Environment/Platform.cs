@@ -39,6 +39,19 @@ public class Platform : MonoBehaviour
 
         ++resetCount;
         spawnedEnemies.Clear();
+
+        if(maxTest != 10)
+        {
+            if ((resetCount / 2) % 2 == 0)
+            {
+                ++maxTest;
+            }
+            else
+            {
+                ++minTest;
+            }
+        }
+
         Spawn(); // 몬스터 스폰
         if (TryGetComponent(out BossSpawnController bossSpawnController))
         {

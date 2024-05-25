@@ -39,6 +39,10 @@ public class Enemy : MonoBehaviour, IDamageable
     public Vector3 damageFloatingPosition;
     public float floatingTextRadius;
     public SphereCollider sphereCollider;
+    public GameObject splashEffect;
+    public ParticleSystem[] effects;
+    private WaitForSeconds sec = new WaitForSeconds(0.5f);
+    private Coroutine stopEffectCoroutine;
 
 
     private WaitForSeconds chaseTimer = new WaitForSeconds(0.1f);
@@ -51,6 +55,7 @@ public class Enemy : MonoBehaviour, IDamageable
             animator.enabled = false;
             return;
         }
+        effects = splashEffect.GetComponentsInChildren<ParticleSystem>();
     }
 
     protected virtual void Start()
@@ -108,7 +113,7 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         if (!isAlive) return;
 
-        if(isCritical)
+        if (isCritical)
         {
             DynamicTextManager.CreateText(damageFloatingPosition + UnityEngine.Random.onUnitSphere * sphereCollider.radius / 2, Mathf.RoundToInt(damage).ToString(), DynamicTextManager.criticalDamageData);
         }
@@ -165,7 +170,7 @@ public class Enemy : MonoBehaviour, IDamageable
             StopCoroutine(chaseCoroutine);
         }
 
-        if(isAlive)
+        if (isAlive)
         {
             chaseCoroutine = StartCoroutine(CoChasePlayer());
         }
@@ -190,5 +195,35 @@ public class Enemy : MonoBehaviour, IDamageable
         this.enemyData.DAMAGE *= Mathf.Pow(magnification, resetCount);
 
         textHealth.text = ((int)this.enemyData.HP).ToString();
+    }
+
+    public void StopEffectImmediatly()
+    {
+        foreach (var particle in effects)
+        {
+            particle.Stop();
+            particle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        }
+        splashEffect.SetActive(false);
+    }
+
+    public void StopEffect()
+    {
+        if (stopEffectCoroutine != null)
+        {
+            StopCoroutine(stopEffectCoroutine);
+        }
+
+        stopEffectCoroutine = StartCoroutine(StopEffectAfter(sec));
+    }
+
+    IEnumerator StopEffectAfter(WaitForSeconds sec)
+    {
+        yield return sec;
+
+        if (effects[0].isPlaying)
+        {
+            StopEffectImmediatly();
+        }
     }
 }

@@ -2053,6 +2053,7 @@ Transform:
   - {fileID: 7379252335875354794}
   - {fileID: 7379252335875354932}
   - {fileID: 1783717263671734311}
+  - {fileID: 4734511112473643228}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &7379252335866060610
@@ -2091,10 +2092,17 @@ MonoBehaviour:
   enemyState: 0
   enemyType: 40300
   textHealth: {fileID: 896874337899129022}
+  speed: 5
+  isChasing: 0
+  rotationSpeed: 180
+  animator: {fileID: 0}
   target: {fileID: 0}
   damageFloatingPosition: {x: 0, y: 0, z: 0}
   floatingTextRadius: 0
   sphereCollider: {fileID: 7245538018801547053}
+  splashEffect: {fileID: 8661364773080291626}
+  effects: []
+  direction: {x: 0, y: 0, z: 0}
   intervalFloat: 1
   projectileSpeed: 7
   attackDistance: 50
@@ -2865,3 +2873,70 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!1001 &4935656082974530157
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7379252335875354934}
+    m_Modifications:
+    - target: {fileID: 417328207102005937, guid: 5bffee6cc60735f4887be42f21ff763d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -9.084366
+      objectReference: {fileID: 0}
+    - target: {fileID: 417328207102005937, guid: 5bffee6cc60735f4887be42f21ff763d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 417328207102005937, guid: 5bffee6cc60735f4887be42f21ff763d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 9.964732
+      objectReference: {fileID: 0}
+    - target: {fileID: 417328207102005937, guid: 5bffee6cc60735f4887be42f21ff763d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 417328207102005937, guid: 5bffee6cc60735f4887be42f21ff763d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 417328207102005937, guid: 5bffee6cc60735f4887be42f21ff763d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 417328207102005937, guid: 5bffee6cc60735f4887be42f21ff763d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 417328207102005937, guid: 5bffee6cc60735f4887be42f21ff763d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 417328207102005937, guid: 5bffee6cc60735f4887be42f21ff763d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 417328207102005937, guid: 5bffee6cc60735f4887be42f21ff763d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4345305488166552391, guid: 5bffee6cc60735f4887be42f21ff763d, type: 3}
+      propertyPath: m_Name
+      value: Freeze circle
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5bffee6cc60735f4887be42f21ff763d, type: 3}
+--- !u!4 &4734511112473643228 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 417328207102005937, guid: 5bffee6cc60735f4887be42f21ff763d, type: 3}
+  m_PrefabInstance: {fileID: 4935656082974530157}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8661364773080291626 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4345305488166552391, guid: 5bffee6cc60735f4887be42f21ff763d, type: 3}
+  m_PrefabInstance: {fileID: 4935656082974530157}
+  m_PrefabAsset: {fileID: 0}

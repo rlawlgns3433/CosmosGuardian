@@ -23,7 +23,7 @@ public class PlayerStats : MonoBehaviour
     public TextMeshProUGUI textExp;
     public GameObject getOptionEffect;
     private ParticleSystem[] effects;
-    private WaitForSeconds oneSec = new WaitForSeconds(2f);
+    private WaitForSeconds twoSec = new WaitForSeconds(2f);
     private Coroutine stopEffectCoroutine;
     public int level = 1;
     public int price = default;
@@ -143,7 +143,7 @@ public class PlayerStats : MonoBehaviour
             StopCoroutine(stopEffectCoroutine);
         }
 
-        stopEffectCoroutine = StartCoroutine(StopEffectAfter(oneSec));
+        stopEffectCoroutine = StartCoroutine(StopEffectAfter(twoSec));
 
 
         return true;

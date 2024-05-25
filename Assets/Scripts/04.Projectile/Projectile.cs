@@ -271,6 +271,18 @@ public class Projectile : MonoBehaviour
                     {
                         var e = collider.gameObject.GetComponent<Enemy>();
                         e.OnDamage(SplashDamage);
+
+                        if (e.effects[0].isPlaying)
+                        {
+                            e.StopEffectImmediatly();
+                        }
+
+                        e.splashEffect.SetActive(true);
+                        foreach (var particle in e.effects)
+                        {
+                            particle.Play();
+                            e.StopEffect();
+                        }
                     }
                 }
             }

@@ -7,16 +7,18 @@ public class Weapon : MonoBehaviour
     public WeaponData weaponData;
     public Dictionary<WeaponColumn.Stat, float> stats = new Dictionary<WeaponColumn.Stat, float>();
     public RuntimeAnimatorController[] animatorControllers;
+    public PlayerStats playerStats;
+    private UiController uiController;
 
     private Animator animator;
     private WeaponTable weaponTable;
     int selectedWeaponId = default;
+    int currentWeaponIndex = -1;
 
     private void Awake()
     {
         weaponTable = DataTableMgr.Get<WeaponTable>(DataTableIds.Weapon);
         selectedWeaponId = PlayerPrefs.GetInt("SelectedWeaponId", 0);
-
 
         if (!TryGetComponent(out animator))
         {
@@ -25,15 +27,59 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    private void OnEnable()
+    private void Start()
     {
+        if (!GameObject.FindWithTag(Tags.UiController).TryGetComponent(out uiController))
+        {
+            uiController.enabled = false;
+            return;
+        }
+
         SetWeapon(selectedWeaponId);
     }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            SetWeapon(30101);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            SetWeapon(30115);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            SetWeapon(30111);
+        }
+    }
+
 
     public void SetWeapon(int weaponId)
     {
         weaponData = weaponTable.Get(weaponId);
 
+        foreach (var p in playerStats.playerShooter.usingProjectiles)
+        {
+            Destroy(p);
+        }
+
+        foreach (var p in playerStats.playerShooter.unusingProjectiles)
+        {
+            Destroy(p);
+        }
+
+        playerStats.playerShooter.usingProjectiles.Clear();
+        playerStats.playerShooter.unusingProjectiles.Clear();
+        playerStats.playerShooter.currentProjectileIndex = weaponData.PROJECTILE_ID - 1;
+
+
+        if(currentWeaponIndex != -1)
+        {
+            weapons[currentWeaponIndex].SetActive(false);
+        }
 
         for (int i = 0; i < weapons.Length; ++i)
         {
@@ -41,6 +87,7 @@ public class Weapon : MonoBehaviour
             {
                 animator.runtimeAnimatorController = animatorControllers[i];
                 weapons[i].SetActive(true);
+                currentWeaponIndex = i;
                 break;
             }
             else
@@ -60,5 +107,12 @@ public class Weapon : MonoBehaviour
         stats[WeaponColumn.Stat.HP_DRAIN] = weaponData.HP_DRAIN;
         stats[WeaponColumn.Stat.PROJECTILE_SPEED] = weaponData.PROJECTILE_SPEED;
         stats[WeaponColumn.Stat.PROJECTILE_AMOUNT] = weaponData.PROJECTILE_AMOUNT;
+
+        foreach (var wd in playerStats.playerWeaponDatas)
+        {
+            playerStats.UpdateStats(wd.playerStat, OptionColumn.Type.ApplyChangeWeaponData, wd.playerValue);
+        }
+
+        uiController.UpdatePauseUI();
     }
 }

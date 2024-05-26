@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class OptionStat : MonoBehaviour
 {
@@ -7,6 +8,8 @@ public class OptionStat : MonoBehaviour
     public List<OptionColumn.Type> type = new List<OptionColumn.Type>();
     public List<OptionColumn.Stat> stat = new List<OptionColumn.Stat>();
     public List<float> value = new List<float>();
+    public GameObject renderWeapon; // 드래그 드롭 x
+    public RawImage rawImage; 
 
     private UiController uiController;
 
@@ -30,11 +33,21 @@ public class OptionStat : MonoBehaviour
                 playerStats.UpdateStats(stat[i], type[i], value[i]);
                 gameObject.SetActive(false);
 
-                foreach (var image in optionController.options)
+                if (type[i] == OptionColumn.Type.WeaponChange)
                 {
-                    Collider collider = image.GetComponent<Collider>();
-                    collider.enabled = false;
+                    var cameraRenderTexture = renderWeapon.GetComponentInChildren<CameraRenderTexture>();
+                    cameraRenderTexture.rawImage = null;
+                    renderWeapon.SetActive(false);
+                    renderWeapon = null;
+                    rawImage.texture = null;
+                    rawImage.gameObject.SetActive(false);
                 }
+            }
+
+            foreach (var image in optionController.options)
+            {
+                Collider collider = image.GetComponent<Collider>();
+                collider.enabled = false;
             }
 
             uiController.UpdatePauseUI();

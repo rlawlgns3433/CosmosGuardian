@@ -7,7 +7,7 @@ using System.Collections;
 
 public class PlayerWeaponData
 {
-    public WeaponColumn.Stat playerStat;
+    public OptionColumn.Stat playerStat;
     public float playerValue;
 
     public override string ToString()
@@ -89,10 +89,13 @@ public class PlayerStats : MonoBehaviour
 
     public bool UpdateStats(OptionColumn.Stat stat, OptionColumn.Type type, float value)
     {
-        getOptionEffect.SetActive(true);
-        foreach (var particle in effects)
+        if(type != OptionColumn.Type.ApplyChangeWeaponData)
         {
-            particle.Play();
+            getOptionEffect.SetActive(true);
+            foreach (var particle in effects)
+            {
+                particle.Play();
+            }
         }
 
         // 옵저버 패턴으로 stat을 observe하고 동작하는 클래스를 생성하여 변경 필요
@@ -128,12 +131,30 @@ public class PlayerStats : MonoBehaviour
                         // Weapon 값을 업그레이드
                         playerShooter.weapon.stats[(WeaponColumn.Stat)stat] += value;
 
-                        playerWeaponDatas.Add(new PlayerWeaponData{ playerStat = (WeaponColumn.Stat)stat, playerValue = value });
+                        playerWeaponDatas.Add(new PlayerWeaponData{ playerStat = stat, playerValue = value });
 
                         if(playerShooter.weapon.stats[(WeaponColumn.Stat)stat] < 0)
                         {
                             playerShooter.weapon.stats[(WeaponColumn.Stat)stat] = 0;
                         }
+                    }
+                }
+                break;
+
+            case OptionColumn.Type.WeaponChange:
+                {
+                    playerShooter.weapon.SetWeapon(Mathf.RoundToInt(value));
+                }
+                break;
+
+            case OptionColumn.Type.ApplyChangeWeaponData:
+                {
+                    // 무기 변경
+                    playerShooter.weapon.stats[(WeaponColumn.Stat)stat] += value;
+
+                    if (playerShooter.weapon.stats[(WeaponColumn.Stat)stat] < 0)
+                    {
+                        playerShooter.weapon.stats[(WeaponColumn.Stat)stat] = 0;
                     }
                 }
                 break;
@@ -150,7 +171,6 @@ public class PlayerStats : MonoBehaviour
         }
 
         stopEffectCoroutine = StartCoroutine(StopEffectAfter(twoSec));
-
 
         return true;
     }

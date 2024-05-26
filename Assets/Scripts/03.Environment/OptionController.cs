@@ -7,10 +7,12 @@ using System.Linq;
 public class OptionController : MonoBehaviour
 {
     private static readonly string Format = "<size=0.45>{0}\r\n<size=0.3>+{1}";
-
+    private static readonly string WeaponChangeFormat = "<size=0.45>{0}";
 
     public List<Image> options = new List<Image>();
     public List<TextMeshProUGUI> optionTexts = new List<TextMeshProUGUI>();
+    public List<RawImage> rawImages = new List<RawImage>();
+    public GameObject[] RenderTextureWeapons;
 
     private OptionTable optionTable;
     private PlayerStats playerStats;
@@ -76,6 +78,9 @@ public class OptionController : MonoBehaviour
                 case OptionColumn.Type.Fixed:
                     optionTexts[i].text = string.Format(Format, gradedOptions[index].GetName, gradedOptions[index].VALUE.ToString());
                     break;
+                case OptionColumn.Type.WeaponChange:
+                    optionTexts[i].text = string.Format(WeaponChangeFormat, gradedOptions[index].GetName);
+                    break;
             }
 
             OptionStat option = options[i].gameObject.GetComponent<OptionStat>();
@@ -86,6 +91,26 @@ public class OptionController : MonoBehaviour
             option.stat.Add(gradedOptions[index].STAT);
             option.type.Add(gradedOptions[index].TYPE);
             option.value.Add(gradedOptions[index].VALUE);
+
+            if (gradedOptions[index].TYPE == OptionColumn.Type.WeaponChange)
+            {
+                foreach(var renderWeapon in RenderTextureWeapons)
+                {
+                    if (renderWeapon.activeInHierarchy) continue;
+
+                    var cameraRenderWeapon = renderWeapon.GetComponentInChildren<CameraRenderWeapon>();
+                    cameraRenderWeapon.SetWeapon(Mathf.RoundToInt(gradedOptions[index].VALUE) % 100);
+
+                    option.rawImage.gameObject.SetActive(true);
+                    option.renderWeapon = renderWeapon;
+
+                    var cameraRenderTexture = option.renderWeapon.GetComponentInChildren<CameraRenderTexture>();
+                    option.rawImage.texture = cameraRenderTexture.renderTexture;
+                    cameraRenderTexture.rawImage = option.rawImage;
+                    option.renderWeapon.SetActive(true);
+                    break;
+                }
+            }
         }
     }
 }

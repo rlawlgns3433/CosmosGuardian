@@ -69,6 +69,7 @@ public static class OptionColumn
         Scale,
         Fixed,
         WeaponChange,
+        ApplyChangeWeaponData,
     }
      
     public enum Stat

@@ -4866,6 +4866,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _normalDamageData: {fileID: 11400000, guid: 1749513161c8f7e4db31e46d13392ba2, type: 2}
   _criticalDamagData: {fileID: 11400000, guid: 278b02994c43b044b9ba122345d93429, type: 2}
+  _healingTextData: {fileID: 11400000, guid: d56b6ba6ea47c124491a603f27a626c1, type: 2}
   _canvasPrefab: {fileID: 1926280506753864649, guid: dd88e50c89d53eb46abb5b1e73d9d025, type: 3}
   _mainCamera: {fileID: 963194228}
 --- !u!1 &701065974

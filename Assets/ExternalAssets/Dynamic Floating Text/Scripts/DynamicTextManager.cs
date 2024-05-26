@@ -7,11 +7,13 @@ public class DynamicTextManager : MonoBehaviour
 {
     public static DynamicTextData normalDamgeData;
     public static DynamicTextData criticalDamageData;
+    public static DynamicTextData healingTextData;
     public static GameObject canvasPrefab;
     public static Transform mainCamera;
 
     [SerializeField] private DynamicTextData _normalDamageData;
     [SerializeField] private DynamicTextData _criticalDamagData;
+    [SerializeField] private DynamicTextData _healingTextData;
     [SerializeField] private GameObject _canvasPrefab;
     [SerializeField] private Transform _mainCamera;
 
@@ -19,6 +21,7 @@ public class DynamicTextManager : MonoBehaviour
     {
         normalDamgeData = _normalDamageData;
         criticalDamageData = _criticalDamagData;
+        healingTextData = _healingTextData;
         mainCamera = _mainCamera;
         canvasPrefab = _canvasPrefab;
     }

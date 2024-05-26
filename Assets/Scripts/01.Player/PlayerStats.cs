@@ -107,6 +107,12 @@ public class PlayerStats : MonoBehaviour
                     {
                         stats[(CharacterColumn.Stat)stat] = Mathf.Min(stats[(CharacterColumn.Stat)stat], 1.9f);
                     }
+
+                    // 0 미만으로 떨어질 경우 0으로 반환
+                    if(stats[(CharacterColumn.Stat)stat] < 0)
+                    {
+                        stats[(CharacterColumn.Stat)stat] = 0;
+                    }
                 }
 
                 break;
@@ -124,9 +130,9 @@ public class PlayerStats : MonoBehaviour
 
                         playerWeaponDatas.Add(new PlayerWeaponData{ playerStat = (WeaponColumn.Stat)stat, playerValue = value });
 
-                        foreach (var op in playerWeaponDatas)
+                        if(playerShooter.weapon.stats[(WeaponColumn.Stat)stat] < 0)
                         {
-                            Debug.Log(op.ToString());
+                            playerShooter.weapon.stats[(WeaponColumn.Stat)stat] = 0;
                         }
                     }
                 }

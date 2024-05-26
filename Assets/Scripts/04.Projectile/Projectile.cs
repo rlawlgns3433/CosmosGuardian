@@ -287,8 +287,13 @@ public class Projectile : MonoBehaviour
                 }
             }
 
-            playerStats.stats[CharacterColumn.Stat.HP] += HpDrain; // Èí¼ö
-            playerHealth.UpdateHealthUI();
+            if (HpDrain > 0)
+            {
+                DynamicTextManager.CreateText(playerHealth.transform.position + Vector3.up + Random.onUnitSphere, HpDrain.ToString("+#;"), DynamicTextManager.healingTextData);
+                playerStats.stats[CharacterColumn.Stat.HP] += HpDrain; // Èí¼ö
+                playerHealth.UpdateHealthUI();
+            }
+
 
             if(CurrentPenetrate <= 0)
             {

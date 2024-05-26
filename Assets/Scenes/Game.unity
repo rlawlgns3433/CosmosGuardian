@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.0060825134, g: 0.0029428285, b: 0.029609201, a: 1}
+  m_IndirectSpecularColor: {r: 0.006080829, g: 0.0029385951, b: 0.029612528, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -14796,6 +14796,14 @@ PrefabInstance:
       propertyPath: textExp
       value: 
       objectReference: {fileID: 610191288}
+    - target: {fileID: 2295086922680514110, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
+      propertyPath: magnification
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2295086922680514110, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
+      propertyPath: expForNextLevel
+      value: 350
+      objectReference: {fileID: 0}
     - target: {fileID: 4508787347923785903, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
       propertyPath: cameraShake
       value: 

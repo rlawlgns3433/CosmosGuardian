@@ -289,7 +289,7 @@ public class Projectile : MonoBehaviour
 
             if (HpDrain > 0)
             {
-                DynamicTextManager.CreateText(playerHealth.transform.position + Vector3.up + Random.onUnitSphere, HpDrain.ToString("+#;"), DynamicTextManager.healingTextData);
+                DynamicTextManager.CreateText(playerHealth.transform.position + Vector3.one * 2, HpDrain.ToString("+#;"), DynamicTextManager.healingTextData);
                 playerStats.stats[CharacterColumn.Stat.HP] += HpDrain; // Èí¼ö
                 playerHealth.UpdateHealthUI();
             }

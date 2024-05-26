@@ -79,6 +79,7 @@ public class Platform : MonoBehaviour
                 for (int i = 0; i < spawnCount; ++i)
                 {
                     Vector3 spawnPos = GetRandomPositionOnObject(collider, collider.gameObject);
+                    spawnPos.y = 1;
                     int rand = Random.Range(0, GameManager.Instance.enemies.Count);
                     var go = Instantiate(GameManager.Instance.enemies[rand], spawnPos, Quaternion.Euler(new Vector3(0, 180, 0)));
                     var enemy = go.GetComponent<Enemy>();

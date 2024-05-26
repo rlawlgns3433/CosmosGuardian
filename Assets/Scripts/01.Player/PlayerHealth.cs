@@ -75,7 +75,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag(Tags.Enemy))
+        if(other.CompareTag(Tags.Enemy) || other.CompareTag(Tags.Elite))
         {
             if(camShakeCoroutine != null)
             {

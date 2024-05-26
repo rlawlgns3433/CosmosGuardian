@@ -56,7 +56,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resetCount: 0
-  hpScale: 1.5
+  hpScale: 1.6
   verticalIncrement: 0.5
   minTest: 1
   maxTest: 1

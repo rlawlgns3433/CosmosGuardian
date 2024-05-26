@@ -83,11 +83,12 @@ public class Enemy : MonoBehaviour, IDamageable
         direction = (target.transform.position - transform.position).normalized;
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         switch (enemyType)
         {
             case EnemyType.Normal:
+            case EnemyType.Elite:
                 if (isChasing)
                 {
                     transform.Translate(direction * speed * Time.deltaTime, Space.World);
@@ -96,8 +97,6 @@ public class Enemy : MonoBehaviour, IDamageable
                     transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
                 }
                 break;
-            case EnemyType.Elite:
-                break;
             case EnemyType.MidBoss:
                 break;
             case EnemyType.Boss:
@@ -105,8 +104,6 @@ public class Enemy : MonoBehaviour, IDamageable
             default:
                 break;
         }
-
-
     }
 
     public void OnDamage(float damage, bool isCritical = false, Vector3 hitPoint = default, Vector3 hitNormal = default)
@@ -135,8 +132,8 @@ public class Enemy : MonoBehaviour, IDamageable
     public void OnDie()
     {
         isAlive = false;
+        isChasing = false;
         enemyState = EnemyState.Dead;
-        //isChasing = false;
 
         textHealth.gameObject.SetActive(false);
         sphereCollider.enabled = false;

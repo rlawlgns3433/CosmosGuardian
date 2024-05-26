@@ -244,7 +244,7 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(Tags.Enemy) || other.CompareTag(Tags.Boss))
+        if (other.CompareTag(Tags.Enemy) || other.CompareTag(Tags.Boss) || other.CompareTag(Tags.Elite))
         {
             var enemy = other.gameObject.GetComponent<Enemy>();
             // 크리티컬 확률일 경우

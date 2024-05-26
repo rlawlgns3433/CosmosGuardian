@@ -55,7 +55,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resetCount: 0
-  hpScale: 1.5
+  hpScale: 1.6
   verticalIncrement: 0.5
   minTest: 1
   maxTest: 1
@@ -207,18 +207,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 717014098975056334}
     m_Modifications:
-    - target: {fileID: 5163372288094269348, guid: 160b2fb2c57f10940847583241621df4, type: 3}
-      propertyPath: enemies.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5163372288094269348, guid: 160b2fb2c57f10940847583241621df4, type: 3}
-      propertyPath: enemies.Array.data[0]
-      value: 
-      objectReference: {fileID: 2705906089778004512, guid: a31a22b275c159e4fa28755b495bad91, type: 3}
-    - target: {fileID: 5163372288094269348, guid: 160b2fb2c57f10940847583241621df4, type: 3}
-      propertyPath: enemies.Array.data[1]
-      value: 
-      objectReference: {fileID: -630123401486560859, guid: acf6fe2f747250343bf9070e941ce57f, type: 3}
     - target: {fileID: 3537504080978281147, guid: d245ab4878590764790cb488bd5f014b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -255,6 +243,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: RowTile (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5163372288094269348, guid: 160b2fb2c57f10940847583241621df4, type: 3}
+      propertyPath: enemies.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5163372288094269348, guid: 160b2fb2c57f10940847583241621df4, type: 3}
+      propertyPath: enemies.Array.data[0]
+      value: 
+      objectReference: {fileID: 2705906089778004512, guid: a31a22b275c159e4fa28755b495bad91, type: 3}
+    - target: {fileID: 5163372288094269348, guid: 160b2fb2c57f10940847583241621df4, type: 3}
+      propertyPath: enemies.Array.data[1]
+      value: 
+      objectReference: {fileID: -630123401486560859, guid: acf6fe2f747250343bf9070e941ce57f, type: 3}
     m_RemovedComponents:
     - {fileID: 5163372288094269348, guid: 160b2fb2c57f10940847583241621df4, type: 3}
     m_RemovedGameObjects: []

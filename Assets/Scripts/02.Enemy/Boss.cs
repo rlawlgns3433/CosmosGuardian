@@ -71,7 +71,7 @@ public class Boss : Enemy
         StartCoroutine(AttackPattern());
     }
 
-    private void Update()
+    private new void Update()
     {
         if (Vector3.Distance(transform.position, target.transform.position) < 12)
         {

@@ -15,6 +15,7 @@ TagManager:
   - ItemController
   - BossPlatform
   - Bullet
+  - Elite
   layers:
   - Default
   - TransparentFX

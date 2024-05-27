@@ -44,14 +44,7 @@ public class Platform : MonoBehaviour
         {
             foreach (var enemy in enemies)
             {
-                if(enemy.chaseCoroutine != null)
-                {
-                    enemy.StopCoroutine(enemy.chaseCoroutine);
-                }
-                enemy.isAlive = false;
-                enemy.isChasing = false;
-                enemy.gameObject.SetActive(false);
-                unusingEnemies[enemy.enemyType].Add(enemy);
+                ReturnEnemy(enemy);
 
                 //if (enemy != null)
                 //{
@@ -59,6 +52,7 @@ public class Platform : MonoBehaviour
                 //    // return ºÎºÐ
                 //}
             }
+            enemies.Clear();
         }
 
         ++resetCount;
@@ -157,12 +151,6 @@ public class Platform : MonoBehaviour
         return randomWorldPosition;
     }
 
-    IEnumerator DelaySpawn(float t)
-    {
-        yield return new WaitForSeconds(t);
-        Spawn();
-    }
-
     public Enemy GetEnemy(EnemyType enemyType)
     {
         if (unusingEnemies[enemyType].Count <= 0)
@@ -170,7 +158,6 @@ public class Platform : MonoBehaviour
 
         var enemy = unusingEnemies[enemyType][0];
         enemy.gameObject.SetActive(true);
-        enemy.StopAllCoroutines();
 
         enemy.isAlive = true;
         enemy.enemyState = EnemyState.Idle;
@@ -183,8 +170,15 @@ public class Platform : MonoBehaviour
         unusingEnemies[enemyType].Remove(enemy);
         spawnedEnemies[enemyType].Add(enemy);
 
-        Debug.Log(enemy.name);
-
         return enemy;
+    }
+
+    public void ReturnEnemy(Enemy enemy)
+    {
+        enemy.isAlive = false;
+        enemy.isChasing = false;
+
+        unusingEnemies[enemy.enemyType].Add(enemy);
+        enemy.gameObject.SetActive(false);
     }
 }

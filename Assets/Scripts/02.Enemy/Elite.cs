@@ -14,11 +14,24 @@ public class Elite : Enemy
     private WaitForSeconds shotInterval = new WaitForSeconds(2f);
     private float distance = float.PositiveInfinity;
 
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        attackOneCoroutine = StartCoroutine(AttackPattern());
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        if (attackOneCoroutine != null)
+        {
+            StopCoroutine(attackOneCoroutine);
+        }
+    }
+
     protected override void Start()
     {
         base.Start();
-
-        attackOneCoroutine = StartCoroutine(AttackPattern());
     }
 
     protected override void Update()
@@ -37,6 +50,7 @@ public class Elite : Enemy
     private void Shot()
     {
         if (transform.position.z < target.transform.position.z) return;
+        Debug.Log($"Shot! {gameObject.name}");
 
         direction = (target.transform.position - transform.position).normalized;
 
@@ -56,7 +70,7 @@ public class Elite : Enemy
 
     IEnumerator AttackPattern()
     {
-        while(isAlive)
+        while (isAlive)
         {
             if (!target.isAlive)
             {
@@ -76,14 +90,13 @@ public class Elite : Enemy
                 continue;
             }
 
-            if(attackOneCoroutine != null)
+            if (attackOneCoroutine != null)
             {
                 StopCoroutine(attackOneCoroutine);
             }
 
-            yield return shotInterval;
             Shot();
-            yield return new WaitForSeconds(1);
+            yield return shotInterval;
             enemyState = EnemyState.Idle;
             animator.SetBool(Animator.StringToHash(attack1), false);
         }

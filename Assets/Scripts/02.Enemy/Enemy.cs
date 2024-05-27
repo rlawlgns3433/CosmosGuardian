@@ -63,7 +63,17 @@ public class Enemy : MonoBehaviour, IDamageable
 
     protected virtual void OnEnable()
     {
+        isAlive = true;
+        speed = originSpeed;
         target = GameObject.FindWithTag(Tags.Player).GetComponent<PlayerHealth>();
+    }
+
+    protected virtual void OnDisable()
+    {
+        if (chaseCoroutine != null)
+        {
+            StopCoroutine(chaseCoroutine);
+        }
     }
 
     protected virtual void Start()
@@ -238,10 +248,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public void LateSetActiveFalse()
     {
-        if (chaseCoroutine != null)
-        {
-            StopCoroutine(chaseCoroutine);
-        }
+
         gameObject.SetActive(false);
     }
 }

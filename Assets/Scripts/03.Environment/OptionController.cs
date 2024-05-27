@@ -82,8 +82,25 @@ public class OptionController : MonoBehaviour
                     optionTexts[i].text = string.Format(WeaponChangeFormat, gradedOptions[index].GetName);
                     break;
             }
-
+            
             OptionStat option = options[i].gameObject.GetComponent<OptionStat>();
+
+            for(int j = 0; j < option.type.Count; ++j)
+            {
+                if (option.type[j] == OptionColumn.Type.WeaponChange)
+                {
+                    if (option.renderWeapon != null)
+                    {
+                        var cameraRenderTexture = option.renderWeapon.GetComponentInChildren<CameraRenderTexture>();
+                        cameraRenderTexture.rawImage = null;
+                        option.renderWeapon.SetActive(false);
+                        option.renderWeapon = null;
+                        option.rawImage.texture = null;
+                        option.rawImage.gameObject.SetActive(false);
+                    }
+                }
+            }
+
             option.stat.Clear();
             option.type.Clear();
             option.value.Clear();

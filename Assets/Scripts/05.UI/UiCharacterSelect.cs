@@ -167,18 +167,18 @@ public class UiCharacterSelect : MonoBehaviour
         textStats[26].text = statStringName[13];
 
         textStats[1].text = characterTable.Get(intId).HP.ToString();
-        textStats[3].text = characterTable.Get(intId).SPLASH_RANGE.ToString();
-        textStats[5].text = characterTable.Get(intId).ARMOR.ToString();
-        textStats[7].text = characterTable.Get(intId).SPLASH_RANGE.ToString();
-        textStats[9].text = characterTable.Get(intId).DAMAGE_TYPE_1.ToString();
-        textStats[11].text = characterTable.Get(intId).CRITICAL.ToString();
-        textStats[13].text = characterTable.Get(intId).FIRE_RATE.ToString();
-        textStats[15].text = characterTable.Get(intId).CRITICAL_DAMAGE.ToString();
-        textStats[17].text = characterTable.Get(intId).FIRE_RANGE.ToString();
-        textStats[19].text = characterTable.Get(intId).HP_DRAIN.ToString();
-        textStats[21].text = characterTable.Get(intId).PENETRATE.ToString();
-        textStats[23].text = characterTable.Get(intId).PROJECTILE_AMOUNT.ToString();
-        textStats[25].text = characterTable.Get(intId).MOVE_SPEED_V.ToString();
-        textStats[27].text = characterTable.Get(intId).MOVE_SPEED_H.ToString();
+        textStats[3].text = (100 * characterTable.Get(intId).SPLASH_RANGE + "%").ToString();
+        textStats[5].text = (100 * characterTable.Get(intId).ARMOR - 100 + "%").ToString();
+        textStats[7].text = (100 * characterTable.Get(intId).SPLASH_RANGE + "%").ToString();
+        textStats[9].text = (100 * characterTable.Get(intId).DAMAGE_TYPE_1 + "%").ToString();
+        textStats[11].text = (100 * characterTable.Get(intId).CRITICAL + "%").ToString();
+        textStats[13].text = (100 * characterTable.Get(intId).FIRE_RATE + "%").ToString();
+        textStats[15].text = (100 * characterTable.Get(intId).CRITICAL_DAMAGE + "%").ToString();
+        textStats[17].text = (100 * characterTable.Get(intId).FIRE_RANGE + "%").ToString();
+        textStats[19].text = (100 * characterTable.Get(intId).HP_DRAIN + "%").ToString();
+        textStats[21].text = (100 * characterTable.Get(intId).PENETRATE + "%").ToString();
+        textStats[23].text = (100 * characterTable.Get(intId).PROJECTILE_AMOUNT + "%").ToString();
+        textStats[25].text = (100 * characterTable.Get(intId).MOVE_SPEED_V + "%").ToString();
+        textStats[27].text = (100 * characterTable.Get(intId).MOVE_SPEED_H + "%").ToString();
     }
 }

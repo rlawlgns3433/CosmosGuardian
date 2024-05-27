@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Enemy;
 
 public class Platform : MonoBehaviour
 {
@@ -14,33 +15,56 @@ public class Platform : MonoBehaviour
     public int maxTest = 4;
     public OptionController optionController;
     public List<GameObject> enemySpawnTile = new List<GameObject>();
-    public List<Enemy> spawnedEnemies = new List<Enemy>();
+    public Dictionary<EnemyType, List<Enemy>> spawnedEnemies = new Dictionary<EnemyType, List<Enemy>>();
+    public Dictionary<EnemyType, List<Enemy>> unusingEnemies = new Dictionary<EnemyType, List<Enemy>>();
     public EnemyTable enemyTable;
 
     private PlayerStats playerStats;
 
     private void Start()
     {
+        spawnedEnemies[EnemyType.Normal] = new List<Enemy>();
+        spawnedEnemies[EnemyType.Elite] = new List<Enemy>();
+        spawnedEnemies[EnemyType.MidBoss] = new List<Enemy>();
+        spawnedEnemies[EnemyType.Boss] = new List<Enemy>();
+
+        unusingEnemies[EnemyType.Normal] = new List<Enemy>();
+        unusingEnemies[EnemyType.Elite] = new List<Enemy>();
+        unusingEnemies[EnemyType.MidBoss] = new List<Enemy>();
+        unusingEnemies[EnemyType.Boss] = new List<Enemy>();
+
         enemyTable = DataTableMgr.Get<EnemyTable>(DataTableIds.Enemy);
         playerStats = GameObject.FindWithTag(Tags.Player).GetComponent<PlayerStats>();
         Spawn();
-        //StartCoroutine(DelaySpawn(0.1f));
     }
 
     public void ResetPlatform()
     {
-        foreach (var enemy in spawnedEnemies)
+        foreach (var enemies in spawnedEnemies.Values)
         {
-            if (enemy != null)
+            foreach (var enemy in enemies)
             {
-                enemy.OnDie();
+                if(enemy.chaseCoroutine != null)
+                {
+                    enemy.StopCoroutine(enemy.chaseCoroutine);
+                }
+                enemy.isAlive = false;
+                enemy.isChasing = false;
+                enemy.gameObject.SetActive(false);
+                unusingEnemies[enemy.enemyType].Add(enemy);
+
+                //if (enemy != null)
+                //{
+                //    enemy.OnDie();
+                //    // return 부분
+                //}
             }
         }
 
         ++resetCount;
-        spawnedEnemies.Clear();
+        //spawnedEnemies.Clear();
 
-        if(maxTest != 10)
+        if (maxTest != 10)
         {
             if ((resetCount / 2) % 2 == 0)
             {
@@ -81,16 +105,31 @@ public class Platform : MonoBehaviour
                     Vector3 spawnPos = GetRandomPositionOnObject(collider, collider.gameObject);
                     spawnPos.y = 1;
                     int rand = Random.Range(0, GameManager.Instance.enemies.Count);
-                    var go = Instantiate(GameManager.Instance.enemies[rand], spawnPos, Quaternion.Euler(new Vector3(0, 180, 0)));
-                    var enemy = go.GetComponent<Enemy>();
+
+
+                    Enemy enemy;
+                    var selectedEnemyType = GameManager.Instance.enemies[rand].GetComponent<Enemy>().enemyType;
+                    // 없을 때
+                    if (unusingEnemies[selectedEnemyType].Count <= 0)
+                    {
+                        var go = Instantiate(GameManager.Instance.enemies[rand], spawnPos, Quaternion.Euler(new Vector3(0, 180, 0)));
+                        enemy = go.GetComponent<Enemy>();
+                        spawnedEnemies[enemy.enemyType].Add(enemy);
+                    }
+                    // 있을 때
+                    else
+                    {
+                        enemy = GetEnemy(selectedEnemyType);
+                        enemy.gameObject.transform.position = spawnPos;
+                        enemy.gameObject.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+                    }
+
                     // EnemyData 객체를 복사하여 사용
                     EnemyData originalData = enemyTable.Get((int)enemy.enemyType);
                     if (originalData != null)
                     {
                         EnemyData dataCopy = new EnemyData(originalData);
                         enemy.UpdateStats(dataCopy, dataCopy.MAGNIFICATION, resetCount);
-
-                        spawnedEnemies.Add(enemy);
                     }
                     else
                     {
@@ -122,5 +161,30 @@ public class Platform : MonoBehaviour
     {
         yield return new WaitForSeconds(t);
         Spawn();
+    }
+
+    public Enemy GetEnemy(EnemyType enemyType)
+    {
+        if (unusingEnemies[enemyType].Count <= 0)
+            return null;
+
+        var enemy = unusingEnemies[enemyType][0];
+        enemy.gameObject.SetActive(true);
+        enemy.StopAllCoroutines();
+
+        enemy.isAlive = true;
+        enemy.enemyState = EnemyState.Idle;
+
+        enemy.textHealth.gameObject.SetActive(true);
+        enemy.sphereCollider.enabled = true;
+
+        enemy.speed = enemy.originSpeed;
+
+        unusingEnemies[enemyType].Remove(enemy);
+        spawnedEnemies[enemyType].Add(enemy);
+
+        Debug.Log(enemy.name);
+
+        return enemy;
     }
 }

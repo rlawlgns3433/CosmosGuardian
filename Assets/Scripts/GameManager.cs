@@ -38,9 +38,12 @@ public class GameManager : Singleton<GameManager>
             if (currentPlatform.transform.position.z < playerStats.gameObject.transform.position.z)
             {
 
-                foreach (var enemy in platform.spawnedEnemies)
+                foreach (var enemies in platform.spawnedEnemies.Values)
                 {
-                    enemy.Chase();
+                    foreach (var enemy in enemies)
+                    {
+                        enemy.Chase();
+                    }
                 }
                 isFirst = false;
             }
@@ -60,9 +63,12 @@ public class GameManager : Singleton<GameManager>
             platform.ResetPlatform();
 
             Platform nextPlatform = platforms[nextPlatformIndex].GetComponent<Platform>();
-            foreach (var enemy in nextPlatform.spawnedEnemies)
+            foreach (var enemies in nextPlatform.spawnedEnemies.Values)
             {
-                enemy.Chase();
+                foreach (var enemy in enemies)
+                {
+                    enemy.Chase();
+                }
             }
         }
     }
@@ -74,11 +80,14 @@ public class GameManager : Singleton<GameManager>
         foreach (var platformGo in platforms)
         {
             var platform = platformGo.GetComponent<Platform>();
-            foreach (var enemy in platform.spawnedEnemies)
+            foreach (var enemies in platform.spawnedEnemies.Values)
             {
-                if (enemy != null)
+                foreach(var enemy in enemies)
                 {
-                    enemy.animator.SetTrigger(Animator.StringToHash("Victory"));
+                    if (enemy != null && enemy.gameObject.activeInHierarchy)
+                    {
+                        enemy.animator.SetTrigger(Animator.StringToHash("Victory"));
+                    }
                 }
             }
         }

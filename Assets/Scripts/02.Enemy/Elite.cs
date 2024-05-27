@@ -11,14 +11,14 @@ public class Elite : Enemy
 
     public GameObject projectilePrefab;
     public Coroutine attackOneCoroutine;
-    private WaitForSeconds shotInterval = new WaitForSeconds(3f);
+    private WaitForSeconds shotInterval = new WaitForSeconds(2f);
     private float distance = float.PositiveInfinity;
 
     protected override void Start()
     {
         base.Start();
 
-        StartCoroutine(AttackPattern());
+        attackOneCoroutine = StartCoroutine(AttackPattern());
     }
 
     protected override void Update()

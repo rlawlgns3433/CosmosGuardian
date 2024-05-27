@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
+using System.Security.Cryptography;
 using TMPro;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public enum EnemyType
 {
@@ -28,8 +30,9 @@ public class Enemy : MonoBehaviour, IDamageable
     public Coroutine chaseCoroutine;
     public TextMeshProUGUI textHealth;
     public event Action onDeath;
+    public float originSpeed = 5;
     public float speed = 5;
-    protected bool isAlive = true;
+    public bool isAlive = true;
     public bool isChasing = false;
     public float rotationSpeed = 180;
     public Animator animator;
@@ -45,7 +48,7 @@ public class Enemy : MonoBehaviour, IDamageable
     private Coroutine stopEffectCoroutine;
 
 
-    private WaitForSeconds chaseTimer = new WaitForSeconds(0.1f);
+    private WaitForSeconds chaseTimer;
     public Vector3 direction;
 
     private void Awake()
@@ -58,6 +61,11 @@ public class Enemy : MonoBehaviour, IDamageable
         effects = splashEffect.GetComponentsInChildren<ParticleSystem>();
     }
 
+    protected virtual void OnEnable()
+    {
+        target = GameObject.FindWithTag(Tags.Player).GetComponent<PlayerHealth>();
+    }
+
     protected virtual void Start()
     {
         if (enemyData == null)
@@ -65,9 +73,10 @@ public class Enemy : MonoBehaviour, IDamageable
             enemyData = new EnemyData(GameManager.Instance.enemyTable.Get((int)(enemyType)));
         }
 
+        chaseTimer = new WaitForSeconds(0.1f);
+
         damageFloatingPosition = textHealth.transform.position;
         floatingTextRadius = 3f;
-        target = GameObject.FindWithTag(Tags.Player).GetComponent<PlayerHealth>();
         onDeath += () =>
         {
             isAlive = false;
@@ -139,9 +148,12 @@ public class Enemy : MonoBehaviour, IDamageable
         sphereCollider.enabled = false;
 
         animator.SetTrigger("Die");
-        Destroy(gameObject, 1.5f);
         speed = 0;
+        // 삭제 대신 풀로 이동
+        Invoke("LateSetActiveFalse", 1.5f);
+        //Destroy(gameObject, 1.5f);
     }
+
 
     public IEnumerator CoChasePlayer()
     {
@@ -222,5 +234,14 @@ public class Enemy : MonoBehaviour, IDamageable
         {
             StopEffectImmediatly();
         }
+    }
+
+    public void LateSetActiveFalse()
+    {
+        if (chaseCoroutine != null)
+        {
+            StopCoroutine(chaseCoroutine);
+        }
+        gameObject.SetActive(false);
     }
 }

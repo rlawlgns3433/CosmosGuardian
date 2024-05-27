@@ -104,7 +104,14 @@ public class PlayerStats : MonoBehaviour
         {
             case OptionColumn.Type.Scale:
                 {
-                    stats[(CharacterColumn.Stat)stat] += initialStats[(CharacterColumn.Stat)stat] * (value / 100.0f);
+                    if(stat == OptionColumn.Stat.HP)
+                    {
+                        stats[(CharacterColumn.Stat)stat] += stats[(CharacterColumn.Stat)stat] * (value / 100.0f);
+                    }
+                    else
+                    {
+                        stats[(CharacterColumn.Stat)stat] += initialStats[(CharacterColumn.Stat)stat] * (value / 100.0f);
+                    }
 
                     if (stat == OptionColumn.Stat.ARMOR)
                     {

@@ -24,11 +24,15 @@ public class BossSpawnController : MonoBehaviour
     public void SpawnBoss()
     {
         // 현재 플랫폼에 있는 몬스터 전체 삭제
-        foreach (var enemy in platform.spawnedEnemies)
+        foreach (var enemies in platform.spawnedEnemies.Values)
         {
-            if (enemy != null)
+            foreach(var enemy in enemies)
             {
-                enemy.OnDie();
+                if (enemy != null)
+                {
+                    enemy.OnDie();
+                    // return 부분
+                }
             }
         }
 
@@ -37,7 +41,7 @@ public class BossSpawnController : MonoBehaviour
 
         var go = Instantiate(bossPrefab, spawnPos, Quaternion.Euler(0, 180, 0));
         var boss = go.GetComponent<Boss>();
-        platform.spawnedEnemies.Add(boss);
+        platform.spawnedEnemies[boss.enemyType].Add(boss);
 
         EnemyData bossData = new EnemyData(platform.enemyTable.Get((int)EnemyType.Boss));
         boss.UpdateStats(bossData, bossData.MAGNIFICATION, platform.resetCount);
@@ -59,7 +63,7 @@ public class BossSpawnController : MonoBehaviour
 
         var go = Instantiate(midBossPrefab, spawnPos, Quaternion.Euler(0, 180, 0));
         var midBoss = go.GetComponent<MidBoss>();
-        platform.spawnedEnemies.Add(midBoss);
+        platform.spawnedEnemies[midBoss.enemyType].Add(midBoss);
 
         EnemyData midBossData = new EnemyData(platform.enemyTable.Get((int)EnemyType.MidBoss));
         midBoss.UpdateStats(midBossData, midBossData.MAGNIFICATION, platform.resetCount);

@@ -8,7 +8,7 @@ public class Lobby : MonoBehaviour
 
     void Start()
     {
-        audioSource.volume = ParamManager.bgmValue;
+        audioSource.volume = ParamManager.BgmValue;
         audioSource.clip = bgmClips[0];
         audioSource.loop = true;
         audioSource.Play();

@@ -77,7 +77,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
                 StopCoroutine(camShakeCoroutine);
             }
 
-            if(ParamManager.isCameraShaking)
+            if(ParamManager.IsCameraShaking)
             {
                 camShakeCoroutine = StartCoroutine(cameraShake.Shake(0.15f, 1f));
             }

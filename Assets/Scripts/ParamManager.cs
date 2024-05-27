@@ -7,9 +7,57 @@ public class ParamManager : MonoBehaviour
     public static RecordData currentRecord = new RecordData();
     public static int selectedCharacterIndex = 0;
     public static int selectedWeaponIndex = 0;
-    public static bool isCameraShaking = true;
-    public static float bgmValue = 1;
-    public static float sfxValue = 1;
+    private static bool isCameraShaking = true;
+    public static bool IsCameraShaking
+    {
+        get 
+        {
+            if(saveData == null)
+            {
+                saveData = SaveLoadSystem.Load() as SaveDataV1;
+            }
+            return saveData.playerOption.isCameraShake; 
+        }
+        set
+        {
+            saveData.playerOption.isCameraShake = value;
+            isCameraShaking = value;
+        }
+    }
+    private static float bgmValue = 1f;
+    public static float BgmValue
+    {
+        get 
+        {
+            if (saveData == null)
+            {
+                saveData = SaveLoadSystem.Load() as SaveDataV1;
+            }
+            return saveData.playerOption.bgmValue; 
+        }
+        set
+        {
+            saveData.playerOption.bgmValue = value;
+            bgmValue = value;
+        }
+    }
+    private static float sfxValue = 1f;
+    public static float SfxValue
+    {
+        get 
+        {
+            if (saveData == null)
+            {
+                saveData = SaveLoadSystem.Load() as SaveDataV1;
+            }
+            return saveData.playerOption.sfxValue; 
+        }
+        set
+        {
+            saveData.playerOption.sfxValue = value;
+            sfxValue = value;
+        }
+    }
     public static int playerScore = 0;
     public static string SceneToLoad = string.Empty;
 
@@ -21,7 +69,6 @@ public class ParamManager : MonoBehaviour
 
     private void Awake()
     {
-
 
         selectedCharacterIndex = PlayerPrefs.GetInt("SelectedCharacterIndex", 0) % 100;
         currentRecord.score = -1;

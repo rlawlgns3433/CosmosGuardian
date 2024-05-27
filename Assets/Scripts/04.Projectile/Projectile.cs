@@ -145,7 +145,7 @@ public class Projectile : MonoBehaviour
 
     private void Awake()
     {
-        audioSource.volume = ParamManager.sfxValue;
+        audioSource.volume = ParamManager.SfxValue;
     }
 
     private void OnEnable()

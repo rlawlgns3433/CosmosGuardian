@@ -18,19 +18,19 @@ public class UiOption : MonoBehaviour
     {
         ParamManager.saveData = SaveLoadSystem.Load() as SaveDataV1;
 
-        buttonState = ParamManager.isCameraShaking ? buttonOn : buttonOff;
+        buttonState = ParamManager.IsCameraShaking ? buttonOn : buttonOff;
         buttonImg.sprite = buttonSprites[buttonState];
 
         if (ParamManager.saveData.playerOption.bgmValue != -1)
         {
             bgmSlider.value = ParamManager.saveData.playerOption.bgmValue;
-            ParamManager.bgmValue = bgmSlider.value;
+            ParamManager.BgmValue = bgmSlider.value;
         }
 
         if (ParamManager.saveData.playerOption.sfxValue != -1)
         {
             sfxSlider.value = ParamManager.saveData.playerOption.sfxValue;
-            ParamManager.sfxValue = sfxSlider.value;
+            ParamManager.SfxValue = sfxSlider.value;
         }
 
         //bgmSlider.value = ParamManager.bgmValue;
@@ -52,13 +52,13 @@ public class UiOption : MonoBehaviour
 
         bgmSlider.onValueChanged.AddListener((float value) =>
         {
-            ParamManager.bgmValue = value;
-            lobby.audioSource.volume = ParamManager.bgmValue;
+            ParamManager.BgmValue = value;
+            lobby.audioSource.volume = ParamManager.BgmValue;
         });
 
         sfxSlider.onValueChanged.AddListener((float value) =>
         {
-            ParamManager.sfxValue = value;
+            ParamManager.SfxValue = value;
         });
     }
 
@@ -67,15 +67,13 @@ public class UiOption : MonoBehaviour
         if (buttonState == buttonOn)
         {
             buttonState = buttonOff;
-            ParamManager.isCameraShaking = false;
+            ParamManager.IsCameraShaking = false;
         }
         else
         {
             buttonState = buttonOn;
-            ParamManager.isCameraShaking = true;
+            ParamManager.IsCameraShaking = true;
         }
         buttonImg.sprite = buttonSprites[buttonState];
     }
-
-
 }

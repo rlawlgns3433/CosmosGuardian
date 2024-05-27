@@ -16,7 +16,7 @@ public class EliteBullet : MonoBehaviour
                 StopCoroutine(player.camShakeCoroutine);
             }
 
-            if (ParamManager.isCameraShaking)
+            if (ParamManager.IsCameraShaking)
             {
                 player.camShakeCoroutine = StartCoroutine(player.cameraShake.Shake(0.15f, 1f));
             }

@@ -51,6 +51,9 @@ public class UiController : MonoBehaviour
         textStatNamesInPause[i].text = stringTable.Get(string.Format(nameFormat, 14));
         textStatInPause[i++].text = ((playerStats.stats[CharacterColumn.Stat.ARMOR] * 100f) - 100 + "%").ToString();
 
+        textStatNamesInPause[i].text = stringTable.Get(string.Format(nameFormat, 0));
+        textStatInPause[i++].text = ((int)((playerShooter.weapon.stats[WeaponColumn.Stat.DAMAGE] * playerStats.stats[CharacterColumn.Stat.DAMAGE]) / (playerShooter.weapon.stats[WeaponColumn.Stat.PROJECTILE_AMOUNT] * playerStats.stats[CharacterColumn.Stat.PROJECTILE_AMOUNT]))).ToString();
+
         textStatNamesInPause[i].text = stringTable.Get(string.Format(nameFormat, 1));
         textStatInPause[i++].text = ((int)(playerShooter.weapon.stats[WeaponColumn.Stat.FIRE_RATE] * playerStats.stats[CharacterColumn.Stat.FIRE_RATE]) + "È¸/ºÐ").ToString();
 
@@ -76,6 +79,9 @@ public class UiController : MonoBehaviour
 
         textStatNamesInPause[i].text = stringTable.Get(string.Format(nameFormat, 7));
         textStatInPause[i++].text = ((int)(playerShooter.weapon.stats[WeaponColumn.Stat.CRITICAL_DAMAGE] * playerStats.stats[CharacterColumn.Stat.CRITICAL_DAMAGE]) + "%").ToString();
+
+        textStatNamesInPause[i].text = stringTable.Get(string.Format(nameFormat, 8));
+        textStatInPause[i++].text = ((playerShooter.weapon.stats[WeaponColumn.Stat.HP_DRAIN] * playerStats.stats[CharacterColumn.Stat.HP_DRAIN]) + "%").ToString();
 
         textStatNamesInPause[i].text = stringTable.Get(string.Format(nameFormat, 10));
         textStatInPause[i++].text = ((int)(playerShooter.weapon.stats[WeaponColumn.Stat.PROJECTILE_AMOUNT] * playerStats.stats[CharacterColumn.Stat.PROJECTILE_AMOUNT]) + "°³").ToString();

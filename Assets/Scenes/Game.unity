@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.006080829, g: 0.0029385951, b: 0.029612528, a: 1}
+  m_IndirectSpecularColor: {r: 0.0060825134, g: 0.0029428285, b: 0.029609201, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8377,6 +8377,7 @@ MonoBehaviour:
   textStatNamesInPause:
   - {fileID: 1518491802}
   - {fileID: 925168736}
+  - {fileID: 422561117}
   - {fileID: 385326309}
   - {fileID: 457204410}
   - {fileID: 1525895380}
@@ -8385,11 +8386,13 @@ MonoBehaviour:
   - {fileID: 1540206489}
   - {fileID: 1150285939}
   - {fileID: 1820640445}
+  - {fileID: 391869749}
   - {fileID: 1318167300}
   - {fileID: 1964170711}
   textStatInPause:
   - {fileID: 1147356122}
   - {fileID: 281295614}
+  - {fileID: 278627445}
   - {fileID: 1887225235}
   - {fileID: 616971852}
   - {fileID: 1475360971}
@@ -8398,6 +8401,7 @@ MonoBehaviour:
   - {fileID: 2033391420}
   - {fileID: 936088850}
   - {fileID: 951916640}
+  - {fileID: 1109170387}
   - {fileID: 781721962}
   - {fileID: 1142771688}
   textItemSelectStats: {fileID: 1048429175}

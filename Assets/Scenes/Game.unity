@@ -2779,6 +2779,10 @@ PrefabInstance:
       propertyPath: maxTest
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6011530658994398209, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
+      propertyPath: minTest
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6792018370236454779, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
       propertyPath: RenderTextureWeapons.Array.size
       value: 15
@@ -7054,6 +7058,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6011530658994398209, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
       propertyPath: maxTest
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6011530658994398209, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
+      propertyPath: minTest
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6792018370236454779, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
@@ -13375,6 +13383,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6011530658994398209, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
       propertyPath: maxTest
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6011530658994398209, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
+      propertyPath: minTest
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6792018370236454779, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
@@ -22279,7 +22291,7 @@ PrefabInstance:
       objectReference: {fileID: 610191288}
     - target: {fileID: 2295086922680514110, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
       propertyPath: maxLevel
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2295086922680514110, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
       propertyPath: magnification
@@ -22432,6 +22444,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6011530658994398209, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
       propertyPath: maxTest
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6011530658994398209, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
+      propertyPath: minTest
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6792018370236454779, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
@@ -26579,6 +26595,10 @@ PrefabInstance:
       propertyPath: playerStats
       value: 
       objectReference: {fileID: 1387199563}
+    - target: {fileID: 6011530658994398209, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
+      propertyPath: minTest
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6792018370236454779, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
       propertyPath: RenderTextureWeapons.Array.size
       value: 15
@@ -28790,6 +28810,10 @@ PrefabInstance:
       propertyPath: maxTest
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6011530658994398209, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
+      propertyPath: minTest
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6792018370236454779, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
       propertyPath: RenderTextureWeapons.Array.size
       value: 15
@@ -30494,6 +30518,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6011530658994398209, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
       propertyPath: maxTest
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6011530658994398209, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
+      propertyPath: minTest
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6792018370236454779, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
@@ -34191,6 +34219,10 @@ PrefabInstance:
     - target: {fileID: 4651619996497945337, guid: d04a77f69089fe14ca4d0dbdd8834c4f, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5220609208338446750, guid: d04a77f69089fe14ca4d0dbdd8834c4f, type: 3}
+      propertyPath: minTest
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5279780523254580929, guid: d04a77f69089fe14ca4d0dbdd8834c4f, type: 3}
       propertyPath: rawImages.Array.size

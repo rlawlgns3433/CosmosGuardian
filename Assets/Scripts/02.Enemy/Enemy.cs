@@ -65,7 +65,11 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         isAlive = true;
         speed = originSpeed;
+        damageFloatingPosition = textHealth.transform.position;
+
         target = GameObject.FindWithTag(Tags.Player).GetComponent<PlayerHealth>();
+        direction = (target.transform.position - transform.position).normalized;
+
     }
 
     protected virtual void OnDisable()
@@ -74,6 +78,10 @@ public class Enemy : MonoBehaviour, IDamageable
         {
             StopCoroutine(chaseCoroutine);
         }
+
+        isAlive = false;
+        isChasing = false;
+        textHealth.gameObject.SetActive(false);
     }
 
     protected virtual void Start()
@@ -85,7 +93,6 @@ public class Enemy : MonoBehaviour, IDamageable
 
         chaseTimer = new WaitForSeconds(0.1f);
 
-        damageFloatingPosition = textHealth.transform.position;
         floatingTextRadius = 3f;
         onDeath += () =>
         {
@@ -98,8 +105,6 @@ public class Enemy : MonoBehaviour, IDamageable
         };
         onDeath += OnDie;
         onDeath += () => { target.GetComponent<PlayerStats>().GetExp(enemyData.SCORE); };
-
-        direction = (target.transform.position - transform.position).normalized;
     }
 
     protected virtual void Update()
@@ -189,7 +194,7 @@ public class Enemy : MonoBehaviour, IDamageable
             StopCoroutine(chaseCoroutine);
         }
 
-        if (isAlive)
+        if (isAlive && gameObject.activeInHierarchy)
         {
             chaseCoroutine = StartCoroutine(CoChasePlayer());
         }

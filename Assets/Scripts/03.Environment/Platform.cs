@@ -114,7 +114,9 @@ public class Platform : MonoBehaviour
                     else
                     {
                         enemy = GetEnemy(selectedEnemyType);
+                        enemy.textHealth.gameObject.SetActive(true);
                         enemy.gameObject.transform.position = spawnPos;
+                        enemy.damageFloatingPosition = enemy.textHealth.transform.position;
                         enemy.gameObject.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
                     }
 
@@ -162,7 +164,6 @@ public class Platform : MonoBehaviour
         enemy.isAlive = true;
         enemy.enemyState = EnemyState.Idle;
 
-        enemy.textHealth.gameObject.SetActive(true);
         enemy.sphereCollider.enabled = true;
 
         enemy.speed = enemy.originSpeed;
@@ -175,9 +176,6 @@ public class Platform : MonoBehaviour
 
     public void ReturnEnemy(Enemy enemy)
     {
-        enemy.isAlive = false;
-        enemy.isChasing = false;
-
         unusingEnemies[enemy.enemyType].Add(enemy);
         enemy.gameObject.SetActive(false);
     }

@@ -89,7 +89,9 @@ public static class OptionColumn
         MOVE_SPEED_V,
         MOVE_SPEED_H,
         ARMOR,
-        WeaponChange,
+        WeaponChange1,
+        WeaponChange2,
+        WeaponChange3,
     }
 }
 

@@ -23,7 +23,7 @@ public class OptionController : MonoBehaviour
         playerStats = GameObject.FindWithTag(Tags.Player).GetComponent<PlayerStats>();
         optionTable = DataTableMgr.Get<OptionTable>(DataTableIds.Option);
 
-        foreach(var option in options)
+        foreach (var option in options)
         {
             Collider collider = option.GetComponent<Collider>();
             collider.enabled = true;
@@ -51,6 +51,28 @@ public class OptionController : MonoBehaviour
         {
             if (i == excludeIndex)
             {
+                OptionStat excludedOption = options[excludeIndex].gameObject.GetComponent<OptionStat>();
+
+                for (int j = 0; j < excludedOption.type.Count; ++j)
+                {
+                    if (excludedOption.type[j] == OptionColumn.Type.WeaponChange)
+                    {
+                        if(excludedOption.renderWeapon != null)
+                        {
+                            var cameraRenderTexture = excludedOption.renderWeapon.GetComponentInChildren<CameraRenderTexture>();
+                            cameraRenderTexture.rawImage = null;
+                            excludedOption.renderWeapon.SetActive(false);
+                            excludedOption.renderWeapon = null;
+                            excludedOption.rawImage.texture = null;
+                            excludedOption.rawImage.gameObject.SetActive(false);
+                        }
+                    }
+                }
+
+                excludedOption.stat.Clear();
+                excludedOption.type.Clear();
+                excludedOption.value.Clear();
+
                 options[i].gameObject.SetActive(false);
                 continue;
             }
@@ -82,14 +104,14 @@ public class OptionController : MonoBehaviour
                     optionTexts[i].text = string.Format(WeaponChangeFormat, gradedOptions[index].GetName);
                     break;
             }
-            
+
             OptionStat option = options[i].gameObject.GetComponent<OptionStat>();
 
-            for(int j = 0; j < option.type.Count; ++j)
+            for (int j = 0; j < option.type.Count; ++j)
             {
                 if (option.type[j] == OptionColumn.Type.WeaponChange)
                 {
-                    if (option.renderWeapon != null)
+                    if(option.renderWeapon != null)
                     {
                         var cameraRenderTexture = option.renderWeapon.GetComponentInChildren<CameraRenderTexture>();
                         cameraRenderTexture.rawImage = null;
@@ -111,7 +133,7 @@ public class OptionController : MonoBehaviour
 
             if (gradedOptions[index].TYPE == OptionColumn.Type.WeaponChange)
             {
-                foreach(var renderWeapon in RenderTextureWeapons)
+                foreach (var renderWeapon in RenderTextureWeapons)
                 {
                     if (renderWeapon.activeInHierarchy) continue;
 

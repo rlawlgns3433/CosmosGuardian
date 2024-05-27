@@ -20,7 +20,7 @@ public class CameraRenderWeapon : MonoBehaviour
     {
         if (cameraRenderTexture.renderCamera != null && cameraRenderTexture.renderTexture != null && cameraRenderTexture.rawImage != null)
         {
-            weaponParent.transform.Rotate(rot * rotationSpeed * Time.deltaTime);
+            gameObject.transform.Rotate(rot * rotationSpeed * Time.deltaTime);
 
             cameraRenderTexture.renderCamera.Render();
         }

@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 forward = Vector3.forward;
     public Rigidbody rb;
     private float verticalCoefficient = 4.5f; // 수직 속력 계수
-    private float horizontalCoefficient = 3.0f; // 수평 속력 계수
+    private float horizontalCoefficient = 4.5f; // 수평 속력 계수
     private float minX = -4.05f;
     private float maxX = 4.05f;
     Vector3 movement;

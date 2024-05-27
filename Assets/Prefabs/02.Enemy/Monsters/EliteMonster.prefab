@@ -2163,8 +2163,7 @@ MonoBehaviour:
   splashEffect: {fileID: 6824659867714572304}
   effects: []
   direction: {x: 0, y: 0, z: 0}
-  intervalFloat: 0.3
-  projectileSpeed: -10
+  projectileSpeed: -5
   attackDistance: 30
   projectilePrefab: {fileID: 1128728136785006, guid: c9b123e5b40fcc04e9eba678a1f82053, type: 3}
 --- !u!135 &8207211864964813714

@@ -8,6 +8,27 @@ public abstract class SaveData
 
 }
 
+public class PlayerOption
+{
+    public float bgmValue = -1;
+    public float sfxValue = -1;
+    public bool isCameraShake = false;
+
+    public PlayerOption() 
+    {
+        bgmValue = -1;
+        sfxValue = -1;
+        isCameraShake = false;
+    }
+    public PlayerOption(float bgmValue, float sfxValue, bool isCameraShake)
+    {
+        this.bgmValue = bgmValue;
+        this.sfxValue = sfxValue;
+        this.isCameraShake = isCameraShake;
+    }
+}
+
+
 public class RecordData
 {
     public int characterDataId;
@@ -31,6 +52,7 @@ public class RecordData
 public class SaveDataV1 : SaveData
 {
     public List<RecordData> records = new List<RecordData>();
+    public PlayerOption playerOption = new PlayerOption();
 
     public SaveDataV1()
     {

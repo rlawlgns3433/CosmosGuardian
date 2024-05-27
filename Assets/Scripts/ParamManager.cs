@@ -1,16 +1,15 @@
 using UnityEngine;
-using UnityEngine.Analytics;
 using UnityEngine.SceneManagement;
 
 public class ParamManager : MonoBehaviour
 {
-    public static SaveDataV1 saveData = new SaveDataV1();
+    public static SaveDataV1 saveData;
     public static RecordData currentRecord = new RecordData();
     public static int selectedCharacterIndex = 0;
     public static int selectedWeaponIndex = 0;
-    public static bool IsCameraShaking = true;
-    public static float BgmValue = 1;
-    public static float SfxValue = 1;
+    public static bool isCameraShaking = true;
+    public static float bgmValue = 1;
+    public static float sfxValue = 1;
     public static int playerScore = 0;
     public static string SceneToLoad = string.Empty;
 
@@ -22,6 +21,8 @@ public class ParamManager : MonoBehaviour
 
     private void Awake()
     {
+
+
         selectedCharacterIndex = PlayerPrefs.GetInt("SelectedCharacterIndex", 0) % 100;
         currentRecord.score = -1;
         DontDestroyOnLoad(gameObject);
@@ -38,7 +39,11 @@ public class ParamManager : MonoBehaviour
         saveData.records.Add(currentRecord);
         saveData.records.Sort(comparison);
 
-        if(saveData.records.Count > 5)
+        saveData.playerOption.bgmValue = bgmValue;
+        saveData.playerOption.sfxValue = sfxValue;
+        saveData.playerOption.isCameraShake = isCameraShaking;
+
+        if (saveData.records.Count > 5)
         {
             saveData.records.RemoveAt(saveData.records.Count - 1);
         }

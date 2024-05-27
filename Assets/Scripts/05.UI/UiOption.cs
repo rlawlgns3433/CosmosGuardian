@@ -16,11 +16,30 @@ public class UiOption : MonoBehaviour
 
     private void OnEnable()
     {
-        buttonState = ParamManager.IsCameraShaking ? buttonOn : buttonOff;
+        ParamManager.saveData = SaveLoadSystem.Load() as SaveDataV1;
+
+        buttonState = ParamManager.isCameraShaking ? buttonOn : buttonOff;
         buttonImg.sprite = buttonSprites[buttonState];
 
-        bgmSlider.value = ParamManager.BgmValue;
-        sfxSlider.value = ParamManager.SfxValue;
+        if (ParamManager.saveData.playerOption.bgmValue != -1)
+        {
+            bgmSlider.value = ParamManager.saveData.playerOption.bgmValue;
+            ParamManager.bgmValue = bgmSlider.value;
+        }
+
+        if (ParamManager.saveData.playerOption.sfxValue != -1)
+        {
+            sfxSlider.value = ParamManager.saveData.playerOption.sfxValue;
+            ParamManager.sfxValue = sfxSlider.value;
+        }
+
+        //bgmSlider.value = ParamManager.bgmValue;
+        //sfxSlider.value = ParamManager.sfxValue;
+    }
+
+    private void OnDisable()
+    {
+        SaveLoadSystem.Save(ParamManager.saveData);
     }
 
     private void Start()
@@ -33,30 +52,30 @@ public class UiOption : MonoBehaviour
 
         bgmSlider.onValueChanged.AddListener((float value) =>
         {
-            ParamManager.BgmValue = value;
-            lobby.audioSource.volume = ParamManager.BgmValue;
+            ParamManager.bgmValue = value;
+            lobby.audioSource.volume = ParamManager.bgmValue;
         });
 
         sfxSlider.onValueChanged.AddListener((float value) =>
         {
-            ParamManager.SfxValue = value;
+            ParamManager.sfxValue = value;
         });
     }
 
     public void CameraShakeToggle()
     {
-        if(buttonState == buttonOn)
+        if (buttonState == buttonOn)
         {
             buttonState = buttonOff;
-            ParamManager.IsCameraShaking = false;
+            ParamManager.isCameraShaking = false;
         }
         else
         {
             buttonState = buttonOn;
-            ParamManager.IsCameraShaking = true;
+            ParamManager.isCameraShaking = true;
         }
         buttonImg.sprite = buttonSprites[buttonState];
     }
 
-    
+
 }

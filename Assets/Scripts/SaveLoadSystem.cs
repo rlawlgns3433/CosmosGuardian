@@ -54,6 +54,7 @@ public static class SaveLoadSystem
             serializer.Formatting = Formatting.Indented;
             serializer.TypeNameHandling = TypeNameHandling.All;
             serializer.Converters.Add(new RecordConverter());
+            serializer.Converters.Add(new PlayerOptionConverter());
             serializer.Serialize(writer, data);
         }
 
@@ -76,9 +77,11 @@ public static class SaveLoadSystem
         using (var reader = new JsonTextReader(new StreamReader(path)))
         {
             var serializer = new JsonSerializer();
-            //serializer.Formatting = Formatting.Indented;
+            serializer.Formatting = Formatting.Indented;
             serializer.TypeNameHandling = TypeNameHandling.All;
             serializer.Converters.Add(new RecordConverter());
+            serializer.Converters.Add(new PlayerOptionConverter());
+
             data = serializer.Deserialize<SaveData>(reader);
         }
 

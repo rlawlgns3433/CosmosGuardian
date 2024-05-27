@@ -1,7 +1,34 @@
+using CsvHelper;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+
+public class PlayerOptionConverter : JsonConverter<PlayerOption>
+{
+    public override PlayerOption ReadJson(JsonReader reader, Type objectType, PlayerOption existingValue, bool hasExistingValue, JsonSerializer serializer)
+    {
+        PlayerOption playerOption = new PlayerOption();
+        JObject jObj = JObject.Load(reader);
+        playerOption.bgmValue = (float)jObj["bgmValue"];
+        playerOption.sfxValue = (float)jObj["sfxValue"];
+        playerOption.isCameraShake = (bool)jObj["isCameraShake"];
+
+        return playerOption;
+    }
+
+    public override void WriteJson(JsonWriter writer, PlayerOption value, JsonSerializer serializer)
+    {
+        writer.WriteStartObject();
+        writer.WritePropertyName("bgmValue");
+        writer.WriteValue(value.bgmValue);
+        writer.WritePropertyName("sfxValue");
+        writer.WriteValue(value.sfxValue);
+        writer.WritePropertyName("isCameraShake");
+        writer.WriteValue(value.isCameraShake);
+        writer.WriteEndObject();
+    }
+}
 
 public class RecordConverter : JsonConverter<List<RecordData>>
 {

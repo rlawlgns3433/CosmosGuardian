@@ -1,7 +1,6 @@
 using System.Text;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class UiCharacterSelect : MonoBehaviour
 {

@@ -22295,11 +22295,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2295086922680514110, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
       propertyPath: magnification
-      value: 1.6
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 2295086922680514110, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
       propertyPath: expForNextLevel
-      value: 350
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 4508787347923785903, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
       propertyPath: cameraShake

@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using JetBrains.Annotations;
 
 public class OptionController : MonoBehaviour
 {
@@ -48,6 +49,11 @@ public class OptionController : MonoBehaviour
 
         int excludeIndex = Random.Range(0, options.Count + 1); // Exclude 될 수도 있고 안 될 수도 있다. 그래서 배제할 인덱스를 1개 더 추가
 
+        for(int i  = 0; i < bgImgs.Count; ++i)
+        {
+            bgImgs[i].gameObject.SetActive(false);
+        }
+
         for (int i = 0; i < options.Count; ++i)
         {
             if (i == excludeIndex)
@@ -66,7 +72,6 @@ public class OptionController : MonoBehaviour
                             excludedOption.renderWeapon = null;
                             excludedOption.rawImage.texture = null;
                             excludedOption.rawImage.gameObject.SetActive(false);
-                            excludedOption.bgImg.gameObject.SetActive(false);
                         }
                     }
                 }
@@ -104,7 +109,6 @@ public class OptionController : MonoBehaviour
                     break;
                 case OptionColumn.Type.WeaponChange:
                     optionTexts[i].text = string.Format(WeaponChangeFormat, gradedOptions[index].GetName);
-                    bgImgs[i].gameObject.SetActive(true);
                     break;
             }
 
@@ -122,7 +126,6 @@ public class OptionController : MonoBehaviour
                         option.renderWeapon = null;
                         option.rawImage.texture = null;
                         option.rawImage.gameObject.SetActive(false);
-                        bgImgs[i].gameObject.SetActive(false);
                     }
                 }
             }
@@ -151,6 +154,7 @@ public class OptionController : MonoBehaviour
                     option.rawImage.texture = cameraRenderTexture.renderTexture;
                     cameraRenderTexture.rawImage = option.rawImage;
                     option.renderWeapon.SetActive(true);
+                    bgImgs[i].gameObject.SetActive(true);
                     break;
                 }
             }

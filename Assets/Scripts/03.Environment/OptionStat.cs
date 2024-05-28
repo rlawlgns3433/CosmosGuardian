@@ -41,15 +41,16 @@ public class OptionStat : MonoBehaviour
                     renderWeapon = null;
                     rawImage.texture = null;
                     rawImage.gameObject.SetActive(false);
-                    bgImg.gameObject.SetActive(false);
                 }
-                gameObject.SetActive(false);
             }
+            bgImg.gameObject.SetActive(false);
+            gameObject.SetActive(false);
 
             foreach (var image in optionController.options)
             {
                 Collider collider = image.GetComponent<Collider>();
                 collider.enabled = false;
+                image.GetComponent<OptionStat>().bgImg.gameObject.SetActive(false);
             }
 
             uiController.UpdatePauseUI();

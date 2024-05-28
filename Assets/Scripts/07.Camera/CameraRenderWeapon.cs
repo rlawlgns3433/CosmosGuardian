@@ -28,9 +28,10 @@ public class CameraRenderWeapon : MonoBehaviour
 
     public void SetWeapon(int selectedWeaponIndex)
     {
-        weapons[currentWeaponIndex].SetActive(false);
-
+        for(int i = 0; i < weapons.Length; ++i)
+        {
+            weapons[i].SetActive(false);
+        }
         weapons[selectedWeaponIndex].SetActive(true);
-        currentWeaponIndex = selectedWeaponIndex;
     }
 }

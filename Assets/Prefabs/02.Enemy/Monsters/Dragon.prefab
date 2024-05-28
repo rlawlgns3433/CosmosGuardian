@@ -810,7 +810,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyState: 0
-  enemyType: 40000
+  enemyType: 40001
   textHealth: {fileID: 5646388579843758660}
   originSpeed: 0
   speed: 0

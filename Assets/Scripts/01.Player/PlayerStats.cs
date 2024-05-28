@@ -89,7 +89,7 @@ public class PlayerStats : MonoBehaviour
 
     public bool UpdateStats(OptionColumn.Stat stat, OptionColumn.Type type, float value)
     {
-        if(type != OptionColumn.Type.ApplyChangeWeaponData)
+        if (type != OptionColumn.Type.ApplyChangeWeaponData && stat != OptionColumn.Stat.MOVE_SPEED_V)
         {
             getOptionEffect.SetActive(true);
             foreach (var particle in effects)

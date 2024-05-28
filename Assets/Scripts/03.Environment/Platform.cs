@@ -23,12 +23,14 @@ public class Platform : MonoBehaviour
 
     private void Start()
     {
-        spawnedEnemies[EnemyType.Normal] = new List<Enemy>();
+        spawnedEnemies[EnemyType.Bat] = new List<Enemy>();
+        spawnedEnemies[EnemyType.Dragon] = new List<Enemy>();
         spawnedEnemies[EnemyType.Elite] = new List<Enemy>();
         spawnedEnemies[EnemyType.MidBoss] = new List<Enemy>();
         spawnedEnemies[EnemyType.Boss] = new List<Enemy>();
 
-        unusingEnemies[EnemyType.Normal] = new List<Enemy>();
+        unusingEnemies[EnemyType.Bat] = new List<Enemy>();
+        unusingEnemies[EnemyType.Dragon] = new List<Enemy>();
         unusingEnemies[EnemyType.Elite] = new List<Enemy>();
         unusingEnemies[EnemyType.MidBoss] = new List<Enemy>();
         unusingEnemies[EnemyType.Boss] = new List<Enemy>();

@@ -7,7 +7,8 @@ using static UnityEngine.EventSystems.EventTrigger;
 
 public enum EnemyType
 {
-    Normal = 40000, // 움직이는 몬스터 (Chase 활성)
+    Bat = 40000, // 움직이는 몬스터 (Chase 활성)
+    Dragon = 40001, // 움직이는 몬스터 (Chase 활성)
     Elite = 40100,
     MidBoss = 40200,
     Boss = 40300
@@ -111,7 +112,7 @@ public class Enemy : MonoBehaviour, IDamageable
     {
         switch (enemyType)
         {
-            case EnemyType.Normal:
+            case EnemyType.Bat:
             case EnemyType.Elite:
                 if (isChasing)
                 {
@@ -120,12 +121,6 @@ public class Enemy : MonoBehaviour, IDamageable
                     Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
                     transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
                 }
-                break;
-            case EnemyType.MidBoss:
-                break;
-            case EnemyType.Boss:
-                break;
-            default:
                 break;
         }
     }

@@ -150,7 +150,7 @@ public class OptionController : MonoBehaviour
                     option.rawImage.gameObject.SetActive(true);
                     option.renderWeapon = renderWeapon;
 
-                    var cameraRenderTexture = option.renderWeapon.GetComponentInChildren<CameraRenderTexture>();
+                    var cameraRenderTexture = renderWeapon.GetComponentInChildren<CameraRenderTexture>();
                     option.rawImage.texture = cameraRenderTexture.renderTexture;
                     cameraRenderTexture.rawImage = option.rawImage;
                     option.renderWeapon.SetActive(true);

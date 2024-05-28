@@ -2461,7 +2461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f62b9fa5cb1cea419a5449fdc579813, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  renderTexture: {fileID: 8400000, guid: b4408f2fb5a1eb241af98b3a228a07b2, type: 2}
+  renderTexture: {fileID: 8400000, guid: 3bae1478459da6a4bbdac2ca5a9dc6bc, type: 2}
   renderCamera: {fileID: 202318222}
   rawImage: {fileID: 0}
   renderLayerMask:
@@ -3670,10 +3670,10 @@ RectTransform:
   - {fileID: 2121069954}
   m_Father: {fileID: 341504006}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 20, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 10, y: -176.47057}
+  m_SizeDelta: {x: 20, y: 352.94113}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &276969993
 MonoBehaviour:
@@ -10144,7 +10144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f62b9fa5cb1cea419a5449fdc579813, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  renderTexture: {fileID: 8400000, guid: b4408f2fb5a1eb241af98b3a228a07b2, type: 2}
+  renderTexture: {fileID: 8400000, guid: e578e82ed793b9846b9ac7577b665639, type: 2}
   renderCamera: {fileID: 642054035}
   rawImage: {fileID: 0}
   renderLayerMask:
@@ -10340,7 +10340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f62b9fa5cb1cea419a5449fdc579813, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  renderTexture: {fileID: 8400000, guid: b4408f2fb5a1eb241af98b3a228a07b2, type: 2}
+  renderTexture: {fileID: 8400000, guid: 19e6f5500d48e25489377234a4a57418, type: 2}
   renderCamera: {fileID: 642201466}
   rawImage: {fileID: 0}
   renderLayerMask:
@@ -13084,7 +13084,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f62b9fa5cb1cea419a5449fdc579813, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  renderTexture: {fileID: 8400000, guid: b4408f2fb5a1eb241af98b3a228a07b2, type: 2}
+  renderTexture: {fileID: 8400000, guid: 4b0a2e483f20145499520e7ea710aeb2, type: 2}
   renderCamera: {fileID: 803597328}
   rawImage: {fileID: 0}
   renderLayerMask:
@@ -15281,10 +15281,10 @@ RectTransform:
   - {fileID: 610191287}
   m_Father: {fileID: 121730893}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 139.89636, y: -62.94117}
+  m_SizeDelta: {x: 174.63466, y: 85.88234}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &915260136
 MonoBehaviour:
@@ -17458,7 +17458,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f62b9fa5cb1cea419a5449fdc579813, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  renderTexture: {fileID: 8400000, guid: b4408f2fb5a1eb241af98b3a228a07b2, type: 2}
+  renderTexture: {fileID: 8400000, guid: a516cc028ac3b7b49ae28a0116c33f4c, type: 2}
   renderCamera: {fileID: 1012673915}
   rawImage: {fileID: 0}
   renderLayerMask:
@@ -17657,7 +17657,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f62b9fa5cb1cea419a5449fdc579813, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  renderTexture: {fileID: 8400000, guid: b4408f2fb5a1eb241af98b3a228a07b2, type: 2}
+  renderTexture: {fileID: 8400000, guid: 16064aa53d89567458d4a910617629d7, type: 2}
   renderCamera: {fileID: 1022473962}
   rawImage: {fileID: 0}
   renderLayerMask:
@@ -18558,7 +18558,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f62b9fa5cb1cea419a5449fdc579813, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  renderTexture: {fileID: 8400000, guid: b4408f2fb5a1eb241af98b3a228a07b2, type: 2}
+  renderTexture: {fileID: 8400000, guid: d8effdf6c647c494e899b7960633fd37, type: 2}
   renderCamera: {fileID: 1100645551}
   rawImage: {fileID: 0}
   renderLayerMask:
@@ -19526,7 +19526,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f62b9fa5cb1cea419a5449fdc579813, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  renderTexture: {fileID: 8400000, guid: b4408f2fb5a1eb241af98b3a228a07b2, type: 2}
+  renderTexture: {fileID: 8400000, guid: 3f134c82abb099a4ab27eea9b91d848a, type: 2}
   renderCamera: {fileID: 1155355197}
   rawImage: {fileID: 0}
   renderLayerMask:
@@ -27795,10 +27795,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 121730893}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 258.5032, y: -62.94117}
+  m_SizeDelta: {x: 22.579027, y: 85.88234}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1688719899
 MonoBehaviour:
@@ -28156,10 +28156,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 121730893}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 21.289513, y: -62.94117}
+  m_SizeDelta: {x: 22.579027, y: 85.88234}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1698512841
 MonoBehaviour:

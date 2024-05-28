@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using static Enemy;
 
@@ -13,11 +14,13 @@ public class Platform : MonoBehaviour
     public float verticalIncrement = 0.5f;
     public int minTest = 1;
     public int maxTest = 4;
+    public bool isOn = false;
     public OptionController optionController;
     public List<GameObject> enemySpawnTile = new List<GameObject>();
     public Dictionary<EnemyType, List<Enemy>> spawnedEnemies = new Dictionary<EnemyType, List<Enemy>>();
     public Dictionary<EnemyType, List<Enemy>> unusingEnemies = new Dictionary<EnemyType, List<Enemy>>();
     public EnemyTable enemyTable;
+    BossSpawnController bossSpawnController;
 
     private PlayerStats playerStats;
 
@@ -40,6 +43,25 @@ public class Platform : MonoBehaviour
         Spawn();
     }
 
+    private void Update()
+    {
+        if (isOn) return;
+        if (spawnedEnemies[EnemyType.Boss].Count > 0) return;
+
+        if (Vector3.Distance(Camera.main.transform.position, transform.position) < 120)
+        {
+            foreach (var enemies in spawnedEnemies.Values)
+            {
+                foreach (var enemy in enemies)
+                {
+                    enemy.gameObject.SetActive(true);
+                    enemy.textHealth.gameObject.SetActive(true);
+                }
+            }
+            isOn = true;
+        }
+    }
+
     public void ResetPlatform()
     {
         foreach (var enemies in spawnedEnemies.Values)
@@ -47,20 +69,13 @@ public class Platform : MonoBehaviour
             foreach (var enemy in enemies)
             {
                 ReturnEnemy(enemy);
-
-                //if (enemy != null)
-                //{
-                //    enemy.OnDie();
-                //    // return 부분
-                //}
             }
             enemies.Clear();
         }
 
         ++resetCount;
-        //spawnedEnemies.Clear();
 
-        if (maxTest != 10)
+        if (maxTest != 5)
         {
             if ((resetCount / 2) % 2 == 0)
             {
@@ -73,12 +88,22 @@ public class Platform : MonoBehaviour
         }
 
         Spawn(); // 몬스터 스폰
-        if (TryGetComponent(out BossSpawnController bossSpawnController))
+
+        foreach (var enemies in spawnedEnemies.Values)
+        {
+            foreach (var enemy in enemies)
+            {
+                enemy.gameObject.SetActive(false);
+            }
+        }
+
+        if (TryGetComponent(out bossSpawnController))
         {
             bossSpawnController.SpawnMidBoss();
         }
         optionController.ResetOptions(playerStats.level); // 옵션 초기화
         playerStats.UpdateStats(OptionColumn.Stat.MOVE_SPEED_V, OptionColumn.Type.Scale, verticalIncrement); // 직진 속도 0.5프로 증가
+        isOn = false;
     }
 
     public void Spawn()
@@ -124,15 +149,15 @@ public class Platform : MonoBehaviour
 
                     // EnemyData 객체를 복사하여 사용
                     EnemyData originalData = enemyTable.Get((int)enemy.enemyType);
-                    if (originalData != null)
-                    {
-                        EnemyData dataCopy = new EnemyData(originalData);
-                        enemy.UpdateStats(dataCopy, dataCopy.MAGNIFICATION, resetCount);
-                    }
-                    else
-                    {
-                        Debug.LogError("EnemyData를 찾을 수 없습니다.");
-                    }
+                    //if (originalData != null)
+                    //{
+                    //    EnemyData dataCopy = new EnemyData(originalData);
+                    enemy.UpdateStats(originalData, originalData.MAGNIFICATION, resetCount);
+                    //}
+                    //else
+                    //{
+                    //    Debug.LogError("EnemyData를 찾을 수 없습니다.");
+                    //}
                 }
             }
         }

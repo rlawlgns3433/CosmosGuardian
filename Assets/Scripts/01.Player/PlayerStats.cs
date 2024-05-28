@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System.Text;
-using System;
 using System.Collections;
 
 public class PlayerWeaponData
@@ -37,20 +36,17 @@ public class PlayerStats : MonoBehaviour
     [Tooltip("경험치 배율")]
     public float magnification = 1.8f;
 
-
-    private CharacterTable characterTable = null;
+    private CharacterTable characterTable;
     public Dictionary<CharacterColumn.Stat, float> standardStats = new Dictionary<CharacterColumn.Stat, float>();
-    public Dictionary<CharacterColumn.Stat, float> initialStats = new Dictionary<CharacterColumn.Stat, float>(); // 능력치 종류, 능력치 배율
-    public Dictionary<CharacterColumn.Stat, float> stats = new Dictionary<CharacterColumn.Stat, float>(); // 능력치 종류, 능력치 배율
+    public Dictionary<CharacterColumn.Stat, float> initialStats = new Dictionary<CharacterColumn.Stat, float>();
+    public Dictionary<CharacterColumn.Stat, float> stats = new Dictionary<CharacterColumn.Stat, float>();
     public List<ItemData> items = new List<ItemData>();
     public List<PlayerWeaponData> playerWeaponDatas = new List<PlayerWeaponData>();
-    [NonSerialized]
     public PrefabSelector prefabSelector = null;
     public CharacterData characterData = null;
     public CharacterData standardCharacterData = null;
     public string id = string.Empty;
     public float prevPositionZ = 1.5f;
-
 
     private void Awake()
     {
@@ -58,12 +54,12 @@ public class PlayerStats : MonoBehaviour
 
         if (!TryGetComponent(out prefabSelector))
         {
-            prefabSelector.enabled = false;
+            enabled = false;
             return;
         }
 
         effects = getOptionEffect.GetComponentsInChildren<ParticleSystem>();
-        prevPositionZ = gameObject.transform.position.z;
+        prevPositionZ = transform.position.z;
     }
 
     private void OnEnable()
@@ -73,7 +69,7 @@ public class PlayerStats : MonoBehaviour
             StringBuilder sb = new StringBuilder();
             sb.Append((int)TableIdentifier.Character);
             sb.Append((prefabSelector.SelectedCharacterIndex + 1).ToString("D2"));
-            sb.Append((prefabSelector.SelectedCharacterIndex + 1).ToString("D2")); // id + body(D2) + head(D2)
+            sb.Append((prefabSelector.SelectedCharacterIndex + 1).ToString("D2"));
             id = sb.ToString();
 
             InitCharacterInfo(id);
@@ -82,7 +78,7 @@ public class PlayerStats : MonoBehaviour
 
     private void LateUpdate()
     {
-        if ((int)(transform.position.z) > (int)prevPositionZ)
+        if ((int)transform.position.z > (int)prevPositionZ)
         {
             GetExp(1);
             prevPositionZ = transform.position.z;
@@ -93,79 +89,22 @@ public class PlayerStats : MonoBehaviour
     {
         if (type != OptionColumn.Type.ApplyChangeWeaponData && stat != OptionColumn.Stat.MOVE_SPEED_V)
         {
-            getOptionEffect.SetActive(true);
-            foreach (var particle in effects)
-            {
-                particle.Play();
-            }
+            ActivateOptionEffect();
         }
 
-        // 옵저버 패턴으로 stat을 observe하고 동작하는 클래스를 생성하여 변경 필요
-        // Maximum이 있을 경우를 고려해 bool을 반환
         switch (type)
         {
             case OptionColumn.Type.Scale:
-                {
-                    if(stat == OptionColumn.Stat.HP)
-                    {
-                        stats[(CharacterColumn.Stat)stat] += stats[(CharacterColumn.Stat)stat] * (value / 100.0f);
-                    }
-                    else
-                    {
-                        stats[(CharacterColumn.Stat)stat] += initialStats[(CharacterColumn.Stat)stat] * (value / 100.0f);
-                    }
-
-                    if (stat == OptionColumn.Stat.ARMOR)
-                    {
-                        stats[(CharacterColumn.Stat)stat] = Mathf.Min(stats[(CharacterColumn.Stat)stat], 1.9f);
-                    }
-
-                    // 0 미만으로 떨어질 경우 0으로 반환
-                    if(stats[(CharacterColumn.Stat)stat] < 0)
-                    {
-                        stats[(CharacterColumn.Stat)stat] = 0;
-                    }
-                }
-
+                ApplyScaleStat(stat, value);
                 break;
             case OptionColumn.Type.Fixed:
-                {
-                    if (stat == OptionColumn.Stat.HP)
-                    {
-                        stats[(CharacterColumn.Stat)stat] += value;
-                        playerHealth.UpdateHealthUI();
-                    }
-                    else
-                    {
-                        // Weapon 값을 업그레이드
-                        playerShooter.weapon.stats[(WeaponColumn.Stat)stat] += value;
-
-                        playerWeaponDatas.Add(new PlayerWeaponData{ playerStat = stat, playerValue = value });
-
-                        if(playerShooter.weapon.stats[(WeaponColumn.Stat)stat] < 0)
-                        {
-                            playerShooter.weapon.stats[(WeaponColumn.Stat)stat] = 0;
-                        }
-                    }
-                }
+                ApplyFixedStat(stat, value);
                 break;
-
             case OptionColumn.Type.WeaponChange:
-                {
-                    playerShooter.weapon.SetWeapon(Mathf.RoundToInt(value));
-                }
+                playerShooter.weapon.SetWeapon(Mathf.RoundToInt(value));
                 break;
-
             case OptionColumn.Type.ApplyChangeWeaponData:
-                {
-                    // 무기 변경
-                    playerShooter.weapon.stats[(WeaponColumn.Stat)stat] += value;
-
-                    if (playerShooter.weapon.stats[(WeaponColumn.Stat)stat] < 0)
-                    {
-                        playerShooter.weapon.stats[(WeaponColumn.Stat)stat] = 0;
-                    }
-                }
+                ApplyChangeWeaponData(stat, value);
                 break;
         }
 
@@ -180,11 +119,69 @@ public class PlayerStats : MonoBehaviour
         }
 
         stopEffectCoroutine = StartCoroutine(StopEffectAfter(twoSec));
-
         return true;
     }
 
-    public void GetExp(int score) // 스코어를 exp로 사용
+    private void ApplyScaleStat(OptionColumn.Stat stat, float value)
+    {
+        if (stat == OptionColumn.Stat.HP)
+        {
+            stats[(CharacterColumn.Stat)stat] += stats[(CharacterColumn.Stat)stat] * (value / 100.0f);
+        }
+        else
+        {
+            stats[(CharacterColumn.Stat)stat] += initialStats[(CharacterColumn.Stat)stat] * (value / 100.0f);
+        }
+
+        if (stat == OptionColumn.Stat.ARMOR)
+        {
+            stats[(CharacterColumn.Stat)stat] = Mathf.Min(stats[(CharacterColumn.Stat)stat], 1.9f);
+        }
+
+        if (stats[(CharacterColumn.Stat)stat] < 0)
+        {
+            stats[(CharacterColumn.Stat)stat] = 0;
+        }
+    }
+
+    private void ApplyFixedStat(OptionColumn.Stat stat, float value)
+    {
+        if (stat == OptionColumn.Stat.HP)
+        {
+            stats[(CharacterColumn.Stat)stat] += value;
+            playerHealth.UpdateHealthUI();
+        }
+        else
+        {
+            playerShooter.weapon.stats[(WeaponColumn.Stat)stat] += value;
+            playerWeaponDatas.Add(new PlayerWeaponData { playerStat = stat, playerValue = value });
+
+            if (playerShooter.weapon.stats[(WeaponColumn.Stat)stat] < 0)
+            {
+                playerShooter.weapon.stats[(WeaponColumn.Stat)stat] = 0;
+            }
+        }
+    }
+
+    private void ApplyChangeWeaponData(OptionColumn.Stat stat, float value)
+    {
+        playerShooter.weapon.stats[(WeaponColumn.Stat)stat] += value;
+        if (playerShooter.weapon.stats[(WeaponColumn.Stat)stat] < 0)
+        {
+            playerShooter.weapon.stats[(WeaponColumn.Stat)stat] = 0;
+        }
+    }
+
+    private void ActivateOptionEffect()
+    {
+        getOptionEffect.SetActive(true);
+        foreach (var particle in effects)
+        {
+            particle.Play();
+        }
+    }
+
+    public void GetExp(int score)
     {
         exp += score;
         textExp.text = string.Format(scoreFormat, exp);
@@ -200,10 +197,8 @@ public class PlayerStats : MonoBehaviour
     public void LevelUp()
     {
         ++level;
-        // level up 효과 생성
         expForNextLevel *= magnification;
-        var platformIndex = GameManager.Instance.currentPlatformIndex;
-        var platform = GameManager.Instance.platforms[platformIndex].GetComponent<Platform>();
+        var platform = GameManager.Instance.platforms[GameManager.Instance.currentPlatformIndex].GetComponent<Platform>();
         platform.optionController.ResetOptions(level);
     }
 
@@ -211,52 +206,48 @@ public class PlayerStats : MonoBehaviour
     {
         characterData = characterTable.Get(int.Parse(id));
         standardCharacterData = characterTable.Get(20101);
-        #region initStat
-        stats[CharacterColumn.Stat.HP] = initialStats[CharacterColumn.Stat.HP] = characterData.HP;
-        stats[CharacterColumn.Stat.ARMOR] = initialStats[CharacterColumn.Stat.ARMOR] = characterData.ARMOR;
-        stats[CharacterColumn.Stat.DAMAGE] = initialStats[CharacterColumn.Stat.DAMAGE] = characterData.DAMAGE_TYPE_1;
-        stats[CharacterColumn.Stat.MOVE_SPEED_V] = initialStats[CharacterColumn.Stat.MOVE_SPEED_V] = characterData.MOVE_SPEED_V;
-        stats[CharacterColumn.Stat.MOVE_SPEED_H] = initialStats[CharacterColumn.Stat.MOVE_SPEED_H] = characterData.MOVE_SPEED_H;
-        stats[CharacterColumn.Stat.FIRE_RATE] = initialStats[CharacterColumn.Stat.FIRE_RATE] = characterData.FIRE_RATE;
-        stats[CharacterColumn.Stat.FIRE_RANGE] = initialStats[CharacterColumn.Stat.FIRE_RANGE] = characterData.FIRE_RANGE;
-        stats[CharacterColumn.Stat.PENETRATE] = initialStats[CharacterColumn.Stat.PENETRATE] = characterData.PENETRATE;
-        stats[CharacterColumn.Stat.SPLASH_DAMAGE] = initialStats[CharacterColumn.Stat.SPLASH_DAMAGE] = characterData.SPLASH_DAMAGE;
-        stats[CharacterColumn.Stat.SPLASH_RANGE] = initialStats[CharacterColumn.Stat.SPLASH_RANGE] = characterData.SPLASH_RANGE;
-        stats[CharacterColumn.Stat.CRITICAL] = initialStats[CharacterColumn.Stat.CRITICAL] = characterData.CRITICAL;
-        stats[CharacterColumn.Stat.CRITICAL_DAMAGE] = initialStats[CharacterColumn.Stat.CRITICAL_DAMAGE] = characterData.CRITICAL_DAMAGE;
-        stats[CharacterColumn.Stat.HP_DRAIN] = initialStats[CharacterColumn.Stat.HP_DRAIN] = characterData.HP_DRAIN;
-        stats[CharacterColumn.Stat.PROJECTILE_SPEED] = initialStats[CharacterColumn.Stat.PROJECTILE_SPEED] = characterData.PROJECTILE_SPEED;
-        stats[CharacterColumn.Stat.PROJECTILE_AMOUNT] = initialStats[CharacterColumn.Stat.PROJECTILE_AMOUNT] = characterData.PROJECTILE_AMOUNT;
 
-        #endregion
-
-        standardStats[CharacterColumn.Stat.HP] = standardCharacterData.HP;
-        standardStats[CharacterColumn.Stat.ARMOR] = standardCharacterData.ARMOR;
-        standardStats[CharacterColumn.Stat.DAMAGE] = standardCharacterData.DAMAGE_TYPE_1;
-        standardStats[CharacterColumn.Stat.MOVE_SPEED_V] = standardCharacterData.MOVE_SPEED_V;
-        standardStats[CharacterColumn.Stat.MOVE_SPEED_H] = standardCharacterData.MOVE_SPEED_H;
-        standardStats[CharacterColumn.Stat.FIRE_RATE] = standardCharacterData.FIRE_RATE;
-        standardStats[CharacterColumn.Stat.FIRE_RANGE] = standardCharacterData.FIRE_RANGE;
-        standardStats[CharacterColumn.Stat.PENETRATE] = standardCharacterData.PENETRATE;
-        standardStats[CharacterColumn.Stat.SPLASH_DAMAGE] = standardCharacterData.SPLASH_DAMAGE;
-        standardStats[CharacterColumn.Stat.SPLASH_RANGE] = standardCharacterData.SPLASH_RANGE;
-        standardStats[CharacterColumn.Stat.CRITICAL] = standardCharacterData.CRITICAL;
-        standardStats[CharacterColumn.Stat.CRITICAL_DAMAGE] = standardCharacterData.CRITICAL_DAMAGE;
-        standardStats[CharacterColumn.Stat.HP_DRAIN] = standardCharacterData.HP_DRAIN;
-        standardStats[CharacterColumn.Stat.PROJECTILE_SPEED] = standardCharacterData.PROJECTILE_SPEED;
-        standardStats[CharacterColumn.Stat.PROJECTILE_AMOUNT] = standardCharacterData.PROJECTILE_AMOUNT;
-
+        InitializeStats(characterData, initialStats, stats);
+        InitializeStats(standardCharacterData, standardStats);
         price = characterData.PRICE;
     }
 
-    IEnumerator StopEffectAfter(WaitForSeconds sec)
+    private void InitializeStats(CharacterData data, Dictionary<CharacterColumn.Stat, float> targetDict)
+    {
+        targetDict[CharacterColumn.Stat.HP] = data.HP;
+        targetDict[CharacterColumn.Stat.ARMOR] = data.ARMOR;
+        targetDict[CharacterColumn.Stat.DAMAGE] = data.DAMAGE_TYPE_1;
+        targetDict[CharacterColumn.Stat.MOVE_SPEED_V] = data.MOVE_SPEED_V;
+        targetDict[CharacterColumn.Stat.MOVE_SPEED_H] = data.MOVE_SPEED_H;
+        targetDict[CharacterColumn.Stat.FIRE_RATE] = data.FIRE_RATE;
+        targetDict[CharacterColumn.Stat.FIRE_RANGE] = data.FIRE_RANGE;
+        targetDict[CharacterColumn.Stat.PENETRATE] = data.PENETRATE;
+        targetDict[CharacterColumn.Stat.SPLASH_DAMAGE] = data.SPLASH_DAMAGE;
+        targetDict[CharacterColumn.Stat.SPLASH_RANGE] = data.SPLASH_RANGE;
+        targetDict[CharacterColumn.Stat.CRITICAL] = data.CRITICAL;
+        targetDict[CharacterColumn.Stat.CRITICAL_DAMAGE] = data.CRITICAL_DAMAGE;
+        targetDict[CharacterColumn.Stat.HP_DRAIN] = data.HP_DRAIN;
+        targetDict[CharacterColumn.Stat.PROJECTILE_SPEED] = data.PROJECTILE_SPEED;
+        targetDict[CharacterColumn.Stat.PROJECTILE_AMOUNT] = data.PROJECTILE_AMOUNT;
+    }
+
+    private void InitializeStats(CharacterData data, Dictionary<CharacterColumn.Stat, float> initialDict, Dictionary<CharacterColumn.Stat, float> targetDict)
+    {
+        InitializeStats(data, initialDict);
+        foreach (var stat in initialDict)
+        {
+            targetDict[stat.Key] = stat.Value;
+        }
+    }
+
+    private IEnumerator StopEffectAfter(WaitForSeconds sec)
     {
         yield return sec;
         foreach (var particle in effects)
         {
-            particle.Stop();
             particle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
         }
         getOptionEffect.SetActive(false);
     }
 }
+

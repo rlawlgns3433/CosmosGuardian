@@ -8,7 +8,7 @@ public class Weapon : MonoBehaviour
     public Dictionary<WeaponColumn.Stat, float> stats = new Dictionary<WeaponColumn.Stat, float>();
     public RuntimeAnimatorController[] animatorControllers;
     public PlayerStats playerStats;
-    private UiController uiController;
+    public UiController uiController;
 
     private Animator animator;
     private WeaponTable weaponTable;
@@ -25,52 +25,26 @@ public class Weapon : MonoBehaviour
             animator.enabled = false;
             return;
         }
-    }
-
-    private void Start()
-    {
-        if (!GameObject.FindWithTag(Tags.UiController).TryGetComponent(out uiController))
-        {
-            uiController.enabled = false;
-            return;
-        }
-
         SetWeapon(selectedWeaponId);
     }
 
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            SetWeapon(30101);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            SetWeapon(30115);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            SetWeapon(30111);
-        }
-    }
-
-
     public void SetWeapon(int weaponId)
     {
+        if( weaponData != null && weaponData.PROJECTILE_ID != weaponTable.Get(weaponId).PROJECTILE_ID)
+        {
+            foreach (var p in playerStats.playerShooter.usingProjectiles)
+            {
+                Destroy(p);
+            }
+
+            foreach (var p in playerStats.playerShooter.unusingProjectiles)
+            {
+                Destroy(p);
+            }
+        }
+
         weaponData = weaponTable.Get(weaponId);
         selectedWeaponId = weaponId;
-
-        foreach (var p in playerStats.playerShooter.usingProjectiles)
-        {
-            Destroy(p);
-        }
-
-        foreach (var p in playerStats.playerShooter.unusingProjectiles)
-        {
-            Destroy(p);
-        }
 
         playerStats.playerShooter.usingProjectiles.Clear();
         playerStats.playerShooter.unusingProjectiles.Clear();

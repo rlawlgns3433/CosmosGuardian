@@ -28,22 +28,5 @@ public class CameraRenderTexture : MonoBehaviour
         renderCamera.clearFlags = CameraClearFlags.SolidColor;
         renderCamera.backgroundColor = Color.clear;
         renderCamera.cullingMask = renderLayerMask;
-
-        //// Raw Image 설정
-        //if (rawImage == null)
-        //{
-        //    Debug.LogError("Raw Image가 설정되지 않았습니다.");
-        //    return;
-        //}
-
-        //rawImage.texture = renderTexture;
     }
-
-    //private void Update()
-    //{
-    //    if (renderCamera != null && renderTexture != null && rawImage != null)
-    //    {
-    //        renderCamera.Render();
-    //    }
-    //}
 }

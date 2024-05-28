@@ -1,9 +1,7 @@
 using System;
 using System.Collections;
-using System.Security.Cryptography;
 using TMPro;
 using UnityEngine;
-using static UnityEngine.EventSystems.EventTrigger;
 
 public enum EnemyType
 {
@@ -157,7 +155,7 @@ public class Enemy : MonoBehaviour, IDamageable
         textHealth.gameObject.SetActive(false);
         sphereCollider.enabled = false;
 
-        animator.SetTrigger("Die");
+        animator.SetTrigger(Animator.StringToHash("Die"));
         speed = 0;
         // 삭제 대신 풀로 이동
         Invoke("LateSetActiveFalse", 1.5f);

@@ -12,15 +12,6 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     public bool isAlive = true;
     public Coroutine camShakeCoroutine;
 
-    private void Awake()
-    {
-        if (!TryGetComponent(out animator))
-        {
-            animator.enabled = false;
-            return;
-        }
-    }
-
     private void Start()
     {
         textHealth.text = playerStats.stats[CharacterColumn.Stat.HP].ToString();
@@ -83,8 +74,12 @@ public class PlayerHealth : MonoBehaviour, IDamageable
             }
 
             var enemy = other.GetComponent<Enemy>();
-            OnDamage(enemy.enemyData.HP);
-            enemy.OnDamage(Mathf.Min(playerStats.stats[CharacterColumn.Stat.HP], enemy.enemyData.HP));
+
+            float enemyHp = enemy.enemyData.HP;
+            float playerHp = playerStats.stats[CharacterColumn.Stat.HP];
+
+            OnDamage(enemyHp);
+            enemy.OnDamage(Mathf.Min(playerHp, enemyHp));
         }
     }
 

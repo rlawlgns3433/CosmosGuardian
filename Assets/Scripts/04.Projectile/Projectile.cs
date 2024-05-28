@@ -12,7 +12,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] protected float speed = 15f;
     [SerializeField] protected float hitOffset = 0f;
     [SerializeField] protected bool UseFirePointRotation;
-    [SerializeField] protected Vector3 rotationOffset = new Vector3(0, 0, 0);
+    [SerializeField] protected Vector3 rotationOffset = Vector3.zero;
     [SerializeField] protected GameObject hit;
     [SerializeField] protected ParticleSystem hitPS;
     [SerializeField] protected GameObject flash;
@@ -28,321 +28,288 @@ public class Projectile : MonoBehaviour
     private PlayerHealth playerHealth;
     private bool startChecker = false;
     private float rand;
+    private Collider[] splashDamageColliders = new Collider[10]; // 미리 할당된 배열
 
     // =======Range
     public float rangeScale;
     public float weaponRange;
-    public float Range
-    {
-        get
-        {
-            return rangeScale * weaponRange;
-        }
-    }
+    public float Range => rangeScale * weaponRange;
 
     // =======Projectile Speed
     public float speedScale;
     public float weaponSpeed;
-    public float Speed
-    {
-        get
-        {
-            return speedScale * weaponSpeed;
-        }
-    }
+    public float Speed => speedScale * weaponSpeed;
 
     // =======Critical Rate
     public float criticalRateScale;
     public float weaponCriticalRate;
-    public float CriticalRate
-    {
-        get
-        {
-            return criticalRateScale * (weaponCriticalRate / 100);
-        }
-    }
+    public float CriticalRate => criticalRateScale * (weaponCriticalRate / 100);
 
     // =======Critical Damage
     public float criticalDamageScale;
     public float weaponCriticalDamage;
-    public float CriticalDamage
-    {
-        get
-        {
-            return criticalDamageScale * (weaponCriticalDamage / 100) * Damage;
-        }
-    }
+    public float CriticalDamage => criticalDamageScale * (weaponCriticalDamage / 100) * Damage;
 
     // =======Damage
     public float damageScale;
     public float weaponDamage;
-    public float Damage
-    {
-        get
-        {
-            return (damageScale * weaponDamage) / (playerStats.stats[CharacterColumn.Stat.PROJECTILE_AMOUNT] * playerShooter.weapon.stats[WeaponColumn.Stat.PROJECTILE_AMOUNT]);
-        }
-    }
+    public float Damage => (damageScale * weaponDamage) / (playerStats.stats[CharacterColumn.Stat.PROJECTILE_AMOUNT] * playerShooter.weapon.stats[WeaponColumn.Stat.PROJECTILE_AMOUNT]);
 
     // =======HpDrain
     public float hpDrainScale;
     public float weaponHpDrain;
-    public float HpDrain
-    {
-        get
-        {
-            return rand <= CriticalRate ? hpDrainScale * (weaponHpDrain / 100) * CriticalDamage : hpDrainScale * (weaponHpDrain / 100) * Damage;
-        }
-    }
+    public float HpDrain => rand <= CriticalRate ? hpDrainScale * (weaponHpDrain / 100) * CriticalDamage : hpDrainScale * (weaponHpDrain / 100) * Damage;
 
     // =======SplashDamage
     public float splashDamageScale;
     public float weaponSplashDamage;
-    public float SplashDamage
-    {
-        get
-        {
-            return splashDamageScale * (weaponSplashDamage / 100) * Damage;
-        }
-    }
+    public float SplashDamage => splashDamageScale * (weaponSplashDamage / 100) * Damage;
 
     // =======SplashDamageRange
     public float splashDamageRangeScale;
     public float weaponSplashDamageRange;
-    public float SplashDamageRange
-    {
-        get
-        {
-            return splashDamageRangeScale * weaponSplashDamageRange; // (N unit의 범위)
-        }
-    }
+    public float SplashDamageRange => splashDamageRangeScale * weaponSplashDamageRange;
 
     // =======Penetrate
     public float penetrateScale;
     public float weaponPenetrate;
-    public int Penetrate
-    {
-        get
-        {
-            return Mathf.RoundToInt(penetrateScale * weaponPenetrate);
-        }
-    }
+    public int Penetrate => Mathf.RoundToInt(penetrateScale * weaponPenetrate);
 
     // =======CurrentPenetrate
     public int currentPenetrate;
     public int CurrentPenetrate
     {
-        get
-        {
-            return Penetrate - currentPenetrate;
-        }
-        set
-        {
-            currentPenetrate = value;
-        }
+        get => Penetrate - currentPenetrate;
+        set => currentPenetrate = value;
     }
-
 
     private void Awake()
     {
         audioSource.volume = ParamManager.SfxValue;
-    }
-
-    private void OnEnable()
-    {
         if (playerShooter == null && !GameObject.FindWithTag(Tags.Player).TryGetComponent(out playerShooter))
         {
             playerShooter.enabled = false;
-            return;
         }
 
         if (playerStats == null && !GameObject.FindWithTag(Tags.Player).TryGetComponent(out playerStats))
         {
             playerStats.enabled = false;
-            return;
         }
 
         if (playerHealth == null && !GameObject.FindWithTag(Tags.Player).TryGetComponent(out playerHealth))
         {
             playerHealth.enabled = false;
-            return;
         }
+    }
 
-        hitPS.Stop();
-        hitPS.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
-        projectilePS.Play();
+    private void OnEnable()
+    {
+        ResetProjectile();
+        InitializeProjectileStats();
 
-        if (!startChecker)
-        {
-            if (flash != null)
-            {
-                flash.transform.parent = null;
-            }
-            if (lightSourse != null)
-                lightSourse.enabled = true;
-            col.enabled = true;
-            rb.constraints = RigidbodyConstraints.None;
-        }
+        if (flash != null) flash.transform.parent = null;
+        if (lightSourse != null) lightSourse.enabled = true;
+        col.enabled = true;
+        rb.constraints = RigidbodyConstraints.None;
         startPosition = rb.position = playerShooter.muzzle.transform.position;
-        rb.velocity = Vector3.forward * speed;
-
+        rb.velocity = playerShooter.muzzle.transform.forward * Speed; // 초기 속도 설정
         startChecker = true;
 
+        PlayAudio(SoundManager.Instance.flashClips[playerShooter.weapon.weaponData.PROJECTILE_ID - 1]);
+    }
+
+    private void ResetProjectile()
+    {
+        hitPS.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        projectilePS.Play();
+        currentPenetrate = 0;
+    }
+
+    private void InitializeProjectileStats()
+    {
         rangeScale = playerStats.stats[CharacterColumn.Stat.FIRE_RANGE];
         weaponRange = playerShooter.weapon.stats[WeaponColumn.Stat.FIRE_RANGE];
-
         speedScale = playerStats.stats[CharacterColumn.Stat.PROJECTILE_SPEED];
         weaponSpeed = playerShooter.weapon.stats[WeaponColumn.Stat.PROJECTILE_SPEED];
-
         criticalRateScale = playerStats.stats[CharacterColumn.Stat.CRITICAL];
         weaponCriticalRate = playerShooter.weapon.stats[WeaponColumn.Stat.CRITICAL];
-
         criticalDamageScale = playerStats.stats[CharacterColumn.Stat.CRITICAL_DAMAGE];
         weaponCriticalDamage = playerShooter.weapon.stats[WeaponColumn.Stat.CRITICAL_DAMAGE];
-
         damageScale = playerStats.stats[CharacterColumn.Stat.DAMAGE];
         weaponDamage = playerShooter.weapon.stats[WeaponColumn.Stat.DAMAGE];
-
         hpDrainScale = playerStats.stats[CharacterColumn.Stat.HP_DRAIN];
         weaponHpDrain = playerShooter.weapon.stats[WeaponColumn.Stat.HP_DRAIN];
-
         splashDamageScale = playerStats.stats[CharacterColumn.Stat.SPLASH_DAMAGE];
         weaponSplashDamage = playerShooter.weapon.stats[WeaponColumn.Stat.SPLASH_DAMAGE];
-
         splashDamageRangeScale = playerStats.stats[CharacterColumn.Stat.SPLASH_RANGE];
         weaponSplashDamageRange = playerShooter.weapon.stats[WeaponColumn.Stat.SPLASH_RANGE];
-
         penetrateScale = playerStats.stats[CharacterColumn.Stat.PENETRATE];
         weaponPenetrate = playerShooter.weapon.stats[WeaponColumn.Stat.PENETRATE];
+    }
 
-        startPosition = playerShooter.muzzle.transform.position;
-        transform.position = startPosition;
-
-        rb.velocity = Vector3.zero;  // Rigidbody 속도 초기화
-        rb.angularVelocity = Vector3.zero; // 각속도 초기화
-
-        currentPenetrate = 0;
+    private void PlayAudio(AudioClip clip)
+    {
         if (!audioSource.isPlaying)
         {
-            audioSource.clip = SoundManager.Instance.flashClips[playerShooter.weapon.weaponData.PROJECTILE_ID - 1];
+            audioSource.clip = clip;
             audioSource.Play();
         }
     }
 
     private void Update()
     {
-        rb.AddForce(transform.forward * Speed * Time.deltaTime, ForceMode.Impulse);
-
-        float distance = Vector3.Distance(startPosition, transform.position);
-
-        if (distance >= Range)
+        if (Vector3.Distance(startPosition, transform.position) >= Range)
         {
-            gameObject.SetActive(false);
-            playerShooter.ReturnProjectile(gameObject);
+            DeactivateProjectile();
         }
+    }
+
+    private void DeactivateProjectile()
+    {
+        gameObject.SetActive(false);
+        playerShooter.ReturnProjectile(gameObject);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(Tags.Enemy) || other.CompareTag(Tags.Boss) || other.CompareTag(Tags.Elite))
         {
-            var enemy = other.gameObject.GetComponent<Enemy>();
-            // 크리티컬 확률일 경우
-            rand = Random.value;
-            if (rand <= CriticalRate)
-            {
-                enemy.OnDamage(CriticalDamage, true); // 크리티컬 뎀
-            }
-            // 크리티컬 확률이 아닐 경우
-            else
-            {
-                enemy.OnDamage(Damage);
-            }
-
-            if (SplashDamageRange > 0)
-            {
-                Collider[] colliders = Physics.OverlapSphere(transform.position, SplashDamageRange);
-
-                foreach (var collider in colliders)
-                {
-                    if (collider == other) continue;
-
-                    if (collider.CompareTag(Tags.Enemy) || collider.CompareTag(Tags.Boss))
-                    {
-                        var e = collider.gameObject.GetComponent<Enemy>();
-                        e.OnDamage(SplashDamage);
-
-                        if (e.effects[0].isPlaying)
-                        {
-                            e.StopEffectImmediatly();
-                        }
-
-                        e.splashEffect.SetActive(true);
-                        foreach (var particle in e.effects)
-                        {
-                            particle.Play();
-                            e.StopEffect();
-                        }
-                    }
-                }
-            }
-
-            if (HpDrain > 0)
-            {
-                DynamicTextManager.CreateText(playerHealth.transform.position + Vector3.one * 2, HpDrain.ToString("+#;"), DynamicTextManager.healingTextData);
-                playerStats.stats[CharacterColumn.Stat.HP] += HpDrain; // 흡수
-                playerHealth.UpdateHealthUI();
-            }
-
-
-            if(CurrentPenetrate <= 0)
-            {
-                rb.constraints = RigidbodyConstraints.FreezeAll;
-                //speed = 0;
-                if (lightSourse != null)
-                    lightSourse.enabled = false;
-                col.enabled = false;
-                projectilePS.Stop();
-                projectilePS.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
-
-                Vector3 contact = other.ClosestPoint(transform.position);
-                Quaternion rot = Quaternion.FromToRotation(Vector3.up, (transform.position - contact).normalized);
-                Vector3 pos = contact + contact * hitOffset;
-
-                if (hit != null)
-                {
-                    hit.transform.rotation = rot;
-                    hit.transform.position = pos;
-                    if (UseFirePointRotation) { hit.transform.rotation = gameObject.transform.rotation * Quaternion.Euler(0, 180f, 0); }
-                    else if (rotationOffset != Vector3.zero) { hit.transform.rotation = Quaternion.Euler(rotationOffset); }
-                    else { hit.transform.LookAt((transform.position - contact).normalized + (transform.position - contact).normalized); }
-                    hitPS.Play();
-
-                    audioSource.clip = SoundManager.Instance.hitClips[playerShooter.weapon.weaponData.PROJECTILE_ID - 1];
-                    audioSource.Play();
-                    
-                }
-
-                foreach (var detachedPrefab in Detached)
-                {
-                    if (detachedPrefab != null)
-                    {
-                        ParticleSystem detachedPS = detachedPrefab.GetComponent<ParticleSystem>();
-                        detachedPS.Stop();
-                    }
-                }
-
-                startChecker = false;
-
-                if (returnCoroutine != null)
-                {
-                    StopCoroutine(returnCoroutine);
-                }
-
-                returnCoroutine = StartCoroutine(ReturnProjectileAfter(disappearTimer));
-            }
-            ++currentPenetrate;
+            HandleCollisionWithEnemy(other);
         }
+    }
+
+    private void HandleCollisionWithEnemy(Collider other)
+    {
+        var enemy = other.gameObject.GetComponent<Enemy>();
+        rand = Random.value;
+
+        if (rand <= CriticalRate)
+        {
+            enemy.OnDamage(CriticalDamage, true);
+        }
+        else
+        {
+            enemy.OnDamage(Damage);
+        }
+
+        ApplySplashDamage(other);
+        ApplyHpDrain();
+
+        if (CurrentPenetrate <= 0)
+        {
+            HandleProjectileHit(other);
+        }
+        ++currentPenetrate;
+    }
+
+    private void ApplySplashDamage(Collider other)
+    {
+        if (SplashDamageRange > 0)
+        {
+            int numColliders = Physics.OverlapSphereNonAlloc(transform.position, SplashDamageRange, splashDamageColliders);
+
+            for (int i = 0; i < numColliders; i++)
+            {
+                var collider = splashDamageColliders[i];
+                if (collider == other) continue;
+
+                if (collider.CompareTag(Tags.Enemy) || collider.CompareTag(Tags.Boss))
+                {
+                    var e = collider.gameObject.GetComponent<Enemy>();
+                    e.OnDamage(SplashDamage);
+                    PlaySplashEffect(e);
+                }
+            }
+        }
+    }
+
+    private void PlaySplashEffect(Enemy enemy)
+    {
+        if (enemy.effects[0].isPlaying)
+        {
+            enemy.StopEffectImmediatly();
+        }
+
+        enemy.splashEffect.SetActive(true);
+        foreach (var particle in enemy.effects)
+        {
+            particle.Play();
+            enemy.StopEffect();
+        }
+    }
+
+    private void ApplyHpDrain()
+    {
+        if (HpDrain > 0)
+        {
+            DynamicTextManager.CreateText(playerHealth.transform.position + Vector3.one * 2, HpDrain.ToString("+#;"), DynamicTextManager.healingTextData);
+            playerStats.stats[CharacterColumn.Stat.HP] += HpDrain;
+            playerHealth.UpdateHealthUI();
+        }
+    }
+
+    private void HandleProjectileHit(Collider other)
+    {
+        rb.constraints = RigidbodyConstraints.FreezeAll;
+        if (lightSourse != null) lightSourse.enabled = false;
+
+
+        if (lightSourse != null) lightSourse.enabled = false;
+        col.enabled = false;
+        projectilePS.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+
+        Vector3 contact = other.ClosestPoint(transform.position);
+        Quaternion rot = Quaternion.FromToRotation(Vector3.up, (transform.position - contact).normalized);
+        Vector3 pos = contact + contact * hitOffset;
+
+        if (hit != null)
+        {
+            SetHitEffectPositionAndRotation(contact, rot, pos);
+            PlayHitEffect();
+        }
+
+        foreach (var detachedPrefab in Detached)
+        {
+            if (detachedPrefab != null)
+            {
+                ParticleSystem detachedPS = detachedPrefab.GetComponent<ParticleSystem>();
+                detachedPS.Stop();
+            }
+        }
+
+        startChecker = false;
+
+        if (returnCoroutine != null)
+        {
+            StopCoroutine(returnCoroutine);
+        }
+
+        returnCoroutine = StartCoroutine(ReturnProjectileAfter(disappearTimer));
+    }
+
+    private void SetHitEffectPositionAndRotation(Vector3 contact, Quaternion rot, Vector3 pos)
+    {
+        hit.transform.rotation = rot;
+        hit.transform.position = pos;
+
+        if (UseFirePointRotation)
+        {
+            hit.transform.rotation = gameObject.transform.rotation * Quaternion.Euler(0, 180f, 0);
+        }
+        else if (rotationOffset != Vector3.zero)
+        {
+            hit.transform.rotation = Quaternion.Euler(rotationOffset);
+        }
+        else
+        {
+            hit.transform.LookAt((transform.position - contact).normalized + (transform.position - contact).normalized);
+        }
+    }
+
+    private void PlayHitEffect()
+    {
+        hitPS.Play();
+        PlayAudio(SoundManager.Instance.hitClips[playerShooter.weapon.weaponData.PROJECTILE_ID - 1]);
     }
 
     IEnumerator ReturnProjectileAfter(float t)

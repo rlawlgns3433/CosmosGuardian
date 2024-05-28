@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEditor;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -68,8 +67,6 @@ public class GameManager : Singleton<GameManager>
 
         if (currentPlatform.transform.position.z + platformSpacing < Camera.main.gameObject.transform.position.z)
         {
-            Debug.Log("22");
-
             Vector3 lastPlatformPosition = platforms[platforms.Count - 1].transform.position;
             Vector3 newPlatformPosition = lastPlatformPosition + new Vector3(0, 0, platformSpacing);
             currentPlatform.transform.position = newPlatformPosition;

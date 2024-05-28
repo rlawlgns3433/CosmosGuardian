@@ -16,7 +16,6 @@ public class PlayerShooter : MonoBehaviour
     private int oneMinute = 60;
     private float tempAngle = 10f;
 
-
     private float FireRate
     {
         get
@@ -29,22 +28,9 @@ public class PlayerShooter : MonoBehaviour
 
     private void Start()
     {
-        if(!TryGetComponent(out weapon))
-        {
-            weapon.enabled = false;
-            return;
-        }
-
         currentProjectileIndex = weapon.weaponData.PROJECTILE_ID - 1;
     }
 
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.A))
-        {
-            ChangeProjectile();
-        }
-    }
     void FixedUpdate()
     {
         if(lastFireTime < Time.time - FireRate)
@@ -57,15 +43,6 @@ public class PlayerShooter : MonoBehaviour
     void Fire()
     {
         int projectileCount = Mathf.RoundToInt(weapon.stats[WeaponColumn.Stat.PROJECTILE_AMOUNT] * playerStats.stats[CharacterColumn.Stat.PROJECTILE_AMOUNT]);
-
-        //Debug.Log($"Type : {playerStats.characterData.BODY_TYPE}");
-        //Debug.Log($"character projectCount : {playerStats.stats[CharacterColumn.Stat.PROJECTILE_AMOUNT]}");
-        //Debug.Log($"weapon projectCount : {weapon.stats[WeaponColumn.Stat.PROJECTILE_AMOUNT]}");
-        //Debug.Log($"{gameObject.GetInstanceID()}, {playerStats.prefabSelector.GetInstanceID()}");
-
-        //float angleStep = projectileCount > 1 ? spreadAngle / (projectileCount - 1) : 0;
-        // 2개 이하라면 작은 각도로
-        // 3개 이상이라면 큰 각도로
 
         float angleStep;
 
@@ -139,23 +116,5 @@ public class PlayerShooter : MonoBehaviour
     {
         unusingProjectiles.Add(projectile);
         usingProjectiles.Remove(projectile);
-    }
-
-    private void ChangeProjectile()
-    {
-        currentProjectileIndex = (currentProjectileIndex + 1) % (projectilePrefabs.Count - 1);
-
-        foreach(var item in usingProjectiles)
-        {
-            Destroy(item);
-        }
-
-        foreach (var item in unusingProjectiles)
-        {
-            Destroy(item);
-        }
-
-        usingProjectiles.Clear();
-        unusingProjectiles.Clear();
     }
 }

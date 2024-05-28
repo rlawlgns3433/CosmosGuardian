@@ -14,7 +14,7 @@ public class BossSpawnController : MonoBehaviour
 
     private void Start()
     {
-        if(!TryGetComponent(out platform))
+        if (!TryGetComponent(out platform))
         {
             platform.enabled = false;
             return;
@@ -23,16 +23,11 @@ public class BossSpawnController : MonoBehaviour
 
     public void SpawnBoss()
     {
-        // 현재 플랫폼에 있는 몬스터 전체 삭제
         foreach (var enemies in platform.spawnedEnemies.Values)
         {
-            foreach(var enemy in enemies)
+            foreach (var enemy in enemies)
             {
-                if (enemy != null)
-                {
-                    enemy.OnDie();
-                    // return 부분
-                }
+                platform.ReturnEnemy(enemy);
             }
         }
 

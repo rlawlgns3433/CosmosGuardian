@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Text;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Timeline;
 
 public class UiCharacterSelect : MonoBehaviour
 {
@@ -241,11 +240,6 @@ public class UiCharacterSelect : MonoBehaviour
     public string FormatSignedValue(CharacterColumn.Stat stat, float value)
     {
         StringBuilder sb = new StringBuilder();
-
-        if(stat == CharacterColumn.Stat.ARMOR)
-        {
-            Debug.Log("armor : " + value);
-        }
 
         if (standardStats[stat] > value)
         {

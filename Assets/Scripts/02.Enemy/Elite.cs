@@ -50,7 +50,6 @@ public class Elite : Enemy
     private void Shot()
     {
         if (transform.position.z < target.transform.position.z) return;
-        Debug.Log($"Shot! {gameObject.name}");
 
         direction = (target.transform.position - transform.position).normalized;
 

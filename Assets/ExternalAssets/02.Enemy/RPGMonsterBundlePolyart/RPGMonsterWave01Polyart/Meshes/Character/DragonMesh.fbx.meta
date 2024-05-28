@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 22c434b614d1427db735d1f7d618015d
 ModelImporter:
-  serializedVersion: 21300
+  serializedVersion: 22200
   internalIDToNameTable:
   - first:
       1: 100000
@@ -319,7 +319,7 @@ ModelImporter:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
-    optimizeGameObjects: 0
+    optimizeGameObjects: 1
     removeConstantScaleCurves: 0
     motionNodeName: 
     rigImportErrors: 
@@ -335,7 +335,53 @@ ModelImporter:
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
-    extraExposedTransformPaths: []
+    extraExposedTransformPaths:
+    - Body
+    - Body/Spine01
+    - Body/Spine01/RearLeg01_L
+    - Body/Spine01/RearLeg01_L/RearLeg02_L
+    - Body/Spine01/RearLeg01_L/RearLeg02_L/RearLeg03_L
+    - Body/Spine01/RearLeg01_R
+    - Body/Spine01/RearLeg01_R/RearLeg02_R
+    - Body/Spine01/RearLeg01_R/RearLeg02_R/RearLeg03_R
+    - Body/Spine01/Spine02
+    - Body/Spine01/Spine02/Belly01
+    - Body/Spine01/Spine02/Belly02
+    - Body/Spine01/Spine02/FrontLeg01_L
+    - Body/Spine01/Spine02/FrontLeg01_L/FrontLeg02_L
+    - Body/Spine01/Spine02/FrontLeg01_L/FrontLeg02_L/FrontLeg03_L
+    - Body/Spine01/Spine02/FrontLeg01_R
+    - Body/Spine01/Spine02/FrontLeg01_R/FrontLeg02_R
+    - Body/Spine01/Spine02/FrontLeg01_R/FrontLeg02_R/FrontLeg03_R
+    - Body/Spine01/Spine02/Head
+    - Body/Spine01/Spine02/Head/EyeRoot
+    - Body/Spine01/Spine02/Head/EyeRoot/Eye01_L
+    - Body/Spine01/Spine02/Head/EyeRoot/Eye01_R
+    - Body/Spine01/Spine02/Head/EyeRoot/Eye02_L
+    - Body/Spine01/Spine02/Head/EyeRoot/Eye02_R
+    - Body/Spine01/Spine02/Head/Jaw01
+    - Body/Spine01/Spine02/Head/Jaw01/Jaw02
+    - Body/Spine01/Spine02/Head/UpperJaw01
+    - Body/Spine01/Spine02/Head/UpperJaw01/UpperJaw02
+    - Body/Spine01/Spine02/WingRoot
+    - Body/Spine01/Spine02/WingRoot/Wing01_L
+    - Body/Spine01/Spine02/WingRoot/Wing01_L/Wing02_L
+    - Body/Spine01/Spine02/WingRoot/Wing01_L/Wing02_L/Wing03_L
+    - Body/Spine01/Spine02/WingRoot/Wing01_L/Wing02_L/Wing03_L/Wing04_L
+    - Body/Spine01/Spine02/WingRoot/Wing01_L/Wing02_L/Wing03_L/Wing04_L/Wing05_L
+    - Body/Spine01/Spine02/WingRoot/Wing01_L/Wing02_L/Wing03_L/Wing06_L
+    - Body/Spine01/Spine02/WingRoot/Wing01_L/Wing02_L/Wing03_L/Wing06_L/Wing07_L
+    - Body/Spine01/Spine02/WingRoot/Wing01_R
+    - Body/Spine01/Spine02/WingRoot/Wing01_R/Wing02_R
+    - Body/Spine01/Spine02/WingRoot/Wing01_R/Wing02_R/Wing03_R
+    - Body/Spine01/Spine02/WingRoot/Wing01_R/Wing02_R/Wing03_R/Wing04_R
+    - Body/Spine01/Spine02/WingRoot/Wing01_R/Wing02_R/Wing03_R/Wing04_R/Wing05_R
+    - Body/Spine01/Spine02/WingRoot/Wing01_R/Wing02_R/Wing03_R/Wing06_R
+    - Body/Spine01/Spine02/WingRoot/Wing01_R/Wing02_R/Wing03_R/Wing06_R/Wing07_R
+    - Body/Tail01
+    - Body/Tail01/Tail02
+    - Body/Tail01/Tail02/Tail03
+    - DragonMesh
     extraUserProperties: []
     clipAnimations: []
     isReadable: 1
@@ -346,6 +392,7 @@ ModelImporter:
     addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
+    importPhysicalCameras: 1
     importVisibility: 0
     importBlendShapes: 1
     importCameras: 0
@@ -373,6 +420,7 @@ ModelImporter:
     secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
+    strictVertexDataChecks: 0
   tangentSpace:
     normalSmoothAngle: 0
     normalImportMode: 1
@@ -405,6 +453,7 @@ ModelImporter:
   humanoidOversampling: 1
   avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 0
+  importBlendShapeDeformPercent: 0
   remapMaterialsIfMaterialImportModeIsNone: 1
   additionalBone: 0
   userData: 

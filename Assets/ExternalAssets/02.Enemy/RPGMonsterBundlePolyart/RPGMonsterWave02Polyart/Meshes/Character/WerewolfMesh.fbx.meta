@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 55474c07685b4276a437f94e058c2101
 ModelImporter:
-  serializedVersion: 21300
+  serializedVersion: 22200
   internalIDToNameTable:
   - first:
       1: 100000
@@ -481,7 +481,7 @@ ModelImporter:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
-    optimizeGameObjects: 0
+    optimizeGameObjects: 1
     removeConstantScaleCurves: 0
     motionNodeName: 
     rigImportErrors: 
@@ -497,7 +497,82 @@ ModelImporter:
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
-    extraExposedTransformPaths: []
+    extraExposedTransformPaths:
+    - Body
+    - Body/Spine01
+    - Body/Spine01/Spine02
+    - Body/Spine01/Spine02/Spine03
+    - Body/Spine01/Spine02/Spine03/Neck
+    - Body/Spine01/Spine02/Spine03/Neck/Head
+    - Body/Spine01/Spine02/Spine03/Neck/Head/Ear01_L
+    - Body/Spine01/Spine02/Spine03/Neck/Head/Ear01_L/Ear02_L
+    - Body/Spine01/Spine02/Spine03/Neck/Head/Ear01_R
+    - Body/Spine01/Spine02/Spine03/Neck/Head/Ear01_R/Ear02_R
+    - Body/Spine01/Spine02/Spine03/Neck/Head/LowerJaw01
+    - Body/Spine01/Spine02/Spine03/Neck/Head/LowerJaw01/LowerJaw02
+    - Body/Spine01/Spine02/Spine03/Neck/Head/LowerJaw01/LowerJaw02/LowerJaw03
+    - Body/Spine01/Spine02/Spine03/Neck/Head/UpperJaw01
+    - Body/Spine01/Spine02/Spine03/Neck/Head/UpperJaw01/UpperJaw02
+    - Body/Spine01/Spine02/Spine03/Neck/Head/UpperJaw01/UpperJaw02/Eyebrow01_L
+    - Body/Spine01/Spine02/Spine03/Neck/Head/UpperJaw01/UpperJaw02/Eyebrow01_L/Eyebrow02_L
+    - Body/Spine01/Spine02/Spine03/Neck/Head/UpperJaw01/UpperJaw02/Eyebrow01_R
+    - Body/Spine01/Spine02/Spine03/Neck/Head/UpperJaw01/UpperJaw02/Eyebrow01_R/Eyebrow02_R
+    - Body/Spine01/Spine02/Spine03/Neck/Head/UpperJaw01/UpperJaw02/LowerEyelid_L
+    - Body/Spine01/Spine02/Spine03/Neck/Head/UpperJaw01/UpperJaw02/LowerEyelid_R
+    - Body/Spine01/Spine02/Spine03/Neck/Head/UpperJaw01/UpperJaw02/UpperEyelid_L
+    - Body/Spine01/Spine02/Spine03/Neck/Head/UpperJaw01/UpperJaw02/UpperEyelid_R
+    - Body/Spine01/Spine02/Spine03/Neck/Head/UpperJaw01/UpperJaw02/UpperJaw03
+    - Body/Spine01/Spine02/Spine03/UpperArm_L
+    - Body/Spine01/Spine02/Spine03/UpperArm_L/LowerArm_L
+    - Body/Spine01/Spine02/Spine03/UpperArm_L/LowerArm_L/Hand_L
+    - Body/Spine01/Spine02/Spine03/UpperArm_L/LowerArm_L/Hand_L/Blade01_L
+    - Body/Spine01/Spine02/Spine03/UpperArm_L/LowerArm_L/Hand_L/Blade01_L/Blade02_L
+    - Body/Spine01/Spine02/Spine03/UpperArm_L/LowerArm_L/Hand_L/Index01_L
+    - Body/Spine01/Spine02/Spine03/UpperArm_L/LowerArm_L/Hand_L/Index01_L/Index02_L
+    - Body/Spine01/Spine02/Spine03/UpperArm_L/LowerArm_L/Hand_L/Index01_L/Index02_L/Index03_L
+    - Body/Spine01/Spine02/Spine03/UpperArm_L/LowerArm_L/Hand_L/Middle01_L
+    - Body/Spine01/Spine02/Spine03/UpperArm_L/LowerArm_L/Hand_L/Middle01_L/Middle02_L
+    - Body/Spine01/Spine02/Spine03/UpperArm_L/LowerArm_L/Hand_L/Middle01_L/Middle02_L/Middle03_L
+    - Body/Spine01/Spine02/Spine03/UpperArm_L/LowerArm_L/Hand_L/Pinky01_L
+    - Body/Spine01/Spine02/Spine03/UpperArm_L/LowerArm_L/Hand_L/Pinky01_L/Pinky02_L
+    - Body/Spine01/Spine02/Spine03/UpperArm_L/LowerArm_L/Hand_L/Pinky01_L/Pinky02_L/Pinky03_L
+    - Body/Spine01/Spine02/Spine03/UpperArm_L/LowerArm_L/Hand_L/Thumb01_L
+    - Body/Spine01/Spine02/Spine03/UpperArm_L/LowerArm_L/Hand_L/Thumb01_L/Thumb02_L
+    - Body/Spine01/Spine02/Spine03/UpperArm_L/LowerArm_L/Hand_L/Thumb01_L/Thumb02_L/Thumb03_L
+    - Body/Spine01/Spine02/Spine03/UpperArm_L/Shoulderpad_L
+    - Body/Spine01/Spine02/Spine03/UpperArm_R
+    - Body/Spine01/Spine02/Spine03/UpperArm_R/LowerArm_R
+    - Body/Spine01/Spine02/Spine03/UpperArm_R/LowerArm_R/Hand_R
+    - Body/Spine01/Spine02/Spine03/UpperArm_R/LowerArm_R/Hand_R/Blade01_R
+    - Body/Spine01/Spine02/Spine03/UpperArm_R/LowerArm_R/Hand_R/Blade01_R/Blade02_R
+    - Body/Spine01/Spine02/Spine03/UpperArm_R/LowerArm_R/Hand_R/Index01_R
+    - Body/Spine01/Spine02/Spine03/UpperArm_R/LowerArm_R/Hand_R/Index01_R/Index02_R
+    - Body/Spine01/Spine02/Spine03/UpperArm_R/LowerArm_R/Hand_R/Index01_R/Index02_R/Index03_R
+    - Body/Spine01/Spine02/Spine03/UpperArm_R/LowerArm_R/Hand_R/Middle01_R
+    - Body/Spine01/Spine02/Spine03/UpperArm_R/LowerArm_R/Hand_R/Middle01_R/Middle02_R
+    - Body/Spine01/Spine02/Spine03/UpperArm_R/LowerArm_R/Hand_R/Middle01_R/Middle02_R/Middle03_R
+    - Body/Spine01/Spine02/Spine03/UpperArm_R/LowerArm_R/Hand_R/Pinky01_R
+    - Body/Spine01/Spine02/Spine03/UpperArm_R/LowerArm_R/Hand_R/Pinky01_R/Pinky02_R
+    - Body/Spine01/Spine02/Spine03/UpperArm_R/LowerArm_R/Hand_R/Pinky01_R/Pinky02_R/Pinky03_R
+    - Body/Spine01/Spine02/Spine03/UpperArm_R/LowerArm_R/Hand_R/Thumb01_R
+    - Body/Spine01/Spine02/Spine03/UpperArm_R/LowerArm_R/Hand_R/Thumb01_R/Thumb02_R
+    - Body/Spine01/Spine02/Spine03/UpperArm_R/LowerArm_R/Hand_R/Thumb01_R/Thumb02_R/Thumb03_R
+    - Body/Spine01/Spine02/Spine03/UpperArm_R/ShoulderPad_R
+    - Body/Tail01
+    - Body/Tail01/Tail02
+    - Body/Tail01/Tail02/Tail03
+    - Body/Tail01/Tail02/Tail03/Tail04
+    - Body/UpperLeg_L
+    - Body/UpperLeg_L/LowerLeg_L
+    - Body/UpperLeg_L/LowerLeg_L/Foot_L
+    - Body/UpperLeg_L/LowerLeg_L/Foot_L/FootBall_L
+    - Body/UpperLeg_L/LowerLeg_L/Foot_L/FootBall_L/Toe_L
+    - Body/UpperLeg_R
+    - Body/UpperLeg_R/LowerLeg_R
+    - Body/UpperLeg_R/LowerLeg_R/Foot_R
+    - Body/UpperLeg_R/LowerLeg_R/Foot_R/FootBall_R
+    - Body/UpperLeg_R/LowerLeg_R/Foot_R/FootBall_R/Toe_R
+    - WerewolfMesh
     extraUserProperties: []
     clipAnimations: []
     isReadable: 1
@@ -508,6 +583,7 @@ ModelImporter:
     addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
+    importPhysicalCameras: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -535,6 +611,7 @@ ModelImporter:
     secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
+    strictVertexDataChecks: 0
   tangentSpace:
     normalSmoothAngle: 0
     normalImportMode: 1
@@ -567,6 +644,7 @@ ModelImporter:
   humanoidOversampling: 1
   avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 0
+  importBlendShapeDeformPercent: 0
   remapMaterialsIfMaterialImportModeIsNone: 1
   additionalBone: 0
   userData: 

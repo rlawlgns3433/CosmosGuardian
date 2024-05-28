@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 3f8329e956a44723a06fb682d1021499
 ModelImporter:
-  serializedVersion: 21300
+  serializedVersion: 22200
   internalIDToNameTable:
   - first:
       1: 100000
@@ -241,7 +241,7 @@ ModelImporter:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
-    optimizeGameObjects: 0
+    optimizeGameObjects: 1
     removeConstantScaleCurves: 0
     motionNodeName: 
     rigImportErrors: 
@@ -257,7 +257,42 @@ ModelImporter:
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
-    extraExposedTransformPaths: []
+    extraExposedTransformPaths:
+    - Bat
+    - Body
+    - Body/UpperBody
+    - Body/UpperBody/Crown
+    - Body/UpperBody/Ear01_L
+    - Body/UpperBody/Ear01_L/Ear02_L
+    - Body/UpperBody/Ear01_L/Ear02_L/Ear03_L
+    - Body/UpperBody/Ear01_R
+    - Body/UpperBody/Ear01_R/Ear02_R
+    - Body/UpperBody/Ear01_R/Ear02_R/Ear03_R
+    - Body/UpperBody/Head
+    - Body/UpperBody/Head/Eye01_L
+    - Body/UpperBody/Head/Eye01_L/Eye02_L
+    - Body/UpperBody/Head/Eye01_R
+    - Body/UpperBody/Head/Eye01_R/Eye02_R
+    - Body/UpperBody/Head/Jaw01
+    - Body/UpperBody/Head/Jaw01/Jaw02
+    - Body/UpperBody/Head/UpperJaw01
+    - Body/UpperBody/Head/UpperJaw01/UpperJaw02
+    - Body/UpperBody/Wing01_L
+    - Body/UpperBody/Wing01_L/Wing02_L
+    - Body/UpperBody/Wing01_L/Wing02_L/Wing03_L
+    - Body/UpperBody/Wing01_L/Wing02_L/Wing03_L/Wing04_L
+    - Body/UpperBody/Wing01_L/Wing02_L/Wing03_L/Wing04_L/Wing05_L
+    - Body/UpperBody/Wing01_L/Wing02_L/Wing03_L/Wing04_L/Wing05_L/Wing06_L
+    - Body/UpperBody/Wing01_L/Wing02_L/Wing03_L/Wing07_L
+    - Body/UpperBody/Wing01_L/Wing02_L/Wing03_L/Wing07_L/Wing08_L
+    - Body/UpperBody/Wing01_R
+    - Body/UpperBody/Wing01_R/Wing02_R
+    - Body/UpperBody/Wing01_R/Wing02_R/Wing03_R
+    - Body/UpperBody/Wing01_R/Wing02_R/Wing03_R/Wing04_R
+    - Body/UpperBody/Wing01_R/Wing02_R/Wing03_R/Wing04_R/Wing05_R
+    - Body/UpperBody/Wing01_R/Wing02_R/Wing03_R/Wing04_R/Wing05_R/Wing06_R
+    - Body/UpperBody/Wing01_R/Wing02_R/Wing03_R/Wing07_R
+    - Body/UpperBody/Wing01_R/Wing02_R/Wing03_R/Wing07_R/Wing08_R
     extraUserProperties: []
     clipAnimations: []
     isReadable: 1
@@ -268,6 +303,7 @@ ModelImporter:
     addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
+    importPhysicalCameras: 1
     importVisibility: 0
     importBlendShapes: 1
     importCameras: 0
@@ -295,6 +331,7 @@ ModelImporter:
     secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
+    strictVertexDataChecks: 0
   tangentSpace:
     normalSmoothAngle: 0
     normalImportMode: 1
@@ -327,6 +364,7 @@ ModelImporter:
   humanoidOversampling: 1
   avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 0
+  importBlendShapeDeformPercent: 0
   remapMaterialsIfMaterialImportModeIsNone: 1
   additionalBone: 0
   userData: 

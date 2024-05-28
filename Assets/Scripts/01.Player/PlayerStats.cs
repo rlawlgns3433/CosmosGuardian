@@ -39,6 +39,7 @@ public class PlayerStats : MonoBehaviour
 
 
     private CharacterTable characterTable = null;
+    public Dictionary<CharacterColumn.Stat, float> standardStats = new Dictionary<CharacterColumn.Stat, float>();
     public Dictionary<CharacterColumn.Stat, float> initialStats = new Dictionary<CharacterColumn.Stat, float>(); // 능력치 종류, 능력치 배율
     public Dictionary<CharacterColumn.Stat, float> stats = new Dictionary<CharacterColumn.Stat, float>(); // 능력치 종류, 능력치 배율
     public List<ItemData> items = new List<ItemData>();
@@ -46,6 +47,7 @@ public class PlayerStats : MonoBehaviour
     [NonSerialized]
     public PrefabSelector prefabSelector = null;
     public CharacterData characterData = null;
+    public CharacterData standardCharacterData = null;
     public string id = string.Empty;
     public float prevPositionZ = 1.5f;
 
@@ -208,7 +210,8 @@ public class PlayerStats : MonoBehaviour
     public void InitCharacterInfo(string id)
     {
         characterData = characterTable.Get(int.Parse(id));
-
+        standardCharacterData = characterTable.Get(20101);
+        #region initStat
         stats[CharacterColumn.Stat.HP] = initialStats[CharacterColumn.Stat.HP] = characterData.HP;
         stats[CharacterColumn.Stat.ARMOR] = initialStats[CharacterColumn.Stat.ARMOR] = characterData.ARMOR;
         stats[CharacterColumn.Stat.DAMAGE] = initialStats[CharacterColumn.Stat.DAMAGE] = characterData.DAMAGE_TYPE_1;
@@ -225,7 +228,23 @@ public class PlayerStats : MonoBehaviour
         stats[CharacterColumn.Stat.PROJECTILE_SPEED] = initialStats[CharacterColumn.Stat.PROJECTILE_SPEED] = characterData.PROJECTILE_SPEED;
         stats[CharacterColumn.Stat.PROJECTILE_AMOUNT] = initialStats[CharacterColumn.Stat.PROJECTILE_AMOUNT] = characterData.PROJECTILE_AMOUNT;
 
-        Debug.Log($"character projectile amount : {stats[CharacterColumn.Stat.PROJECTILE_AMOUNT]}");
+        #endregion
+
+        standardStats[CharacterColumn.Stat.HP] = standardCharacterData.HP;
+        standardStats[CharacterColumn.Stat.ARMOR] = standardCharacterData.ARMOR;
+        standardStats[CharacterColumn.Stat.DAMAGE] = standardCharacterData.DAMAGE_TYPE_1;
+        standardStats[CharacterColumn.Stat.MOVE_SPEED_V] = standardCharacterData.MOVE_SPEED_V;
+        standardStats[CharacterColumn.Stat.MOVE_SPEED_H] = standardCharacterData.MOVE_SPEED_H;
+        standardStats[CharacterColumn.Stat.FIRE_RATE] = standardCharacterData.FIRE_RATE;
+        standardStats[CharacterColumn.Stat.FIRE_RANGE] = standardCharacterData.FIRE_RANGE;
+        standardStats[CharacterColumn.Stat.PENETRATE] = standardCharacterData.PENETRATE;
+        standardStats[CharacterColumn.Stat.SPLASH_DAMAGE] = standardCharacterData.SPLASH_DAMAGE;
+        standardStats[CharacterColumn.Stat.SPLASH_RANGE] = standardCharacterData.SPLASH_RANGE;
+        standardStats[CharacterColumn.Stat.CRITICAL] = standardCharacterData.CRITICAL;
+        standardStats[CharacterColumn.Stat.CRITICAL_DAMAGE] = standardCharacterData.CRITICAL_DAMAGE;
+        standardStats[CharacterColumn.Stat.HP_DRAIN] = standardCharacterData.HP_DRAIN;
+        standardStats[CharacterColumn.Stat.PROJECTILE_SPEED] = standardCharacterData.PROJECTILE_SPEED;
+        standardStats[CharacterColumn.Stat.PROJECTILE_AMOUNT] = standardCharacterData.PROJECTILE_AMOUNT;
 
         price = characterData.PRICE;
     }

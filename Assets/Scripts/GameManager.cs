@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -18,6 +19,7 @@ public class GameManager : Singleton<GameManager>
     public bool IsGameover { get; set; }
     public bool IsPaused { get; set; }
     public bool isFirst = true;
+    public bool isChasing = false;
 
     public float platformSpacing = 27f;
 
@@ -50,8 +52,24 @@ public class GameManager : Singleton<GameManager>
             return;
         }
 
+        if (currentPlatform.transform.position.z + platformSpacing < playerHealth.gameObject.transform.position.z)
+        {
+            Platform nextPlatform = platforms[nextPlatformIndex].GetComponent<Platform>();
+            foreach (var enemies in nextPlatform.spawnedEnemies.Values)
+            {
+                foreach (var enemy in enemies)
+                {
+                    if(!enemy.isChasing)
+                        enemy.Chase();
+                }
+            }
+        }
+
+
         if (currentPlatform.transform.position.z + platformSpacing < Camera.main.gameObject.transform.position.z)
         {
+            Debug.Log("22");
+
             Vector3 lastPlatformPosition = platforms[platforms.Count - 1].transform.position;
             Vector3 newPlatformPosition = lastPlatformPosition + new Vector3(0, 0, platformSpacing);
             currentPlatform.transform.position = newPlatformPosition;
@@ -61,15 +79,6 @@ public class GameManager : Singleton<GameManager>
 
             var platform = currentPlatform.GetComponent<Platform>();
             platform.ResetPlatform();
-
-            Platform nextPlatform = platforms[nextPlatformIndex].GetComponent<Platform>();
-            foreach (var enemies in nextPlatform.spawnedEnemies.Values)
-            {
-                foreach (var enemy in enemies)
-                {
-                    enemy.Chase();
-                }
-            }
         }
     }
 
@@ -82,7 +91,7 @@ public class GameManager : Singleton<GameManager>
             var platform = platformGo.GetComponent<Platform>();
             foreach (var enemies in platform.spawnedEnemies.Values)
             {
-                foreach(var enemy in enemies)
+                foreach (var enemy in enemies)
                 {
                     if (enemy != null && enemy.gameObject.activeInHierarchy)
                     {

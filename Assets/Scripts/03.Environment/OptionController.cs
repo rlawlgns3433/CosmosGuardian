@@ -91,6 +91,13 @@ public class OptionController : MonoBehaviour
                 --i;
                 continue;
             }
+
+            if(playerStats.playerShooter.weapon.selectedWeaponId == gradedOptions[index].VALUE)
+            {
+                --i;
+                continue;
+            }
+
             selectedId.Add(gradedOptions[index].UPGRADE_ID);
 
             options[i].gameObject.SetActive(true);

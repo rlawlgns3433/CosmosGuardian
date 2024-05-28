@@ -12,7 +12,7 @@ public class Weapon : MonoBehaviour
 
     private Animator animator;
     private WeaponTable weaponTable;
-    int selectedWeaponId = default;
+    public int selectedWeaponId = default;
     int currentWeaponIndex = -1;
 
     private void Awake()
@@ -60,6 +60,7 @@ public class Weapon : MonoBehaviour
     public void SetWeapon(int weaponId)
     {
         weaponData = weaponTable.Get(weaponId);
+        selectedWeaponId = weaponId;
 
         foreach (var p in playerStats.playerShooter.usingProjectiles)
         {

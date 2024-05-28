@@ -50,7 +50,7 @@ public class GameManager : Singleton<GameManager>
             return;
         }
 
-        if (currentPlatform.transform.position.z + platformSpacing < playerStats.gameObject.transform.position.z)
+        if (currentPlatform.transform.position.z + platformSpacing < Camera.main.gameObject.transform.position.z)
         {
             Vector3 lastPlatformPosition = platforms[platforms.Count - 1].transform.position;
             Vector3 newPlatformPosition = lastPlatformPosition + new Vector3(0, 0, platformSpacing);

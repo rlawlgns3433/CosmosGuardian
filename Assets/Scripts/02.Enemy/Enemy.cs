@@ -178,6 +178,7 @@ public class Enemy : MonoBehaviour, IDamageable
 
         if (!target.isAlive)
         {
+            isChasing = false;
             direction = Vector3.zero;
         }
     }

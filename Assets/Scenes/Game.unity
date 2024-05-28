@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.0060825134, g: 0.0029428285, b: 0.029609201, a: 1}
+  m_IndirectSpecularColor: {r: 0.006080829, g: 0.0029385951, b: 0.029612528, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2783,6 +2783,10 @@ PrefabInstance:
       propertyPath: minTest
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6011530658994398209, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
+      propertyPath: verticalIncrement
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6792018370236454779, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
       propertyPath: RenderTextureWeapons.Array.size
       value: 15
@@ -3670,10 +3674,10 @@ RectTransform:
   - {fileID: 2121069954}
   m_Father: {fileID: 341504006}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 10, y: -176.47058}
-  m_SizeDelta: {x: 20, y: 352.94116}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &276969993
 MonoBehaviour:
@@ -7062,6 +7066,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6011530658994398209, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
       propertyPath: minTest
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6011530658994398209, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
+      propertyPath: verticalIncrement
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6792018370236454779, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
@@ -13389,6 +13397,10 @@ PrefabInstance:
       propertyPath: minTest
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6011530658994398209, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
+      propertyPath: verticalIncrement
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6792018370236454779, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
       propertyPath: RenderTextureWeapons.Array.size
       value: 15
@@ -15281,10 +15293,10 @@ RectTransform:
   - {fileID: 610191287}
   m_Father: {fileID: 121730893}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 630.38794, y: -62.941177}
-  m_SizeDelta: {x: 687.592, y: 85.882355}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &915260136
 MonoBehaviour:
@@ -22263,11 +22275,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2295086922680514110, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
       propertyPath: magnification
-      value: 2
+      value: 2.2
       objectReference: {fileID: 0}
     - target: {fileID: 2295086922680514110, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
       propertyPath: expForNextLevel
-      value: 250
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 4508787347923785903, guid: 86c6451501562fe45ad6e220942ce44e, type: 3}
       propertyPath: cameraShake
@@ -22420,6 +22432,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6011530658994398209, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
       propertyPath: minTest
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6011530658994398209, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
+      propertyPath: verticalIncrement
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6792018370236454779, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
@@ -26569,6 +26585,10 @@ PrefabInstance:
       propertyPath: playerStats
       value: 
       objectReference: {fileID: 1387199563}
+    - target: {fileID: 6011530658994398209, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
+      propertyPath: verticalIncrement
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6792018370236454779, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
       propertyPath: RenderTextureWeapons.Array.data[0]
       value: 
@@ -27795,10 +27815,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 121730893}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1122.48, y: -62.941177}
-  m_SizeDelta: {x: 256.59198, y: 85.882355}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1688719899
 MonoBehaviour:
@@ -28156,10 +28176,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 121730893}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 138.29599, y: -62.941177}
-  m_SizeDelta: {x: 256.59198, y: 85.882355}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1698512841
 MonoBehaviour:
@@ -28778,6 +28798,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6011530658994398209, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
       propertyPath: minTest
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6011530658994398209, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
+      propertyPath: verticalIncrement
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6792018370236454779, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
@@ -30488,6 +30512,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6011530658994398209, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
       propertyPath: minTest
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6011530658994398209, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}
+      propertyPath: verticalIncrement
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6792018370236454779, guid: f6b1a88692743c04ebbb2646fb318446, type: 3}

@@ -10,6 +10,7 @@ public class OptionController : MonoBehaviour
     private static readonly string WeaponChangeFormat = "<size=0.45>{0}";
 
     public List<Image> options = new List<Image>();
+    public List<Image> bgImgs = new List<Image>();
     public List<TextMeshProUGUI> optionTexts = new List<TextMeshProUGUI>();
     public List<RawImage> rawImages = new List<RawImage>();
     public GameObject[] RenderTextureWeapons;
@@ -65,6 +66,7 @@ public class OptionController : MonoBehaviour
                             excludedOption.renderWeapon = null;
                             excludedOption.rawImage.texture = null;
                             excludedOption.rawImage.gameObject.SetActive(false);
+                            excludedOption.bgImg.gameObject.SetActive(false);
                         }
                     }
                 }
@@ -102,6 +104,7 @@ public class OptionController : MonoBehaviour
                     break;
                 case OptionColumn.Type.WeaponChange:
                     optionTexts[i].text = string.Format(WeaponChangeFormat, gradedOptions[index].GetName);
+                    bgImgs[i].gameObject.SetActive(true);
                     break;
             }
 
@@ -119,6 +122,7 @@ public class OptionController : MonoBehaviour
                         option.renderWeapon = null;
                         option.rawImage.texture = null;
                         option.rawImage.gameObject.SetActive(false);
+                        bgImgs[i].gameObject.SetActive(false);
                     }
                 }
             }

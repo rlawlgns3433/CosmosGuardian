@@ -9,7 +9,8 @@ public class OptionStat : MonoBehaviour
     public List<OptionColumn.Stat> stat = new List<OptionColumn.Stat>();
     public List<float> value = new List<float>();
     public GameObject renderWeapon; // 드래그 드롭 x
-    public RawImage rawImage; 
+    public RawImage rawImage;
+    public Image bgImg;
 
     private UiController uiController;
 
@@ -31,7 +32,6 @@ public class OptionStat : MonoBehaviour
             for(int i = 0; i < type.Count; ++i)
             {
                 playerStats.UpdateStats(stat[i], type[i], value[i]);
-                gameObject.SetActive(false);
 
                 if (type[i] == OptionColumn.Type.WeaponChange)
                 {
@@ -41,7 +41,9 @@ public class OptionStat : MonoBehaviour
                     renderWeapon = null;
                     rawImage.texture = null;
                     rawImage.gameObject.SetActive(false);
+                    bgImg.gameObject.SetActive(false);
                 }
+                gameObject.SetActive(false);
             }
 
             foreach (var image in optionController.options)

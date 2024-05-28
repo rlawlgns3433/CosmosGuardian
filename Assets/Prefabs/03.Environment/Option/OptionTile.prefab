@@ -220,9 +220,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerStats: {fileID: 0}
-  type: 0
-  stat: 0
-  value: 0
+  type: 
+  stat: 
+  value: []
+  renderWeapon: {fileID: 0}
+  rawImage: {fileID: 0}
 --- !u!65 &7465571925418926583
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -338,8 +340,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "<size=0.45>\uC2A4\uD15F\n<size=0.3>\uC99D\uAC00\uB7C9"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a6113029ad537d94ca24993313d25935, type: 2}
-  m_sharedMaterial: {fileID: -3723782593155884102, guid: a6113029ad537d94ca24993313d25935, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -520,4 +522,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 723555c749ab51a47a9a72dd5a13734a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 0}

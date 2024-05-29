@@ -4,8 +4,8 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     [Tooltip("총알이 사라지기까지 걸리는 시간")]
-    public float disappearTimer = 1f;
-    public Vector3 startPosition = Vector3.zero;
+    private float disappearTimer = 1f;
+    private Vector3 startPosition = Vector3.zero;
     public Rigidbody rb;
     public AudioSource audioSource;
 
@@ -27,54 +27,55 @@ public class Projectile : MonoBehaviour
     private PlayerHealth playerHealth;
     private float rand;
     private Collider[] splashDamageColliders = new Collider[10];
+    public LayerMask layer;
 
     // =======Range
-    public float rangeScale;
-    public float weaponRange;
+    private float rangeScale;
+    private float weaponRange;
     public float Range => rangeScale * weaponRange;
 
     // =======Projectile Speed
-    public float speedScale;
-    public float weaponSpeed;
+    private float speedScale;
+    private float weaponSpeed;
     public float Speed => speedScale * weaponSpeed;
 
     // =======Critical Rate
-    public float criticalRateScale;
-    public float weaponCriticalRate;
+    private float criticalRateScale;
+    private float weaponCriticalRate;
     public float CriticalRate => criticalRateScale * (weaponCriticalRate / 100);
 
     // =======Critical Damage
-    public float criticalDamageScale;
-    public float weaponCriticalDamage;
+    private float criticalDamageScale;
+    private float weaponCriticalDamage;
     public float CriticalDamage => criticalDamageScale * (weaponCriticalDamage / 100) * Damage;
 
     // =======Damage
-    public float damageScale;
-    public float weaponDamage;
+    private float damageScale;
+    private float weaponDamage;
     public float Damage => (damageScale * weaponDamage) / (playerShooter.playerStats.stats[CharacterColumn.Stat.PROJECTILE_AMOUNT] * playerShooter.weapon.stats[WeaponColumn.Stat.PROJECTILE_AMOUNT]);
 
     // =======HpDrain
-    public float hpDrainScale;
-    public float weaponHpDrain;
+    private float hpDrainScale;
+    private float weaponHpDrain;
     public float HpDrain => rand <= CriticalRate ? hpDrainScale * (weaponHpDrain / 100) * CriticalDamage : hpDrainScale * (weaponHpDrain / 100) * Damage;
 
     // =======SplashDamage
-    public float splashDamageScale;
-    public float weaponSplashDamage;
+    private float splashDamageScale;
+    private float weaponSplashDamage;
     public float SplashDamage => splashDamageScale * (weaponSplashDamage / 100) * Damage;
 
     // =======SplashDamageRange
-    public float splashDamageRangeScale;
-    public float weaponSplashDamageRange;
+    private float splashDamageRangeScale;
+    private float weaponSplashDamageRange;
     public float SplashDamageRange => splashDamageRangeScale * weaponSplashDamageRange;
 
     // =======Penetrate
-    public float penetrateScale;
-    public float weaponPenetrate;
+    private float penetrateScale;
+    private float weaponPenetrate;
     public int Penetrate => Mathf.RoundToInt(penetrateScale * weaponPenetrate);
 
     // =======CurrentPenetrate
-    public int currentPenetrate;
+    private int currentPenetrate;
     public int CurrentPenetrate
     {
         get => Penetrate - currentPenetrate;
@@ -203,14 +204,14 @@ public class Projectile : MonoBehaviour
     {
         if (SplashDamageRange > 0)
         {
-            int numColliders = Physics.OverlapSphereNonAlloc(transform.position, SplashDamageRange, splashDamageColliders);
+            int numColliders = Physics.OverlapSphereNonAlloc(transform.position, SplashDamageRange, splashDamageColliders, layer);
 
             for (int i = 0; i < numColliders; i++)
             {
                 var collider = splashDamageColliders[i];
                 if (collider == other) continue;
 
-                if (collider.CompareTag(Tags.Enemy) || collider.CompareTag(Tags.Boss))
+                if (collider.CompareTag(Tags.Enemy) || collider.CompareTag(Tags.Boss) || collider.CompareTag(Tags.Elite))
                 {
                     var e = collider.gameObject.GetComponent<Enemy>();
                     e.OnDamage(SplashDamage);

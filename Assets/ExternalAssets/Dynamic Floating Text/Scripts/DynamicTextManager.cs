@@ -11,6 +11,9 @@ public class DynamicTextManager : MonoBehaviour
     public static GameObject canvasPrefab;
     public static Transform mainCamera;
 
+    public static List<GameObject> usingText = new List<GameObject>();
+    public static List<GameObject> unusingText = new List<GameObject>();
+
     [SerializeField] private DynamicTextData _normalDamageData;
     [SerializeField] private DynamicTextData _criticalDamagData;
     [SerializeField] private DynamicTextData _healingTextData;
@@ -34,8 +37,35 @@ public class DynamicTextManager : MonoBehaviour
 
     public static void CreateText(Vector3 position, string text, DynamicTextData data)
     {
-        GameObject newText = Instantiate(canvasPrefab, position, Quaternion.identity);
+        GameObject newText;
+        if (unusingText.Count <= 0)
+        {
+            newText = Instantiate(canvasPrefab, position, Quaternion.identity);
+            usingText.Add(newText);
+        }
+        else
+        {
+            newText = GetText();
+            newText.SetActive(true);
+            newText.transform.position = position;
+            newText.transform.rotation = Quaternion.identity;
+        }
         newText.transform.GetComponent<DynamicText>().Initialise(text, data);
     }
 
+    public static void ReturnText(GameObject text)
+    {
+        usingText.Remove(text);
+        unusingText.Add(text);
+        text.SetActive(false);
+    }
+
+    public static GameObject GetText()
+    {
+        var text = unusingText[0];
+        usingText.Add(text);
+        unusingText.Remove(text);
+
+        return text;
+    }
 }

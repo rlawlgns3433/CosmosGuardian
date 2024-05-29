@@ -255,8 +255,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 982dfe87d41ec2644850cc91bcaa07a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  disappearTimer: 1
-  startPosition: {x: 0, y: 0, z: 0}
   rb: {fileID: 54059182291826848}
   audioSource: {fileID: 7068090570289945415}
   speed: 15
@@ -272,25 +270,9 @@ MonoBehaviour:
   - {fileID: 1972987378540628}
   projectilePS: {fileID: 7190959148076081236}
   notDestroy: 0
-  rangeScale: 0
-  weaponRange: 0
-  speedScale: 0
-  weaponSpeed: 0
-  criticalRateScale: 0
-  weaponCriticalRate: 0
-  criticalDamageScale: 0
-  weaponCriticalDamage: 0
-  damageScale: 0
-  weaponDamage: 0
-  hpDrainScale: 0
-  weaponHpDrain: 0
-  splashDamageScale: 0
-  weaponSplashDamage: 0
-  splashDamageRangeScale: 0
-  weaponSplashDamageRange: 0
-  penetrateScale: 0
-  weaponPenetrate: 0
-  currentPenetrate: 0
+  layer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &1972987378540628
 GameObject:
   m_ObjectHideFlags: 0

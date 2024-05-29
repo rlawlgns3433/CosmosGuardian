@@ -19,7 +19,10 @@ public class Weapon : MonoBehaviour
     {
         weaponTable = DataTableMgr.Get<WeaponTable>(DataTableIds.Weapon);
         selectedWeaponId = PlayerPrefs.GetInt("SelectedWeaponId", 0);
+    }
 
+    private void Start()
+    {
         if (!TryGetComponent(out animator))
         {
             animator.enabled = false;

@@ -18,26 +18,15 @@ public class MainUiManager : MonoBehaviour
             }
         }
 
-        //PlayerPrefs.SetInt("SelectedCharacterIndex", uiCharacterSelect.selectedCharacterIndex);
         ParamManager.selectedCharacterIndex = uiCharacterSelect.selectedCharacterIndex;
 
-        Debug.Log($"Saved SelectedCharacterIndex: {uiCharacterSelect.selectedCharacterIndex}");
-        LoadScene("Game");
-
-        //SceneManager.LoadScene(1);
+        LoadScene(SceneIds.Game);
     }
 
-    public void EnterShop()
-    {
-        LoadScene("Shop");
-
-        //SceneManager.LoadScene(2);
-    }
-
-    public void LoadScene(string sceneName)
+    public void LoadScene(SceneIds sceneName)
     {
         ParamManager.SceneToLoad = sceneName; // 로드할 씬 이름 저장
-        SceneManager.LoadScene("Loading"); // 로딩 씬 로드
+        SceneManager.LoadScene((int)SceneIds.Loading); // 로딩 씬 로드
     }
 
     public void QuitApplication()

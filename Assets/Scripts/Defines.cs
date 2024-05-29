@@ -151,6 +151,7 @@ public enum TableIdentifier
 
 public enum SceneIds
 { 
+    None = -1,
     Start,
     Main,
     Game,

@@ -19,6 +19,7 @@ public class MainUiManager : MonoBehaviour
         }
 
         ParamManager.selectedCharacterIndex = uiCharacterSelect.selectedCharacterIndex;
+        PlayerPrefs.SetInt("SelectedCharacterIndex", ParamManager.selectedCharacterIndex);
 
         LoadScene(SceneIds.Game);
     }

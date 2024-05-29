@@ -2167,7 +2167,7 @@ MonoBehaviour:
   damageFloatingPosition: {x: 0, y: 0, z: 0}
   projectileSpeed: -5
   projectilePrefab: {fileID: 1128728136785006, guid: c9b123e5b40fcc04e9eba678a1f82053, type: 3}
-  attackDistance: 22
+  attackDistance: 12
 --- !u!135 &8207211864964813714
 SphereCollider:
   m_ObjectHideFlags: 0

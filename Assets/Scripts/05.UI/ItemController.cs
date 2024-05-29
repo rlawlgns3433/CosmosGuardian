@@ -88,11 +88,13 @@ public class ItemController : MonoBehaviour
             icons[i].sprite = itemdatas[i].GetSprite;
             names[i].text = itemdatas[i].GetString;
 
-            sb.Append(itemdatas[i].GetOption1.GetName);
-            sb.Append(" ");
-            sb.Append(FormatSignedValue(itemdatas[i].GetOption1));
-            sb.Append("\n");
-
+            if (itemdatas[i].GetOption1 != null)
+            {
+                sb.Append(itemdatas[i].GetOption1.GetName);
+                sb.Append(" ");
+                sb.Append(FormatSignedValue(itemdatas[i].GetOption1));
+                sb.Append("\n");
+            }
             if (itemdatas[i].GetOption2 != null)
             {
                 sb.Append(itemdatas[i].GetOption2.GetName);
@@ -110,10 +112,12 @@ public class ItemController : MonoBehaviour
 
             descs[i].text = sb.ToString();
 
-            List<OptionData> options = new List<OptionData>
+            List<OptionData> options = new List<OptionData>();
+
+            if (itemdatas[i].GetOption1 != default(OptionData))
             {
-                itemdatas[i].GetOption1
-            };
+                options.Add(itemdatas[i].GetOption1);
+            }
 
             if (itemdatas[i].GetOption2 != default(OptionData))
             {

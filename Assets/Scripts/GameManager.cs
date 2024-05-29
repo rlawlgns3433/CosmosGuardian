@@ -132,6 +132,19 @@ public class GameManager : Singleton<GameManager>
     public void EnterMainScene()
     {
         Time.timeScale = 1f;
+
+        foreach(var text in DynamicTextManager.usingText)
+        {
+            Destroy(text);
+        }
+        foreach (var text in DynamicTextManager.unusingText)
+        {
+            Destroy(text);
+        }
+        DynamicTextManager.usingText.Clear();
+        DynamicTextManager.unusingText.Clear();
+
+
         LoadScene(SceneIds.Main);
     }
 

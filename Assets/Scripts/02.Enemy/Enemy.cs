@@ -130,7 +130,8 @@ public class Enemy : MonoBehaviour, IDamageable
         if (enemyData.HP <= 0)
         {
             enemyData.HP = 0;
-            onDeath();
+            if(target.isAlive)
+                onDeath();
         }
 
         textHealth.text = Mathf.CeilToInt(enemyData.HP).ToString();

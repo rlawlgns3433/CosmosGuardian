@@ -93,12 +93,15 @@ public class OptionController : MonoBehaviour
                 continue;
             }
 
-            if (gradedOptions[index].STAT == OptionColumn.Stat.FIRE_RANGE && isNotFirst)
+            if(gradedOptions[index].STAT == OptionColumn.Stat.FIRE_RANGE)
             {
-                if (playerStats.stats[CharacterColumn.Stat.FIRE_RANGE] * playerStats.playerShooter.weapon.stats[WeaponColumn.Stat.FIRE_RANGE] > 50)
+                if (playerStats.playerShooter.weapon.stats.Count != 0 && playerStats.stats.Count != 0)
                 {
-                    --i;
-                    continue;
+                    if (playerStats.playerShooter.weapon.stats[WeaponColumn.Stat.FIRE_RANGE] * playerStats.stats[CharacterColumn.Stat.FIRE_RANGE] >= 50)
+                    {
+                        --i;
+                        continue;
+                    }
                 }
             }
 

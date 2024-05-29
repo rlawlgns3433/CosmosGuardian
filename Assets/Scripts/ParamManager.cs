@@ -8,6 +8,9 @@ public class ParamManager : MonoBehaviour
     public static int selectedCharacterIndex = 0;
     public static int selectedWeaponIndex = 0;
     private static bool isCameraShaking = true;
+    public static int playerScore = 0;
+    public static SceneIds SceneToLoad = SceneIds.None;
+
     public static bool IsCameraShaking
     {
         get 
@@ -58,8 +61,7 @@ public class ParamManager : MonoBehaviour
             sfxValue = value;
         }
     }
-    public static int playerScore = 0;
-    public static string SceneToLoad = string.Empty;
+
 
     public static System.Comparison<RecordData> comparison =
         (RecordData x, RecordData y) =>
@@ -99,12 +101,11 @@ public class ParamManager : MonoBehaviour
         currentRecord.weaponDataId = 0;
         currentRecord.characterDataId = 0;
         currentRecord.score = -1;
-
     }
 
-    public static void LoadScene(string sceneName)
+    public static void LoadScene(SceneIds sceneName)
     {
         SceneToLoad = sceneName;
-        SceneManager.LoadScene("Loading"); // ·Îµù ¾À ·Îµå
+        SceneManager.LoadScene((int)SceneIds.Loading); // ·Îµù ¾À ·Îµå
     }
 }

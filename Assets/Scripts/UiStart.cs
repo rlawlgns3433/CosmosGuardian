@@ -34,7 +34,7 @@ public class UiStart : MonoBehaviour
 
     public void EnterMainScene()
     {
-        ParamManager.SceneToLoad = "Main";
+        ParamManager.SceneToLoad = SceneIds.Main;
         ParamManager.LoadScene(ParamManager.SceneToLoad);
 
         StopAllCoroutines();

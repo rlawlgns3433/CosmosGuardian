@@ -9,11 +9,11 @@ public class LoadingScreen : MonoBehaviour
 
     private void Start()
     {
-        string sceneToLoad = ParamManager.SceneToLoad;
+        SceneIds sceneToLoad = ParamManager.SceneToLoad;
 
         switch(sceneToLoad)
         {
-            case "Main":
+            case SceneIds.Main:
                 if(ParamManager.currentRecord.score != -1)
                 {
                     ParamManager.SaveCurrentRecord(ParamManager.currentRecord);
@@ -25,10 +25,10 @@ public class LoadingScreen : MonoBehaviour
         StartCoroutine(LoadSceneAsync(sceneToLoad));
     }
 
-    private IEnumerator LoadSceneAsync(string sceneToLoad)
+    private IEnumerator LoadSceneAsync(SceneIds sceneToLoad)
     {
         // 비동기 씬 로드 시작
-        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneToLoad);
+        AsyncOperation operation = SceneManager.LoadSceneAsync((int)sceneToLoad);
 
         // 씬 로드가 끝날 때까지 기다림
         while (!operation.isDone)

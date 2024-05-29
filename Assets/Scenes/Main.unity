@@ -18974,11 +18974,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textRecords:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 336419789}
+  - {fileID: 547544774}
+  - {fileID: 334486038}
+  - {fileID: 1759048830}
+  - {fileID: 1875487805}
   uiCharacterSelect: {fileID: 1762018171694866939}
 --- !u!114 &1722716017
 MonoBehaviour:

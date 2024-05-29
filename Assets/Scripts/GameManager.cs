@@ -132,10 +132,10 @@ public class GameManager : Singleton<GameManager>
     public void EnterMainScene()
     {
         Time.timeScale = 1f;
-        LoadScene("Main");
+        LoadScene(SceneIds.Main);
     }
 
-    public void LoadScene(string sceneName)
+    public void LoadScene(SceneIds sceneName)
     {
         if (IsGameover)
         {
@@ -148,7 +148,7 @@ public class GameManager : Singleton<GameManager>
         }
 
         ParamManager.SceneToLoad = sceneName; // 로드할 씬 이름 저장
-        SceneManager.LoadScene("Loading"); // 로딩 씬 로드
+        SceneManager.LoadScene((int)SceneIds.Loading); // 로딩 씬 로드
     }
 
     public void SaveRecord(RecordData recordData)

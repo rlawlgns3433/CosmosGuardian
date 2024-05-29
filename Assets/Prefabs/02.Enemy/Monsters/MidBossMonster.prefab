@@ -586,7 +586,9 @@ MonoBehaviour:
   enemyState: 0
   enemyType: 40200
   textHealth: {fileID: 2808697171877947412}
-  speed: 5
+  originSpeed: 0
+  speed: 0
+  isAlive: 1
   isChasing: 0
   rotationSpeed: 180
   animator: {fileID: 0}

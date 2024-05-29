@@ -10,7 +10,6 @@ public class SoundManager : Singleton<SoundManager>
     public List<AudioClip> flashClips = new List<AudioClip>();
     public List<AudioClip> hitClips = new List<AudioClip>();
 
-    // Start is called before the first frame update
     void Start()
     {
         audioSource.volume = ParamManager.BgmValue;

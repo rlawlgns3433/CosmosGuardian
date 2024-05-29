@@ -7,9 +7,9 @@ public class ParamManager : MonoBehaviour
     public static RecordData currentRecord = new RecordData();
     public static int selectedCharacterIndex = 0;
     public static int selectedWeaponIndex = 0;
-    private static bool isCameraShaking = true;
     public static int playerScore = 0;
     public static SceneIds SceneToLoad = SceneIds.None;
+    private static bool isCameraShaking = true;
 
     public static bool IsCameraShaking
     {
@@ -62,7 +62,6 @@ public class ParamManager : MonoBehaviour
         }
     }
 
-
     public static System.Comparison<RecordData> comparison =
         (RecordData x, RecordData y) =>
         {
@@ -71,7 +70,6 @@ public class ParamManager : MonoBehaviour
 
     private void Awake()
     {
-
         selectedCharacterIndex = PlayerPrefs.GetInt("SelectedCharacterIndex", 0) % 100;
         currentRecord.score = -1;
         DontDestroyOnLoad(gameObject);
@@ -106,6 +104,6 @@ public class ParamManager : MonoBehaviour
     public static void LoadScene(SceneIds sceneName)
     {
         SceneToLoad = sceneName;
-        SceneManager.LoadScene((int)SceneIds.Loading); // ·Îµù ¾À ·Îµå
+        SceneManager.LoadScene((int)SceneIds.Loading);
     }
 }

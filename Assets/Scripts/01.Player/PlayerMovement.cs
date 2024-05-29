@@ -2,15 +2,15 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public PlayerInput playerInput = null;
-    public PlayerStats playerStats = null;
-    public FloatingJoystick floatingJoystick;
-    private Vector3 forward = Vector3.forward;
-    public Rigidbody rb;
     private const float verticalCoefficient = 4.5f; // 수직 속력 계수
     private const float horizontalCoefficient = 4.5f; // 수평 속력 계수
     private const float minX = -4.05f;
     private const float maxX = 4.05f;
+    public PlayerInput playerInput = null;
+    public PlayerStats playerStats = null;
+    public FloatingJoystick floatingJoystick;
+    public Rigidbody rb;
+    private Vector3 forward = Vector3.forward;
     private Vector3 movement;
 
     private void FixedUpdate()

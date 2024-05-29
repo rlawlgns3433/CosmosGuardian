@@ -11,6 +11,7 @@ public class ProgressSlider : MonoBehaviour
     // platform distance = 27
     // BossSpawnController¿« bossSpawnThreshold = 3
 
+    public BossSpawnController bossSpawnController;
     private int stage = 1;
     private int startPlatformDistance = 27;
     private int pooledPlatformCount;
@@ -22,8 +23,6 @@ public class ProgressSlider : MonoBehaviour
     private float movedDistance = 0f;
     private float stageLength = 0f;
     private int distanceToNextStage = 12;
-
-    public BossSpawnController bossSpawnController;
 
     private void Start()
     {

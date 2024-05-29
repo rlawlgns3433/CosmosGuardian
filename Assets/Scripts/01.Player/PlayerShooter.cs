@@ -9,12 +9,14 @@ public class PlayerShooter : MonoBehaviour
 
     public GameObject muzzle;
     public PlayerStats playerStats;
-    public int currentProjectileIndex = 0;
-    [Tooltip("총알 발사 각도")]
-    public float spreadAngle = 30f;
     public Weapon weapon;
-    private int oneMinute = 60;
+    [Tooltip("총알 발사 각도")]
+    public float spreadAngle = 20f;
     private float tempAngle = 10f;
+    private int oneMinute = 60;
+    public int currentProjectileIndex = 0;
+    public float speed = 20f;
+    private float lastFireTime = 0f;
 
     private float FireRate
     {
@@ -23,8 +25,6 @@ public class PlayerShooter : MonoBehaviour
             return 1 / (((playerStats.stats[CharacterColumn.Stat.FIRE_RATE]) * weapon.stats[WeaponColumn.Stat.FIRE_RATE]) / oneMinute);
         }
     }
-    public float speed = 20f;
-    private float lastFireTime = 0f;
 
     private void Start()
     {
@@ -66,7 +66,7 @@ public class PlayerShooter : MonoBehaviour
 
         for (int i = 0; i < projectileCount; i++)
         {
-            float angle = startAngle + i * angleStep;
+            float angle;
 
             if(projectileCount == 2)
             {

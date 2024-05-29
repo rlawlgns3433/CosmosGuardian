@@ -2097,7 +2097,7 @@ MonoBehaviour:
   isAlive: 1
   isChasing: 0
   rotationSpeed: 180
-  animator: {fileID: 0}
+  animator: {fileID: 7379252335866060610}
   target: {fileID: 0}
   damageFloatingPosition: {x: 0, y: 0, z: 0}
   floatingTextRadius: 0
@@ -2107,8 +2107,8 @@ MonoBehaviour:
   direction: {x: 0, y: 0, z: 0}
   intervalFloat: 1
   projectileSpeed: 7
-  attackDistance: 50
   projectilePrefab: {fileID: 1128728136785006, guid: ff7ef3210dd085b4085c9d433a07b5ab, type: 3}
+  attackDistance: 50
   angle: 30
 --- !u!135 &7245538018801547053
 SphereCollider:

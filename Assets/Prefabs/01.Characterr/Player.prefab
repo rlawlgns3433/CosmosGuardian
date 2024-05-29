@@ -4273,9 +4273,9 @@ GameObject:
   - component: {fileID: 2686379450363031452}
   - component: {fileID: 8178177954245249217}
   - component: {fileID: 4508787347923785903}
+  - component: {fileID: 8102333513985256963}
   - component: {fileID: 6157067695724090070}
   - component: {fileID: 6596744918915436003}
-  - component: {fileID: 8102333513985256963}
   - component: {fileID: 1213873208607445376}
   m_Layer: 0
   m_Name: Player
@@ -4442,6 +4442,7 @@ MonoBehaviour:
   maxLevel: 10
   expForNextLevel: 500
   magnification: 2.4
+  prefabSelector: {fileID: 2686379450363031452}
   id: 
   prevPositionZ: 1.5
 --- !u!114 &2686379450363031452
@@ -4530,9 +4531,9 @@ MonoBehaviour:
   - {fileID: 1835938022181820, guid: 1980ac68af831b341ad588119a94764d, type: 3}
   muzzle: {fileID: 5448946995338291177}
   playerStats: {fileID: 2295086922680514110}
-  currentProjectileIndex: 0
-  spreadAngle: 30
   weapon: {fileID: 8102333513985256963}
+  spreadAngle: 30
+  currentProjectileIndex: 0
   speed: 20
 --- !u!114 &4508787347923785903
 MonoBehaviour:
@@ -4550,51 +4551,11 @@ MonoBehaviour:
   textHealth: {fileID: 5780539546917754731}
   playerStats: {fileID: 2295086922680514110}
   animator: {fileID: 8760117410645967280}
+  colliders:
+  - {fileID: 6157067695724090070}
+  - {fileID: 6596744918915436003}
+  - {fileID: 1213873208607445376}
   isAlive: 1
---- !u!136 &6157067695724090070
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5541493190259963240}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.3
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.45, z: 0}
---- !u!135 &6596744918915436003
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5541493190259963240}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.45
-  m_Center: {x: 0, y: 1.4, z: 0.1}
 --- !u!114 &8102333513985256963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4641,6 +4602,53 @@ MonoBehaviour:
   - {fileID: 9100000, guid: 3baa3a418ab42964d8565a792bf7d0d9, type: 2}
   - {fileID: 9100000, guid: 23f7082fa076ccd4a9f981f503d62b9b, type: 2}
   - {fileID: 9100000, guid: 7272b8d8f1c65d2408bc2ad0bb543052, type: 2}
+  playerStats: {fileID: 0}
+  uiController: {fileID: 0}
+  selectedWeaponId: 0
+--- !u!136 &6157067695724090070
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5541493190259963240}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.3
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.45, z: 0}
+--- !u!135 &6596744918915436003
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5541493190259963240}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.45
+  m_Center: {x: 0, y: 1.4, z: 0.1}
 --- !u!65 &1213873208607445376
 BoxCollider:
   m_ObjectHideFlags: 0

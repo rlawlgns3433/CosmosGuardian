@@ -10,7 +10,6 @@ public class Weapon : MonoBehaviour
     public PlayerStats playerStats;
     public UiController uiController;
 
-    private Animator animator;
     private WeaponTable weaponTable;
     public int selectedWeaponId = default;
     int currentWeaponIndex = -1;
@@ -23,27 +22,26 @@ public class Weapon : MonoBehaviour
 
     private void Start()
     {
-        if (!TryGetComponent(out animator))
-        {
-            animator.enabled = false;
-            return;
-        }
         SetWeapon(selectedWeaponId);
     }
 
     public void SetWeapon(int weaponId)
     {
-        if( weaponData != null && weaponData.PROJECTILE_ID != weaponTable.Get(weaponId).PROJECTILE_ID)
+        if (weaponData != null)
         {
-            foreach (var p in playerStats.playerShooter.usingProjectiles)
+            if (weaponData.PROJECTILE_ID != weaponTable.Get(weaponId).PROJECTILE_ID)
             {
-                Destroy(p);
-            }
+                foreach (var p in playerStats.playerShooter.usingProjectiles)
+                {
+                    Destroy(p);
+                }
 
-            foreach (var p in playerStats.playerShooter.unusingProjectiles)
-            {
-                Destroy(p);
+                foreach (var p in playerStats.playerShooter.unusingProjectiles)
+                {
+                    Destroy(p);
+                }
             }
+            else return;
         }
 
         weaponData = weaponTable.Get(weaponId);
@@ -54,7 +52,7 @@ public class Weapon : MonoBehaviour
         playerStats.playerShooter.currentProjectileIndex = weaponData.PROJECTILE_ID - 1;
 
 
-        if(currentWeaponIndex != -1)
+        if (currentWeaponIndex != -1)
         {
             weapons[currentWeaponIndex].SetActive(false);
         }
@@ -63,7 +61,7 @@ public class Weapon : MonoBehaviour
         {
             if (weaponData.PREFAB_ID == i)
             {
-                animator.runtimeAnimatorController = animatorControllers[i];
+                playerStats.playerHealth.animator.runtimeAnimatorController = animatorControllers[i];
                 weapons[i].SetActive(true);
                 currentWeaponIndex = i;
                 break;

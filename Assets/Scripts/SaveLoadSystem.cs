@@ -32,7 +32,6 @@ public static class SaveLoadSystem
         }
     }
 
-
     public static bool Save(SaveData data, int slot = 0)
     {
         if (slot < 0 ||  slot >= SaveFileName.Length)
@@ -46,7 +45,6 @@ public static class SaveLoadSystem
         }
 
         var path = Path.Combine(SaveDirectory, SaveFileName[slot]);
-        // FileMode ºÐ±â
 
         using (var writer = new JsonTextWriter(new StreamWriter(path)))
         {
@@ -92,5 +90,4 @@ public static class SaveLoadSystem
 
         return data;
     }
-
 }

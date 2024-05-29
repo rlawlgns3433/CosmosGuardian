@@ -25,7 +25,6 @@ public class PlayerStats : MonoBehaviour
     private WaitForSeconds twoSec = new WaitForSeconds(2f);
     private Coroutine stopEffectCoroutine;
     public int level = 1;
-    public int price = default;
 
     private readonly string scoreFormat = "Score : {0}";
     public int exp;
@@ -51,13 +50,6 @@ public class PlayerStats : MonoBehaviour
     private void Awake()
     {
         characterTable = DataTableMgr.Get<CharacterTable>(DataTableIds.Character);
-
-        if (!TryGetComponent(out prefabSelector))
-        {
-            enabled = false;
-            return;
-        }
-
         effects = getOptionEffect.GetComponentsInChildren<ParticleSystem>();
         prevPositionZ = transform.position.z;
     }
@@ -85,7 +77,7 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    public bool UpdateStats(OptionColumn.Stat stat, OptionColumn.Type type, float value)
+    public void UpdateStats(OptionColumn.Stat stat, OptionColumn.Type type, float value)
     {
         if (type != OptionColumn.Type.ApplyChangeWeaponData && stat != OptionColumn.Stat.MOVE_SPEED_V)
         {
@@ -119,7 +111,6 @@ public class PlayerStats : MonoBehaviour
         }
 
         stopEffectCoroutine = StartCoroutine(StopEffectAfter(twoSec));
-        return true;
     }
 
     private void ApplyScaleStat(OptionColumn.Stat stat, float value)
@@ -209,7 +200,6 @@ public class PlayerStats : MonoBehaviour
 
         InitializeStats(characterData, initialStats, stats);
         InitializeStats(standardCharacterData, standardStats);
-        price = characterData.PRICE;
     }
 
     private void InitializeStats(CharacterData data, Dictionary<CharacterColumn.Stat, float> targetDict)
@@ -250,4 +240,3 @@ public class PlayerStats : MonoBehaviour
         getOptionEffect.SetActive(false);
     }
 }
-

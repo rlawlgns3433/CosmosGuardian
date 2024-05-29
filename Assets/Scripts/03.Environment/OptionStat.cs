@@ -8,10 +8,9 @@ public class OptionStat : MonoBehaviour
     public List<OptionColumn.Type> type = new List<OptionColumn.Type>();
     public List<OptionColumn.Stat> stat = new List<OptionColumn.Stat>();
     public List<float> value = new List<float>();
-    public GameObject renderWeapon; // 드래그 드롭 x
+    public GameObject renderWeapon;
     public RawImage rawImage;
     public Image bgImg;
-
     private UiController uiController;
 
     private void Start()

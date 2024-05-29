@@ -11,14 +11,12 @@ public class UiCharacterSelect : MonoBehaviour
     private static readonly string colorEndText = "</color>";
 
     public TextMeshProUGUI textCharacterName;
-    //public TextMeshProUGUI textWeaponName;
     public TextMeshProUGUI[] textStats;
 
     public Dictionary<CharacterColumn.Stat, float> standardStats = new Dictionary<CharacterColumn.Stat, float>();
     public Dictionary<CharacterColumn.Stat, float> charStats = new Dictionary<CharacterColumn.Stat, float>();
     
     public CharacterData standardCharacterData = null;
-
     public CharacterTable characterTable;
     public CharacterData characterData = null;
     public WeaponTable weaponTable;
@@ -29,13 +27,9 @@ public class UiCharacterSelect : MonoBehaviour
     public GameObject[] weapons;
     public int selectedCharacterIndex = 0;
     public int selectedWeaponIndex = 11;
-    //public int selectedWeaponIndex = 0;
-    //public int selectedWeaponType = 0;
-
     private string[] statStringName;
+    public Animator animator;
 
-    private Vector3 rot = new Vector3(0, 1, 0);
-    private Animator animator;
 
     private void Awake()
     {
@@ -49,15 +43,7 @@ public class UiCharacterSelect : MonoBehaviour
             statStringName[i] = new string(stringTable.Get(i + "Name"));
         }
 
-        if (!TryGetComponent(out animator))
-        {
-            animator.enabled = false;
-        }
-
-        //ParamManager.selectedWeaponIndex = PlayerPrefs.GetInt("SelectedWeaponId", 0) % 100;
         ParamManager.selectedWeaponIndex = selectedWeaponIndex;
-
-
     }
 
     private void Start()
@@ -128,11 +114,6 @@ public class UiCharacterSelect : MonoBehaviour
             {
                 animator.runtimeAnimatorController = animatorControllers[i];
                 weapons[i].SetActive(true);
-                // weapon은 prefab id를 구분자로 사용해야 한다.
-                // prefab id = index + 1
-                // index = prefab id - 1
-                // 
-                // id + type(D2) + prefabId(D2)
                 break;
             }
             else
@@ -140,14 +121,6 @@ public class UiCharacterSelect : MonoBehaviour
                 weapons[i].SetActive(false);
             }
         }
-        //foreach (var _id in weaponTable.AllItemIds)
-        //{
-        //    if (_id % 100 == selectedWeaponIndex)
-        //    {
-        //        textWeaponName.text = weaponTable.Get(_id).GetName;
-        //        break;
-        //    }
-        //}
     }
 
     public void PrevCharacter()

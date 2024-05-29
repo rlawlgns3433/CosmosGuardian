@@ -32,9 +32,6 @@ public class UiOption : MonoBehaviour
             sfxSlider.value = ParamManager.saveData.playerOption.sfxValue;
             ParamManager.SfxValue = sfxSlider.value;
         }
-
-        //bgmSlider.value = ParamManager.bgmValue;
-        //sfxSlider.value = ParamManager.sfxValue;
     }
 
     private void OnDisable()

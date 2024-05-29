@@ -5,7 +5,6 @@ public abstract class SaveData
     public int Version { get; protected set; }
 
     public abstract SaveData VersionUp();
-
 }
 
 public class PlayerOption
@@ -27,7 +26,6 @@ public class PlayerOption
         this.isCameraShake = isCameraShake;
     }
 }
-
 
 public class RecordData
 {
@@ -64,23 +62,6 @@ public class SaveDataV1 : SaveData
     }
 }
 
-//public class SaveDataV1 : SaveData
-//{
-//    public int Gold { get; set; } = 100;
-
-//    public SaveDataV1()
-//    {
-//        Version = 1;
-//    }
-
-//    public override SaveData VersionUp()
-//    {
-//        var data = new SaveDataV2();
-//        data.Gold = Gold;
-//        return data;
-//    }
-//}
-
 public class SaveDataV2 : SaveData
 {
     public int Gold { get; set; } = 100;
@@ -96,17 +77,3 @@ public class SaveDataV2 : SaveData
         return null;
     }
 }
-
-/*
-public class SaveDataV3 : SaveData
-{
-    public int Gold { get; set; } = 100;
-    //public string Name { get; set; } = "Empty";
-
-    public Vector3 Position { get; set; } = Vector3.zero;
-    public Quaternion Rotation { get; set; }= Quaternion.identity;
-    public Vector3 Scale { get; set; } = Vector3.one;
-
-    public Color color { get; set; } = Color.white;
-}
-*/

@@ -24,11 +24,9 @@ public class Projectile : MonoBehaviour
 
     private Coroutine returnCoroutine = null;
     private PlayerShooter playerShooter;
-    //private PlayerStats playerStats;
     private PlayerHealth playerHealth;
     private float rand;
-    private Collider[] splashDamageColliders = new Collider[10]; // 미리 할당된 배열
-    private bool startChecker = false;
+    private Collider[] splashDamageColliders = new Collider[10];
 
     // =======Range
     public float rangeScale;
@@ -112,8 +110,7 @@ public class Projectile : MonoBehaviour
         col.enabled = true;
         rb.constraints = RigidbodyConstraints.None;
         startPosition = rb.position = playerShooter.muzzle.transform.position;
-        rb.velocity = playerShooter.muzzle.transform.forward * Speed; // 초기 속도 설정
-        startChecker = true;
+        rb.velocity = playerShooter.muzzle.transform.forward * Speed;
 
         PlayAudio(SoundManager.Instance.flashClips[playerShooter.weapon.weaponData.PROJECTILE_ID - 1]);
     }
@@ -276,8 +273,6 @@ public class Projectile : MonoBehaviour
                 detachedPS.Stop();
             }
         }
-
-        startChecker = false;
 
         if (returnCoroutine != null)
         {

@@ -15,18 +15,13 @@ public class BossProjectileMover : MonoBehaviour
     [SerializeField] protected Light lightSourse;
     [SerializeField] protected GameObject[] Detached;
     [SerializeField] protected ParticleSystem projectilePS;
-    private bool startChecker = false;
     [SerializeField] protected bool notDestroy = false;
+    private bool startChecker = false;
 
     protected virtual void Start()
     {
         if (!startChecker)
         {
-            /*lightSourse = GetComponent<Light>();
-            rb = GetComponent<Rigidbody>();
-            col = GetComponent<Collider>();
-            if (hit != null)
-                hitPS = hit.GetComponent<ParticleSystem>();*/
             if (flash != null)
             {
                 flash.transform.parent = null;
@@ -61,12 +56,9 @@ public class BossProjectileMover : MonoBehaviour
             rb.constraints = RigidbodyConstraints.None;
         }
     }
-    //https ://docs.unity3d.com/ScriptReference/Rigidbody.OnCollisionEnter.html
     protected virtual void OnCollisionEnter(Collision collision)
     {
-        //Lock all axes movement and rotation
         rb.constraints = RigidbodyConstraints.FreezeAll;
-        //speed = 0;
         if (lightSourse != null)
             lightSourse.enabled = false;
         col.enabled = false;
@@ -77,7 +69,6 @@ public class BossProjectileMover : MonoBehaviour
         Quaternion rot = Quaternion.FromToRotation(Vector3.up, contact.normal);
         Vector3 pos = contact.point + contact.normal * hitOffset;
 
-        //Spawn hit effect on collision
         if (hit != null)
         {
             hit.transform.rotation = rot;
@@ -88,7 +79,6 @@ public class BossProjectileMover : MonoBehaviour
             hitPS.Play();
         }
 
-        //Removing trail from the projectile on cillision enter or smooth removing. Detached elements must have "AutoDestroying script"
         foreach (var detachedPrefab in Detached)
         {
             if (detachedPrefab != null)

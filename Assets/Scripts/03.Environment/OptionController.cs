@@ -3,7 +3,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
-using JetBrains.Annotations;
 
 public class OptionController : MonoBehaviour
 {
@@ -15,10 +14,8 @@ public class OptionController : MonoBehaviour
     public List<TextMeshProUGUI> optionTexts = new List<TextMeshProUGUI>();
     public List<RawImage> rawImages = new List<RawImage>();
     public GameObject[] RenderTextureWeapons;
-
     private OptionTable optionTable;
     private PlayerStats playerStats;
-
 
     private void OnEnable()
     {
@@ -40,10 +37,6 @@ public class OptionController : MonoBehaviour
                                           where option.GRADE == grade
                                           select option).ToList();
 
-        //int selectedIndex = Random.Range(0, gradedOptions.Count);
-        //gradedOptions = (from option in gradedOptions
-        //                 where option.GRADE == gradedOptions[selectedIndex].GRADE
-        //                 select option).ToList();
 
         List<int> selectedId = new List<int>();
 
@@ -99,7 +92,6 @@ public class OptionController : MonoBehaviour
             }
 
             selectedId.Add(gradedOptions[index].UPGRADE_ID);
-
             options[i].gameObject.SetActive(true);
 
             Collider collider = options[i].GetComponent<Collider>();

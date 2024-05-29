@@ -817,7 +817,7 @@ MonoBehaviour:
   isAlive: 1
   isChasing: 0
   rotationSpeed: 180
-  animator: {fileID: 0}
+  animator: {fileID: 3492455130383198576}
   target: {fileID: 0}
   damageFloatingPosition: {x: 0, y: 0, z: 0}
   floatingTextRadius: 0

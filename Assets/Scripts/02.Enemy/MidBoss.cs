@@ -19,7 +19,6 @@ public class MidBoss : Enemy
             GameObject.FindWithTag(Tags.Joystick).SetActive(false);
         };
 
-
         base.Start();
     }
 }

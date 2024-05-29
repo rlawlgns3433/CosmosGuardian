@@ -5,8 +5,8 @@ using UnityEngine;
 
 public enum EnemyType
 {
-    Bat = 40000, // 움직이는 몬스터 (Chase 활성)
-    Dragon = 40001, // 움직이는 몬스터 (Chase 활성)
+    Bat = 40000,
+    Dragon = 40001,
     Elite = 40100,
     MidBoss = 40200,
     Boss = 40300
@@ -20,43 +20,34 @@ public class Enemy : MonoBehaviour, IDamageable
         Damaged,
         Dead,
         Attack1,
-        Attack2,
-        Attack3
     }
 
-    public EnemyState enemyState = EnemyState.Idle;
-    public EnemyType enemyType;
+    public event Action onDeath;
     public Coroutine chaseCoroutine;
     public TextMeshProUGUI textHealth;
-    public event Action onDeath;
+    public Animator animator;
+    public EnemyData enemyData = null;
+    public PlayerHealth target = null;
+    public SphereCollider sphereCollider;
+    public GameObject splashEffect;
+    public ParticleSystem[] effects;
+    protected ItemController itemController;
+    private WaitForSeconds sec = new WaitForSeconds(0.5f);
+    private Coroutine stopEffectCoroutine;
+    private WaitForSeconds chaseTimer;
     public float originSpeed = 5;
     public float speed = 5;
     public bool isAlive = true;
     public bool isChasing = false;
     public float rotationSpeed = 180;
-    public Animator animator;
-    protected ItemController itemController;
-    public EnemyData enemyData = null;
-    public PlayerHealth target = null;
-    public Vector3 damageFloatingPosition;
     public float floatingTextRadius;
-    public SphereCollider sphereCollider;
-    public GameObject splashEffect;
-    public ParticleSystem[] effects;
-    private WaitForSeconds sec = new WaitForSeconds(0.5f);
-    private Coroutine stopEffectCoroutine;
-
-
-    private WaitForSeconds chaseTimer;
+    public EnemyState enemyState = EnemyState.Idle;
+    public EnemyType enemyType;
     public Vector3 direction;
+    public Vector3 damageFloatingPosition;
 
     private void Awake()
     {
-        if (!TryGetComponent(out animator))
-        {
-            animator.enabled = false;
-            return;
-        }
         effects = splashEffect.GetComponentsInChildren<ParticleSystem>();
     }
 
@@ -68,7 +59,6 @@ public class Enemy : MonoBehaviour, IDamageable
 
         target = GameObject.FindWithTag(Tags.Player).GetComponent<PlayerHealth>();
         direction = (target.transform.position - transform.position).normalized;
-
     }
 
     protected virtual void OnDisable()
@@ -157,11 +147,8 @@ public class Enemy : MonoBehaviour, IDamageable
 
         animator.SetTrigger(Animator.StringToHash("Die"));
         speed = 0;
-        // 삭제 대신 풀로 이동
         Invoke("LateSetActiveFalse", 1.5f);
-        //Destroy(gameObject, 1.5f);
     }
-
 
     public IEnumerator CoChasePlayer()
     {
@@ -194,21 +181,9 @@ public class Enemy : MonoBehaviour, IDamageable
         }
     }
 
-    //public void UpdateStats(EnemyData enemyData, float hpScale, int resetCount)
-    //{
-    //    this.enemyData.TYPE = enemyData.TYPE;
-    //    this.enemyData.DAMAGE = enemyData.DAMAGE;
-    //    this.enemyData.SCORE = enemyData.SCORE;
-    //    this.enemyData.GOLD = enemyData.GOLD;
-    //    this.enemyData.MONSTER_ID = enemyData.MONSTER_ID;
-    //    this.enemyData.HP = enemyData.HP * Mathf.Pow(hpScale, resetCount);
-
-    //    textHealth.text = ((int)this.enemyData.HP).ToString();
-    //}
-
     public virtual void UpdateStats(EnemyData enemyData, float magnification, int resetCount)
     {
-        this.enemyData = new EnemyData(enemyData); // 복사된 데이터 사용
+        this.enemyData = new EnemyData(enemyData);
         this.enemyData.HP *= Mathf.Pow(magnification, resetCount);
         this.enemyData.DAMAGE *= Mathf.Pow(magnification, resetCount);
 
@@ -247,7 +222,6 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public void LateSetActiveFalse()
     {
-
         gameObject.SetActive(false);
     }
 }

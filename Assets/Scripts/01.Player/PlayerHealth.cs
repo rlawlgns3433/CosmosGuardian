@@ -6,11 +6,12 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 {
     public CameraShake cameraShake;
     public TextMeshProUGUI textHealth;
-    public event Action onDeath;
-    public PlayerStats playerStats = null;
+    public PlayerStats playerStats;
     public Animator animator;
-    public bool isAlive = true;
     public Coroutine camShakeCoroutine;
+    public Collider[] colliders;
+    public event Action onDeath;
+    public bool isAlive = true;
 
     private void Start()
     {
@@ -27,7 +28,6 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         damage = damage * (1 - (playerStats.stats[CharacterColumn.Stat.ARMOR] - 1));
 
         playerStats.stats[CharacterColumn.Stat.HP] -= damage;
-        //playerStats.SyncDevStat();
 
         if (playerStats.stats[CharacterColumn.Stat.HP] <= 0)
         {
@@ -43,9 +43,8 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     {
         isAlive = false;
         textHealth.gameObject.SetActive(false);
-        animator.SetTrigger("Die");
+        animator.SetTrigger(Animator.StringToHash("Die"));
 
-        Collider[] colliders = GetComponents<Collider>();
         foreach(var collider in colliders)
         {
             collider.enabled = false;
@@ -74,7 +73,6 @@ public class PlayerHealth : MonoBehaviour, IDamageable
             }
 
             var enemy = other.GetComponent<Enemy>();
-
             float enemyHp = enemy.enemyData.HP;
             float playerHp = playerStats.stats[CharacterColumn.Stat.HP];
 

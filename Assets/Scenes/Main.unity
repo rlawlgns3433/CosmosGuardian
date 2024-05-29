@@ -17205,7 +17205,6 @@ GameObject:
   - component: {fileID: 1553246668}
   - component: {fileID: 1553246667}
   - component: {fileID: 1553246666}
-  - component: {fileID: 1553246669}
   m_Layer: 5
   m_Name: Weapon
   m_TagString: Untagged
@@ -17291,21 +17290,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1553246664}
   m_CullTransparentMesh: 1
---- !u!114 &1553246669
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1553246664}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e98c366cd7e697d4e9a88f2276c59c59, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  uiCharacterSelect: {fileID: 1762018171694866939}
-  textWindowHeader: {fileID: 1104728226}
-  textWeaponDesc: {fileID: 1082372257}
 --- !u!1 &1553527449
 GameObject:
   m_ObjectHideFlags: 0
@@ -23367,21 +23351,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7363405602202689305, guid: e4082e0d42033b94da094938b6759d82, type: 3}
-      propertyPath: textWeaponName
-      value: 
-      objectReference: {fileID: 538861144}
-    - target: {fileID: 7363405602202689305, guid: e4082e0d42033b94da094938b6759d82, type: 3}
       propertyPath: textCharacterName
       value: 
       objectReference: {fileID: 1546310795}
-    - target: {fileID: 7363405602202689305, guid: e4082e0d42033b94da094938b6759d82, type: 3}
-      propertyPath: selectedWeaponIndex
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 7363405602202689305, guid: e4082e0d42033b94da094938b6759d82, type: 3}
-      propertyPath: textStats.Array.size
-      value: 28
-      objectReference: {fileID: 0}
     - target: {fileID: 7363405602202689305, guid: e4082e0d42033b94da094938b6759d82, type: 3}
       propertyPath: textStats.Array.data[0]
       value: 

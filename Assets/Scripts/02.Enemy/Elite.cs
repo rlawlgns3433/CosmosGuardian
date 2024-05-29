@@ -7,11 +7,11 @@ public class Elite : Enemy
     [Tooltip("Attack 1 발사 속도")]
     public float projectileSpeed = 10;
     [Tooltip("이 거리에 내에 들어올 때 공격")]
-    public float attackDistance = 30;
 
     public GameObject projectilePrefab;
     public Coroutine attackOneCoroutine;
     private WaitForSeconds shotInterval = new WaitForSeconds(2f);
+    public float attackDistance = 15;
     private float distance = float.PositiveInfinity;
 
     protected override void OnEnable()
@@ -37,13 +37,10 @@ public class Elite : Enemy
     protected override void Update()
     {
         base.Update();
-        switch (enemyState)
+
+        if(enemyState == EnemyState.Idle)
         {
-            case EnemyState.Idle:
-                animator.SetBool(Animator.StringToHash(attack1), false);
-                break;
-            case EnemyState.Attack1:
-                break;
+            animator.SetBool(Animator.StringToHash(attack1), false);
         }
     }
 
@@ -52,7 +49,6 @@ public class Elite : Enemy
         if (transform.position.z < target.transform.position.z) return;
 
         direction = (target.transform.position - transform.position).normalized;
-
         enemyState = EnemyState.Attack1;
         animator.SetBool(Animator.StringToHash(attack1), true);
 
@@ -100,5 +96,4 @@ public class Elite : Enemy
             animator.SetBool(Animator.StringToHash(attack1), false);
         }
     }
-
 }

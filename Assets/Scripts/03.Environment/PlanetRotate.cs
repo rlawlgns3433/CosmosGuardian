@@ -2,11 +2,10 @@ using UnityEngine;
 
 public class PlanetRotate : MonoBehaviour
 {
-    public float rotationSpeed; // 회전 속도 (도/초)
-    public Quaternion tilt; // 기울기
-
+    public float rotationSpeed;
     private float radius = 20f;
     private float angle = 0f;
+    private Quaternion tilt;
 
     void Start()
     {

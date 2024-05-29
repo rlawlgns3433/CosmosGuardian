@@ -10,12 +10,11 @@ public class CameraRenderWeapon : MonoBehaviour
     private float rotationSpeed = 360;
     private Vector3 rot = new Vector3(0, -1, 0);
 
-
     private void Start()
     {
         currentWeaponIndex = ParamManager.selectedWeaponIndex;   
     }
-    // Update is called once per frame
+
     void Update()
     {
         if (cameraRenderTexture.renderCamera != null && cameraRenderTexture.renderTexture != null && cameraRenderTexture.rawImage != null)

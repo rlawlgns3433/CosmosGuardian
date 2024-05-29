@@ -1,8 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using static Enemy;
 
 public class Platform : MonoBehaviour
 {
@@ -12,16 +9,15 @@ public class Platform : MonoBehaviour
     public float hpScale = 1.8f;
     [Tooltip("직진속도 증가량")]
     public float verticalIncrement = 0.5f;
-    public int minTest = 1;
-    public int maxTest = 4;
+    public int minEnemy = 1;
+    public int maxEnemy = 4;
     public bool isOn = false;
     public OptionController optionController;
     public List<GameObject> enemySpawnTile = new List<GameObject>();
     public Dictionary<EnemyType, List<Enemy>> spawnedEnemies = new Dictionary<EnemyType, List<Enemy>>();
     public Dictionary<EnemyType, List<Enemy>> unusingEnemies = new Dictionary<EnemyType, List<Enemy>>();
     public EnemyTable enemyTable;
-    BossSpawnController bossSpawnController;
-
+    private BossSpawnController bossSpawnController;
     private PlayerStats playerStats;
 
     private void Start()
@@ -75,19 +71,19 @@ public class Platform : MonoBehaviour
 
         ++resetCount;
 
-        if (maxTest != 5)
+        if (maxEnemy != 5)
         {
             if ((resetCount / 2) % 2 == 0)
             {
-                ++maxTest;
+                ++maxEnemy;
             }
             else
             {
-                ++minTest;
+                ++minEnemy;
             }
         }
 
-        Spawn(); // 몬스터 스폰
+        Spawn();
 
         foreach (var enemies in spawnedEnemies.Values)
         {
@@ -101,8 +97,8 @@ public class Platform : MonoBehaviour
         {
             bossSpawnController.SpawnMidBoss();
         }
-        optionController.ResetOptions(playerStats.level); // 옵션 초기화
-        playerStats.UpdateStats(OptionColumn.Stat.MOVE_SPEED_V, OptionColumn.Type.Scale, verticalIncrement); // 직진 속도 0.5프로 증가
+        optionController.ResetOptions(playerStats.level);
+        playerStats.UpdateStats(OptionColumn.Stat.MOVE_SPEED_V, OptionColumn.Type.Scale, verticalIncrement);
         isOn = false;
     }
 
@@ -119,7 +115,7 @@ public class Platform : MonoBehaviour
             BoxCollider[] colliders = row.GetComponentsInChildren<BoxCollider>();
             foreach (var collider in colliders)
             {
-                int spawnCount = Random.Range(minTest, maxTest);
+                int spawnCount = Random.Range(minEnemy, maxEnemy);
 
                 for (int i = 0; i < spawnCount; ++i)
                 {
@@ -130,14 +126,13 @@ public class Platform : MonoBehaviour
 
                     Enemy enemy;
                     var selectedEnemyType = GameManager.Instance.enemies[rand].GetComponent<Enemy>().enemyType;
-                    // 없을 때
+
                     if (unusingEnemies[selectedEnemyType].Count <= 0)
                     {
                         var go = Instantiate(GameManager.Instance.enemies[rand], spawnPos, Quaternion.Euler(new Vector3(0, 180, 0)));
                         enemy = go.GetComponent<Enemy>();
                         spawnedEnemies[enemy.enemyType].Add(enemy);
                     }
-                    // 있을 때
                     else
                     {
                         enemy = GetEnemy(selectedEnemyType);
@@ -147,17 +142,8 @@ public class Platform : MonoBehaviour
                         enemy.gameObject.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
                     }
 
-                    // EnemyData 객체를 복사하여 사용
                     EnemyData originalData = enemyTable.Get((int)enemy.enemyType);
-                    //if (originalData != null)
-                    //{
-                    //    EnemyData dataCopy = new EnemyData(originalData);
                     enemy.UpdateStats(originalData, originalData.MAGNIFICATION, resetCount);
-                    //}
-                    //else
-                    //{
-                    //    Debug.LogError("EnemyData를 찾을 수 없습니다.");
-                    //}
                 }
             }
         }
@@ -186,13 +172,11 @@ public class Platform : MonoBehaviour
             return null;
 
         var enemy = unusingEnemies[enemyType][0];
+
         enemy.gameObject.SetActive(true);
-
         enemy.isAlive = true;
-        enemy.enemyState = EnemyState.Idle;
-
+        enemy.enemyState = Enemy.EnemyState.Idle;
         enemy.sphereCollider.enabled = true;
-
         enemy.speed = enemy.originSpeed;
 
         unusingEnemies[enemyType].Remove(enemy);

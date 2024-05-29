@@ -5914,6 +5914,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e51580019923adf4ab3a154875a94113, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textCharacterName: {fileID: 0}
+  textStats:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   animatorControllers:
   - {fileID: 9100000, guid: 754223ca98f6d3249a40eb103efdc674, type: 2}
   - {fileID: 9100000, guid: 64e4ba9a61a083a459dde8265a3d5295, type: 2}
@@ -5991,7 +6021,8 @@ MonoBehaviour:
   - {fileID: 3327729241410947303}
   - {fileID: 3077934750999753567}
   selectedCharacterIndex: 0
-  selectedWeaponIndex: 0
+  selectedWeaponIndex: 11
+  animator: {fileID: 3137584597194253277}
 --- !u!1 &7845648227413569080
 GameObject:
   m_ObjectHideFlags: 0

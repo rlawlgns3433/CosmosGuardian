@@ -5,12 +5,8 @@ public class CameraMove : MonoBehaviour
     public bool IsTOP = true;
     public Transform TPS, TOP;
 
-    private void Update()
+    private void LateUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.Y))
-        {
-            IsTOP = !IsTOP;
-        }
         if (IsTOP)
         {
             Camera.main.transform.position = Vector3.Slerp(Camera.main.transform.position, TOP.position, 5 * Time.deltaTime);

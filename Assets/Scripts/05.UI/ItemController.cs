@@ -17,9 +17,8 @@ public class ItemController : MonoBehaviour
     public List<Image> icons = new List<Image>();
     public List<TextMeshProUGUI> names = new List<TextMeshProUGUI>();
     public List<TextMeshProUGUI> descs = new List<TextMeshProUGUI>();
-    public PlayerStats playerStats;
     public List<ItemData> itemdatas = new List<ItemData>();
-
+    public PlayerStats playerStats;
     private ItemTable itemTable;
 
     private void Awake()
@@ -31,12 +30,10 @@ public class ItemController : MonoBehaviour
     {
         itemdatas.Clear();
 
-        // 전체 중 3개를 뽑아 -> 중복 없이
         List<int> id = new List<int>();
         List<int> grade = new List<int>();
         int itemCount = itemTable.GetKeys.ToList().Count;
 
-        // 아이템 뽑기
         while (id.Count < 3)
         {
             int index = Random.Range(0, itemCount);
@@ -50,7 +47,6 @@ public class ItemController : MonoBehaviour
                 continue;
             }
             // 만약 내가 찾은 iconInt와 같은 종류이면
-
             for (int k = 0; k < playerStats.items.Count; ++k)
             {
                 if (playerStats.items[k].GetIconIdInt == itemTable.GetAllData[index].GetIconIdInt)

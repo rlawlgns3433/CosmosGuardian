@@ -5,7 +5,6 @@ using UnityEngine;
 public class ScoreBoard : MonoBehaviour
 {
     public static readonly string rankingFormat = "{0}Á¡, {1}, {2}";
-
     public TextMeshProUGUI[] textRecords;
     public SaveDataV1 savedRecord;
     public UiCharacterSelect uiCharacterSelect;
@@ -18,12 +17,6 @@ public class ScoreBoard : MonoBehaviour
         {
             return;
         }
-
-        //if (ParamManager.currentRecord == null)
-        //{
-        //    savedRecord.records.Add(ParamManager.currentRecord);
-        //}
-        //SaveLoadSystem.Save(savedRecord);
 
         for (int i = 0; i < savedRecord.records.Count; ++i)
         {

@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : Singleton<GameManager>
 {
     public List<GameObject> platforms = new List<GameObject>();
-    public List<GameObject> enemies = new List<GameObject>(); // GameManager에서 갖는 것이 좋겠음.
+    public List<GameObject> enemies = new List<GameObject>();
     public EnemyTable enemyTable;
     public PlayerStats playerStats = null;
     public PlayerHealth playerHealth;
@@ -147,8 +147,8 @@ public class GameManager : Singleton<GameManager>
             SaveRecord(record);
         }
 
-        ParamManager.SceneToLoad = sceneName; // 로드할 씬 이름 저장
-        SceneManager.LoadScene((int)SceneIds.Loading); // 로딩 씬 로드
+        ParamManager.SceneToLoad = sceneName;
+        SceneManager.LoadScene((int)SceneIds.Loading);
     }
 
     public void SaveRecord(RecordData recordData)

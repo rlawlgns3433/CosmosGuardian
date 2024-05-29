@@ -17,9 +17,7 @@ public class CameraAxis : MonoBehaviour
     private void Update()
     {
         Vector3 pos = player.position;
-
         pos.x = cameraMove.IsTOP ? 0f : pos.x;
-
         transform.position = pos;
     }
 }

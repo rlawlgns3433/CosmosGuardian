@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Boss : Enemy
 {
-    public static bool IsBossDead = false; // 보스 사망 플래그
-
+    public static bool IsBossDead = false;
     private readonly string attack1 = "Attack1";
     private readonly string attack2 = "Attack2";
     private readonly string attack3 = "Attack3";
@@ -17,13 +16,13 @@ public class Boss : Enemy
     [Tooltip("Attack 1 발사 속도")]
     public float projectileSpeed = -10;
     [Tooltip("이 거리에 내에 들어올 때 공격")]
-    public float attackDistance = 30;
     public GameObject projectilePrefab;
     public Coroutine attackOneCoroutine;
-    public float angle = 30f;
     private Platform bossPlatform;
     private CameraMove cameraMove;
     private WaitForSeconds shotInterval;
+    public float attackDistance = 30;
+    public float angle = 30f;
     private float distance = float.PositiveInfinity;
     private float savedVerticalSpeed;
 
@@ -53,7 +52,7 @@ public class Boss : Enemy
 
             StopAllCoroutines();
             cameraMove.IsTOP = true;
-            target.gameObject.GetComponent<PlayerStats>().stats[CharacterColumn.Stat.MOVE_SPEED_V] = savedVerticalSpeed;
+            target.playerStats.stats[CharacterColumn.Stat.MOVE_SPEED_V] = savedVerticalSpeed;
 
             itemController = GameObject.FindWithTag(Tags.ItemController).GetComponent<ItemController>();
             itemController.UpdateItemData(enemyData.TYPE);
@@ -67,7 +66,7 @@ public class Boss : Enemy
             cameraMove.enabled = false;
             return;
         }
-        savedVerticalSpeed = target.gameObject.GetComponent<PlayerStats>().stats[CharacterColumn.Stat.MOVE_SPEED_V];
+        savedVerticalSpeed = target.playerStats.stats[CharacterColumn.Stat.MOVE_SPEED_V];
         StartCoroutine(AttackPattern());
     }
 
@@ -78,28 +77,16 @@ public class Boss : Enemy
             if (isAlive && cameraMove.IsTOP)
             {
                 cameraMove.IsTOP = !cameraMove.IsTOP;
-                savedVerticalSpeed = target.gameObject.GetComponent<PlayerStats>().stats[CharacterColumn.Stat.MOVE_SPEED_V];
-                target.gameObject.GetComponent<PlayerStats>().stats[CharacterColumn.Stat.MOVE_SPEED_V] = 0f;
+                savedVerticalSpeed = target.playerStats.stats[CharacterColumn.Stat.MOVE_SPEED_V];
+                target.playerStats.stats[CharacterColumn.Stat.MOVE_SPEED_V] = 0f;
             }
         }
 
-        switch (enemyState)
+        if(enemyState == EnemyState.Idle)
         {
-            case EnemyState.Idle:
-                animator.SetBool(Animator.StringToHash(attack1), false);
-                animator.SetBool(Animator.StringToHash(attack2), false);
-                animator.SetBool(Animator.StringToHash(attack3), false);
-                break;
-            case EnemyState.Damaged:
-                break;
-            case EnemyState.Dead:
-                break;
-            case EnemyState.Attack1:
-                break;
-            case EnemyState.Attack2:
-                break;
-            case EnemyState.Attack3:
-                break;
+            animator.SetBool(Animator.StringToHash(attack1), false);
+            animator.SetBool(Animator.StringToHash(attack2), false);
+            animator.SetBool(Animator.StringToHash(attack3), false);
         }
     }
 
@@ -156,14 +143,9 @@ public class Boss : Enemy
             {
                 StopCoroutine(attackOneCoroutine);
             }
-            // 패턴 1
             yield return StartCoroutine(ShotThreeAngle());
             enemyState = EnemyState.Idle;
             yield return new WaitForSeconds(3);
-            // 패턴 2
-
-            // 패턴 3
-
         }
     }
 }

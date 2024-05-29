@@ -8,7 +8,12 @@ public class BossSpawnController : MonoBehaviour
     public GameObject midBossPrefab;
     [Tooltip("midboss가 몇 번 등장 후 보스 등장하는지 관리하는 변수")]
     public int bossAppearanceThreshold = 3;
-    public int midBossSpawnCount = 0;
+    public int midBossSpawnCount = -1;
+
+    private void Start()
+    {
+        SpawnMidBoss();
+    }
 
     public void SpawnBoss()
     {

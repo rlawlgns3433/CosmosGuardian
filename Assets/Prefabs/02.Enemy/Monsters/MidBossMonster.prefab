@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 971377840910133520}
   - component: {fileID: 5473448599597859679}
   - component: {fileID: 2808697171877947412}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 1986136949171034522}
   - component: {fileID: 72710069239441902}
   - component: {fileID: 2521729471898088596}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -247,7 +247,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4735800100428017025}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EyeCTRL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -281,7 +281,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4735800100428017027}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FrontLeftLeg01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -313,7 +313,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4735800100428017029}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FrontLeftLeg02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -345,7 +345,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4735800100428017031}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FrontLeftLeg03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -376,7 +376,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4735800100428017033}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -415,7 +415,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4735800100428017035}
   - component: {fileID: 4735800100433067177}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ChestMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -524,7 +524,7 @@ GameObject:
   - component: {fileID: 4735800100437328489}
   - component: {fileID: 7832570255871019201}
   - component: {fileID: 8171393162610907017}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MidBossMonster
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -583,22 +583,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6c228e1d67338a4ba3ae5676b44498d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyState: 0
-  enemyType: 40200
   textHealth: {fileID: 2808697171877947412}
+  animator: {fileID: 4735800100437328489}
+  target: {fileID: 0}
+  sphereCollider: {fileID: 8171393162610907017}
+  splashEffect: {fileID: 526853881561315368}
+  effects: []
   originSpeed: 0
   speed: 0
   isAlive: 1
   isChasing: 0
   rotationSpeed: 180
-  animator: {fileID: 4735800100437328489}
-  target: {fileID: 0}
-  damageFloatingPosition: {x: 0, y: 0, z: 0}
   floatingTextRadius: 0
-  sphereCollider: {fileID: 8171393162610907017}
-  splashEffect: {fileID: 526853881561315368}
-  effects: []
+  enemyState: 0
+  enemyType: 40200
   direction: {x: 0, y: 0, z: 0}
+  damageFloatingPosition: {x: 0, y: 0, z: 0}
 --- !u!135 &8171393162610907017
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -629,7 +629,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4735800100428017039}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EyeBallCTRL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -660,7 +660,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4735800100428017041}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LockCTRL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -691,7 +691,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4735800100428017043}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LowerEyelid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -722,7 +722,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4735800100428017045}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: LowerTeethCTRL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -753,7 +753,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4735800100428017047}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RearLeftLeg01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -785,7 +785,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4735800100428017049}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FrontRightLeg01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -817,7 +817,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4735800100428017051}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FrontRightLeg02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -849,7 +849,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4735800100428017053}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FrontRightLeg03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -880,7 +880,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4735800100428017055}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -913,7 +913,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4735800100428017057}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RearRightLeg03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -944,7 +944,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4735800100428017059}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -976,7 +976,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4735800100428017061}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: UppderEyeLid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1007,7 +1007,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4735800100428017063}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: UpperTeethCTRL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1038,7 +1038,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4735800100428017065}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RearLeftLeg02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1070,7 +1070,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4735800100428017067}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RearLeftLeg03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1101,7 +1101,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4735800100428017069}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RearRightLeg01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1133,7 +1133,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4735800100428017071}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RearRightLeg02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1220,13 +1220,33 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2978544677992451426, guid: 5bffee6cc60735f4887be42f21ff763d, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4345305488166552391, guid: 5bffee6cc60735f4887be42f21ff763d, type: 3}
       propertyPath: m_Name
       value: Freeze circle
       objectReference: {fileID: 0}
     - target: {fileID: 4345305488166552391, guid: 5bffee6cc60735f4887be42f21ff763d, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4345305488166552391, guid: 5bffee6cc60735f4887be42f21ff763d, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5044425145798545968, guid: 5bffee6cc60735f4887be42f21ff763d, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5760429451282573652, guid: 5bffee6cc60735f4887be42f21ff763d, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6227109651102679417, guid: 5bffee6cc60735f4887be42f21ff763d, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

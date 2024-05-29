@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Platform : MonoBehaviour
@@ -71,15 +72,19 @@ public class Platform : MonoBehaviour
 
         ++resetCount;
 
-        if (maxEnemy != 5)
+        if (maxEnemy < 5)
         {
-            if ((resetCount / 2) % 2 == 0)
+
+            if(resetCount % 2 == 0)
             {
-                ++maxEnemy;
-            }
-            else
-            {
-                ++minEnemy;
+                if(resetCount % 4 == 0)
+                {
+                    ++minEnemy;
+                }
+                else
+                {
+                    ++maxEnemy;
+                }
             }
         }
 

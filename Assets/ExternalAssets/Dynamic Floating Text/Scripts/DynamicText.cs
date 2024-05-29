@@ -2,10 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using Unity.VisualScripting;
 using System.Linq;
-using static UnityEditorInternal.ReorderableList;
-using Unity.VisualScripting.Antlr3.Runtime;
 
 public class DynamicText : MonoBehaviour
 {

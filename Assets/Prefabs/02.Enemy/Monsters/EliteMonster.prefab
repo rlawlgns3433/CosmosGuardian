@@ -2166,7 +2166,7 @@ MonoBehaviour:
   effects: []
   direction: {x: 0, y: 0, z: 0}
   projectileSpeed: -5
-  attackDistance: 18
+  attackDistance: 22
   projectilePrefab: {fileID: 1128728136785006, guid: c9b123e5b40fcc04e9eba678a1f82053, type: 3}
 --- !u!135 &8207211864964813714
 SphereCollider:
@@ -2515,7 +2515,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 417328207102005937, guid: 5bffee6cc60735f4887be42f21ff763d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 417328207102005937, guid: 5bffee6cc60735f4887be42f21ff763d, type: 3}
       propertyPath: m_LocalPosition.z

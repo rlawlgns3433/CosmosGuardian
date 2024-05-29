@@ -53,7 +53,7 @@ public class Elite : Enemy
         animator.SetBool(Animator.StringToHash(attack1), true);
 
         var shotPos = transform.position;
-        shotPos += Vector3.up;
+        shotPos += Vector3.up * 2f;
         GameObject go = Instantiate(projectilePrefab, shotPos, Quaternion.identity);
         Rigidbody rb = go.GetComponent<Rigidbody>();
         rb.velocity = -direction * projectileSpeed;

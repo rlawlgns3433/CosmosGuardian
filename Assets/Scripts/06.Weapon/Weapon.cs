@@ -41,7 +41,6 @@ public class Weapon : MonoBehaviour
                     Destroy(p);
                 }
             }
-            else return;
         }
 
         weaponData = weaponTable.Get(weaponId);

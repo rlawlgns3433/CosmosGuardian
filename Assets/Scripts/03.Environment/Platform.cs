@@ -21,7 +21,7 @@ public class Platform : MonoBehaviour
     private BossSpawnController bossSpawnController;
     private PlayerStats playerStats;
 
-    private void Start()
+    private void Awake()
     {
         spawnedEnemies[EnemyType.Bat] = new List<Enemy>();
         spawnedEnemies[EnemyType.Dragon] = new List<Enemy>();
@@ -34,7 +34,10 @@ public class Platform : MonoBehaviour
         unusingEnemies[EnemyType.Elite] = new List<Enemy>();
         unusingEnemies[EnemyType.MidBoss] = new List<Enemy>();
         unusingEnemies[EnemyType.Boss] = new List<Enemy>();
+    }
 
+    private void Start()
+    {
         enemyTable = DataTableMgr.Get<EnemyTable>(DataTableIds.Enemy);
         playerStats = GameObject.FindWithTag(Tags.Player).GetComponent<PlayerStats>();
         Spawn();

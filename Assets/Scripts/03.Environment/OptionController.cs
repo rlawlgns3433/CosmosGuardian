@@ -16,6 +16,7 @@ public class OptionController : MonoBehaviour
     public GameObject[] RenderTextureWeapons;
     private OptionTable optionTable;
     private PlayerStats playerStats;
+    private bool isNotFirst = false;
 
     private void OnEnable()
     {
@@ -29,6 +30,7 @@ public class OptionController : MonoBehaviour
         }
 
         ResetOptions(playerStats.level);
+        isNotFirst = true;
     }
 
     public void ResetOptions(int grade) // Grade 喊肺 可记 积己
@@ -89,6 +91,15 @@ public class OptionController : MonoBehaviour
             {
                 --i;
                 continue;
+            }
+
+            if (gradedOptions[index].STAT == OptionColumn.Stat.FIRE_RANGE && isNotFirst)
+            {
+                if (playerStats.stats[CharacterColumn.Stat.FIRE_RANGE] * playerStats.playerShooter.weapon.stats[WeaponColumn.Stat.FIRE_RANGE] > 50)
+                {
+                    --i;
+                    continue;
+                }
             }
 
             selectedId.Add(gradedOptions[index].UPGRADE_ID);

@@ -4,7 +4,16 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     public GameObject[] weapons;
-    public WeaponData weaponData;
+    private WeaponData _weaponData;
+    public WeaponData weaponData
+    {
+        get
+        {
+            if(_weaponData == null)
+                return weaponTable.Get(selectedWeaponId);
+            return _weaponData;
+        }
+    }
     public Dictionary<WeaponColumn.Stat, float> stats = new Dictionary<WeaponColumn.Stat, float>();
     public RuntimeAnimatorController[] animatorControllers;
     public PlayerStats playerStats;
@@ -27,9 +36,9 @@ public class Weapon : MonoBehaviour
 
     public void SetWeapon(int weaponId)
     {
-        if (weaponData != null)
+        if (_weaponData != null)
         {
-            if (weaponData.PROJECTILE_ID != weaponTable.Get(weaponId).PROJECTILE_ID)
+            if (_weaponData.PROJECTILE_ID != weaponTable.Get(weaponId).PROJECTILE_ID)
             {
                 foreach (var p in playerStats.playerShooter.usingProjectiles)
                 {
@@ -43,12 +52,12 @@ public class Weapon : MonoBehaviour
             }
         }
 
-        weaponData = weaponTable.Get(weaponId);
+        _weaponData = weaponTable.Get(weaponId);
         selectedWeaponId = weaponId;
 
         playerStats.playerShooter.usingProjectiles.Clear();
         playerStats.playerShooter.unusingProjectiles.Clear();
-        playerStats.playerShooter.currentProjectileIndex = weaponData.PROJECTILE_ID - 1;
+        playerStats.playerShooter.currentProjectileIndex = _weaponData.PROJECTILE_ID - 1;
 
 
         if (currentWeaponIndex != -1)
@@ -58,7 +67,7 @@ public class Weapon : MonoBehaviour
 
         for (int i = 0; i < weapons.Length; ++i)
         {
-            if (weaponData.PREFAB_ID == i)
+            if (_weaponData.PREFAB_ID == i)
             {
                 playerStats.playerHealth.animator.runtimeAnimatorController = animatorControllers[i];
                 weapons[i].SetActive(true);
@@ -71,17 +80,17 @@ public class Weapon : MonoBehaviour
             }
         }
 
-        stats[WeaponColumn.Stat.DAMAGE] = weaponData.DAMAGE;
-        stats[WeaponColumn.Stat.FIRE_RATE] = weaponData.FIRE_RATE;
-        stats[WeaponColumn.Stat.FIRE_RANGE] = weaponData.FIRE_RANGE;
-        stats[WeaponColumn.Stat.PENETRATE] = weaponData.PENETRATE;
-        stats[WeaponColumn.Stat.SPLASH_DAMAGE] = weaponData.SPLASH_DAMAGE;
-        stats[WeaponColumn.Stat.SPLASH_RANGE] = weaponData.SPLASH_RANGE;
-        stats[WeaponColumn.Stat.CRITICAL] = weaponData.CRITICAL;
-        stats[WeaponColumn.Stat.CRITICAL_DAMAGE] = weaponData.CRITICAL_DAMAGE;
-        stats[WeaponColumn.Stat.HP_DRAIN] = weaponData.HP_DRAIN;
-        stats[WeaponColumn.Stat.PROJECTILE_SPEED] = weaponData.PROJECTILE_SPEED;
-        stats[WeaponColumn.Stat.PROJECTILE_AMOUNT] = weaponData.PROJECTILE_AMOUNT;
+        stats[WeaponColumn.Stat.DAMAGE] = _weaponData.DAMAGE;
+        stats[WeaponColumn.Stat.FIRE_RATE] = _weaponData.FIRE_RATE;
+        stats[WeaponColumn.Stat.FIRE_RANGE] = _weaponData.FIRE_RANGE;
+        stats[WeaponColumn.Stat.PENETRATE] = _weaponData.PENETRATE;
+        stats[WeaponColumn.Stat.SPLASH_DAMAGE] = _weaponData.SPLASH_DAMAGE;
+        stats[WeaponColumn.Stat.SPLASH_RANGE] = _weaponData.SPLASH_RANGE;
+        stats[WeaponColumn.Stat.CRITICAL] = _weaponData.CRITICAL;
+        stats[WeaponColumn.Stat.CRITICAL_DAMAGE] = _weaponData.CRITICAL_DAMAGE;
+        stats[WeaponColumn.Stat.HP_DRAIN] = _weaponData.HP_DRAIN;
+        stats[WeaponColumn.Stat.PROJECTILE_SPEED] = _weaponData.PROJECTILE_SPEED;
+        stats[WeaponColumn.Stat.PROJECTILE_AMOUNT] = _weaponData.PROJECTILE_AMOUNT;
 
         foreach (var wd in playerStats.playerWeaponDatas)
         {

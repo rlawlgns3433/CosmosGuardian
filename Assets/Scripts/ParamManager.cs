@@ -18,6 +18,14 @@ public class ParamManager : MonoBehaviour
             if(saveData == null)
             {
                 saveData = SaveLoadSystem.Load() as SaveDataV1;
+                if (saveData == null)
+                {
+                    saveData = new SaveDataV1();
+                    saveData.playerOption.bgmValue = bgmValue;
+                    saveData.playerOption.sfxValue = sfxValue;
+                    saveData.playerOption.isCameraShake = IsCameraShaking;
+                    SaveLoadSystem.Save(saveData);
+                }
             }
             return saveData.playerOption.isCameraShake; 
         }
@@ -35,6 +43,14 @@ public class ParamManager : MonoBehaviour
             if (saveData == null)
             {
                 saveData = SaveLoadSystem.Load() as SaveDataV1;
+                if(saveData == null)
+                {
+                    saveData = new SaveDataV1();
+                    saveData.playerOption.bgmValue = bgmValue;
+                    saveData.playerOption.sfxValue = sfxValue;
+                    saveData.playerOption.isCameraShake = IsCameraShaking;
+                    SaveLoadSystem.Save(saveData);
+                }
             }
             return saveData.playerOption.bgmValue; 
         }
@@ -52,6 +68,14 @@ public class ParamManager : MonoBehaviour
             if (saveData == null)
             {
                 saveData = SaveLoadSystem.Load() as SaveDataV1;
+                if (saveData == null)
+                {
+                    saveData = new SaveDataV1();
+                    saveData.playerOption.bgmValue = bgmValue;
+                    saveData.playerOption.sfxValue = sfxValue;
+                    saveData.playerOption.isCameraShake = IsCameraShaking;
+                    SaveLoadSystem.Save(saveData);
+                }
             }
             return saveData.playerOption.sfxValue; 
         }

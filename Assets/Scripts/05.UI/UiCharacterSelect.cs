@@ -44,6 +44,7 @@ public class UiCharacterSelect : MonoBehaviour
         }
 
         ParamManager.selectedWeaponIndex = selectedWeaponIndex;
+        ParamManager.selectedCharacterIndex = selectedCharacterIndex;
     }
 
     private void Start()
@@ -73,6 +74,8 @@ public class UiCharacterSelect : MonoBehaviour
     public void UpdateCharacter(int characterIndex)
     {
         selectedCharacterIndex = characterIndex;
+        ParamManager.selectedCharacterIndex = selectedCharacterIndex;
+
         for (int i = 0; i < characterBodys.Length; ++i)
         {
             if (selectedCharacterIndex == i)

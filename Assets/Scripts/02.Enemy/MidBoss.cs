@@ -14,8 +14,7 @@ public class MidBoss : Enemy
             StopAllCoroutines();
             var joystick = GameObject.FindWithTag(Tags.Joystick).GetComponent<FloatingJoystick>();
             joystick.gameObject.SetActive(false);
-            PointerEventData eventData = new PointerEventData(EventSystem.current);
-            joystick.OnPointerUp(eventData);
+            joystick.ForcePointerUp();
 
             Time.timeScale = 0f;
             var uiController = GameObject.FindWithTag(Tags.UiController).GetComponent<UiController>();

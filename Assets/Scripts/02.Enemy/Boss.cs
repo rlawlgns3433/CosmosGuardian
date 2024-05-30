@@ -59,8 +59,7 @@ public class Boss : Enemy
             itemController.UpdateItemData(enemyData.TYPE);
             var joystick = GameObject.FindWithTag(Tags.Joystick).GetComponent<FloatingJoystick>();
             joystick.gameObject.SetActive(false);
-            PointerEventData eventData = new PointerEventData(EventSystem.current);
-            joystick.OnPointerUp(eventData);
+            joystick.ForcePointerUp();
 
             Time.timeScale = 0f;
         };

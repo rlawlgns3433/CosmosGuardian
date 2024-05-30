@@ -23,4 +23,10 @@ public class FloatingJoystick : Joystick
         background.gameObject.SetActive(false);
         base.OnPointerUp(eventData);
     }
+
+    public void ForcePointerUp()
+    {
+        PointerEventData eventSystem = new PointerEventData(EventSystem.current);
+        OnPointerUp(eventSystem);
+    }
 }

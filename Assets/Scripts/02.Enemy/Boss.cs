@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Boss : Enemy
 {
@@ -56,7 +57,11 @@ public class Boss : Enemy
 
             itemController = GameObject.FindWithTag(Tags.ItemController).GetComponent<ItemController>();
             itemController.UpdateItemData(enemyData.TYPE);
-            GameObject.FindWithTag(Tags.Joystick).SetActive(false);
+            var joystick = GameObject.FindWithTag(Tags.Joystick).GetComponent<FloatingJoystick>();
+            joystick.gameObject.SetActive(false);
+            PointerEventData eventData = new PointerEventData(EventSystem.current);
+            joystick.OnPointerUp(eventData);
+
             Time.timeScale = 0f;
         };
 

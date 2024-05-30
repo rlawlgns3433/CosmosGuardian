@@ -1,4 +1,6 @@
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class MidBoss : Enemy
 {
@@ -10,7 +12,11 @@ public class MidBoss : Enemy
         {
             isAlive = false;
             StopAllCoroutines();
-            GameObject.FindWithTag(Tags.Joystick).SetActive(false);
+            var joystick = GameObject.FindWithTag(Tags.Joystick).GetComponent<FloatingJoystick>();
+            joystick.gameObject.SetActive(false);
+            PointerEventData eventData = new PointerEventData(EventSystem.current);
+            joystick.OnPointerUp(eventData);
+
             Time.timeScale = 0f;
             var uiController = GameObject.FindWithTag(Tags.UiController).GetComponent<UiController>();
             uiController.item.SetActive(true);

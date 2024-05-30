@@ -16,7 +16,6 @@ public class OptionController : MonoBehaviour
     public GameObject[] RenderTextureWeapons;
     private OptionTable optionTable;
     private PlayerStats playerStats;
-    private bool isNotFirst = false;
 
     private void OnEnable()
     {
@@ -30,7 +29,6 @@ public class OptionController : MonoBehaviour
         }
 
         ResetOptions(playerStats.level);
-        isNotFirst = true;
     }
 
     public void ResetOptions(int grade) // Grade 喊肺 可记 积己
@@ -38,7 +36,6 @@ public class OptionController : MonoBehaviour
         List<OptionData> gradedOptions = (from option in optionTable.GetAllData
                                           where option.GRADE == grade
                                           select option).ToList();
-
 
         List<int> selectedId = new List<int>();
 

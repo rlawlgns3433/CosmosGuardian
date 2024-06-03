@@ -44,7 +44,6 @@ public class UiCharacterSelect : MonoBehaviour
         }
 
         ParamManager.selectedWeaponIndex = selectedWeaponIndex;
-        ParamManager.selectedCharacterIndex = selectedCharacterIndex;
     }
 
     private void Start()

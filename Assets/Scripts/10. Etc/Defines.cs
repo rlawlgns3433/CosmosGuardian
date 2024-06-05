@@ -124,6 +124,18 @@ public static class CharacterColumn
 
 public static class WeaponColumn
 {
+    public enum ProjectileType
+    {
+        Acid = 2,
+        Torpedo = 3,
+        Fire = 7,
+        Thunder = 9,
+        Bullet = 11,
+        Blue = 12,
+        Arrow = 15
+    }
+
+
     public enum Stat
     {
         DAMAGE,

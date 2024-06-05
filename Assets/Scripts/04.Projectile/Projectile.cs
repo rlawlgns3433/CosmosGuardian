@@ -22,6 +22,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] protected ParticleSystem projectilePS;
     [SerializeField] protected bool notDestroy = false;
 
+    private WeaponColumn.ProjectileType type;
     private Coroutine returnCoroutine = null;
     private PlayerShooter playerShooter;
     private PlayerHealth playerHealth;
@@ -99,6 +100,8 @@ public class Projectile : MonoBehaviour
         {
             playerHealth.enabled = false;
         }
+
+        type = (WeaponColumn.ProjectileType)(playerShooter.currentProjectileIndex + 1);
     }
 
     private void OnEnable()
@@ -165,7 +168,7 @@ public class Projectile : MonoBehaviour
     private void DeactivateProjectile()
     {
         gameObject.SetActive(false);
-        playerShooter.ReturnProjectile(gameObject);
+        playerShooter.ReturnProjectile(type, gameObject);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -312,6 +315,6 @@ public class Projectile : MonoBehaviour
     {
         yield return new WaitForSeconds(t);
         gameObject.SetActive(false);
-        playerShooter.ReturnProjectile(gameObject);
+        playerShooter.ReturnProjectile(type, gameObject);
     }
 }

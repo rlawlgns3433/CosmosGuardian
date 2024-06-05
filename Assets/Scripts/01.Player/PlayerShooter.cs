@@ -3,8 +3,10 @@ using UnityEngine;
 
 public class PlayerShooter : MonoBehaviour
 {
-    public List<GameObject> usingProjectiles = new List<GameObject>();
-    public List<GameObject> unusingProjectiles = new List<GameObject>();
+    public WeaponColumn.ProjectileType[] types;
+
+    public Dictionary<WeaponColumn.ProjectileType, List<GameObject>> usingProjectiles = new Dictionary<WeaponColumn.ProjectileType, List<GameObject>>();
+    public Dictionary<WeaponColumn.ProjectileType, List<GameObject>> unusingProjectiles = new Dictionary<WeaponColumn.ProjectileType, List<GameObject>>();
     public List<GameObject> projectilePrefabs = new List<GameObject>();
 
     public GameObject muzzle;
@@ -26,10 +28,31 @@ public class PlayerShooter : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        types = new WeaponColumn.ProjectileType[]
+        {
+            WeaponColumn.ProjectileType.Acid,
+            WeaponColumn.ProjectileType.Torpedo,
+            WeaponColumn.ProjectileType.Fire,
+            WeaponColumn.ProjectileType.Thunder,
+            WeaponColumn.ProjectileType.Bullet,
+            WeaponColumn.ProjectileType.Blue,
+            WeaponColumn.ProjectileType.Arrow
+        };
+
+        foreach (var type in types)
+        {
+            usingProjectiles[type] = new List<GameObject>();
+            unusingProjectiles[type] = new List<GameObject>();
+        }
+    }
+
     private void Start()
     {
         currentProjectileIndex = weapon.weaponData.PROJECTILE_ID - 1;
     }
+
 
     void FixedUpdate()
     {
@@ -39,6 +62,7 @@ public class PlayerShooter : MonoBehaviour
             lastFireTime = Time.time;
         }
     }
+
 
     void Fire()
     {
@@ -93,10 +117,11 @@ public class PlayerShooter : MonoBehaviour
             Vector3 projectileDirection = rotation * muzzle.transform.forward;
 
             GameObject projectile;
-            if (unusingProjectiles.Count > 0)
+            WeaponColumn.ProjectileType type = (WeaponColumn.ProjectileType)(currentProjectileIndex + 1);
+            if (unusingProjectiles[type].Count > 0)
             {
-                projectile = unusingProjectiles[0];
-                unusingProjectiles.RemoveAt(0);
+                projectile = unusingProjectiles[type][0];
+                unusingProjectiles[type].RemoveAt(0);
             }
             else
             {
@@ -108,13 +133,13 @@ public class PlayerShooter : MonoBehaviour
             projectile.SetActive(true);
             projectile.GetComponent<Rigidbody>().velocity = projectileDirection * speed;
 
-            usingProjectiles.Add(projectile);
+            usingProjectiles[type].Add(projectile);
         }
     }
 
-    public void ReturnProjectile(GameObject projectile)
+    public void ReturnProjectile(WeaponColumn.ProjectileType type, GameObject projectile)
     {
-        unusingProjectiles.Add(projectile);
-        usingProjectiles.Remove(projectile);
+        unusingProjectiles[type].Add(projectile);
+        usingProjectiles[type].Remove(projectile);
     }
 }

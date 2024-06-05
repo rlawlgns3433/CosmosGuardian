@@ -1,32 +1,38 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ParamManager : MonoBehaviour
+public static class ParamManager
 {
     public static SaveDataV1 saveData;
     public static RecordData currentRecord = new RecordData();
-    public static int selectedCharacterIndex = 0;
-    public static int selectedWeaponIndex = 0;
-    public static int playerScore = 0;
     public static SceneIds SceneToLoad = SceneIds.None;
+    public static int selectedWeaponIndex = 11; // 시작 무기
+    private static int selectedCharacterIndex = -1;
+    public static int SelectedCharacterIndex
+    { 
+        get
+        {
+            if(selectedCharacterIndex == -1)
+            {
+                selectedCharacterIndex = PlayerPrefs.GetInt("SelectedCharacterIndex", 0) % 100;
+            }
+
+            return selectedCharacterIndex;
+        }
+        set
+        {
+            selectedCharacterIndex = value;
+        }
+
+    }
+
     private static bool isCameraShaking = true;
 
     public static bool IsCameraShaking
     {
         get 
         {
-            if(saveData == null)
-            {
-                saveData = SaveLoadSystem.Load() as SaveDataV1;
-                if (saveData == null)
-                {
-                    saveData = new SaveDataV1();
-                    saveData.playerOption.bgmValue = bgmValue;
-                    saveData.playerOption.sfxValue = sfxValue;
-                    saveData.playerOption.isCameraShake = IsCameraShaking;
-                    SaveLoadSystem.Save(saveData);
-                }
-            }
+            GenerateSaveData();
             return saveData.playerOption.isCameraShake; 
         }
         set
@@ -40,18 +46,7 @@ public class ParamManager : MonoBehaviour
     {
         get 
         {
-            if (saveData == null)
-            {
-                saveData = SaveLoadSystem.Load() as SaveDataV1;
-                if(saveData == null)
-                {
-                    saveData = new SaveDataV1();
-                    saveData.playerOption.bgmValue = bgmValue;
-                    saveData.playerOption.sfxValue = sfxValue;
-                    saveData.playerOption.isCameraShake = IsCameraShaking;
-                    SaveLoadSystem.Save(saveData);
-                }
-            }
+            GenerateSaveData();
             return saveData.playerOption.bgmValue; 
         }
         set
@@ -65,18 +60,7 @@ public class ParamManager : MonoBehaviour
     {
         get 
         {
-            if (saveData == null)
-            {
-                saveData = SaveLoadSystem.Load() as SaveDataV1;
-                if (saveData == null)
-                {
-                    saveData = new SaveDataV1();
-                    saveData.playerOption.bgmValue = bgmValue;
-                    saveData.playerOption.sfxValue = sfxValue;
-                    saveData.playerOption.isCameraShake = IsCameraShaking;
-                    SaveLoadSystem.Save(saveData);
-                }
-            }
+            GenerateSaveData();
             return saveData.playerOption.sfxValue; 
         }
         set
@@ -92,20 +76,11 @@ public class ParamManager : MonoBehaviour
             return y.score.CompareTo(x.score);
         };
 
-    private void Awake()
-    {
-        selectedCharacterIndex = PlayerPrefs.GetInt("SelectedCharacterIndex", 0) % 100;
-        currentRecord.score = -1;
-        DontDestroyOnLoad(gameObject);
-    }
 
     public static void SaveCurrentRecord(RecordData recordData)
     {
-        saveData = SaveLoadSystem.Load() as SaveDataV1;
-        if (saveData == null)
-        {
-            saveData = new SaveDataV1();
-        }
+        GenerateSaveData();
+
         currentRecord = recordData;
         saveData.records.Add(currentRecord);
         saveData.records.Sort(comparison);
@@ -129,5 +104,21 @@ public class ParamManager : MonoBehaviour
     {
         SceneToLoad = sceneName;
         SceneManager.LoadScene((int)SceneIds.Loading);
+    }
+
+    public static void GenerateSaveData()
+    {
+        if (saveData == null)
+        {
+            saveData = SaveLoadSystem.Load() as SaveDataV1;
+            if (saveData == null)
+            {
+                saveData = new SaveDataV1();
+                saveData.playerOption.bgmValue = bgmValue;
+                saveData.playerOption.sfxValue = sfxValue;
+                saveData.playerOption.isCameraShake = IsCameraShaking;
+                SaveLoadSystem.Save(saveData);
+            }
+        }
     }
 }

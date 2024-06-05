@@ -172,7 +172,7 @@ public class GameManager : Singleton<GameManager>
     private void OnApplicationQuit()
     {
 #if UNITY_EDITOR
-        PlayerPrefs.SetInt("SelectedCharacterIndex", ParamManager.selectedCharacterIndex);
+        PlayerPrefs.SetInt("SelectedCharacterIndex", ParamManager.SelectedCharacterIndex);
 
         EditorApplication.ExitPlaymode();
 #else

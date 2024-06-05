@@ -35,9 +35,9 @@ public class RecordData
 
     public RecordData()
     {
-        characterDataId = default;
-        weaponDataId = default;
-        score = default;
+        characterDataId = 0;
+        weaponDataId = 0;
+        score = -1;
     }
     public RecordData(int characterDataId, int weaponDataId, int score)
     {
@@ -49,11 +49,13 @@ public class RecordData
 
 public class SaveDataV1 : SaveData
 {
-    public List<RecordData> records = new List<RecordData>();
-    public PlayerOption playerOption = new PlayerOption();
+    public List<RecordData> records;
+    public PlayerOption playerOption;
 
     public SaveDataV1()
     {
+        records = new List<RecordData>();
+        playerOption = new PlayerOption();
         Version = 1;
     }
     public override SaveData VersionUp()

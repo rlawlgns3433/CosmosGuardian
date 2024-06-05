@@ -11,7 +11,6 @@ public class UiController : MonoBehaviour
     public GameObject item;
     public GameObject stat;
     public GameObject gameover;
-    public TextMeshProUGUI textStats;
     public TextMeshProUGUI[] textStatNamesInPause;
     public TextMeshProUGUI[] textStatInPause;
     public TextMeshProUGUI textItemSelectStats;

@@ -1,14 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class Boss : Enemy
 {
     public static bool IsBossDead = false;
-    private readonly string attack1 = "Attack1";
-    private readonly string attack2 = "Attack2";
-    private readonly string attack3 = "Attack3";
+    private int attack1 = Animator.StringToHash("Attack1");
+    private int attack2 = Animator.StringToHash("Attack2");
+    private int attack3 = Animator.StringToHash("Attack3");
 
     private List<GameObject> projectiles = new List<GameObject>();
 
@@ -88,18 +87,18 @@ public class Boss : Enemy
 
         if(enemyState == EnemyState.Idle)
         {
-            animator.SetBool(Animator.StringToHash(attack1), false);
-            animator.SetBool(Animator.StringToHash(attack2), false);
-            animator.SetBool(Animator.StringToHash(attack3), false);
+            animator.SetBool(attack1, false);
+            animator.SetBool(attack2, false);
+            animator.SetBool(attack3, false);
         }
     }
 
     public IEnumerator ShotThreeAngle()
     {
         enemyState = EnemyState.Attack1;
-        animator.SetBool(Animator.StringToHash(attack1), true);
-        animator.SetBool(Animator.StringToHash(attack2), false);
-        animator.SetBool(Animator.StringToHash(attack3), false);
+        animator.SetBool(attack1, true);
+        animator.SetBool(attack2, false);
+        animator.SetBool(attack3, false);
 
         int shotCount = 0;
         while (shotCount++ < 3)

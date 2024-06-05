@@ -42,8 +42,6 @@ public class UiCharacterSelect : MonoBehaviour
         {
             statStringName[i] = new string(stringTable.Get(i + "Name"));
         }
-
-        ParamManager.selectedWeaponIndex = selectedWeaponIndex;
     }
 
     private void Start()
@@ -66,14 +64,14 @@ public class UiCharacterSelect : MonoBehaviour
         standardStats[CharacterColumn.Stat.PROJECTILE_SPEED] = standardCharacterData.PROJECTILE_SPEED * 100;
         standardStats[CharacterColumn.Stat.PROJECTILE_AMOUNT] = standardCharacterData.PROJECTILE_AMOUNT * 100;
 
-        UpdateCharacter(ParamManager.selectedCharacterIndex);
+        UpdateCharacter(ParamManager.SelectedCharacterIndex);
         UpdateWeapon(ParamManager.selectedWeaponIndex);
     }
 
     public void UpdateCharacter(int characterIndex)
     {
         selectedCharacterIndex = characterIndex;
-        ParamManager.selectedCharacterIndex = selectedCharacterIndex;
+        ParamManager.SelectedCharacterIndex = selectedCharacterIndex;
 
         for (int i = 0; i < characterBodys.Length; ++i)
         {

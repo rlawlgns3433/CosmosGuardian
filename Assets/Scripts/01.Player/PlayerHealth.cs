@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour, IDamageable
 {
+    public int die = Animator.StringToHash("Die");
     public CameraShake cameraShake;
     public TextMeshProUGUI textHealth;
     public PlayerStats playerStats;
@@ -43,7 +44,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     {
         isAlive = false;
         textHealth.gameObject.SetActive(false);
-        animator.SetTrigger(Animator.StringToHash("Die"));
+        animator.SetTrigger(die);
 
         foreach(var collider in colliders)
         {
@@ -80,5 +81,4 @@ public class PlayerHealth : MonoBehaviour, IDamageable
             enemy.OnDamage(Mathf.Min(playerHp, enemyHp));
         }
     }
-
 }

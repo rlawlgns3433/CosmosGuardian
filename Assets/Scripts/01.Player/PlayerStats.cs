@@ -100,11 +100,6 @@ public class PlayerStats : MonoBehaviour
                 break;
         }
 
-        if (stat == OptionColumn.Stat.HP)
-        {
-            playerHealth.UpdateHealthUI();
-        }
-
         if (stopEffectCoroutine != null)
         {
             StopCoroutine(stopEffectCoroutine);
@@ -118,21 +113,14 @@ public class PlayerStats : MonoBehaviour
         if (stat == OptionColumn.Stat.HP)
         {
             stats[(CharacterColumn.Stat)stat] += stats[(CharacterColumn.Stat)stat] * (value / 100.0f);
+            playerHealth.UpdateHealthUI();
         }
         else
         {
             stats[(CharacterColumn.Stat)stat] += initialStats[(CharacterColumn.Stat)stat] * (value / 100.0f);
         }
 
-        if (stat == OptionColumn.Stat.ARMOR)
-        {
-            stats[(CharacterColumn.Stat)stat] = Mathf.Min(stats[(CharacterColumn.Stat)stat], 1.9f);
-        }
-
-        if (stats[(CharacterColumn.Stat)stat] < 0)
-        {
-            stats[(CharacterColumn.Stat)stat] = 0;
-        }
+        ConstraintCharacterAbility(stat);
     }
 
     private void ApplyFixedStat(OptionColumn.Stat stat, float value)
@@ -146,21 +134,14 @@ public class PlayerStats : MonoBehaviour
         {
             playerShooter.weapon.stats[(WeaponColumn.Stat)stat] += value;
             playerWeaponDatas.Add(new PlayerWeaponData { playerStat = stat, playerValue = value });
-
-            if (playerShooter.weapon.stats[(WeaponColumn.Stat)stat] < 0)
-            {
-                playerShooter.weapon.stats[(WeaponColumn.Stat)stat] = 0;
-            }
+            ConstraintWeaponAbility(stat);
         }
     }
 
     private void ApplyChangeWeaponData(OptionColumn.Stat stat, float value)
     {
         playerShooter.weapon.stats[(WeaponColumn.Stat)stat] += value;
-        if (playerShooter.weapon.stats[(WeaponColumn.Stat)stat] < 0)
-        {
-            playerShooter.weapon.stats[(WeaponColumn.Stat)stat] = 0;
-        }
+        ConstraintWeaponAbility(stat);
     }
 
     private void ActivateOptionEffect()
@@ -238,5 +219,26 @@ public class PlayerStats : MonoBehaviour
             particle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
         }
         getOptionEffect.SetActive(false);
+    }
+
+    private void ConstraintCharacterAbility(OptionColumn.Stat stat)
+    {
+        if (stat == OptionColumn.Stat.ARMOR)
+        {
+            stats[(CharacterColumn.Stat)stat] = Mathf.Min(stats[(CharacterColumn.Stat)stat], 1.9f);
+        }
+
+        if (stats[(CharacterColumn.Stat)stat] < 0)
+        {
+            stats[(CharacterColumn.Stat)stat] = 0;
+        }
+    }
+
+    private void ConstraintWeaponAbility(OptionColumn.Stat stat)
+    {
+        if (playerShooter.weapon.stats[(WeaponColumn.Stat)stat] < 0)
+        {
+            playerShooter.weapon.stats[(WeaponColumn.Stat)stat] = 0;
+        }
     }
 }

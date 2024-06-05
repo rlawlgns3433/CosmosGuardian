@@ -13,7 +13,7 @@ public class PrefabSelector : MonoBehaviour
         {
             if (selectedCharacterIndex == -1)
             {
-                selectedCharacterIndex = ParamManager.selectedCharacterIndex;
+                selectedCharacterIndex = ParamManager.SelectedCharacterIndex;
             }
             return selectedCharacterIndex;
         }

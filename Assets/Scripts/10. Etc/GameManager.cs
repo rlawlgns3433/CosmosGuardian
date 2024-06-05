@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
+    private int victory = Animator.StringToHash("Victory");
+
     public List<GameObject> platforms = new List<GameObject>();
     public List<GameObject> enemies = new List<GameObject>();
     public EnemyTable enemyTable;
@@ -92,7 +94,7 @@ public class GameManager : Singleton<GameManager>
                 {
                     if (enemy != null && enemy.gameObject.activeInHierarchy)
                     {
-                        enemy.animator.SetTrigger(Animator.StringToHash("Victory"));
+                        enemy.animator.SetTrigger(victory);
                     }
                 }
             }
@@ -101,7 +103,6 @@ public class GameManager : Singleton<GameManager>
         playerStats.stats[CharacterColumn.Stat.MOVE_SPEED_H] = 0;
         playerStats.stats[CharacterColumn.Stat.MOVE_SPEED_V] = 0;
         playerStats.gameObject.GetComponent<PlayerShooter>().enabled = false;
-        playerStats.gameObject.GetComponent<PlayerInput>().enabled = false;
 
         Collider[] colliders = playerStats.gameObject.GetComponents<Collider>();
 

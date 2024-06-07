@@ -34,10 +34,12 @@ public class PlayerShooter : MonoBehaviour
         {
             WeaponColumn.ProjectileType.Acid,
             WeaponColumn.ProjectileType.Torpedo,
+            WeaponColumn.ProjectileType.Blackhole,
             WeaponColumn.ProjectileType.Fire,
             WeaponColumn.ProjectileType.Thunder,
             WeaponColumn.ProjectileType.Bullet,
             WeaponColumn.ProjectileType.Blue,
+            WeaponColumn.ProjectileType.Huricara,
             WeaponColumn.ProjectileType.Arrow
         };
 

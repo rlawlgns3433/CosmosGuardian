@@ -128,10 +128,12 @@ public static class WeaponColumn
     {
         Acid = 2,
         Torpedo = 3,
+        Blackhole = 6,
         Fire = 7,
         Thunder = 9,
         Bullet = 11,
         Blue = 12,
+        Huricara = 14,
         Arrow = 15
     }
 

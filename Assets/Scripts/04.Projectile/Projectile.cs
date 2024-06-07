@@ -28,6 +28,8 @@ public class Projectile : MonoBehaviour
     private PlayerHealth playerHealth;
     private float rand;
     private Collider[] splashDamageColliders = new Collider[10];
+    private int playerWeaponDataCount = 0;
+    private int weaponIndex = -1;
     public LayerMask layer;
 
     // =======Range
@@ -102,12 +104,24 @@ public class Projectile : MonoBehaviour
         }
 
         type = (WeaponColumn.ProjectileType)(playerShooter.currentProjectileIndex + 1);
+        InitializeProjectileStats();
+        playerWeaponDataCount = playerShooter.playerStats.playerWeaponDatas.Count;
+        weaponIndex = playerShooter.weapon.weaponData.PREFAB_ID;
     }
 
     private void OnEnable()
     {
         ResetProjectile();
-        InitializeProjectileStats();
+
+        // 스텟 획득 후
+        if(playerWeaponDataCount < playerShooter.playerStats.playerWeaponDatas.Count)
+        {
+            InitializeProjectileStats();
+            playerWeaponDataCount = playerShooter.playerStats.playerWeaponDatas.Count;
+        }
+
+        // 무기 변경 후
+        // 코드 작성 필요
 
         if (flash != null) flash.transform.parent = null;
         if (lightSourse != null) lightSourse.enabled = true;

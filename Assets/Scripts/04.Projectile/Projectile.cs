@@ -55,7 +55,7 @@ public class Projectile : MonoBehaviour
     // =======Damage
     private float damageScale;
     private float weaponDamage;
-    public float Damage => (damageScale * weaponDamage) / (playerShooter.playerStats.stats[CharacterColumn.Stat.PROJECTILE_AMOUNT] * playerShooter.weapon.stats[WeaponColumn.Stat.PROJECTILE_AMOUNT]);
+    public float Damage => (damageScale * weaponDamage) / (playerShooter.playerStats.stats.stat[CharacterColumn.Stat.PROJECTILE_AMOUNT] * playerShooter.weapon.stats[WeaponColumn.Stat.PROJECTILE_AMOUNT]);
 
     // =======HpDrain
     private float hpDrainScale;
@@ -146,23 +146,23 @@ public class Projectile : MonoBehaviour
 
     private void InitializeProjectileStats()
     {
-        rangeScale = playerShooter.playerStats.stats[CharacterColumn.Stat.FIRE_RANGE];
+        rangeScale = playerShooter.playerStats.stats.stat[CharacterColumn.Stat.FIRE_RANGE];
         weaponRange = playerShooter.weapon.stats[WeaponColumn.Stat.FIRE_RANGE];
-        speedScale = playerShooter.playerStats.stats[CharacterColumn.Stat.PROJECTILE_SPEED];
+        speedScale = playerShooter.playerStats.stats.stat[CharacterColumn.Stat.PROJECTILE_SPEED];
         weaponSpeed = playerShooter.weapon.stats[WeaponColumn.Stat.PROJECTILE_SPEED];
-        criticalRateScale = playerShooter.playerStats.stats[CharacterColumn.Stat.CRITICAL];
+        criticalRateScale = playerShooter.playerStats.stats.stat[CharacterColumn.Stat.CRITICAL];
         weaponCriticalRate = playerShooter.weapon.stats[WeaponColumn.Stat.CRITICAL];
-        criticalDamageScale = playerShooter.playerStats.stats[CharacterColumn.Stat.CRITICAL_DAMAGE];
+        criticalDamageScale = playerShooter.playerStats.stats.stat[CharacterColumn.Stat.CRITICAL_DAMAGE];
         weaponCriticalDamage = playerShooter.weapon.stats[WeaponColumn.Stat.CRITICAL_DAMAGE];
-        damageScale = playerShooter.playerStats.stats[CharacterColumn.Stat.DAMAGE];
+        damageScale = playerShooter.playerStats.stats.stat[CharacterColumn.Stat.DAMAGE];
         weaponDamage = playerShooter.weapon.stats[WeaponColumn.Stat.DAMAGE];
-        hpDrainScale = playerShooter.playerStats.stats[CharacterColumn.Stat.HP_DRAIN];
+        hpDrainScale = playerShooter.playerStats.stats.stat[CharacterColumn.Stat.HP_DRAIN];
         weaponHpDrain = playerShooter.weapon.stats[WeaponColumn.Stat.HP_DRAIN];
-        splashDamageScale = playerShooter.playerStats.stats[CharacterColumn.Stat.SPLASH_DAMAGE];
+        splashDamageScale = playerShooter.playerStats.stats.stat[CharacterColumn.Stat.SPLASH_DAMAGE];
         weaponSplashDamage = playerShooter.weapon.stats[WeaponColumn.Stat.SPLASH_DAMAGE];
-        splashDamageRangeScale = playerShooter.playerStats.stats[CharacterColumn.Stat.SPLASH_RANGE];
+        splashDamageRangeScale = playerShooter.playerStats.stats.stat[CharacterColumn.Stat.SPLASH_RANGE];
         weaponSplashDamageRange = playerShooter.weapon.stats[WeaponColumn.Stat.SPLASH_RANGE];
-        penetrateScale = playerShooter.playerStats.stats[CharacterColumn.Stat.PENETRATE];
+        penetrateScale = playerShooter.playerStats.stats.stat[CharacterColumn.Stat.PENETRATE];
         weaponPenetrate = playerShooter.weapon.stats[WeaponColumn.Stat.PENETRATE];
     }
 
@@ -262,7 +262,7 @@ public class Projectile : MonoBehaviour
         if (HpDrain > 0)
         {
             DynamicTextManager.CreateText(playerHealth.transform.position + Vector3.one * 2, HpDrain.ToString("+#.#;"), DynamicTextManager.healingTextData);
-            playerShooter.playerStats.stats[CharacterColumn.Stat.HP] += HpDrain;
+            playerShooter.playerStats.stats.stat[CharacterColumn.Stat.HP] += HpDrain;
             playerHealth.UpdateHealthUI();
         }
     }

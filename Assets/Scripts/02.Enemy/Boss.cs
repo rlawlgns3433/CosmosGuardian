@@ -52,7 +52,7 @@ public class Boss : Enemy
 
             StopAllCoroutines();
             cameraMove.IsTOP = true;
-            target.playerStats.stats[CharacterColumn.Stat.MOVE_SPEED_V] = savedVerticalSpeed;
+            target.playerStats.stats.stat[CharacterColumn.Stat.MOVE_SPEED_V] = savedVerticalSpeed;
 
             itemController = GameObject.FindWithTag(Tags.ItemController).GetComponent<ItemController>();
             itemController.UpdateItemData(enemyData.TYPE);
@@ -69,7 +69,7 @@ public class Boss : Enemy
             cameraMove.enabled = false;
             return;
         }
-        savedVerticalSpeed = target.playerStats.stats[CharacterColumn.Stat.MOVE_SPEED_V];
+        savedVerticalSpeed = target.playerStats.stats.stat[CharacterColumn.Stat.MOVE_SPEED_V];
         StartCoroutine(AttackPattern());
     }
 
@@ -80,8 +80,8 @@ public class Boss : Enemy
             if (isAlive && cameraMove.IsTOP)
             {
                 cameraMove.IsTOP = !cameraMove.IsTOP;
-                savedVerticalSpeed = target.playerStats.stats[CharacterColumn.Stat.MOVE_SPEED_V];
-                target.playerStats.stats[CharacterColumn.Stat.MOVE_SPEED_V] = 0f;
+                savedVerticalSpeed = target.playerStats.stats.stat[CharacterColumn.Stat.MOVE_SPEED_V];
+                target.playerStats.stats.stat[CharacterColumn.Stat.MOVE_SPEED_V] = 0f;
             }
         }
 

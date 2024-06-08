@@ -87,7 +87,7 @@ public class Enemy : MonoBehaviour, IDamageable
         onDeath += () =>
         {
             isAlive = false;
-            if (target.playerStats.stats[CharacterColumn.Stat.HP] <= 0) return;
+            if (target.playerStats.stats.stat[CharacterColumn.Stat.HP] <= 0) return;
             if (target.camShakeCoroutine != null)
             {
                 target.StopCoroutine(target.camShakeCoroutine);

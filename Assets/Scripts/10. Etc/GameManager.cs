@@ -100,8 +100,8 @@ public class GameManager : Singleton<GameManager>
             }
         }
 
-        playerStats.stats[CharacterColumn.Stat.MOVE_SPEED_H] = 0;
-        playerStats.stats[CharacterColumn.Stat.MOVE_SPEED_V] = 0;
+        playerStats.stats.stat[CharacterColumn.Stat.MOVE_SPEED_H] = 0;
+        playerStats.stats.stat[CharacterColumn.Stat.MOVE_SPEED_V] = 0;
         playerStats.gameObject.GetComponent<PlayerShooter>().enabled = false;
 
         Collider[] colliders = playerStats.gameObject.GetComponents<Collider>();

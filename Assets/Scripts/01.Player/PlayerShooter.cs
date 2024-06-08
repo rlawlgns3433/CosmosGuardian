@@ -24,7 +24,7 @@ public class PlayerShooter : MonoBehaviour
     {
         get
         {
-            return 1 / (((playerStats.stats[CharacterColumn.Stat.FIRE_RATE]) * weapon.stats[WeaponColumn.Stat.FIRE_RATE]) / oneMinute);
+            return 1 / (((playerStats.stats.stat[CharacterColumn.Stat.FIRE_RATE]) * weapon.stats[WeaponColumn.Stat.FIRE_RATE]) / oneMinute);
         }
     }
 
@@ -68,7 +68,7 @@ public class PlayerShooter : MonoBehaviour
 
     void Fire()
     {
-        int projectileCount = Mathf.RoundToInt(weapon.stats[WeaponColumn.Stat.PROJECTILE_AMOUNT] * playerStats.stats[CharacterColumn.Stat.PROJECTILE_AMOUNT]);
+        int projectileCount = Mathf.RoundToInt(weapon.stats[WeaponColumn.Stat.PROJECTILE_AMOUNT] * playerStats.stats.stat[CharacterColumn.Stat.PROJECTILE_AMOUNT]);
 
         float angleStep;
 

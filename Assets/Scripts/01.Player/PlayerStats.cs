@@ -36,9 +36,9 @@ public class PlayerStats : MonoBehaviour
     public float magnification = 1.8f;
 
     private CharacterTable characterTable;
-    public Dictionary<CharacterColumn.Stat, float> standardStats = new Dictionary<CharacterColumn.Stat, float>();
-    public Dictionary<CharacterColumn.Stat, float> initialStats = new Dictionary<CharacterColumn.Stat, float>();
-    public Dictionary<CharacterColumn.Stat, float> stats = new Dictionary<CharacterColumn.Stat, float>();
+    public CharacterStat standardStats = new CharacterStat();
+    public CharacterStat initialStats = new CharacterStat();
+    public CharacterStat stats = new CharacterStat();
     public List<ItemData> items = new List<ItemData>();
     public List<PlayerWeaponData> playerWeaponDatas = new List<PlayerWeaponData>();
     public PrefabSelector prefabSelector = null;
@@ -112,12 +112,12 @@ public class PlayerStats : MonoBehaviour
     {
         if (stat == OptionColumn.Stat.HP)
         {
-            stats[(CharacterColumn.Stat)stat] += stats[(CharacterColumn.Stat)stat] * (value / 100.0f);
+            stats.stat[(CharacterColumn.Stat)stat] += stats.stat[(CharacterColumn.Stat)stat] * (value / 100.0f);
             playerHealth.UpdateHealthUI();
         }
         else
         {
-            stats[(CharacterColumn.Stat)stat] += initialStats[(CharacterColumn.Stat)stat] * (value / 100.0f);
+            stats.stat[(CharacterColumn.Stat)stat] += initialStats.stat[(CharacterColumn.Stat)stat] * (value / 100.0f);
         }
 
         ConstraintCharacterAbility(stat);
@@ -127,7 +127,7 @@ public class PlayerStats : MonoBehaviour
     {
         if (stat == OptionColumn.Stat.HP)
         {
-            stats[(CharacterColumn.Stat)stat] += value;
+            stats.stat[(CharacterColumn.Stat)stat] += value;
             playerHealth.UpdateHealthUI();
         }
         else
@@ -179,8 +179,8 @@ public class PlayerStats : MonoBehaviour
         characterData = characterTable.Get(int.Parse(id));
         standardCharacterData = characterTable.Get(20101);
 
-        InitializeStats(characterData, initialStats, stats);
-        InitializeStats(standardCharacterData, standardStats);
+        InitializeStats(characterData, initialStats.stat, stats.stat);
+        InitializeStats(standardCharacterData, standardStats.stat);
     }
 
     private void InitializeStats(CharacterData data, Dictionary<CharacterColumn.Stat, float> targetDict)
@@ -225,12 +225,12 @@ public class PlayerStats : MonoBehaviour
     {
         if (stat == OptionColumn.Stat.ARMOR)
         {
-            stats[(CharacterColumn.Stat)stat] = Mathf.Min(stats[(CharacterColumn.Stat)stat], 1.9f);
+            stats.stat[(CharacterColumn.Stat)stat] = Mathf.Min(stats.stat[(CharacterColumn.Stat)stat], 1.9f);
         }
 
-        if (stats[(CharacterColumn.Stat)stat] < 0)
+        if (stats.stat[(CharacterColumn.Stat)stat] < 0)
         {
-            stats[(CharacterColumn.Stat)stat] = 0;
+            stats.stat[(CharacterColumn.Stat)stat] = 0;
         }
     }
 

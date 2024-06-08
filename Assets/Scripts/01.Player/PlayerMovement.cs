@@ -14,8 +14,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        movement = forward * playerStats.stats[CharacterColumn.Stat.MOVE_SPEED_V] * verticalCoefficient + 
-                   Vector3.right * floatingJoystick.Horizontal * playerStats.stats[CharacterColumn.Stat.MOVE_SPEED_H] * horizontalCoefficient;
+        movement = forward * playerStats.stats.stat[CharacterColumn.Stat.MOVE_SPEED_V] * verticalCoefficient + 
+                   Vector3.right * floatingJoystick.Horizontal * playerStats.stats.stat[CharacterColumn.Stat.MOVE_SPEED_H] * horizontalCoefficient;
         
         movement *= Time.deltaTime;
 

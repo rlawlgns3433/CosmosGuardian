@@ -4,8 +4,10 @@ using UnityEngine.SceneManagement;
 
 public class MainUiManager : MonoBehaviour
 {
+    public readonly string nameFormat = "{0}Name";
     public UiCharacterSelect uiCharacterSelect;
-    WeaponTable weaponTable;
+    private WeaponTable weaponTable;
+
     public void EnterGame()
     {
         weaponTable = DataTableMgr.Get<WeaponTable>(DataTableIds.Weapon);

@@ -2,42 +2,14 @@ using System;
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
 using GooglePlayGames.BasicApi.SavedGame;
-using TMPro;
 using UnityEngine;
 
-public class GPGSMgr : MonoBehaviour
+public static class GPGSMgr
 {
-    public TextMeshProUGUI log;
+    private static string savedGameFilename = "save.bin";
+    private static string saveData = "세이브 로드 확인";
 
-    private string savedGameFilename = "save.bin";
-    private string saveData = "세이브 로드 확인";
-
-    void Awake()
-    {
-        PlayGamesPlatform.DebugLogEnabled = true;
-        PlayGamesPlatform.Activate();
-        SignIn();
-    }
-
-    public void SignIn()
-    {
-        PlayGamesPlatform.Instance.Authenticate(OnAuthentication);
-    }
-
-    void OnAuthentication(SignInStatus result)
-    {
-        if (result == SignInStatus.Success)
-        {
-            log.text = "Signed in successfully.";
-            // Signed in successfully, we can now proceed with saving or loading
-        }
-        else
-        {
-            log.text = "Failed to sign in.";
-        }
-    }
-
-    public void ShowSelectUI()
+    public static void ShowSelectUI()
     {
         uint maxNumToDisplay = 5;
         bool allowCreateNew = false;
@@ -51,14 +23,12 @@ public class GPGSMgr : MonoBehaviour
             OnSavedGameSelected);
     }
 
-    public void OnSavedGameSelected(SelectUIStatus status, ISavedGameMetadata game)
+    public static void OnSavedGameSelected(SelectUIStatus status, ISavedGameMetadata game)
     {
         if (status == SelectUIStatus.SavedGameSelected)
         {
             // handle selected game save
             OpenSavedGame(game.Filename, OnSavedGameOpenedForLoad);
-
-
         }
         else
         {
@@ -66,12 +36,12 @@ public class GPGSMgr : MonoBehaviour
         }
     }
 
-    public void SaveGame()
+    public static void SaveGame()
     {
         OpenSavedGame(savedGameFilename, OnSavedGameOpenedForSave);
     }
 
-    void OnSavedGameOpenedForSave(SavedGameRequestStatus status, ISavedGameMetadata game)
+    static void OnSavedGameOpenedForSave(SavedGameRequestStatus status, ISavedGameMetadata game)
     {
         if (status == SavedGameRequestStatus.Success)
         {
@@ -84,28 +54,28 @@ public class GPGSMgr : MonoBehaviour
         }
         else
         {
-            log.text = "Failed to open saved game.";
+            //log.text = "Failed to open saved game.";
         }
     }
 
-    void OnSavedGameCommit(SavedGameRequestStatus commitStatus, ISavedGameMetadata updatedGame)
+    static void OnSavedGameCommit(SavedGameRequestStatus commitStatus, ISavedGameMetadata updatedGame)
     {
         if (commitStatus == SavedGameRequestStatus.Success)
         {
-            log.text = "Game saved successfully.";
+            //log.text = "Game saved successfully.";
         }
         else
         {
-            log.text = "Failed to save game.";
+            //log.text = "Failed to save game.";
         }
     }
 
-    public void LoadGame()
+    public static void LoadGame()
     {
         OpenSavedGame(savedGameFilename, OnSavedGameOpenedForLoad);
     }
 
-    void OnSavedGameOpenedForLoad(SavedGameRequestStatus status, ISavedGameMetadata game)
+    static void OnSavedGameOpenedForLoad(SavedGameRequestStatus status, ISavedGameMetadata game)
     {
         if (status == SavedGameRequestStatus.Success)
         {
@@ -113,29 +83,41 @@ public class GPGSMgr : MonoBehaviour
         }
         else
         {
-            log.text = "Failed to open saved game.";
+            //log.text = "Failed to open saved game.";
         }
     }
 
-    void OnSavedGameDataRead(SavedGameRequestStatus readStatus, byte[] data)
+    static void OnSavedGameDataRead(SavedGameRequestStatus readStatus, byte[] data)
     {
         if (readStatus == SavedGameRequestStatus.Success)
         {
             string loadedData = System.Text.Encoding.UTF8.GetString(data);
-            log.text = "Game loaded successfully: " + loadedData;
+            //log.text = "Game loaded successfully: " + loadedData;
         }
         else
         {
-            log.text = "Failed to load game.";
+            //log.text = "Failed to load game.";
         }
     }
 
-    private void OpenSavedGame(string filename, Action<SavedGameRequestStatus, ISavedGameMetadata> callback)
+    private static void OpenSavedGame(string filename, Action<SavedGameRequestStatus, ISavedGameMetadata> callback)
     {
         PlayGamesPlatform.Instance.SavedGame.OpenWithAutomaticConflictResolution(
             filename,
             DataSource.ReadCacheOrNetwork,
             ConflictResolutionStrategy.UseLongestPlaytime,
             callback);
+    }
+
+    public static void ShowLeaderBoard()
+    {
+        Social.ShowLeaderboardUI();
+    }
+
+    public static void ReportScore(int score)
+    {
+        Social.ReportScore(score, "CgkI6v_IzbQWEAIQAw", (bool success) => {
+            // Handle success or failure
+        });
     }
 }

@@ -157,7 +157,7 @@ public class GameManager : Singleton<GameManager>
             record.characterDataId = playerStats.characterData.CHARACTER_ID;
             record.weaponDataId = playerStats.playerShooter.weapon.weaponData.WEAPON_ID;
             record.score = playerStats.exp;
-
+            GPGSMgr.ReportScore(record.score);
             SaveRecord(record);
         }
 

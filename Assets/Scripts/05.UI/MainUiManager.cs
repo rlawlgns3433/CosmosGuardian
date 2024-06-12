@@ -1,13 +1,22 @@
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainUiManager : MonoBehaviour
 {
     public UiCharacterSelect uiCharacterSelect;
+    public Button leaderboardButton;
     WeaponTable weaponTable;
+
+    private void Awake()
+    {
+        leaderboardButton.onClick.AddListener(GPGSMgr.ShowLeaderBoard);
+    }
+
     public void EnterGame()
     {
+        GPGSMgr.ReportTestAchievement(GPGSIds.achievement_8);
         weaponTable = DataTableMgr.Get<WeaponTable>(DataTableIds.Weapon);
         foreach (var weapon in weaponTable.AllItems)
         {

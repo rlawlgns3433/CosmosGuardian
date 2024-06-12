@@ -171,3 +171,15 @@ public enum SceneIds
     Game,
     Loading
 }
+
+public static class Achievements
+{
+    public static int currentIndex = 0;
+    public static int none = 2;
+
+    public static readonly int[] scores = new int[]
+    {
+        10000,
+        20000
+    };
+}

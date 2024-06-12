@@ -3,6 +3,7 @@ using UnityEngine;
 using TMPro;
 using System.Text;
 using System.Collections;
+using UnityEngine.Analytics;
 
 public class PlayerWeaponData
 {
@@ -157,6 +158,11 @@ public class PlayerStats : MonoBehaviour
     {
         exp += score;
         textExp.text = string.Format(scoreFormat, exp);
+
+        if(Achievements.currentIndex != Achievements.none && exp > Achievements.scores[Achievements.currentIndex])
+        {
+            GPGSMgr.ReportAchievement(MyGPGSIds.scoreAchievements[Achievements.currentIndex]);
+        }
 
         if (level >= maxLevel) return;
 

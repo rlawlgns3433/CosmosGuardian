@@ -120,4 +120,20 @@ public static class GPGSMgr
             // Handle success or failure
         });
     }
+
+    public static void ReportAchievement(string achievementId)
+    {
+        Social.ReportProgress(achievementId, 100.0f, (bool success) =>
+        {
+            if(success)
+                ++Achievements.currentIndex;
+        });
+    }
+
+    public static void ReportTestAchievement(string achievementId)
+    {
+        Social.ReportProgress(achievementId, 100.0f, (bool success) =>
+        {
+        });
+    }
 }

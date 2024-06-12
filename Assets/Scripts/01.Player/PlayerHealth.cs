@@ -16,6 +16,8 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     private void Start()
     {
+
+
         textHealth.text = playerStats.stats.stat[CharacterColumn.Stat.HP].ToString();
 
         onDeath += OnDie;

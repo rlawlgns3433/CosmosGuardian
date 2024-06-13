@@ -95,9 +95,7 @@ public static class ParamManager
         }
 
         SaveLoadSystem.Save(saveData);
-        currentRecord.weaponDataId = 0;
-        currentRecord.characterDataId = 0;
-        currentRecord.score = -1;
+        currentRecord = new RecordData();
     }
 
     public static void LoadScene(SceneIds sceneName)

@@ -38,6 +38,8 @@ public class Boss : Enemy
 
         onDeath += () =>
         {
+            GPGSMgr.ReportAchievement(MyGPGSIds.firstKillBossAchievement);
+
             IsBossDead = true;
 
             foreach(var projectile in projectiles)

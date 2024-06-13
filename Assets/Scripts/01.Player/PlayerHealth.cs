@@ -58,6 +58,11 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         if(isAlive)
         {
             textHealth.text = ((int)playerStats.stats.stat[CharacterColumn.Stat.HP]).ToString();
+
+            if(playerStats.stats.stat[CharacterColumn.Stat.HP] >= 10000)
+            {
+                GPGSMgr.ReportAchievement(MyGPGSIds.greatHealthAchievement);
+            }
         }
     }
 

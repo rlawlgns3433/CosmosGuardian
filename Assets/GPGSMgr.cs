@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using GooglePlayGames;
 using GooglePlayGames.BasicApi;
 using GooglePlayGames.BasicApi.SavedGame;
@@ -126,7 +127,12 @@ public static class GPGSMgr
         Social.ReportProgress(achievementId, 100.0f, (bool success) =>
         {
             if(success)
-                ++Achievements.currentIndex;
+            {
+                if(MyGPGSIds.scoreAchievements.Contains(achievementId))
+                {
+                    ++Achievements.currentIndex;
+                }
+            }
         });
     }
 

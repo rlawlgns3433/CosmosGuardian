@@ -159,8 +159,13 @@ public class PlayerStats : MonoBehaviour
         exp += score;
         textExp.text = string.Format(scoreFormat, exp);
 
-        if(Achievements.currentIndex != Achievements.none && exp > Achievements.scores[Achievements.currentIndex])
+        if (Achievements.currentIndex != Achievements.none && exp > Achievements.scores[Achievements.currentIndex])
         {
+            if (Achievements.currentIndex == 0 && playerShooter.weapon.selectedWeaponId == 30111)
+            {
+                GPGSMgr.ReportAchievement(MyGPGSIds.tutorialMasterAchievement);
+            }
+
             GPGSMgr.ReportAchievement(MyGPGSIds.scoreAchievements[Achievements.currentIndex]);
         }
 

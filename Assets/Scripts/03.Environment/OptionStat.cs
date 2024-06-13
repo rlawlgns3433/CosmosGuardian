@@ -64,8 +64,13 @@ public class OptionStat : MonoBehaviour
 
             uiController.UpdatePauseUI();
         }
+        ItemData itemData = GetComponent<ItemStat>().itemData;
+        playerStats.items.Add(itemData);
 
-        playerStats.items.Add(GetComponent<ItemStat>().itemData);
+        if(itemData.GRADE == 3)
+        {
+            GPGSMgr.ReportAchievement(MyGPGSIds.itemCollecterAchievement);
+        }
 
         ClearOptions();
         Time.timeScale = 1f;

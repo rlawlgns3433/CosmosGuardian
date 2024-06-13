@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class MainUiManager : MonoBehaviour
 {
+    public readonly string nameFormat = "{0}Name";
     public UiCharacterSelect uiCharacterSelect;
     public Button leaderboardButton;
     WeaponTable weaponTable;

@@ -107,6 +107,11 @@ public class Platform : MonoBehaviour
         }
         optionController.ResetOptions(playerStats.level);
         playerStats.UpdateStats(OptionColumn.Stat.MOVE_SPEED_V, OptionColumn.Type.Scale, verticalIncrement);
+        if (playerStats.stats.stat[CharacterColumn.Stat.MOVE_SPEED_V] >= 2)
+        {
+            GPGSMgr.ReportAchievement(MyGPGSIds.crazySpeedAchievement);
+        }
+
         isOn = false;
     }
 

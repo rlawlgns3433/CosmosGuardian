@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour, IDamageable
 {
+    public int die = Animator.StringToHash("Die");
     public CameraShake cameraShake;
     public TextMeshProUGUI textHealth;
     public PlayerStats playerStats;
@@ -15,7 +16,9 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
     private void Start()
     {
-        textHealth.text = playerStats.stats[CharacterColumn.Stat.HP].ToString();
+
+
+        textHealth.text = playerStats.stats.stat[CharacterColumn.Stat.HP].ToString();
 
         onDeath += OnDie;
         onDeath += GameManager.Instance.Gameover;
@@ -25,13 +28,13 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     {
         if (!isAlive) return;
 
-        damage = damage * (1 - (playerStats.stats[CharacterColumn.Stat.ARMOR] - 1));
+        damage = damage * (1 - (playerStats.stats.stat[CharacterColumn.Stat.ARMOR] - 1));
 
-        playerStats.stats[CharacterColumn.Stat.HP] -= damage;
+        playerStats.stats.stat[CharacterColumn.Stat.HP] -= damage;
 
-        if (playerStats.stats[CharacterColumn.Stat.HP] <= 0)
+        if (playerStats.stats.stat[CharacterColumn.Stat.HP] <= 0)
         {
-            playerStats.stats[CharacterColumn.Stat.HP] = 0;
+            playerStats.stats.stat[CharacterColumn.Stat.HP] = 0;
             UpdateHealthUI();
             onDeath();
         }
@@ -43,7 +46,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     {
         isAlive = false;
         textHealth.gameObject.SetActive(false);
-        animator.SetTrigger(Animator.StringToHash("Die"));
+        animator.SetTrigger(die);
 
         foreach(var collider in colliders)
         {
@@ -54,7 +57,12 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     {
         if(isAlive)
         {
-            textHealth.text = ((int)playerStats.stats[CharacterColumn.Stat.HP]).ToString();
+            textHealth.text = ((int)playerStats.stats.stat[CharacterColumn.Stat.HP]).ToString();
+
+            if(playerStats.stats.stat[CharacterColumn.Stat.HP] >= 10000)
+            {
+                GPGSMgr.ReportAchievement(MyGPGSIds.greatHealthAchievement);
+            }
         }
     }
 
@@ -74,11 +82,10 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
             var enemy = other.GetComponent<Enemy>();
             float enemyHp = enemy.enemyData.HP;
-            float playerHp = playerStats.stats[CharacterColumn.Stat.HP];
+            float playerHp = playerStats.stats.stat[CharacterColumn.Stat.HP];
 
             OnDamage(enemyHp);
             enemy.OnDamage(Mathf.Min(playerHp, enemyHp));
         }
     }
-
 }

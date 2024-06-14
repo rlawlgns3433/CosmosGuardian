@@ -331,7 +331,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6708319747612093526, guid: 160b2fb2c57f10940847583241621df4, type: 3}
       propertyPath: m_Name
-      value: EnemySpawnTile (2)
+      value: EnemySpawnTile
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -398,7 +398,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6708319747612093526, guid: 160b2fb2c57f10940847583241621df4, type: 3}
       propertyPath: m_Name
-      value: EnemySpawnTile (1)
+      value: EnemySpawnTile
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -423,6 +423,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 717014098975056334}
     m_Modifications:
+    - target: {fileID: 5163372288094269348, guid: 160b2fb2c57f10940847583241621df4, type: 3}
+      propertyPath: enemies.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5163372288094269348, guid: 160b2fb2c57f10940847583241621df4, type: 3}
+      propertyPath: enemies.Array.data[0]
+      value: 
+      objectReference: {fileID: 2705906089778004512, guid: a31a22b275c159e4fa28755b495bad91, type: 3}
+    - target: {fileID: 5163372288094269348, guid: 160b2fb2c57f10940847583241621df4, type: 3}
+      propertyPath: enemies.Array.data[1]
+      value: 
+      objectReference: {fileID: -630123401486560859, guid: acf6fe2f747250343bf9070e941ce57f, type: 3}
     - target: {fileID: 3537504080978281147, guid: d245ab4878590764790cb488bd5f014b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -457,20 +469,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6708319747612093526, guid: d245ab4878590764790cb488bd5f014b, type: 3}
       propertyPath: m_Name
-      value: RowTile (1)
+      value: RowTile
       objectReference: {fileID: 0}
-    - target: {fileID: 5163372288094269348, guid: 160b2fb2c57f10940847583241621df4, type: 3}
-      propertyPath: enemies.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5163372288094269348, guid: 160b2fb2c57f10940847583241621df4, type: 3}
-      propertyPath: enemies.Array.data[0]
-      value: 
-      objectReference: {fileID: 2705906089778004512, guid: a31a22b275c159e4fa28755b495bad91, type: 3}
-    - target: {fileID: 5163372288094269348, guid: 160b2fb2c57f10940847583241621df4, type: 3}
-      propertyPath: enemies.Array.data[1]
-      value: 
-      objectReference: {fileID: -630123401486560859, guid: acf6fe2f747250343bf9070e941ce57f, type: 3}
     m_RemovedComponents:
     - {fileID: 5163372288094269348, guid: 160b2fb2c57f10940847583241621df4, type: 3}
     m_RemovedGameObjects: []
@@ -661,7 +661,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6708319747612093526, guid: d245ab4878590764790cb488bd5f014b, type: 3}
       propertyPath: m_Name
-      value: RowTile (4)
+      value: RowTile
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -723,7 +723,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6708319747612093526, guid: d245ab4878590764790cb488bd5f014b, type: 3}
       propertyPath: m_Name
-      value: RowTile (2)
+      value: RowTile
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -785,7 +785,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6708319747612093526, guid: d245ab4878590764790cb488bd5f014b, type: 3}
       propertyPath: m_Name
-      value: RowTile (3)
+      value: RowTile
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1035,6 +1035,10 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: -1028812091
       objectReference: {fileID: 0}
+    - target: {fileID: 4995587279721865751, guid: 534822b313d3c4145b13cb5b8feab21f, type: 3}
+      propertyPath: m_Name
+      value: OptionTile
+      objectReference: {fileID: 0}
     - target: {fileID: 5705631470634405169, guid: 534822b313d3c4145b13cb5b8feab21f, type: 3}
       propertyPath: m_Layer
       value: 9
@@ -1058,6 +1062,10 @@ PrefabInstance:
     - target: {fileID: 6048410963485160445, guid: 534822b313d3c4145b13cb5b8feab21f, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6071220466574794619, guid: 534822b313d3c4145b13cb5b8feab21f, type: 3}
+      propertyPath: m_Name
+      value: OptionTile
       objectReference: {fileID: 0}
     - target: {fileID: 6132908620140323025, guid: 534822b313d3c4145b13cb5b8feab21f, type: 3}
       propertyPath: bgImg

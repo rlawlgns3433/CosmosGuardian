@@ -35,6 +35,7 @@ public class Enemy : MonoBehaviour, IDamageable
     private WaitForSeconds sec = new WaitForSeconds(0.5f);
     private Coroutine stopEffectCoroutine;
     private WaitForSeconds chaseTimer;
+    private int die = Animator.StringToHash("Die");
     public float originSpeed = 5;
     public float speed = 5;
     public bool isAlive = true;
@@ -86,7 +87,7 @@ public class Enemy : MonoBehaviour, IDamageable
         onDeath += () =>
         {
             isAlive = false;
-            if (target.playerStats.stats[CharacterColumn.Stat.HP] <= 0) return;
+            if (target.playerStats.stats.stat[CharacterColumn.Stat.HP] <= 0) return;
             if (target.camShakeCoroutine != null)
             {
                 target.StopCoroutine(target.camShakeCoroutine);
@@ -146,7 +147,7 @@ public class Enemy : MonoBehaviour, IDamageable
         textHealth.gameObject.SetActive(false);
         sphereCollider.enabled = false;
 
-        animator.SetTrigger(Animator.StringToHash("Die"));
+        animator.SetTrigger(die);
         speed = 0;
         Invoke("LateSetActiveFalse", 1.5f);
     }

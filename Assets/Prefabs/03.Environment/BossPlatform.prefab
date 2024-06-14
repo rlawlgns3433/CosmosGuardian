@@ -411,7 +411,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6708319747612093526, guid: d245ab4878590764790cb488bd5f014b, type: 3}
       propertyPath: m_Name
-      value: RowTile (4)
+      value: RowTile
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -478,7 +478,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6708319747612093526, guid: d245ab4878590764790cb488bd5f014b, type: 3}
       propertyPath: m_Name
-      value: RowTile (1)
+      value: RowTile
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -607,7 +607,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6708319747612093526, guid: 160b2fb2c57f10940847583241621df4, type: 3}
       propertyPath: m_Name
-      value: EnemySpawnTile (1)
+      value: EnemySpawnTile
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -736,7 +736,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6708319747612093526, guid: b7667d5e9d568544180453e8e4f19be0, type: 3}
       propertyPath: m_Name
-      value: BossSpawnTile (1)
+      value: BossSpawnTile
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -798,7 +798,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6708319747612093526, guid: d245ab4878590764790cb488bd5f014b, type: 3}
       propertyPath: m_Name
-      value: RowTile (2)
+      value: RowTile
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -978,6 +978,10 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: -1028812091
       objectReference: {fileID: 0}
+    - target: {fileID: 4995587279721865751, guid: 534822b313d3c4145b13cb5b8feab21f, type: 3}
+      propertyPath: m_Name
+      value: OptionTile
+      objectReference: {fileID: 0}
     - target: {fileID: 5399098897346884996, guid: 534822b313d3c4145b13cb5b8feab21f, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.7071068
@@ -1001,6 +1005,10 @@ PrefabInstance:
     - target: {fileID: 6048410963485160445, guid: 534822b313d3c4145b13cb5b8feab21f, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6071220466574794619, guid: 534822b313d3c4145b13cb5b8feab21f, type: 3}
+      propertyPath: m_Name
+      value: OptionTile
       objectReference: {fileID: 0}
     - target: {fileID: 6132908620140323025, guid: 534822b313d3c4145b13cb5b8feab21f, type: 3}
       propertyPath: bgImg
@@ -1169,7 +1177,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6708319747612093526, guid: d245ab4878590764790cb488bd5f014b, type: 3}
       propertyPath: m_Name
-      value: RowTile (3)
+      value: RowTile
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

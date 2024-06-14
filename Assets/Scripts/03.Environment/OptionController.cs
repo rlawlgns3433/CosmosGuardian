@@ -92,9 +92,9 @@ public class OptionController : MonoBehaviour
 
             if(gradedOptions[index].STAT == OptionColumn.Stat.FIRE_RANGE)
             {
-                if (playerStats.playerShooter.weapon.stats.Count != 0 && playerStats.stats.Count != 0)
+                if (playerStats.playerShooter.weapon.stats.Count != 0 && playerStats.stats.stat.Count != 0)
                 {
-                    if (playerStats.playerShooter.weapon.stats[WeaponColumn.Stat.FIRE_RANGE] * playerStats.stats[CharacterColumn.Stat.FIRE_RANGE] >= 50)
+                    if (playerStats.playerShooter.weapon.stats[WeaponColumn.Stat.FIRE_RANGE] * playerStats.stats.stat[CharacterColumn.Stat.FIRE_RANGE] >= 50)
                     {
                         --i;
                         continue;

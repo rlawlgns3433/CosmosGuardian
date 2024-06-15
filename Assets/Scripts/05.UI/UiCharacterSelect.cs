@@ -26,7 +26,6 @@ public class UiCharacterSelect : MonoBehaviour
     public GameObject[] weapons;
     public int selectedCharacterIndex = 0;
     public int selectedWeaponIndex = 11;
-    private string[] statStringName;
     public Animator animator;
 
 
@@ -35,12 +34,6 @@ public class UiCharacterSelect : MonoBehaviour
         characterTable = DataTableMgr.Get<CharacterTable>(DataTableIds.Character);
         weaponTable = DataTableMgr.Get<WeaponTable>(DataTableIds.Weapon);
         stringTable = DataTableMgr.GetStringTable();
-
-        statStringName = new string[15];
-        for (int i = 0; i < 15; ++i)
-        {
-            statStringName[i] = new string(stringTable.Get(i + "Name"));
-        }
     }
 
     private void Start()
@@ -145,18 +138,18 @@ public class UiCharacterSelect : MonoBehaviour
         charStats.Assign(intId);
 
         textStats[0].text = FormatSignedValue(CharacterColumn.Stat.HP, charStats.uiStat[CharacterColumn.Stat.HP]);
-        textStats[1].text = FormatSignedValue(CharacterColumn.Stat.SPLASH_RANGE,charStats.uiStat[CharacterColumn.Stat.SPLASH_RANGE]);
-        textStats[2].text = FormatSignedValue(CharacterColumn.Stat.ARMOR, charStats.uiStat[CharacterColumn.Stat.ARMOR]);
-        textStats[3].text = FormatSignedValue(CharacterColumn.Stat.SPLASH_RANGE, charStats.uiStat[CharacterColumn.Stat.SPLASH_RANGE]);
-        textStats[4].text = FormatSignedValue(CharacterColumn.Stat.DAMAGE, charStats.uiStat[CharacterColumn.Stat.DAMAGE]);
-        textStats[5].text = FormatSignedValue(CharacterColumn.Stat.CRITICAL, (charStats.uiStat[CharacterColumn.Stat.CRITICAL]));
-        textStats[6].text = FormatSignedValue(CharacterColumn.Stat.FIRE_RATE, (charStats.uiStat[CharacterColumn.Stat.FIRE_RATE]));
-        textStats[7].text = FormatSignedValue(CharacterColumn.Stat.CRITICAL_DAMAGE, (charStats.uiStat[CharacterColumn.Stat.CRITICAL_DAMAGE]));
-        textStats[8].text = FormatSignedValue(CharacterColumn.Stat.FIRE_RANGE, (charStats.uiStat[CharacterColumn.Stat.FIRE_RANGE]));
-        textStats[9].text = FormatSignedValue(CharacterColumn.Stat.HP_DRAIN, (charStats.uiStat[CharacterColumn.Stat.HP_DRAIN]));
-        textStats[10].text = FormatSignedValue(CharacterColumn.Stat.PENETRATE, (charStats.uiStat[CharacterColumn.Stat.PENETRATE]));
-        textStats[11].text = FormatSignedValue(CharacterColumn.Stat.PROJECTILE_AMOUNT, (charStats.uiStat[CharacterColumn.Stat.PROJECTILE_AMOUNT]));
-        textStats[12].text = FormatSignedValue(CharacterColumn.Stat.MOVE_SPEED_V, (charStats.uiStat[CharacterColumn.Stat.MOVE_SPEED_V]));
+        textStats[1].text = FormatSignedValue(CharacterColumn.Stat.ARMOR, charStats.uiStat[CharacterColumn.Stat.ARMOR]);
+        textStats[2].text = FormatSignedValue(CharacterColumn.Stat.DAMAGE, charStats.uiStat[CharacterColumn.Stat.DAMAGE]);
+        textStats[3].text = FormatSignedValue(CharacterColumn.Stat.FIRE_RATE, (charStats.uiStat[CharacterColumn.Stat.FIRE_RATE]));
+        textStats[4].text = FormatSignedValue(CharacterColumn.Stat.FIRE_RANGE, (charStats.uiStat[CharacterColumn.Stat.FIRE_RANGE]));
+        textStats[5].text = FormatSignedValue(CharacterColumn.Stat.PENETRATE, (charStats.uiStat[CharacterColumn.Stat.PENETRATE]));
+        textStats[6].text = FormatSignedValue(CharacterColumn.Stat.MOVE_SPEED_V, (charStats.uiStat[CharacterColumn.Stat.MOVE_SPEED_V]));
+        textStats[7].text = FormatSignedValue(CharacterColumn.Stat.SPLASH_RANGE,charStats.uiStat[CharacterColumn.Stat.SPLASH_RANGE]);
+        textStats[8].text = FormatSignedValue(CharacterColumn.Stat.SPLASH_RANGE, charStats.uiStat[CharacterColumn.Stat.SPLASH_RANGE]);
+        textStats[9].text = FormatSignedValue(CharacterColumn.Stat.CRITICAL, (charStats.uiStat[CharacterColumn.Stat.CRITICAL]));
+        textStats[10].text = FormatSignedValue(CharacterColumn.Stat.CRITICAL_DAMAGE, (charStats.uiStat[CharacterColumn.Stat.CRITICAL_DAMAGE]));
+        textStats[11].text = FormatSignedValue(CharacterColumn.Stat.HP_DRAIN, (charStats.uiStat[CharacterColumn.Stat.HP_DRAIN]));
+        textStats[12].text = FormatSignedValue(CharacterColumn.Stat.PROJECTILE_AMOUNT, (charStats.uiStat[CharacterColumn.Stat.PROJECTILE_AMOUNT]));
         textStats[13].text = FormatSignedValue(CharacterColumn.Stat.MOVE_SPEED_H, (charStats.uiStat[CharacterColumn.Stat.MOVE_SPEED_H]));
     }
 

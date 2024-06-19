@@ -117,12 +117,12 @@ public static class GPGSMgr
 
     public static void ReportScore(int score)
     {
-        Social.ReportScore(score, "CgkI6v_IzbQWEAIQAw", (bool success) => {
+        Social.ReportScore(score, MyGPGSIds.leaderboard, (bool success) => {
             // Handle success or failure
         });
     }
 
-    public static void ReportAchievement(string achievementId)
+    public static void ReportAchievemente(string achievementId)
     {
         Social.ReportProgress(achievementId, 100.0f, (bool success) =>
         {

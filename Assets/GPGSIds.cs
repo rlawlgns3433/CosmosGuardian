@@ -28,10 +28,9 @@ public static class GPGSIds
         public const string achievement = "CgkI6v_IzbQWEAIQAQ"; // <GPGSID>
         public const string achievement_2 = "CgkI6v_IzbQWEAIQBg"; // <GPGSID>
         public const string achievement_3 = "CgkI6v_IzbQWEAIQBQ"; // <GPGSID>
-        public const string achievement_4 = "CgkI6v_IzbQWEAIQBw"; // <GPGSID>
-        public const string achievement_5 = "CgkI6v_IzbQWEAIQCA"; // <GPGSID>
         public const string achievement_6 = "CgkI6v_IzbQWEAIQCQ"; // <GPGSID>
         public const string achievement_7 = "CgkI6v_IzbQWEAIQCg"; // <GPGSID>
-        public const string achievement_8 = "CgkI6v_IzbQWEAIQCw"; // <GPGSID>
+        public const string achievement_4 = "CgkI6v_IzbQWEAIQBw"; // <GPGSID>
+        public const string achievement_5 = "CgkI6v_IzbQWEAIQCA"; // <GPGSID>
 }
 

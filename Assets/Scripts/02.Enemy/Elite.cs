@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Elite : Enemy
 {
-    private readonly string attack1 = "Attack1";
+    private readonly int attack1 = Animator.StringToHash("Attack1");
     [Tooltip("Attack 1 발사 속도")]
     public float projectileSpeed = 10;
     [Tooltip("이 거리에 내에 들어올 때 공격")]
@@ -40,7 +40,7 @@ public class Elite : Enemy
 
         if(enemyState == EnemyState.Idle)
         {
-            animator.SetBool(Animator.StringToHash(attack1), false);
+            animator.SetBool(attack1, false);
         }
     }
 
@@ -50,7 +50,7 @@ public class Elite : Enemy
 
         direction = (target.transform.position - transform.position).normalized;
         enemyState = EnemyState.Attack1;
-        animator.SetBool(Animator.StringToHash(attack1), true);
+        animator.SetBool(attack1, true);
 
         var shotPos = transform.position;
         shotPos += Vector3.up * 2f;
@@ -93,7 +93,7 @@ public class Elite : Enemy
             Shot();
             yield return shotInterval;
             enemyState = EnemyState.Idle;
-            animator.SetBool(Animator.StringToHash(attack1), false);
+            animator.SetBool(attack1, false);
         }
     }
 }

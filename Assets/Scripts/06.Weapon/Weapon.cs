@@ -36,27 +36,8 @@ public class Weapon : MonoBehaviour
 
     public void SetWeapon(int weaponId)
     {
-        if (_weaponData != null)
-        {
-            if (_weaponData.PROJECTILE_ID != weaponTable.Get(weaponId).PROJECTILE_ID)
-            {
-                foreach (var p in playerStats.playerShooter.usingProjectiles)
-                {
-                    Destroy(p);
-                }
-
-                foreach (var p in playerStats.playerShooter.unusingProjectiles)
-                {
-                    Destroy(p);
-                }
-            }
-        }
-
         _weaponData = weaponTable.Get(weaponId);
         selectedWeaponId = weaponId;
-
-        playerStats.playerShooter.usingProjectiles.Clear();
-        playerStats.playerShooter.unusingProjectiles.Clear();
         playerStats.playerShooter.currentProjectileIndex = _weaponData.PROJECTILE_ID - 1;
 
 

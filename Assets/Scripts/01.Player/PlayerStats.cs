@@ -3,6 +3,7 @@ using UnityEngine;
 using TMPro;
 using System.Text;
 using System.Collections;
+using UnityEngine.Analytics;
 
 public class PlayerWeaponData
 {
@@ -36,9 +37,9 @@ public class PlayerStats : MonoBehaviour
     public float magnification = 1.8f;
 
     private CharacterTable characterTable;
-    public Dictionary<CharacterColumn.Stat, float> standardStats = new Dictionary<CharacterColumn.Stat, float>();
-    public Dictionary<CharacterColumn.Stat, float> initialStats = new Dictionary<CharacterColumn.Stat, float>();
-    public Dictionary<CharacterColumn.Stat, float> stats = new Dictionary<CharacterColumn.Stat, float>();
+    public CharacterStat standardStats = new CharacterStat();
+    public CharacterStat initialStats = new CharacterStat();
+    public CharacterStat stats = new CharacterStat();
     public List<ItemData> items = new List<ItemData>();
     public List<PlayerWeaponData> playerWeaponDatas = new List<PlayerWeaponData>();
     public PrefabSelector prefabSelector = null;
@@ -100,11 +101,6 @@ public class PlayerStats : MonoBehaviour
                 break;
         }
 
-        if (stat == OptionColumn.Stat.HP)
-        {
-            playerHealth.UpdateHealthUI();
-        }
-
         if (stopEffectCoroutine != null)
         {
             StopCoroutine(stopEffectCoroutine);
@@ -117,50 +113,36 @@ public class PlayerStats : MonoBehaviour
     {
         if (stat == OptionColumn.Stat.HP)
         {
-            stats[(CharacterColumn.Stat)stat] += stats[(CharacterColumn.Stat)stat] * (value / 100.0f);
+            stats.stat[(CharacterColumn.Stat)stat] += stats.stat[(CharacterColumn.Stat)stat] * (value / 100.0f);
+            playerHealth.UpdateHealthUI();
         }
         else
         {
-            stats[(CharacterColumn.Stat)stat] += initialStats[(CharacterColumn.Stat)stat] * (value / 100.0f);
+            stats.stat[(CharacterColumn.Stat)stat] += initialStats.stat[(CharacterColumn.Stat)stat] * (value / 100.0f);
         }
 
-        if (stat == OptionColumn.Stat.ARMOR)
-        {
-            stats[(CharacterColumn.Stat)stat] = Mathf.Min(stats[(CharacterColumn.Stat)stat], 1.9f);
-        }
-
-        if (stats[(CharacterColumn.Stat)stat] < 0)
-        {
-            stats[(CharacterColumn.Stat)stat] = 0;
-        }
+        ConstraintCharacterAbility(stat);
     }
 
     private void ApplyFixedStat(OptionColumn.Stat stat, float value)
     {
         if (stat == OptionColumn.Stat.HP)
         {
-            stats[(CharacterColumn.Stat)stat] += value;
+            stats.stat[(CharacterColumn.Stat)stat] += value;
             playerHealth.UpdateHealthUI();
         }
         else
         {
             playerShooter.weapon.stats[(WeaponColumn.Stat)stat] += value;
             playerWeaponDatas.Add(new PlayerWeaponData { playerStat = stat, playerValue = value });
-
-            if (playerShooter.weapon.stats[(WeaponColumn.Stat)stat] < 0)
-            {
-                playerShooter.weapon.stats[(WeaponColumn.Stat)stat] = 0;
-            }
+            ConstraintWeaponAbility(stat);
         }
     }
 
     private void ApplyChangeWeaponData(OptionColumn.Stat stat, float value)
     {
         playerShooter.weapon.stats[(WeaponColumn.Stat)stat] += value;
-        if (playerShooter.weapon.stats[(WeaponColumn.Stat)stat] < 0)
-        {
-            playerShooter.weapon.stats[(WeaponColumn.Stat)stat] = 0;
-        }
+        ConstraintWeaponAbility(stat);
     }
 
     private void ActivateOptionEffect()
@@ -176,6 +158,16 @@ public class PlayerStats : MonoBehaviour
     {
         exp += score;
         textExp.text = string.Format(scoreFormat, exp);
+
+        if (Achievements.currentIndex != Achievements.none && exp > Achievements.scores[Achievements.currentIndex])
+        {
+            if (Achievements.currentIndex == 0 && playerShooter.weapon.selectedWeaponId == 30111)
+            {
+                GPGSMgr.ReportAchievement(MyGPGSIds.tutorialMasterAchievement);
+            }
+
+            GPGSMgr.ReportAchievement(MyGPGSIds.scoreAchievements[Achievements.currentIndex]);
+        }
 
         if (level >= maxLevel) return;
 
@@ -198,8 +190,8 @@ public class PlayerStats : MonoBehaviour
         characterData = characterTable.Get(int.Parse(id));
         standardCharacterData = characterTable.Get(20101);
 
-        InitializeStats(characterData, initialStats, stats);
-        InitializeStats(standardCharacterData, standardStats);
+        InitializeStats(characterData, initialStats.stat, stats.stat);
+        InitializeStats(standardCharacterData, standardStats.stat);
     }
 
     private void InitializeStats(CharacterData data, Dictionary<CharacterColumn.Stat, float> targetDict)
@@ -238,5 +230,26 @@ public class PlayerStats : MonoBehaviour
             particle.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
         }
         getOptionEffect.SetActive(false);
+    }
+
+    private void ConstraintCharacterAbility(OptionColumn.Stat stat)
+    {
+        if (stat == OptionColumn.Stat.ARMOR)
+        {
+            stats.stat[(CharacterColumn.Stat)stat] = Mathf.Min(stats.stat[(CharacterColumn.Stat)stat], 1.9f);
+        }
+
+        if (stats.stat[(CharacterColumn.Stat)stat] < 0)
+        {
+            stats.stat[(CharacterColumn.Stat)stat] = 0;
+        }
+    }
+
+    private void ConstraintWeaponAbility(OptionColumn.Stat stat)
+    {
+        if (playerShooter.weapon.stats[(WeaponColumn.Stat)stat] < 0)
+        {
+            playerShooter.weapon.stats[(WeaponColumn.Stat)stat] = 0;
+        }
     }
 }

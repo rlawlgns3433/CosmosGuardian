@@ -1,11 +1,20 @@
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainUiManager : MonoBehaviour
 {
+    public readonly string nameFormat = "{0}Name";
     public UiCharacterSelect uiCharacterSelect;
+    public Button leaderboardButton;
     WeaponTable weaponTable;
+
+    private void Awake()
+    {
+        leaderboardButton.onClick.AddListener(GPGSMgr.ShowLeaderBoard);
+    }
+
     public void EnterGame()
     {
         weaponTable = DataTableMgr.Get<WeaponTable>(DataTableIds.Weapon);
@@ -18,8 +27,8 @@ public class MainUiManager : MonoBehaviour
             }
         }
 
-        ParamManager.selectedCharacterIndex = uiCharacterSelect.selectedCharacterIndex;
-        PlayerPrefs.SetInt("SelectedCharacterIndex", ParamManager.selectedCharacterIndex);
+        ParamManager.SelectedCharacterIndex = uiCharacterSelect.selectedCharacterIndex;
+        PlayerPrefs.SetInt("SelectedCharacterIndex", ParamManager.SelectedCharacterIndex);
 
         LoadScene(SceneIds.Game);
     }
@@ -32,7 +41,7 @@ public class MainUiManager : MonoBehaviour
 
     public void QuitApplication()
     {
-        PlayerPrefs.SetInt("SelectedCharacterIndex", ParamManager.selectedCharacterIndex);
+        PlayerPrefs.SetInt("SelectedCharacterIndex", ParamManager.SelectedCharacterIndex);
 
 #if UNITY_EDITOR
         EditorApplication.ExitPlaymode();

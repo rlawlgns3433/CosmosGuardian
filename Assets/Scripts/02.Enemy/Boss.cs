@@ -1,14 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class Boss : Enemy
 {
     public static bool IsBossDead = false;
-    private readonly string attack1 = "Attack1";
-    private readonly string attack2 = "Attack2";
-    private readonly string attack3 = "Attack3";
+    private int attack1 = Animator.StringToHash("Attack1");
+    private int attack2 = Animator.StringToHash("Attack2");
+    private int attack3 = Animator.StringToHash("Attack3");
 
     private List<GameObject> projectiles = new List<GameObject>();
 
@@ -39,6 +38,8 @@ public class Boss : Enemy
 
         onDeath += () =>
         {
+            GPGSMgr.ReportAchievement(MyGPGSIds.firstKillBossAchievement);
+
             IsBossDead = true;
 
             foreach(var projectile in projectiles)
@@ -53,7 +54,7 @@ public class Boss : Enemy
 
             StopAllCoroutines();
             cameraMove.IsTOP = true;
-            target.playerStats.stats[CharacterColumn.Stat.MOVE_SPEED_V] = savedVerticalSpeed;
+            target.playerStats.stats.stat[CharacterColumn.Stat.MOVE_SPEED_V] = savedVerticalSpeed;
 
             itemController = GameObject.FindWithTag(Tags.ItemController).GetComponent<ItemController>();
             itemController.UpdateItemData(enemyData.TYPE);
@@ -70,7 +71,7 @@ public class Boss : Enemy
             cameraMove.enabled = false;
             return;
         }
-        savedVerticalSpeed = target.playerStats.stats[CharacterColumn.Stat.MOVE_SPEED_V];
+        savedVerticalSpeed = target.playerStats.stats.stat[CharacterColumn.Stat.MOVE_SPEED_V];
         StartCoroutine(AttackPattern());
     }
 
@@ -81,25 +82,25 @@ public class Boss : Enemy
             if (isAlive && cameraMove.IsTOP)
             {
                 cameraMove.IsTOP = !cameraMove.IsTOP;
-                savedVerticalSpeed = target.playerStats.stats[CharacterColumn.Stat.MOVE_SPEED_V];
-                target.playerStats.stats[CharacterColumn.Stat.MOVE_SPEED_V] = 0f;
+                savedVerticalSpeed = target.playerStats.stats.stat[CharacterColumn.Stat.MOVE_SPEED_V];
+                target.playerStats.stats.stat[CharacterColumn.Stat.MOVE_SPEED_V] = 0f;
             }
         }
 
         if(enemyState == EnemyState.Idle)
         {
-            animator.SetBool(Animator.StringToHash(attack1), false);
-            animator.SetBool(Animator.StringToHash(attack2), false);
-            animator.SetBool(Animator.StringToHash(attack3), false);
+            animator.SetBool(attack1, false);
+            animator.SetBool(attack2, false);
+            animator.SetBool(attack3, false);
         }
     }
 
     public IEnumerator ShotThreeAngle()
     {
         enemyState = EnemyState.Attack1;
-        animator.SetBool(Animator.StringToHash(attack1), true);
-        animator.SetBool(Animator.StringToHash(attack2), false);
-        animator.SetBool(Animator.StringToHash(attack3), false);
+        animator.SetBool(attack1, true);
+        animator.SetBool(attack2, false);
+        animator.SetBool(attack3, false);
 
         int shotCount = 0;
         while (shotCount++ < 3)

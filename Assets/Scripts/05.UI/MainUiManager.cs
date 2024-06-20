@@ -17,7 +17,6 @@ public class MainUiManager : MonoBehaviour
 
     public void EnterGame()
     {
-        GPGSMgr.ReportTestAchievement(GPGSIds.achievement_8);
         weaponTable = DataTableMgr.Get<WeaponTable>(DataTableIds.Weapon);
         foreach (var weapon in weaponTable.AllItems)
         {

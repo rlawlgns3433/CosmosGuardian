@@ -122,7 +122,7 @@ public static class GPGSMgr
         });
     }
 
-    public static void ReportAchievemente(string achievementId)
+    public static void ReportAchievement(string achievementId)
     {
         Social.ReportProgress(achievementId, 100.0f, (bool success) =>
         {
